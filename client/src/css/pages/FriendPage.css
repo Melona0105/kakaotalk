@@ -76,14 +76,8 @@
   overflow: hidden;
 }
 
-.birthday-friend {
-  display: flex;
-  align-items: center;
-  background: salmon;
-  height: 45px;
-}
-
 .my-friends {
   background: seagreen;
   flex: 1;
+  padding: 0px 20px;
 }

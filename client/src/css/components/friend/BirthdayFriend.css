@@ -1,0 +1,43 @@
+.birthday-friend-container {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid lightgray;
+  margin: 0px 20px;
+  padding: 10px 0px;
+}
+
+.birthday-friend-container > img {
+  height: 20px;
+}
+
+.birthday-friend-title {
+  font-size: 14px;
+  color: #9e9e9e;
+  font-weight: 500;
+}
+
+.birthday-friend-content {
+  display: flex;
+  align-items: center;
+}
+
+.birthday-friend-content:hover {
+  background: #000;
+}
+.birthday-friend-content > img {
+  width: 50px;
+}
+
+.birthday-friend-content-detail {
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+}
+
+.birthday-friend-content-detail > :first-child {
+  margin-right: 5px;
+}
+
+.birthday-friend-count {
+  color: #9e9e9e;
+}
