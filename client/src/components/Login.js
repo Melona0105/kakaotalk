@@ -19,8 +19,9 @@ export default function Login() {
           </div>
         </div>
         <div className="login-inner-container-footer">
-          <div>카카오계정 찾기</div>
-          <div>비밀번호 재설정</div>
+          <div className="login-find-account">카카오계정 찾기</div>
+          <div className="login-center-bar"></div>
+          <div className="login-reset-password">비밀번호 재설정</div>
         </div>
       </div>
     </div>
