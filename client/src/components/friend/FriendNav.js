@@ -1,5 +1,6 @@
 import search from "../../images/friend/search.png";
 import add from "../../images/friend/add friend.png";
+import '../../css/components/friend/FriendNav.css'
 
 export default function FriendNav() {
   return (

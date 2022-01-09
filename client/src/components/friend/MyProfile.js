@@ -1,4 +1,5 @@
 import myphoto from "../../images/friend/my photo.png";
+import '../../css/components/friend/MyProfile.css'
 
 export default function MyProfile() {
   return (

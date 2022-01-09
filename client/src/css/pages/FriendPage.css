@@ -4,80 +4,8 @@
   flex: 1;
 }
 
-.firend-page-nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 50px;
-  padding: 0px 20px;
-}
-
-.firend-page-nav-left {
-  font-size: 18px;
-  font-weight: 600;
-}
-
-.firend-page-nav-right {
-  display: flex;
-  width: 80px;
-  justify-content: space-around;
-}
-
-.firend-page-nav-right > img {
-  width: 30px;
-  cursor: pointer;
-}
-
-.firend-page-nav-right > img:hover {
-  border-radius: 50%;
-  background: #f5f3f3;
-}
-
 .firend-page-content {
   display: flex;
   flex-direction: column;
   flex: 1;
-}
-
-.my-profile {
-  height: 80px;
-  display: flex;
-  align-items: center;
-  padding: 0px 10px;
-}
-
-.my-profile-img-container {
-  width: 70px;
-}
-
-.my-profile-img-container > img {
-  width: 100%;
-}
-
-.my-profile-detail {
-  flex: 1;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 0px 10px;
-}
-
-.my-profile-username {
-  font-size: 15px;
-  font-weight: 600;
-}
-
-.my-profile-song {
-  border: 1px solid #36cc43;
-  padding: 2px 5px;
-  width: 130px;
-  height: 20px;
-  border-radius: 5rem;
-  overflow: hidden;
-}
-
-.my-friends {
-  background: seagreen;
-  flex: 1;
-  padding: 0px 20px;
 }

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../css/pages/FriendPage.css";
 import FriendNav from "../components/friend/FriendNav";
-import MyProfile from "../components/friend/MyFrofile";
+import MyProfile from "../components/friend/MyProfile";
 import BirthdayFriend from "../components/friend/BirthdayFriend";
 import Friends from "../components/friend/Friends";
 

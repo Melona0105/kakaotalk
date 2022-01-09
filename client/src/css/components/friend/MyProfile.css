@@ -1,0 +1,40 @@
+.my-profile {
+  height: 80px;
+  display: flex;
+  align-items: center;
+  padding: 0px 10px;
+}
+
+.my-profile-img-container {
+  width: 70px;
+}
+
+.my-profile-img-container > img {
+  width: 100%;
+}
+
+.my-profile-detail {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0px 10px;
+}
+
+.my-profile-username {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.my-profile-song {
+  display: flex;
+  border: 1px solid #36cc43;
+  padding: 2px 5px;
+  width: 130px;
+  height: 20px;
+  border-radius: 5rem;
+  overflow: hidden;
+  font-size: 12px;
+  align-items: center;
+  justify-content: center;
+}
