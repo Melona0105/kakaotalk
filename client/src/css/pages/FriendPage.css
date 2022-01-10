@@ -1,11 +1,3 @@
 .friend-page-container {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-}
-
-.firend-page-content {
-  display: flex;
-  flex-direction: column;
   flex: 1;
 }

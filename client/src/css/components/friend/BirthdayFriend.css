@@ -1,12 +1,17 @@
 .birthday-friend-container {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   border-top: 1px solid lightgray;
   margin: 0px 20px;
   padding: 10px 0px;
 }
 
-.birthday-friend-container > img {
+.birthday-friend-container > :first-child {
+  display: flex;
+  justify-content: space-between;
+}
+
+.birthday-friend-container > :first-child > img {
   height: 20px;
 }
 
@@ -19,13 +24,16 @@
 .birthday-friend-content {
   display: flex;
   align-items: center;
+  margin: 2px -20px;
+  padding-left: 20px;
 }
 
 .birthday-friend-content:hover {
-  background: #000;
+  background: #f8f8f8;
 }
 .birthday-friend-content > img {
-  width: 50px;
+  width: 55px;
+  margin-left: -2px;
 }
 
 .birthday-friend-content-detail {

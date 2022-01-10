@@ -1,5 +1,26 @@
-.my-friends {
-  background: seagreen;
-  flex: 1;
-  padding: 0px 20px;
+.my-friends-container {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid lightgray;
+  margin: 0px 20px;
+  padding: 10px 0px;
+}
+
+.my-friends-container > div {
+  width: 100%;
+}
+
+.my-friends-container > img {
+  height: 20px;
+}
+
+.my-friends-title {
+  display: flex;
+  font-size: 14px;
+  color: #9e9e9e;
+  font-weight: 500;
+}
+
+.my-friends-title > div {
+  margin-right: 5px;
 }

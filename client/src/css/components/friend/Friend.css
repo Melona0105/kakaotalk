@@ -1,0 +1,31 @@
+.friend-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0px -5px;
+}
+
+.friend-profile {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.friend-profile > img {
+  width: 55px;
+  margin-right: 5px;
+}
+
+.friend-profile-song {
+  display: flex;
+  border: 1px solid #36cc43;
+  padding: 2px 5px;
+  width: 130px;
+  height: 20px;
+  border-radius: 5rem;
+  overflow: hidden;
+  font-size: 12px;
+  align-items: center;
+  justify-content: center;
+}

@@ -10,8 +10,8 @@ export default function FriendPage() {
   const [isBirthdayOn, setIsBirthdayOn] = useState(true);
   return (
     <div className="friend-page-container">
-      <div className="firend-page-content">
-        <FriendNav />
+      <FriendNav />
+      <div className="friend-page-content">
         <MyProfile />
         {isBirthdayOn && <BirthdayFriend />}
         <Friends />
