@@ -6,9 +6,10 @@ import Friends from "../components/friend/Friends";
 import user1 from "../images/friend/user1.png";
 import myphoto from "../images/friend/my photo.png";
 import search from "../images/friend/search.png";
-import "../css/pages/FriendPage.css";
 import { useSelector, useDispatch } from "react-redux";
 import { handleKeyword } from "../actions";
+import Friend from "../components/friend/Friend";
+import "../css/pages/FriendPage.css";
 
 export default function FriendPage() {
   const [isBirthdayOn, setIsBirthdayOn] = useState(false);
@@ -140,7 +141,7 @@ export default function FriendPage() {
     } else {
       setIsBirthdayOn(false);
     }
-  }, []);
+  }, [fakeData]);
 
   return (
     <div className="friend-page-container">
@@ -156,9 +157,25 @@ export default function FriendPage() {
             />
           </div>
         )}
-        <MyProfile data={userInfo} />
-        {isBirthdayOn && <BirthdayFriend birthData={birthFriend} />}
-        <Friends data={fakeData} />
+        {keyWord === "" ? (
+          <>
+            <MyProfile data={userInfo} />
+            {isBirthdayOn && <BirthdayFriend birthData={birthFriend} />}
+            <Friends data={fakeData} />
+          </>
+        ) : (
+          <div className="friend-page-filtered-content">
+            {fakeData.map((el) => (
+              <Friend
+                key={el.username}
+                src={el.photo}
+                name={el.username}
+                song={el.song}
+                comment={el.comment}
+              />
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
