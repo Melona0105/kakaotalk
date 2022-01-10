@@ -1,4 +1,5 @@
 .mainpage-container {
   display: flex;
   margin: 0;
+  width: 100%;
 }

@@ -1,0 +1,17 @@
+.profile-song {
+  display: flex;
+  border: 1px solid #36cc43;
+  padding: 2px 5px;
+  width: 130px;
+  height: 20px;
+  border-radius: 5rem;
+  overflow: hidden;
+  font-size: 11px;
+  font-weight: 600;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.profile-song > img {
+  width: 13px;
+}

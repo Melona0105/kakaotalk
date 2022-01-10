@@ -4,65 +4,82 @@ import FriendNav from "../components/friend/FriendNav";
 import MyProfile from "../components/friend/MyProfile";
 import BirthdayFriend from "../components/friend/BirthdayFriend";
 import Friends from "../components/friend/Friends";
-import kakaoUser from "../images/friend/kakaoUser.png";
+import user1 from "../images/friend/user1.png";
+import myphoto from "../images/friend/my photo.png";
 
 export default function FriendPage() {
   const [isBirthdayOn, setIsBirthdayOn] = useState(false);
 
+  const userInfo = {
+    photo: myphoto,
+    username: "박덕원",
+    birth: "1993-01-05",
+    song: "행복해서 미안해 - 다비치",
+    comment: "My Kakao Talk",
+  };
   const fakeData = [
     {
-      photo: kakaoUser,
+      photo: user1,
       username: "현광진",
       birth: "1992-01-10",
       song: null,
+      comment: "INNTW",
     },
     {
-      photo: kakaoUser,
+      photo: user1,
       username: "최우석",
       birth: "1994-03-16",
       song: null,
+      comment: "배고프네..",
     },
     {
-      photo: kakaoUser,
+      photo: user1,
       username: "이형범",
       birth: "1992-05-25",
       song: null,
+      comment: "감사합니다.",
     },
     {
-      photo: kakaoUser,
+      photo: user1,
       username: "김아현",
       birth: "1992-03-30",
       song: null,
+      comment: "",
     },
     {
-      photo: kakaoUser,
+      photo: user1,
       username: "윤예린",
       birth: "1992-06-08",
       song: null,
+      comment: "",
     },
     {
-      photo: kakaoUser,
+      photo: user1,
       username: "박성민",
       birth: "1992-10-18",
       song: null,
+      comment: "",
     },
     {
-      photo: kakaoUser,
+      photo: user1,
       username: "장예서",
       birth: "1994-11-10",
       song: null,
+      comment: "",
     },
     {
-      photo: kakaoUser,
+      photo: user1,
       username: "공윤구",
       birth: "1993-08-16",
       song: null,
+      comment: "",
     },
     {
-      photo: kakaoUser,
+      photo: user1,
       username: "이찬영",
       birth: "1993-11-01",
       song: "시간을 거슬러 - SG워너비",
+      comment: "",
     },
   ];
 
@@ -104,7 +121,7 @@ export default function FriendPage() {
     <div className="friend-page-container">
       <FriendNav />
       <div className="friend-page-content">
-        <MyProfile />
+        <MyProfile data={userInfo} />
         {isBirthdayOn && <BirthdayFriend birthData={birthFriend} />}
         <Friends data={fakeData} />
       </div>

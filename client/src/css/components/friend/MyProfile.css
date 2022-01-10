@@ -10,7 +10,7 @@
 }
 
 .my-profile-img-container > img {
-  width: 100%;
+  width: 65px;
 }
 
 .my-profile-detail {
@@ -26,6 +26,12 @@
   font-weight: 600;
 }
 
+.my-profile-comment {
+  font-size: 13px;
+  font-weight: 500;
+  color: #808080;
+}
+
 .my-profile-song {
   display: flex;
   border: 1px solid #36cc43;
@@ -34,7 +40,8 @@
   height: 20px;
   border-radius: 5rem;
   overflow: hidden;
-  font-size: 12px;
+  font-size: 11px;
+  font-weight: 600;
   align-items: center;
   justify-content: center;
 }

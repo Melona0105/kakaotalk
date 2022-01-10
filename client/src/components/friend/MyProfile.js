@@ -1,15 +1,20 @@
 import myphoto from "../../images/friend/my photo.png";
-import '../../css/components/friend/MyProfile.css'
+import "../../css/components/friend/MyProfile.css";
+import Melon from "../etc/Melon";
 
-export default function MyProfile() {
+export default function MyProfile({ data }) {
+  const { photo, username, song, comment } = data;
   return (
     <div className="my-profile">
       <div className="my-profile-img-container">
-        <img src={myphoto} />
+        <img src={photo} />
       </div>
       <div className="my-profile-detail">
-        <div className="my-profile-username">박덕원</div>
-        <div className="my-profile-song">행복해서 미안해 - 다비치</div>
+        <div>
+          <div className="my-profile-username">{username}</div>
+          <div className="my-profile-comment">{comment}</div>
+        </div>
+        <Melon song={song} />
       </div>
     </div>
   );

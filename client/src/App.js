@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import Login from "./components/Login";
 import MainPage from "./pages/MainPage";
+import "./app.css";
 
 function App() {
   const [isLogin, setIsLogin] = useState(true);
-  return <>{isLogin ? <MainPage /> : <Login />}</>;
+  return <div className="kakao-talk">{isLogin ? <MainPage /> : <Login />}</div>;
 }
 
 export default App;

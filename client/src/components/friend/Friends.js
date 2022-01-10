@@ -4,8 +4,6 @@ import open from "../../images/friend/open.png";
 import close from "../../images/friend/close.png";
 import Friend from "./Friend";
 
-
-
 // TODO : 나중에 useEffect로 제일 위에서 변환해줘야할듯?
 
 export default function Friends({ data }) {
@@ -25,6 +23,7 @@ export default function Friends({ data }) {
                 src={el.photo}
                 name={el.username}
                 song={el.song}
+                comment={el.comment}
               />
             ))}
         </div>
