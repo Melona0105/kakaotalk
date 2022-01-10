@@ -5,6 +5,10 @@
   padding: 0px 20px;
 }
 
+.my-profile:hover {
+  background: #f8f8f8;
+}
+
 .my-profile-img-container {
   width: 70px;
 }

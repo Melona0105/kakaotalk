@@ -1,4 +1,5 @@
 import "../../css/components/friend/Friend.css";
+import Melon from "../../components/etc/Melon";
 
 export default function Friend({ src, name, comment, song }) {
   return (
@@ -10,7 +11,7 @@ export default function Friend({ src, name, comment, song }) {
           <div className="friend-comment">{comment}</div>
         </div>
       </div>
-      {song && <div className="friend-profile-song">{song}</div>}
+      {song && <Melon song={song} />}
     </div>
   );
 }

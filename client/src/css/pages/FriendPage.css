@@ -6,3 +6,21 @@
   height: 94vh;
   overflow: auto;
 }
+.friend-search-bar {
+  display: flex;
+  align-items: center;
+  margin: 0px 20px;
+}
+
+.friend-search-bar > img {
+  width: 25px;
+  position: absolute;
+}
+
+.friend-search-bar > input {
+  padding-left: 25px;
+  width: 100%;
+  background: #f8f8f8;
+  border: none;
+  height: 20px;
+}

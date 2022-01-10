@@ -13,6 +13,7 @@ export default function Nav({ currentPage, setIsCurrentPage }) {
       <div className="nav-continer-innerbox pages">
         {menus.map((el, index) => (
           <NavMenu
+            key={el}
             currentPage={currentPage}
             index={index}
             src={el}
