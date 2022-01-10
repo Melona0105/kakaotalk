@@ -1,0 +1,12 @@
+.seemore-page-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 50px;
+  padding: 0px 20px;
+}
+
+.seemore-page-nav-left {
+  font-size: 18px;
+  font-weight: 700;
+}
