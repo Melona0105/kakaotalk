@@ -4,7 +4,6 @@ import MyProfile from "../components/friend/MyProfile";
 import BirthdayFriend from "../components/friend/BirthdayFriend";
 import Friends from "../components/friend/Friends";
 import user1 from "../images/friend/user1.png";
-import myphoto from "../images/friend/my photo.png";
 import search from "../images/friend/search.png";
 import { useSelector, useDispatch } from "react-redux";
 import { handleKeyword } from "../actions";
@@ -12,19 +11,11 @@ import Friend from "../components/friend/Friend";
 import { getCurrentDate } from "../functions";
 import "../css/pages/FriendPage.css";
 
-export default function FriendPage() {
+export default function FriendPage({ userInfo }) {
   const [isBirthdayOn, setIsBirthdayOn] = useState(false);
   const { isSearchOn } = useSelector((state) => state.SearchOnReducer);
   const { keyWord } = useSelector((state) => state.SearchKeyWordReducer);
   const dispatch = useDispatch();
-
-  const userInfo = {
-    photo: myphoto,
-    username: "박덕원",
-    birth: "1993-01-05",
-    song: "행복해서 미안해 - 다비치",
-    comment: "My Kakao Talk",
-  };
 
   let fakeData = [
     {

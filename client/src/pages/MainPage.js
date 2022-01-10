@@ -4,16 +4,27 @@ import FriendPage from "../pages/FriendPage";
 import "../css/pages/MainPage.css";
 import ChattingPage from "./ChattingPage";
 import SeeMorePage from "./SeeMorePage";
+import myphoto from "../images/friend/my photo.png";
 
 export default function MainPage() {
   // 현재페이지를 나타내는 상태 -> 친구를 선택하면 친구페이지, 이런 식으로
   const [currentPage, setIsCurrentPage] = useState(0);
+
+  const userInfo = {
+    photo: myphoto,
+    username: "박덕원",
+    email: "pdwtop2509@gmail.com",
+    birth: "1993-01-05",
+    song: "행복해서 미안해 - 다비치",
+    comment: "My Kakao Talk",
+  };
+
   return (
     <div className="mainpage-container">
       <Nav currentPage={currentPage} setIsCurrentPage={setIsCurrentPage} />
-      {currentPage === 0 && <FriendPage />}
+      {currentPage === 0 && <FriendPage userInfo={userInfo} />}
       {currentPage === 1 && <ChattingPage />}
-      {currentPage === 2 && <SeeMorePage />}
+      {currentPage === 2 && <SeeMorePage userInfo={userInfo} />}
     </div>
   );
 }

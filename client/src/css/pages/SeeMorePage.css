@@ -3,17 +3,68 @@
   display: flex;
   flex-direction: column;
 }
-/* .seemore-page-content-header {
-  border: 1px solid red;
-  height: 100px;
+
+.seemore-page-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.seemore-page-content-header {
+  height: 120px;
+  padding: 5px 15px;
+}
+
+.seemore-mycard {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid lightgray;
+  height: 100%;
+  border-radius: 5px;
+  background: #f8f8f8;
+}
+
+.mycard-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px;
+  flex: 2;
+}
+.mycard-info > img {
+  width: 50px;
+  height: 50px;
+}
+
+.mycard-username {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.mycard-email {
+  font-size: 12px;
+  font-weight: 500;
+  color: #808080;
+}
+
+.mycard-subscription {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  flex: 1;
+  border-top: 1px solid lightgray;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.mycard-subscription > img {
+  width: 30px;
 }
 
 .seemore-page-content-body {
-  border: 1px solid red;
   flex: 1;
 }
 
 .seemore-page-content-footer {
-  border: 1px solid red;
   flex: 1;
-} */
+}
