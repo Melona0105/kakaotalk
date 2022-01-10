@@ -62,7 +62,7 @@ export default function FriendPage() {
     },
     {
       photo: user1,
-      username: "장예서",
+      username: "송자혜",
       birth: "1994-11-10",
       song: null,
       comment: "",
