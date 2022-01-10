@@ -62,9 +62,36 @@
 }
 
 .seemore-page-content-body {
-  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+  flex-flow: wrap;
+  overflow: auto;
+  height: 280px;
+  margin: 5px 15px;
+  border-bottom: 1px solid lightgray;
 }
 
 .seemore-page-content-footer {
+  margin: 10px 20px;
   flex: 1;
+}
+
+.kakao-talk-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #808080;
+  font-weight: 500;
+}
+
+.kakao-talk-info > :first-child {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: #000;
+}
+.kakao-talk-info > :first-child > img {
+  width: 30px;
+  height: 30px;
 }
