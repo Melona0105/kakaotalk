@@ -9,6 +9,7 @@ import search from "../images/friend/search.png";
 import { useSelector, useDispatch } from "react-redux";
 import { handleKeyword } from "../actions";
 import Friend from "../components/friend/Friend";
+import { getCurrentDate } from "../functions";
 import "../css/pages/FriendPage.css";
 
 export default function FriendPage() {
@@ -97,14 +98,6 @@ export default function FriendPage() {
         return -1;
       }
     });
-  }
-
-  function getCurrentDate() {
-    const date = new Date();
-    const month = String(date.getUTCMonth() + 1).padStart(2, 0);
-    const day = date.getUTCDate();
-
-    return `${month}-${day}`;
   }
 
   const toDayDate = getCurrentDate();

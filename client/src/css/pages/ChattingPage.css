@@ -1,0 +1,8 @@
+.chatting-page-container {
+  flex: 1;
+}
+
+.friend-page-content {
+  height: 94vh;
+  overflow: auto;
+}
