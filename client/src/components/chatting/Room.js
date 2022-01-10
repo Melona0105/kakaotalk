@@ -2,7 +2,7 @@ import "../../css/components/chatting/Room.css";
 import { getCurrentDate, getYesterDayDate } from "../../functions";
 
 export default function Room({ data }) {
-  const { img, username, noti, time, message, newMsg, newMsgCount } = data;
+  const { id, img, username, noti, time, message, newMsg, newMsgCount } = data;
 
   const currentDate = getCurrentDate();
   const yesterday = getYesterDayDate();
@@ -39,8 +39,12 @@ export default function Room({ data }) {
     return input;
   }
 
+  function enterChattingRoom() {
+    window.open("https://naver.com");
+  }
+
   return (
-    <div className="room-container">
+    <div className="room-container" onDoubleClick={() => enterChattingRoom()}>
       <div className="room-left">
         <img src={img} />
         <div className="room-body">

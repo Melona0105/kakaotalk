@@ -7,7 +7,6 @@ import SeeMorePage from "./SeeMorePage";
 import myphoto from "../images/friend/my photo.png";
 
 export default function MainPage() {
-  // 현재페이지를 나타내는 상태 -> 친구를 선택하면 친구페이지, 이런 식으로
   const [currentPage, setIsCurrentPage] = useState(0);
 
   const userInfo = {

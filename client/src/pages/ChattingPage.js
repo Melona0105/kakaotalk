@@ -8,6 +8,7 @@ export default function ChattingPage() {
   // ? 그 개수를 넘겨줘서 새 메세지 수를 파악해야 할듯함.
   const roomdata = [
     {
+      id: "room1",
       img: user, // 채팅방 사진
       username: "윤예린", // 채팅방 이름 ----- 앞에 친구목록에 있는 유저이름
       noti: true, // 알람 온오프
@@ -17,6 +18,7 @@ export default function ChattingPage() {
       newMsgCount: 0, // 새 메세지 개수
     },
     {
+      id: "room2",
       img: user,
       username: "공윤구",
       noti: true,
@@ -26,6 +28,7 @@ export default function ChattingPage() {
       newMsgCount: 1,
     },
     {
+      id: "room3",
       img: user,
       username: "박성민",
       noti: true,
@@ -35,6 +38,7 @@ export default function ChattingPage() {
       newMsgCount: 3,
     },
     {
+      id: "room4",
       img: user,
       username: "이찬영",
       noti: true,
@@ -46,7 +50,7 @@ export default function ChattingPage() {
   ].sort((a, b) => {
     return new Date(b.time) - new Date(a.time);
   });
-  console.log(new Date(roomdata[0].time));
+
   return (
     <div className="chatting-page-container">
       <ChattingNav />
