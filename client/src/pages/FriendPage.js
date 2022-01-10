@@ -7,11 +7,14 @@ import user1 from "../images/friend/user1.png";
 import myphoto from "../images/friend/my photo.png";
 import search from "../images/friend/search.png";
 import "../css/pages/FriendPage.css";
+import { useSelector, useDispatch } from "react-redux";
+import { handleKeyword } from "../actions";
 
 export default function FriendPage() {
   const [isBirthdayOn, setIsBirthdayOn] = useState(false);
-  const [isSearchOn, setIsSearchOn] = useState(false);
-  const [keyWord, setKeyWord] = useState("");
+  const { isSearchOn } = useSelector((state) => state.SearchOnReducer);
+  const { keyWord } = useSelector((state) => state.SearchKeyWordReducer);
+  const dispatch = useDispatch();
 
   const userInfo = {
     photo: myphoto,
@@ -20,6 +23,7 @@ export default function FriendPage() {
     song: "행복해서 미안해 - 다비치",
     comment: "My Kakao Talk",
   };
+
   let fakeData = [
     {
       photo: user1,
@@ -140,14 +144,15 @@ export default function FriendPage() {
 
   return (
     <div className="friend-page-container">
-      <FriendNav isSearchOn={isSearchOn} setIsSearchOn={setIsSearchOn} />
+      <FriendNav />
       <div className="friend-page-content">
         {isSearchOn && (
           <div className="friend-search-bar">
             <img src={search} />
             <input
               placeholder="이름으로 검색"
-              onChange={(e) => setKeyWord(e.target.value)}
+              onChange={(e) => dispatch(handleKeyword(e.target.value))}
+              value={keyWord}
             />
           </div>
         )}
