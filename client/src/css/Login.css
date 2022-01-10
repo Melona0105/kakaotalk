@@ -53,7 +53,6 @@
   width: 244px;
   height: 45px;
   margin-top: 5px;
-  cursor: pointer;
 }
 
 .auto-login {
@@ -62,14 +61,12 @@
   margin-top: 10px;
   font-size: 12px;
   color: #887e1d;
-  cursor: pointer;
 }
 
 .auto-login > input {
   width: 14px;
   height: 14px;
   margin-right: 5px;
-  cursor: pointer;
 }
 
 .login-inner-container-footer {
@@ -85,9 +82,4 @@
   border-left: 1px solid #887e1d;
   height: 13px;
   margin: 0px 10px;
-}
-
-.login-find-account,
-.login-reset-password {
-  cursor: pointer;
 }
