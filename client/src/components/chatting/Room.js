@@ -1,7 +1,11 @@
 import "../../css/components/chatting/Room.css";
+import { useState } from "react";
 import { getCurrentDate, getYesterDayDate } from "../../functions";
+import Chatting from "./Chatting";
+import Popup from "./Popup";
 
 export default function Room({ data }) {
+  const [isChattingOn, setIsChattingOn] = useState(false);
   const { id, img, username, noti, time, message, newMsg, newMsgCount } = data;
 
   const currentDate = getCurrentDate();
@@ -39,23 +43,31 @@ export default function Room({ data }) {
     return input;
   }
 
-  function enterChattingRoom(input) {
-    window.open("room");
-  }
-
   return (
-    <div className="room-container" onDoubleClick={() => enterChattingRoom(id)}>
-      <div className="room-left">
-        <img src={img} />
-        <div className="room-body">
-          <div>{username}</div>
-          <div>{message}</div>
+    <>
+      <div
+        className="room-container"
+        onDoubleClick={() => {
+          setIsChattingOn(true);
+        }}
+      >
+        {isChattingOn && (
+          <Popup username={username} setIsChattingOn={setIsChattingOn}>
+            <Chatting username={username} />
+          </Popup>
+        )}
+        <div className="room-left">
+          <img src={img} />
+          <div className="room-body">
+            <div>{username}</div>
+            <div>{message}</div>
+          </div>
+        </div>
+        <div className="room-right">
+          <div>{printNewMsgTime(time)}</div>
+          {newMsg && <div className="room-newMsg-count">{newMsgCount}</div>}
         </div>
       </div>
-      <div className="room-right">
-        <div>{printNewMsgTime(time)}</div>
-        {newMsg && <div className="room-newMsg-count">{newMsgCount}</div>}
-      </div>
-    </div>
+    </>
   );
 }

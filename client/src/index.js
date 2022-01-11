@@ -13,7 +13,6 @@ ReactDOM.render(
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<App />} />
-          <Route path="/room" element={<div>새 채팅방입니다.</div>} />
         </Routes>
       </BrowserRouter>
     </Provider>

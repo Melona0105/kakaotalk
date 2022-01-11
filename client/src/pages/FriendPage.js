@@ -20,7 +20,7 @@ export default function FriendPage({ userInfo }) {
   let fakeData = [
     {
       photo: user1,
-      username: "현광진",
+      username: "현광진", // 내가 친구 설정한 닉네임임
       birth: "1992-01-11",
       song: null,
       comment: "INNTW",
