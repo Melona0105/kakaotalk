@@ -21,7 +21,7 @@ export default function FriendPage({ userInfo }) {
     {
       photo: user1,
       username: "현광진",
-      birth: "1992-01-10",
+      birth: "1992-01-11",
       song: null,
       comment: "INNTW",
     },

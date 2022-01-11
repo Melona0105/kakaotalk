@@ -39,12 +39,12 @@ export default function Room({ data }) {
     return input;
   }
 
-  function enterChattingRoom() {
-    window.open("https://naver.com");
+  function enterChattingRoom(input) {
+    window.open("room");
   }
 
   return (
-    <div className="room-container" onDoubleClick={() => enterChattingRoom()}>
+    <div className="room-container" onDoubleClick={() => enterChattingRoom(id)}>
       <div className="room-left">
         <img src={img} />
         <div className="room-body">
