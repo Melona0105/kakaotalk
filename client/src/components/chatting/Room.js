@@ -53,7 +53,7 @@ export default function Room({ data }) {
       >
         {isChattingOn && (
           <Popup username={username} setIsChattingOn={setIsChattingOn}>
-            <Chatting username={username} />
+            <Chatting data={data} />
           </Popup>
         )}
         <div className="room-left">
