@@ -1,0 +1,58 @@
+.inner-nav-left {
+  display: flex;
+  align-items: center;
+  flex: 4;
+}
+
+.inner-room-nav-user-img {
+  width: 55px;
+  margin-right: 10px;
+}
+
+.inner-room-nav-room-info {
+  display: flex;
+  flex-direction: column;
+  flex: 3;
+  font-size: 14px;
+  justify-content: space-around;
+  height: 100%;
+  padding-top: 20px;
+}
+
+.inner-room-container-nav {
+  display: flex;
+  flex-direction: column;
+  height: 65px;
+  margin: 0px 10px;
+}
+
+.inner-room-container-inner-nav {
+  flex: 1;
+  display: flex;
+}
+
+.nav-bottom-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.nav-bottom-right > img {
+  height: 25px;
+  width: 100%;
+}
+
+.nav-bottom-right > div {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  width: 100%;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.nav-bottom-right > div > img {
+  width: 22px;
+  border: 1px solid lightgray;
+  border-radius: 50%;
+}

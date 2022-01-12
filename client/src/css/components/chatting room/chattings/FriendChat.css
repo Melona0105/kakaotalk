@@ -1,0 +1,27 @@
+.friend-chat-content-container {
+  display: flex;
+}
+
+.friend-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #555e63;
+}
+
+.friend-chat-content {
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  border-radius: 3px;
+  margin: 5px 5px 5px 0px;
+  padding: 5px 10px;
+  background: #fff;
+}
+
+.friend-chat-time {
+  font-size: 12px;
+  color: #707b83;
+  font-weight: 600;
+  margin-bottom: 5px;
+  align-self: flex-end;
+}

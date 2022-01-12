@@ -1,0 +1,21 @@
+.chatting-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin: 5px 5px 5px 0px;
+}
+
+.friend-chat-container {
+  display: flex;
+}
+
+.friend-chat-container > div {
+  margin-left: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.friend-chat-container > div > img {
+  width: 50px;
+}
