@@ -6,7 +6,7 @@ import store from "./store";
 import { Provider } from "react-redux";
 import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Room from "./components/chatting room/Room";
+import InnerRoom from "./components/chatting room/InnerRoom";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -14,7 +14,7 @@ ReactDOM.render(
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<App />} />
-          <Route path="/room/:roomId" element={<Room />} />
+          <Route path="/room/:roomId" element={<InnerRoom />} />
         </Routes>
       </BrowserRouter>
     </Provider>

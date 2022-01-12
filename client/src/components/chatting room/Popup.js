@@ -5,8 +5,6 @@ export default class Popup extends React.PureComponent {
   constructor(props) {
     super(props);
     this.el = document.createElement("div");
-    // this.el.innerHTML =
-    //   '<link rel="stylesheet" href="components/chatting/Chatting.css" type="text/css" />';
     this.newWindow = null;
   }
 
