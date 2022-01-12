@@ -1,0 +1,25 @@
+.signup-agreement-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0px;
+  align-items: center;
+}
+
+.signup-agreement-title {
+  display: flex;
+}
+
+.signup-agreement-container > img {
+  width: 30px;
+  height: 30px;
+}
+
+.signup-agreement-title > input {
+  width: 35px;
+}
+
+.signup-agreement-text {
+  width: 400px;
+  font-size: 12px;
+  color: #808080;
+}
