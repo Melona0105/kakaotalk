@@ -40,16 +40,18 @@ export default function SignUp() {
           <div>
             <div className="signup-agreement-all-container">
               <input id="agree-all" type="checkbox" />
-              <label htmlFor="agree-all" />
+              <label htmlFor="agree-all"></label>
               <div className="signup-agreement-all">
-                <div className="signup-agreement-all-text">
+                <label
+                  className="signup-agreement-all-text"
+                  htmlFor="agree-all"
+                >
                   모두 동의합니다.
-                </div>
+                </label>
                 <div>
                   전체 동의는 필수 및 선택정보에 대한 동의도 포함되어 있으며,
                   개별적으로도 동의를 선택하실 수 있습니다.
-                </div>
-                <div>
+                  <br />
                   선택항목에 대한 동의를 거부하시는 경우에도 서비스는 이용이
                   가능합니다.
                 </div>

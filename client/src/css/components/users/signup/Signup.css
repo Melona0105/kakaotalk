@@ -31,11 +31,6 @@
   margin: 0px 10px 0px 20px;
 }
 
-.signup-agreement-all {
-  border-bottom: 1px solid lightgray;
-  width: 420px;
-}
-
 .signup-agreement-all-container {
   display: flex;
   height: 90px;
@@ -44,11 +39,20 @@
   margin-top: 10px;
 }
 
+.signup-agreement-all {
+  border-bottom: 1px solid lightgray;
+  width: 420px;
+}
+
+.signup-agreement-all > div {
+  margin-top: 5px;
+}
+
 .signup-agreement-all-text {
   font-size: 16px;
   font-weight: 600;
   color: #000;
-  margin-bottom: 5px;
+  cursor: pointer;
 }
 
 .signup-agreement-detail-container {

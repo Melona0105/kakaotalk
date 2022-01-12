@@ -8,7 +8,7 @@ export default function CheckBox({ id, title, text, isDetailOn }) {
         <input className="agree-checkbox" id={`${id}`} type="checkbox" />
         <label htmlFor={`${id}`} />
         <div>
-          <div>{title}</div>
+          <label htmlFor={`${id}`}>{title}</label>
           <div className="signup-agreement-text">{text}</div>
         </div>
       </div>

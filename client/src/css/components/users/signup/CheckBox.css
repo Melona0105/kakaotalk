@@ -5,6 +5,10 @@
   align-items: center;
 }
 
+.signup-agreement-title > div > label {
+  cursor: pointer;
+}
+
 .signup-agreement-title {
   display: flex;
 }
