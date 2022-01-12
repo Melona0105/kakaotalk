@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "../../../css/components/users/signup/Signup.css";
 import process_1 from "../../../images/signup/1.png";
 import CheckBox from "./CheckBox";
 
 export default function SignUp() {
-  const [isAgreeOn, setIsArgeeOn] = useState(false);
+  const [isEssentialAgreeOn, setIsEssentialArgeeOn] = useState(false);
+  const [agreeStatus, setIsAgreeStatus] = useState(new Array(7).fill(false));
   const checkList = [
     { id: 0, title: "만 14세 이상입니다.", isDetailOn: false },
     { id: 1, title: "[필수] 카카오계정 약관", isDetailOn: true },
@@ -24,7 +25,21 @@ export default function SignUp() {
     { id: 6, title: "[선택] 프로필정보 추가 수집 동의", isDetailOn: true },
   ];
 
-  // TODO : 필수들이 선택되면, 동의가 활성화되도록 하기
+  // 전체선택해제시
+  const agreeAll = agreeStatus.findIndex((el) => el === false);
+  function selectAll() {
+    if (agreeAll === -1) {
+      setIsAgreeStatus(new Array(7).fill(false));
+    } else {
+      setIsAgreeStatus(new Array(7).fill(true));
+    }
+  }
+
+  useEffect(() => {
+    agreeStatus[1] && agreeStatus[2] && agreeStatus[4]
+      ? setIsEssentialArgeeOn(true)
+      : setIsEssentialArgeeOn(false);
+  }, [agreeStatus]);
 
   return (
     <div className="signup-container">
@@ -39,7 +54,12 @@ export default function SignUp() {
         <div className="signup-body">
           <div>
             <div className="signup-agreement-all-container">
-              <input id="agree-all" type="checkbox" />
+              <input
+                id="agree-all"
+                type="checkbox"
+                checked={agreeAll === -1 ? true : false}
+                onChange={() => selectAll()}
+              />
               <label htmlFor="agree-all"></label>
               <div className="signup-agreement-all">
                 <label
@@ -66,6 +86,8 @@ export default function SignUp() {
                 title={el.title}
                 text={el.text}
                 isDetailOn={el.isDetailOn}
+                agreeStatus={agreeStatus}
+                setIsAgreeStatus={setIsAgreeStatus}
               />
             ))}
           </div>
@@ -73,7 +95,7 @@ export default function SignUp() {
         <div className="signup-footer">
           <div
             style={
-              isAgreeOn
+              isEssentialAgreeOn
                 ? { backgroundColor: "#fada0b" }
                 : { backgroundColor: "#fafafa" }
             }
