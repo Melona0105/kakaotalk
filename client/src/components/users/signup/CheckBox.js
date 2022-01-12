@@ -1,11 +1,12 @@
 import arrow from "../../../images/signup/arrow.png";
 import "../../../css/components/users/signup/CheckBox.css";
 
-export default function CheckBox({ title, text, isDetailOn }) {
+export default function CheckBox({ id, title, text, isDetailOn }) {
   return (
     <div className="signup-agreement-container">
       <div className="signup-agreement-title">
-        <input type="checkbox" />
+        <input className="agree-checkbox" id={`${id}`} type="checkbox" />
+        <label htmlFor={`${id}`} />
         <div>
           <div>{title}</div>
           <div className="signup-agreement-text">{text}</div>
