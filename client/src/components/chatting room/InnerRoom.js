@@ -8,6 +8,7 @@ import user from "../../images/friend/user1.png";
 import Chatting from "./chattings/Chatting";
 import { useParams } from "react-router-dom";
 import InnerRoomNav from "./InnerRoomNav";
+import { sortChatData } from "../../functions";
 
 export default function InnerRoom() {
   const { roomId } = useParams();
@@ -53,50 +54,19 @@ export default function InnerRoom() {
       time: "2022-01-12T01:02",
     },
     {
-      id: 5,
-      user: "형범이형",
-      content: "ㅋㅋㅋㅋ",
-      time: "2022-01-12T01:02",
-    },
-    {
       id: 6,
       user: "형범이형",
       content: "잘했네 보니까",
       time: "2022-01-12T01:03",
     },
+    {
+      id: 5,
+      user: "형범이형",
+      content: "ㅋㅋㅋㅋ",
+      time: "2022-01-12T01:02",
+    },
   ];
 
-  // ! 시간 순서로 소팅한번 해줘야할듯?
-  function sortChatData(data) {
-    return data.reduce((acc, cur) => {
-      const now = acc[acc.length - 1];
-      // 이름이 같은지 확인
-      if (now?.user === cur.user) {
-        // 이름이 같다면, 시간이 같은지 확인한다.
-        // 시간이 같다면 그냥 넘어가고,
-        // 다르면 데이터에 넣어줘야함
-        if (now?.time !== cur.time) {
-          acc.push({
-            id: cur.id,
-            user: cur.user,
-            content: [cur.content],
-            time: cur.time,
-          });
-        } else {
-          now.content.push(cur.content);
-        }
-      } else {
-        // 이름이 다르면 시간 넣어버림
-        acc.push({
-          id: cur.id,
-          user: cur.user,
-          content: [cur.content],
-          time: cur.time,
-        });
-      }
-      return acc;
-    }, []);
-  }
   const sortedData = sortChatData(chatData);
 
   // 유저로 필터링해서, 상대방이면 왼쪽에 나면 오른쪽에 뿌린다.

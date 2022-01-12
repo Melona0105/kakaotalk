@@ -45,3 +45,26 @@ function removeFrontZero(input) {
   }
   return input;
 }
+
+export function sortChatData(data) {
+  return data.reduce((acc, cur) => {
+    const now = acc[acc.length - 1];
+    // 이름이 같은지 확인
+    if (now?.user === cur.user) {
+      // 이름이 같다면, 시간이 같은지 확인한다.
+      // 시간이 같다면 그냥 넘어가고,
+      // 다르면 데이터에 넣어줘야함
+      if (now?.time !== cur.time) {
+        acc.push({ ...cur, content: [cur.content] });
+      } else {
+        now.content.push(cur.content);
+      }
+    } else {
+      // 이름이 다르면 시간 넣어버림
+      acc.push({ ...cur, content: [cur.content] });
+    }
+    return acc.sort((a, b) => {
+      return new Date(a.time) - new Date(b.time);
+    });
+  }, []);
+}
