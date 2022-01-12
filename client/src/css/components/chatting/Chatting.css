@@ -1,4 +1,147 @@
-.chatting-nav {
+.chatting-container {
   display: flex;
-  border: 1px solid red;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.chatting-container-nav {
+  display: flex;
+  flex-direction: column;
+  height: 65px;
+  margin: 0px 10px;
+}
+
+.chatting-container-inner-nav {
+  flex: 1;
+  display: flex;
+}
+
+.inner-nav-left {
+  display: flex;
+  align-items: center;
+  flex: 4;
+}
+
+.chatting-nav-user-img {
+  flex: 1;
+  width: 55px;
+  margin-right: 10px;
+}
+
+.chatting-nav-room-info {
+  display: flex;
+  flex-direction: column;
+  flex: 3;
+  font-size: 14px;
+  justify-content: space-around;
+  height: 100%;
+  padding-top: 20px;
+}
+
+.room-member {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.room-member > img {
+  width: 14px;
+  height: 14px;
+  filter: brightness(0.7) invert(1);
+  margin-bottom: 2px;
+}
+
+.room-member > div {
+  color: #808080;
+  font-size: 12px;
+}
+
+.nav-bottom-right {
+  display: flex;
+  flex-direction: column;
+  flex: 2;
+  align-items: flex-end;
+}
+
+.nav-bottom-right > img {
+  height: 25px;
+  width: 100%;
+}
+
+.nav-bottom-right > div {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  width: 100%;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.nav-bottom-right > div > img {
+  width: 22px;
+  border: 1px solid lightgray;
+  border-radius: 50%;
+}
+
+.chatting-container-body {
+  flex: 1;
+  background: #bdd0dc;
+}
+
+.chatting-container-input {
+  display: flex;
+  flex-direction: column;
+  height: 130;
+}
+
+.chatting-input-nav {
+  flex: 2;
+  background: #f8f8f8;
+  border-bottom: 1px solid #e8e8e8;
+  display: flex;
+}
+
+.chatting-input-nav-left {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.chatting-input-nav-left > img,
+.chatting-input-nav-right > img {
+  width: 30px;
+  margin-right: 10px;
+}
+
+.chatting-input-nav-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex: 1;
+}
+
+.chatting-input-area {
+  display: flex;
+  flex: 5;
+}
+
+.chatting-input-area > input {
+  flex: 5;
+  border: none;
+}
+
+.send-button-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 2;
+}
+
+.send-button {
+  border: 1px solid #e8e8e8;
+  padding: 25px;
+  border-radius: 5px;
+  color: #b0b0b0;
+  font-size: 14px;
+  background: #f9f9f9;
 }

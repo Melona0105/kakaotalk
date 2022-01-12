@@ -5,14 +5,15 @@ export default class Popup extends React.PureComponent {
   constructor(props) {
     super(props);
     this.el = document.createElement("div");
-    this.el.innerHTML =
-      '<link rel="stylesheet" href="components/chatting/Chatting.css" type="text/css" />';
+    // this.el.innerHTML =
+    //   '<link rel="stylesheet" href="components/chatting/Chatting.css" type="text/css" />';
     this.newWindow = null;
   }
 
   componentDidMount() {
     this.newWindow = window.open(
-      "",
+      `/room/${this.props.roomId}`, // 룸 아이디
+      // "",
       this.props.username,
       "top=100, left=100, width=375, height=640"
     );
@@ -27,7 +28,7 @@ export default class Popup extends React.PureComponent {
   }
 
   componentWillUnmount() {
-    this.newWindow.document.body.removeChild(this.el);
+    this.newWindow.close();
   }
 
   render() {

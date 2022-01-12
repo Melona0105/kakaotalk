@@ -1,14 +1,14 @@
 import "../css/pages/ChattingPage.css";
 import user from "../images/friend/user1.png";
-import ChattingNav from "../components/chatting/ChattingNav";
-import Room from "../components/chatting/Room";
+import ChattingNav from "../components/chatting room/ChattingNav";
+import Rooms from "../components/chatting room/Rooms";
 
 export default function ChattingPage() {
   // ? 메시지 데이터에서 읽었는지, 아닌지 여부를 판단
   // ? 그 개수를 넘겨줘서 새 메세지 수를 파악해야 할듯함.
   const roomdata = [
     {
-      id: "room1",
+      id: 1,
       img: user, // 채팅방 사진
       username: "윤예린", // 채팅방 이름 ----- 앞에 친구목록에 있는 유저이름
       noti: true, // 알람 온오프
@@ -18,7 +18,7 @@ export default function ChattingPage() {
       newMsgCount: 0, // 새 메세지 개수
     },
     {
-      id: "room2",
+      id: 2,
       img: user,
       username: "공윤구",
       noti: true,
@@ -28,7 +28,7 @@ export default function ChattingPage() {
       newMsgCount: 1,
     },
     {
-      id: "room3",
+      id: 3,
       img: user,
       username: "박성민",
       noti: true,
@@ -38,7 +38,7 @@ export default function ChattingPage() {
       newMsgCount: 3,
     },
     {
-      id: "room4",
+      id: 4,
       img: user,
       username: "이찬영",
       noti: true,
@@ -56,7 +56,7 @@ export default function ChattingPage() {
       <ChattingNav />
       <div className="chatting-page-content">
         {roomdata.map((el) => (
-          <Room key={el.username} data={el} />
+          <Rooms key={el.username} data={el} />
         ))}
       </div>
     </div>

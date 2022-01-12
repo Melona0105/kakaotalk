@@ -2,7 +2,7 @@ import { useState } from "react";
 import Nav from "../components/nav/Nav";
 import FriendPage from "../pages/FriendPage";
 import "../css/pages/MainPage.css";
-import ChattingPage from "./ChattingPage";
+import ChattingRoomPage from "./ChattingRoomPage";
 import SeeMorePage from "./SeeMorePage";
 import myphoto from "../images/friend/my photo.png";
 
@@ -22,7 +22,7 @@ export default function MainPage() {
     <div className="mainpage-container">
       <Nav currentPage={currentPage} setIsCurrentPage={setIsCurrentPage} />
       {currentPage === 0 && <FriendPage userInfo={userInfo} />}
-      {currentPage === 1 && <ChattingPage />}
+      {currentPage === 1 && <ChattingRoomPage />}
       {currentPage === 2 && <SeeMorePage userInfo={userInfo} />}
     </div>
   );
