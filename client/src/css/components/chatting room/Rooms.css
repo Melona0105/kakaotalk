@@ -1,4 +1,4 @@
-.room-container {
+.rooms-container {
   display: flex;
   height: 70px;
   color: #8a8a8a;
@@ -8,21 +8,21 @@
   padding: 0px 20px 0px 10px;
 }
 
-.room-container:hover {
+.rooms-container:hover {
   background: #f8f8f8;
 }
 
-.room-left {
+.rooms-left {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.room-left > img {
+.rooms-left > img {
   width: 60px;
 }
 
-.room-body {
+.rooms-body {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -30,12 +30,12 @@
   font-weight: 600;
 }
 
-.room-body > :first-child {
+.rooms-body > :first-child {
   color: #000;
   font-size: 15px;
 }
 
-.room-right {
+.rooms-right {
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -43,7 +43,7 @@
   font-weight: 400;
 }
 
-.room-newMsg-count {
+.rooms-newMsg-count {
   border-radius: 50%;
   display: flex;
   justify-content: center;

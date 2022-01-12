@@ -1,17 +1,17 @@
-.chatting-container {
+.room-container {
   display: flex;
   flex-direction: column;
   height: 100vh;
 }
 
-.chatting-container-nav {
+.room-container-nav {
   display: flex;
   flex-direction: column;
   height: 65px;
   margin: 0px 10px;
 }
 
-.chatting-container-inner-nav {
+.room-container-inner-nav {
   flex: 1;
   display: flex;
 }
@@ -22,13 +22,13 @@
   flex: 4;
 }
 
-.chatting-nav-user-img {
+.room-nav-user-img {
   flex: 1;
   width: 55px;
   margin-right: 10px;
 }
 
-.chatting-nav-room-info {
+.room-nav-room-info {
   display: flex;
   flex-direction: column;
   flex: 3;
@@ -83,49 +83,49 @@
   border-radius: 50%;
 }
 
-.chatting-container-body {
+.room-container-body {
   flex: 1;
   background: #bdd0dc;
 }
 
-.chatting-container-input {
+.room-container-input {
   display: flex;
   flex-direction: column;
   height: 130;
 }
 
-.chatting-input-nav {
+.room-input-nav {
   flex: 2;
   background: #f8f8f8;
   border-bottom: 1px solid #e8e8e8;
   display: flex;
 }
 
-.chatting-input-nav-left {
+.room-input-nav-left {
   display: flex;
   align-items: center;
   flex: 1;
 }
 
-.chatting-input-nav-left > img,
-.chatting-input-nav-right > img {
+.room-input-nav-left > img,
+.room-input-nav-right > img {
   width: 30px;
   margin-right: 10px;
 }
 
-.chatting-input-nav-right {
+.room-input-nav-right {
   display: flex;
   align-items: center;
   justify-content: flex-end;
   flex: 1;
 }
 
-.chatting-input-area {
+.room-input-area {
   display: flex;
   flex: 5;
 }
 
-.chatting-input-area > input {
+.room-input-area > input {
   flex: 5;
   border: none;
 }

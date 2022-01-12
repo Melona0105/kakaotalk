@@ -1,6 +1,6 @@
 import "../css/pages/ChattingPage.css";
 import user from "../images/friend/user1.png";
-import ChattingNav from "../components/chatting room/ChattingNav";
+import RoomsNav from "../components/chatting room/RoomsNav";
 import Rooms from "../components/chatting room/Rooms";
 
 export default function ChattingPage() {
@@ -53,7 +53,7 @@ export default function ChattingPage() {
 
   return (
     <div className="chatting-page-container">
-      <ChattingNav />
+      <RoomsNav />
       <div className="chatting-page-content">
         {roomdata.map((el) => (
           <Rooms key={el.username} data={el} />

@@ -9,10 +9,10 @@ import schedule from "../../images/chatting/schedule.png";
 import face_talk from "../../images/chatting/face talk.png";
 import voice_talk from "../../images/chatting/voice talk.png";
 import control_bar from "../../images/chatting/control bar.png";
-import "../../css/components/chatting/Chatting.css";
+import "../../css/components/chatting room/Room.css";
 import user from "../../images/friend/user1.png";
 
-export default function Chatting() {
+export default function Room() {
   // TODO : 현재 채팅방의 룸 아이로 채팅 데이터를 가져와야 함
   const roomdata = {
     id: 1,
@@ -89,12 +89,12 @@ export default function Chatting() {
   // 데이터를 같은 사람 + 1분단위로 묶어서 정리 -> 이걸 뿌려준다.
 
   return (
-    <div className="chatting-container">
-      <div className="chatting-container-nav">
-        <div className="chatting-container-inner-nav">
+    <div className="room-container">
+      <div className="room-container-nav">
+        <div className="room-container-inner-nav">
           <div className="inner-nav-left">
-            <img className="chatting-nav-user-img" src={img} />
-            <div className="chatting-nav-room-info">
+            <img className="room-nav-user-img" src={img} />
+            <div className="room-nav-room-info">
               <div>{username}</div>
               <div className="room-member">
                 <img src={friend} />
@@ -112,21 +112,21 @@ export default function Chatting() {
           </div>
         </div>
       </div>
-      <div className="chatting-container-body">이 안에 컨텐츠 뿌리기</div>
-      <div className="chatting-container-input">
-        <div className="chatting-input-nav">
-          <div className="chatting-input-nav-left">
+      <div className="room-container-body">이 안에 컨텐츠 뿌리기</div>
+      <div className="room-container-input">
+        <div className="room-input-nav">
+          <div className="room-input-nav-left">
             {[imoticon, upload, schedule].map((el) => (
               <img src={el} />
             ))}
           </div>
-          <div className="chatting-input-nav-right">
+          <div className="room-input-nav-right">
             {[voice_talk, face_talk].map((el) => (
               <img src={el} />
             ))}
           </div>
         </div>
-        <div className="chatting-input-area">
+        <div className="room-input-area">
           <input />
           <div className="send-button-container">
             <div className="send-button">전송</div>

@@ -1,4 +1,4 @@
-.chatting-page-nav {
+.rooms-page-nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -6,28 +6,28 @@
   padding: 0px 20px;
 }
 
-.chatting-page-nav-left {
+.rooms-page-nav-left {
   display: flex;
   align-items: center;
   font-size: 18px;
   font-weight: 700;
 }
 
-.chatting-page-nav-left > img {
+.rooms-page-nav-left > img {
   width: 18px;
 }
 
-.chatting-page-nav-right {
+.rooms-page-nav-right {
   display: flex;
   width: 80px;
   justify-content: space-around;
 }
 
-.chatting-page-nav-right > img {
+.rooms-page-nav-right > img {
   width: 30px;
 }
 
-.chatting-page-nav-right > img:hover {
+.rooms-page-nav-right > img:hover {
   border-radius: 50%;
   background: #f5f3f3;
 }
