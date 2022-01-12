@@ -35,7 +35,7 @@
   flex: 7;
 }
 
-.login-data-input,
+.login-inner-container-body > input,
 .login-button {
   width: 240px;
   height: 35px;
@@ -75,11 +75,16 @@
   flex: 1;
   padding-top: 50px;
   margin-bottom: 20px;
-  color: #887e1d;
 }
 
 .login-center-bar {
   border-left: 1px solid #887e1d;
   height: 13px;
   margin: 0px 10px;
+}
+
+.link-button {
+  color: #887e1d;
+  font-weight: 500;
+  text-decoration: none;
 }

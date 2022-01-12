@@ -34,36 +34,42 @@ export default function InnerRoom() {
       user: "형범이형", // 유저아이디 -> 이거에 해당하는 이름으로 출력해줘야함
       content: "묻지마셈ㅋㅋ",
       time: "2022-01-12T01:02",
+      read: true,
     },
     {
       id: 2,
       user: "me",
       content: "ㅡㅡ",
       time: "2022-01-12T01:02",
+      read: true,
     },
     {
       id: 3,
       user: "me",
       content: "오키",
       time: "2022-01-12T01:02",
+      read: true,
     },
     {
       id: 4,
       user: "me",
       content: "ㅎㅎ",
       time: "2022-01-12T01:02",
+      read: true,
     },
     {
       id: 6,
       user: "형범이형",
       content: "잘했네 보니까",
       time: "2022-01-12T01:03",
+      read: true,
     },
     {
       id: 5,
       user: "형범이형",
       content: "ㅋㅋㅋㅋ",
       time: "2022-01-12T01:02",
+      read: true,
     },
   ];
 

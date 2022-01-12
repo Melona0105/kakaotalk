@@ -1,6 +1,7 @@
 import react from "react";
-import kakao from "../images/Kakao.png";
-import "../css/Login.css";
+import kakao from "../../images/Kakao.png";
+import "../../css/components/users/Login.css";
+import { Link } from "react-router-dom";
 
 export default function Login() {
   return (
@@ -10,8 +11,8 @@ export default function Login() {
           <img src={kakao} />
         </div>
         <div className="login-inner-container-body">
-          <input className="login-data-input"></input>
-          <input className="login-data-input"></input>
+          <input></input>
+          <input></input>
           <div className="login-button">로그인</div>
           <div className="auto-login">
             <input type="checkbox" />
@@ -19,9 +20,13 @@ export default function Login() {
           </div>
         </div>
         <div className="login-inner-container-footer">
-          <div className="login-find-account">카카오계정 찾기</div>
+          <Link className="link-button" to="/account">
+            계정 찾기
+          </Link>
           <div className="login-center-bar"></div>
-          <div className="login-reset-password">비밀번호 재설정</div>
+          <Link className="link-button" to="/signup">
+            회원가입
+          </Link>
         </div>
       </div>
     </div>
