@@ -12,9 +12,7 @@ export default function CheckBox({
 }) {
   const [isAgreeOn, setIsArgeeOn] = useState(false);
   useEffect(() => {
-    if (agreeStatus[id]) {
-      setIsArgeeOn(true);
-    }
+    agreeStatus[id] ? setIsArgeeOn(true) : setIsArgeeOn(false);
   }, [agreeStatus]);
   return (
     <div className="signup-agreement-container">
