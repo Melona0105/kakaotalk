@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "../../../css/components/users/signup/Step2.css";
 import { checkKorean, checkInvalidString } from "../../../functions";
 import reset_button from "../../../images/signup/reset button.png";
+import RemoveButton from "../../etc/RomoveButton";
 import ProgressBar from "./ProgressBar";
 
 export default function Step2({ nextStep, setCurrentEmail }) {
@@ -50,7 +51,7 @@ export default function Step2({ nextStep, setCurrentEmail }) {
   return (
     <div className="step2-container">
       <div className="step2-inner-container">
-        <ProgressBar width="40%" />
+        <ProgressBar width="50%" />
         <div className="step2-header">
           <div>
             카카오계정으로 사용할
@@ -67,9 +68,8 @@ export default function Step2({ nextStep, setCurrentEmail }) {
                 onChange={(e) => checkValidEmail(e.target.value)}
               />
               {isEmailFill && (
-                <img
-                  src={reset_button}
-                  onClick={() => {
+                <RemoveButton
+                  callback={() => {
                     setInputEmail("");
                     setIsEmailInput(false);
                   }}

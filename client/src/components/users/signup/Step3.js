@@ -3,6 +3,7 @@ import reset_button from "../../../images/signup/reset button.png";
 import "../../../css/components/users/signup/Step3.css";
 import { checkKorean } from "../../../functions";
 import { useEffect, useState } from "react";
+import RemoveButton from "../../etc/RomoveButton";
 
 export default function Step3({ nextStep, currentEmail }) {
   const [isPasswordFill, setIsPasswordFill] = useState(false);
@@ -29,7 +30,7 @@ export default function Step3({ nextStep, currentEmail }) {
     } else {
       setIsPasswordConfirm(false);
     }
-    if (password.length) {
+    if (inputPassword.length) {
       setIsPasswordFill(true);
     } else {
       setIsPasswordFill(false);
@@ -39,12 +40,12 @@ export default function Step3({ nextStep, currentEmail }) {
     } else {
       setIsConfirmPasswordFill(false);
     }
-  }, [password, passwordConfirm]);
+  }, [password, passwordConfirm, inputPassword]);
 
   return (
     <div className="step3-container">
       <div className="step3-inner-container">
-        <ProgressBar width="60%" />
+        <ProgressBar width="75%" />
         <div className="step3-header">
           <div>
             카카오계정 로그인에 사용할
@@ -70,10 +71,11 @@ export default function Step3({ nextStep, currentEmail }) {
                   }}
                 />
                 {isPasswordFill && (
-                  <img
-                    src={reset_button}
-                    onClick={() => {
+                  <RemoveButton
+                    callback={() => {
                       setInputPassword("");
+                      setPassword("");
+                      setIsPasswordError(false);
                     }}
                   />
                 )}
@@ -93,12 +95,7 @@ export default function Step3({ nextStep, currentEmail }) {
                   onChange={(e) => setPasswordConfrim(e.target.value)}
                 />
                 {isConfirmPasswordFill && (
-                  <img
-                    src={reset_button}
-                    onClick={() => {
-                      setPasswordConfrim("");
-                    }}
-                  />
+                  <RemoveButton callback={() => setPasswordConfrim("")} />
                 )}
               </div>
               {isConfirmPasswordFill && !isPasswordConfirm && (

@@ -46,7 +46,7 @@ export default function Step1({ nextStep }) {
   return (
     <div className="step1-container">
       <div className="step1-inner-container">
-        <ProgressBar width="20%" />
+        <ProgressBar width="25%" />
         <div className="step1-header">
           <div>카카오계정</div>
           <div>서비스 약관에 동의해 주세요.</div>
