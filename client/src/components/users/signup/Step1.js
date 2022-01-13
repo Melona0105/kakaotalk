@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import "../../../css/components/users/signup/Signup.css";
-import process_1 from "../../../images/signup/1.png";
+import "../../../css/components/users/signup/Step1.css";
+import ProgressBar from "./ProgressBar";
 import CheckBox from "./CheckBox";
 
-export default function SignUp() {
+export default function Step1({ nextStep }) {
   const [isEssentialAgreeOn, setIsEssentialArgeeOn] = useState(false);
   const [agreeStatus, setIsAgreeStatus] = useState(new Array(7).fill(false));
   const checkList = [
@@ -25,7 +25,6 @@ export default function SignUp() {
     { id: 6, title: "[선택] 프로필정보 추가 수집 동의", isDetailOn: true },
   ];
 
-  // 전체선택해제시
   const agreeAll = agreeStatus.findIndex((el) => el === false);
   function selectAll() {
     if (agreeAll === -1) {
@@ -42,18 +41,16 @@ export default function SignUp() {
   }, [agreeStatus]);
 
   return (
-    <div className="signup-container">
-      <div className="signup-inner-container">
-        <div className="inner-checkbox">
-          <img src={process_1} />
-        </div>
-        <div className="signup-header">
+    <div className="step1-container">
+      <div className="step1-inner-container">
+        <ProgressBar width="20%" />
+        <div className="step1-header">
           <div>카카오계정</div>
           <div>서비스 약관에 동의해 주세요.</div>
         </div>
-        <div className="signup-body">
+        <div className="step1-body">
           <div>
-            <div className="signup-agreement-all-container">
+            <div className="step1-agreement-all-container">
               <input
                 id="agree-all"
                 type="checkbox"
@@ -61,11 +58,8 @@ export default function SignUp() {
                 onChange={() => selectAll()}
               />
               <label htmlFor="agree-all"></label>
-              <div className="signup-agreement-all">
-                <label
-                  className="signup-agreement-all-text"
-                  htmlFor="agree-all"
-                >
+              <div className="step1-agreement-all">
+                <label className="step1-agreement-all-text" htmlFor="agree-all">
                   모두 동의합니다.
                 </label>
                 <div>
@@ -78,7 +72,7 @@ export default function SignUp() {
               </div>
             </div>
           </div>
-          <div className="signup-agreement-detail-container">
+          <div className="step1-agreement-detail-container">
             {checkList.map((el) => (
               <CheckBox
                 key={el.id}
@@ -92,13 +86,16 @@ export default function SignUp() {
             ))}
           </div>
         </div>
-        <div className="signup-footer">
+        <div className="step1-footer">
           <div
             style={
               isEssentialAgreeOn
                 ? { backgroundColor: "#fada0b" }
                 : { backgroundColor: "#fafafa" }
             }
+            onClick={() => {
+              isEssentialAgreeOn && nextStep(2);
+            }}
           >
             동의
           </div>

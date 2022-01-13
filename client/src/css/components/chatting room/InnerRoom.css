@@ -68,13 +68,15 @@
 .inner-room-input-area > input {
   flex: 1;
   border: none;
+  outline: none;
+vertical-align: baseline;
 }
 
 .send-button-container {
   display: flex;
   align-items: center;
   justify-content: center;
-width: 100px;
+  width: 100px;
 }
 
 .send-button {

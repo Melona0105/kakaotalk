@@ -7,7 +7,7 @@ import { Provider } from "react-redux";
 import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import InnerRoom from "./components/chatting room/InnerRoom";
-import SignUp from "./components/users/signup/SignUp";
+import SignUp from "./components/users/signup";
 import FindAccount from "./components/users/FindAccount";
 
 ReactDOM.render(

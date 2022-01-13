@@ -1,4 +1,4 @@
-.signup-container {
+.step1-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -6,7 +6,7 @@
   height: 100vh;
 }
 
-.signup-inner-container {
+.step1-inner-container {
   display: flex;
   flex-direction: column;
   width: 500px;
@@ -17,21 +17,21 @@
   width: 100px;
 }
 
-.signup-header {
+.step1-header {
   height: 70px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  font-weight: 600;
-  font-size: 18px;
+  font-weight: 500;
+  font-size: 20px;
   margin-left: 20px;
 }
 
-.signup-body {
+.step1-body {
   margin: 0px 10px 0px 20px;
 }
 
-.signup-agreement-all-container {
+.step1-agreement-all-container {
   display: flex;
   height: 90px;
   color: #808080;
@@ -39,27 +39,27 @@
   margin-top: 10px;
 }
 
-.signup-agreement-all {
+.step1-agreement-all {
   border-bottom: 1px solid lightgray;
   width: 420px;
 }
 
-.signup-agreement-all > div {
+.step1-agreement-all > div {
   margin-top: 5px;
 }
 
-.signup-agreement-all-text {
+.step1-agreement-all-text {
   font-size: 16px;
   font-weight: 600;
   color: #000;
   cursor: pointer;
 }
 
-.signup-agreement-detail-container {
+.step1-agreement-detail-container {
   font-size: 15px;
 }
 
-.signup-footer {
+.step1-footer {
   flex: 1;
   display: flex;
   justify-content: center;
@@ -67,7 +67,7 @@
   margin: 0px 20px;
 }
 
-.signup-footer > div {
+.step1-footer > div {
   display: flex;
   justify-content: center;
   align-items: center;

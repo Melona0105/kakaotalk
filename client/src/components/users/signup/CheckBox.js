@@ -23,7 +23,6 @@ export default function CheckBox({
           type="checkbox"
           checked={agreeStatus[id] && true}
           onChange={() => {
-            // 현재 동의상태가 트루면
             const nextState = [...agreeStatus];
             setIsArgeeOn(!isAgreeOn);
             nextState[id] = !isAgreeOn;
