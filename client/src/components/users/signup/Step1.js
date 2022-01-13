@@ -25,6 +25,9 @@ export default function Step1({ nextStep }) {
     { id: 6, title: "[선택] 프로필정보 추가 수집 동의", isDetailOn: true },
   ];
 
+  //TODO : 입력한 데이터들 모아서 한꺼번에 보내줘야 함
+  // 여기 젤 위에서 상태로 관리 -> 마지막에 그 데이터 전송
+
   const agreeAll = agreeStatus.findIndex((el) => el === false);
   function selectAll() {
     if (agreeAll === -1) {

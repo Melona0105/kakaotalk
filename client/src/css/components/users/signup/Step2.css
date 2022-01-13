@@ -33,17 +33,21 @@
   margin-bottom: 30px;
 }
 
-.input-form {
+.step2-input-form {
   display: flex;
   align-items: center;
   border-bottom: 1px solid #000;
 }
 
-.input-form > input {
+.step2-input-form > input {
   flex: 1;
   border: none;
   height: 30px;
   outline: none;
+}
+
+.step2-input-form > img {
+  width: 30px;
 }
 
 .email-error {
@@ -60,9 +64,6 @@
 }
 
 .step2-footer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   margin: 0px 20px;
 }
 

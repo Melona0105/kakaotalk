@@ -68,3 +68,17 @@ export function sortChatData(data) {
     });
   }, []);
 }
+
+export function checkKorean(input) {
+  const korean = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
+  return korean.test(input);
+}
+
+export function checkInvalidString(string, email) {
+  const now = email.split("").findIndex((el) => el === string);
+  if (now === -1) {
+    return false;
+  } else {
+    return true;
+  }
+}

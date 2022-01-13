@@ -1,23 +1,29 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "../../../css/components/users/signup/Step2.css";
+import { checkKorean, checkInvalidString } from "../../../functions";
+import reset_button from "../../../images/signup/reset button.png";
 import ProgressBar from "./ProgressBar";
 
-export default function Step2({ nextStep }) {
+export default function Step2({ nextStep, setCurrentEmail }) {
   const [isEmailInput, setIsEmailInput] = useState(false);
   const [isEmailError, setIsEmailError] = useState(undefined);
+  const [inputEmail, setInputEmail] = useState("");
+  const [isEmailFill, setIsEmailFill] = useState(false);
 
   // 이메일이 입력되었는지 감지하는 함수
   function checkValidEmail(input) {
+    setInputEmail(input);
     // 초기화
     setIsEmailError(undefined);
 
     // 길이가 3이상
     if (input.length < 3) {
       resetInputAndSetError("이메일은 세 글자 이상이어야합니다.");
-      // 특수문자 사용
     } else if (
+      // 특수문자 사용
       checkInvalidString("?", input) ||
       checkInvalidString("!", input) ||
+      // 한국어 체크
       checkKorean(input)
     ) {
       resetInputAndSetError(
@@ -28,24 +34,18 @@ export default function Step2({ nextStep }) {
     }
   }
 
-  function checkInvalidString(string, email) {
-    const now = email.split("").findIndex((el) => el === string);
-    if (now === -1) {
-      return false;
-    } else {
-      return true;
-    }
-  }
-
   function resetInputAndSetError(error) {
     setIsEmailInput(false);
     setIsEmailError(error);
   }
 
-  function checkKorean(input) {
-    const korean = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
-    return korean.test(input);
-  }
+  useEffect(() => {
+    if (inputEmail.length) {
+      setIsEmailFill(true);
+    } else {
+      setIsEmailFill(false);
+    }
+  }, [inputEmail]);
 
   return (
     <div className="step2-container">
@@ -60,11 +60,21 @@ export default function Step2({ nextStep }) {
         </div>
         <div className="step2-body">
           <div className="step2-email-input">
-            <div className="input-form">
+            <div className="step2-input-form">
               <input
                 placeholder="아이디 입력"
+                value={inputEmail}
                 onChange={(e) => checkValidEmail(e.target.value)}
-              ></input>
+              />
+              {isEmailFill && (
+                <img
+                  src={reset_button}
+                  onClick={() => {
+                    setInputEmail("");
+                    setIsEmailInput(false);
+                  }}
+                />
+              )}
               <div>@kakao.com</div>
             </div>
             {isEmailError && <div className="email-error">{isEmailError}</div>}
@@ -89,6 +99,7 @@ export default function Step2({ nextStep }) {
             }
             onClick={() => {
               isEmailInput && nextStep(3);
+              setCurrentEmail(isEmailInput);
             }}
           >
             다음

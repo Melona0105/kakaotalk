@@ -1,0 +1,106 @@
+.step3-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+}
+
+.step3-inner-container {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  height: 600px;
+}
+
+.step3-header {
+  height: 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-weight: 500;
+  font-size: 20px;
+  margin-left: 20px;
+  margin-bottom: 10px;
+}
+
+.step3-body {
+  display: flex;
+  flex-direction: column;
+  margin: 0px 20px;
+  height: 350px;
+}
+
+.step3-current-email-container {
+  color: #aaa;
+  font-size: 12px;
+  font-weight: 600;
+  height: 80px;
+}
+
+.step3-current-email {
+  color: #000;
+  font-size: 16px;
+  margin-top: 5px;
+}
+
+.step3-password-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.step3-password-input-form {
+  margin-bottom: 30px;
+}
+
+.step3-password-input-form > :first-child {
+  border-bottom: 1px solid lightgray;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+.step3-password-form > :first-child {
+  color: #aaa;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.step3-password-input-form > div > input {
+  border: none;
+  height: 30px;
+  width: 60%;
+  outline: none;
+  font-weight: 500;
+}
+
+.step3-password-input-form > div > img {
+  width: 30px;
+}
+
+.step3-password-error,
+.step3-confirm-password-error {
+  color: #f00;
+  position: absolute;
+  font-size: 12px;
+}
+
+.step3-description > div > li {
+  font-size: 12px;
+  margin-bottom: 10px;
+  color: #9a9a9a;
+}
+
+.step3-footer {
+  margin: 0px 20px;
+}
+
+.step3-footer > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 50px;
+  border-radius: 5px;
+}
