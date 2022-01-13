@@ -5,6 +5,7 @@
 }
 
 .dropdown {
+  text-align: center;
   flex: 1;
   border: none;
   font-size: 15px;

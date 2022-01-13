@@ -76,11 +76,11 @@
   border-radius: 5px;
 }
 
-input[type="checkbox"] {
+input[class="agree-checkbox"] {
   display: none;
 }
 
-input[type="checkbox"] + label {
+input[class="agree-checkbox"] + label {
   content: "✔";
   color: #909090;
   width: 15px;
@@ -92,7 +92,7 @@ input[type="checkbox"] + label {
   cursor: pointer;
 }
 
-input[type="checkbox"]:checked + label::after {
+input[class="agree-checkbox"]:checked + label::after {
   content: "✔";
   background: #fada0b;
   color: #fff;

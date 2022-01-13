@@ -23,6 +23,7 @@ export default function CheckBox({
           type="checkbox"
           checked={agreeStatus[id] && true}
           onChange={() => {
+            // 현재 동의상태가 트루면
             const nextState = [...agreeStatus];
             setIsArgeeOn(!isAgreeOn);
             nextState[id] = !isAgreeOn;
@@ -31,7 +32,9 @@ export default function CheckBox({
         />
         <label htmlFor={`${id}`} />
         <div>
-          <label htmlFor={`${id}`}>{title}</label>
+          <label className="agree-checkbox" htmlFor={`${id}`}>
+            {title}
+          </label>
           <div className="signup-agreement-text">{text}</div>
         </div>
       </div>

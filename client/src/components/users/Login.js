@@ -3,7 +3,7 @@ import kakao from "../../images/Kakao.png";
 import "../../css/components/users/Login.css";
 import { Link } from "react-router-dom";
 
-export default function Login() {
+export default function Login({ setIsLogin }) {
   return (
     <div className="login-container">
       <div className="login-inner-container">
@@ -13,7 +13,10 @@ export default function Login() {
         <div className="login-inner-container-body">
           <input></input>
           <input></input>
-          <div className="login-button">로그인</div>
+          {/* 로그인 수정 */}
+          <div className="login-button" onClick={() => setIsLogin(true)}>
+            로그인
+          </div>
           <div className="auto-login">
             <input type="checkbox" />
             <div>실행시 자동 로그인</div>

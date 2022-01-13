@@ -5,7 +5,7 @@ import Step3 from "./Step3";
 import Step4 from "./Step4";
 
 export default function SingUp() {
-  const [currentStep, setCurrentStep] = useState(4);
+  const [currentStep, setCurrentStep] = useState(1);
   const [currentEmail, setCurrentEmail] = useState(undefined);
   const [currentPassword, serCurrentPassword] = useState(undefined);
   if (currentStep === 1) {

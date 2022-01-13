@@ -28,7 +28,7 @@
   display: flex;
   flex-direction: column;
   margin: 0px 20px;
-  height: 350px;
+  height: 300px;
 }
 
 .step4-username {
@@ -99,16 +99,107 @@
 .step4-birth-dropdowns > div {
   margin-bottom: 5px;
 }
+.step4-birth-dropdowns > :first-child {
+  width: 400px;
+}
 
-/* .step4-footer {
+input[class="outdate"] {
+  display: none;
+}
+
+input[class="outdate"] + label {
+  content: "✔";
+  color: #909090;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 1px solid #909090;
+  position: relative;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+input[class="outdate"]:checked + label::after {
+  content: "✔";
+  background: #fada0b;
+  color: #fff;
+  font-size: 10px;
+  width: 15px;
+  height: 15px;
+  border: none;
+  border-radius: 50%;
+  text-align: center;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.step4-checkbox {
+  width: 10px;
+}
+
+.step4-gender-select-box {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  height: 30px;
+}
+
+.radio-box-contatiner {
+  display: flex;
+}
+
+input[class="gender-select"] {
+  display: none;
+}
+
+input[class="gender-select"] + label {
+  content: "✔";
+  color: #909090;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 1px solid #909090;
+  position: relative;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+input[class="gender-select"]:checked + label::after {
+  content: "✔";
+  background: #fada0b;
+  color: #fff;
+  font-size: 10px;
+  width: 15px;
+  height: 15px;
+  border: none;
+  border-radius: 50%;
+  text-align: center;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.step4-footer {
   margin: 0px 20px;
 }
 
-.step4-footer > div {
+.step4-submit-off,
+.step4-submit-on {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
   height: 50px;
   border-radius: 5px;
-} */
+}
+
+.step4-submit-off {
+  background: #f0f0f0;
+}
+
+.step4-submit-on {
+  background: #fee501;
+  text-decoration: none;
+}

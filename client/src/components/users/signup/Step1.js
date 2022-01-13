@@ -56,13 +56,14 @@ export default function Step1({ nextStep }) {
             <div className="step1-agreement-all-container">
               <input
                 id="agree-all"
+                className="agree-checkbox"
                 type="checkbox"
                 checked={agreeAll === -1 ? true : false}
                 onChange={() => selectAll()}
               />
               <label htmlFor="agree-all"></label>
               <div className="step1-agreement-all">
-                <label className="step1-agreement-all-text" htmlFor="agree-all">
+                <label className="step1-agreement-all-text agree-checkbox" htmlFor="agree-all">
                   모두 동의합니다.
                 </label>
                 <div>

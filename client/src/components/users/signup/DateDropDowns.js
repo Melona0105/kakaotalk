@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Dropdown from "./Dropdown";
 import "../../../css/components/users/signup/DropDown.css";
 
-export default function DropDowns({ getUserbirth }) {
+export default function DateDropDowns({ getUserbirth }) {
   const [selectedYear, setSelectedYear] = useState(undefined);
   const [selectedMonth, setSelectedMonth] = useState(1);
   const [selectedDay, setSelectedDay] = useState(undefined);
@@ -28,6 +28,7 @@ export default function DropDowns({ getUserbirth }) {
     <div className="dropdown-container">
       {menus.map((el) => (
         <Dropdown
+          key={el.type}
           title={el.title}
           type={el.type}
           method={el.method}
