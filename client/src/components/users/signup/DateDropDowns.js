@@ -3,9 +3,9 @@ import Dropdown from "./Dropdown";
 import "../../../css/components/users/signup/DropDown.css";
 
 export default function DateDropDowns({ getUserbirth }) {
-  const [selectedYear, setSelectedYear] = useState(undefined);
+  const [selectedYear, setSelectedYear] = useState(1993);
   const [selectedMonth, setSelectedMonth] = useState(1);
-  const [selectedDay, setSelectedDay] = useState(undefined);
+  const [selectedDay, setSelectedDay] = useState(5);
 
   const menus = [
     { title: "연도", type: "year", method: setSelectedYear },

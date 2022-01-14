@@ -5,7 +5,7 @@ import { checkKorean } from "../../../functions";
 import { useEffect, useState } from "react";
 import RemoveButton from "../../etc/RomoveButton";
 
-export default function Step3({ nextStep, currentEmail }) {
+export default function Step3({ nextStep, currentEmail, serCurrentPassword }) {
   const [isPasswordFill, setIsPasswordFill] = useState(false);
   const [isConfirmPasswordFill, setIsConfirmPasswordFill] = useState(false);
   const [password, setPassword] = useState("");
@@ -129,7 +129,10 @@ export default function Step3({ nextStep, currentEmail }) {
               : { backgroundColor: "#f0f0f0" }
           }
           onClick={() => {
-            isPasswordConfirm && nextStep(4);
+            if (isPasswordConfirm) {
+              nextStep(4);
+              serCurrentPassword(password);
+            }
           }}
         >
           <div>다음</div>

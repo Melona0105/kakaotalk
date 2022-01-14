@@ -3,7 +3,7 @@ import "../../../css/components/users/signup/Step1.css";
 import ProgressBar from "./ProgressBar";
 import CheckBox from "./CheckBox";
 
-export default function Step1({ nextStep }) {
+export default function Step1({ nextStep, setAgreements }) {
   const [isEssentialAgreeOn, setIsEssentialArgeeOn] = useState(false);
   const [agreeStatus, setIsAgreeStatus] = useState(new Array(7).fill(false));
   const checkList = [
@@ -24,9 +24,6 @@ export default function Step1({ nextStep }) {
     { id: 5, title: "[선택] 위치정보 수집 및 이용 동의", isDetailOn: true },
     { id: 6, title: "[선택] 프로필정보 추가 수집 동의", isDetailOn: true },
   ];
-
-  //TODO : 입력한 데이터들 모아서 한꺼번에 보내줘야 함
-  // 여기 젤 위에서 상태로 관리 -> 마지막에 그 데이터 전송
 
   const agreeAll = agreeStatus.findIndex((el) => el === false);
   function selectAll() {
@@ -63,7 +60,10 @@ export default function Step1({ nextStep }) {
               />
               <label htmlFor="agree-all"></label>
               <div className="step1-agreement-all">
-                <label className="step1-agreement-all-text agree-checkbox" htmlFor="agree-all">
+                <label
+                  className="step1-agreement-all-text agree-checkbox"
+                  htmlFor="agree-all"
+                >
                   모두 동의합니다.
                 </label>
                 <div>
@@ -98,7 +98,10 @@ export default function Step1({ nextStep }) {
                 : { backgroundColor: "#fafafa" }
             }
             onClick={() => {
-              isEssentialAgreeOn && nextStep(2);
+              if (isEssentialAgreeOn) {
+                nextStep(2);
+                setAgreements(agreeStatus);
+              }
             }}
           >
             동의

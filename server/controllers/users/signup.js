@@ -3,7 +3,7 @@ const { hash } = require("bcrypt");
 const bcryptSaltRounds = 12;
 
 module.exports = async function signup(req, res) {
-  const { email, password, username, birthdate, song, comment, photo } =
+  const { email, password, username, userBirth, song, comment, photo } =
     req.body;
   const userInfo = await User.findOne({ where: { email } });
   // 이미 가입된 계정인지 확인한다.
@@ -20,7 +20,7 @@ module.exports = async function signup(req, res) {
       email,
       password: encrypted,
       username,
-      birthdate,
+      userBirth,
       song,
       comment,
       photo,

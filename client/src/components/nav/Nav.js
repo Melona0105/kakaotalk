@@ -6,7 +6,7 @@ import noti from "../../images/nav/noti.png";
 import setting from "../../images/nav/setting.png";
 import NavMenu from "./NavMenu";
 
-export default function Nav({ currentPage, setIsCurrentPage }) {
+export default function Nav({ currentPage, setIsCurrentPage, setIsLogin }) {
   const menus = [friend, chat, seemore];
   return (
     <div className="nav-container">
@@ -23,7 +23,13 @@ export default function Nav({ currentPage, setIsCurrentPage }) {
       </div>
       <div className="nav-continer-innerbox options">
         <img src={noti} />
-        <img src={setting} />
+        <img
+          src={setting}
+          onClick={() => {
+            localStorage.removeItem("token");
+            setIsLogin(false);
+          }}
+        />
       </div>
     </div>
   );

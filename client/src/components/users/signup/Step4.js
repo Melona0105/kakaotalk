@@ -5,11 +5,13 @@ import DateDropDowns from "./DateDropDowns";
 import ProgressBar from "./ProgressBar";
 import RadioBox from "./RadioBox";
 import { Link } from "react-router-dom";
+import { handleSignup } from "../../../controllers/users/Signup";
 
-export default function Step4() {
+export default function Step4({ currentUserInfo }) {
   const [userBirth, setUserBirth] = useState(undefined);
   const [isNameFill, setIsNameFill] = useState(false);
   const [username, setUsername] = useState("");
+  const [userInfo, setUserInfo] = useState({ ...currentUserInfo });
   const radioData = [
     { value: "male", title: "남성" },
     { value: "female", title: "여성" },
@@ -20,6 +22,11 @@ export default function Step4() {
     username.length ? setIsNameFill(true) : setIsNameFill(false);
   }, [username]);
 
+  useEffect(() => {
+    setUserInfo({ ...currentUserInfo, userBirth, username });
+  }, [userBirth, username]);
+
+  console.log(userInfo);
   return (
     <div className="step4-container">
       <div className="step4-inner-container">
@@ -86,7 +93,13 @@ export default function Step4() {
           {!isNameFill ? (
             <div className="step4-submit-off">확인</div>
           ) : (
-            <Link className="step4-submit-on" to="/">
+            <Link
+              to="/"
+              className="step4-submit-on"
+              onClick={() => {
+                handleSignup(userInfo);
+              }}
+            >
               확인
             </Link>
           )}
