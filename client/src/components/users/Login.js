@@ -3,10 +3,13 @@ import kakao from "../../images/Kakao.png";
 import "../../css/components/users/Login.css";
 import { Link } from "react-router-dom";
 import { handleLogin } from "../../controllers/users/Login";
+import { useDispatch } from "react-redux";
+import { handleIsLogin } from "../../actions";
 
-export default function Login({ setIsLogin }) {
+export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
   return (
     <div className="login-container">
       <div className="login-inner-container">
@@ -28,7 +31,9 @@ export default function Login({ setIsLogin }) {
             className="login-button"
             onClick={() => {
               if (email && password) {
-                handleLogin(email, password, setIsLogin);
+                handleLogin(email, password, () => {
+                  dispatch(handleIsLogin(true));
+                });
               }
             }}
           >
@@ -44,6 +49,7 @@ export default function Login({ setIsLogin }) {
             계정 찾기
           </Link>
           <div className="login-center-bar"></div>
+          {/* 여기서 리다이렉트 바로 로그인시켜버리기 고민 */}
           <Link className="link-button" to="/signup">
             회원가입
           </Link>

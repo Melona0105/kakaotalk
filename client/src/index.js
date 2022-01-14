@@ -10,6 +10,7 @@ import InnerRoom from "./components/chatting room/InnerRoom";
 import SignUp from "./components/users/signup";
 import FindAccount from "./components/users/FindAccount";
 
+// TODO : 계정찾기 만들어야함
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>

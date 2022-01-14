@@ -13,3 +13,11 @@ export const handleIsSearchOn = (input) => {
     paylaod: input,
   };
 };
+
+export const handleLogin = "Handle_Login";
+export const handleIsLogin = (input) => {
+  return {
+    type: handleLogin,
+    paylaod: input,
+  };
+};

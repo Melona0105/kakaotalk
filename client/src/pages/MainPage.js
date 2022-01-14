@@ -6,7 +6,7 @@ import ChattingRoomPage from "./ChattingRoomPage";
 import SeeMorePage from "./SeeMorePage";
 import myphoto from "../images/friend/my photo.png";
 
-export default function MainPage({ setIsLogin }) {
+export default function MainPage() {
   const [currentPage, setIsCurrentPage] = useState(0);
 
   const userInfo = {
@@ -20,11 +20,7 @@ export default function MainPage({ setIsLogin }) {
 
   return (
     <div className="mainpage-container">
-      <Nav
-        currentPage={currentPage}
-        setIsCurrentPage={setIsCurrentPage}
-        setIsLogin={setIsLogin}
-      />
+      <Nav currentPage={currentPage} setIsCurrentPage={setIsCurrentPage} />
       {currentPage === 0 && <FriendPage userInfo={userInfo} />}
       {currentPage === 1 && <ChattingRoomPage />}
       {currentPage === 2 && <SeeMorePage userInfo={userInfo} />}

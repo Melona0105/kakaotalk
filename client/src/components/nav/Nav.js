@@ -5,9 +5,12 @@ import seemore from "../../images/nav/seemore.png";
 import noti from "../../images/nav/noti.png";
 import setting from "../../images/nav/setting.png";
 import NavMenu from "./NavMenu";
-
-export default function Nav({ currentPage, setIsCurrentPage, setIsLogin }) {
+import { useDispatch } from "react-redux";
+import { handleIsLogin } from "../../actions";
+export default function Nav({ currentPage, setIsCurrentPage }) {
   const menus = [friend, chat, seemore];
+  const dispatch = useDispatch();
+
   return (
     <div className="nav-container">
       <div className="nav-continer-innerbox pages">
@@ -27,7 +30,7 @@ export default function Nav({ currentPage, setIsCurrentPage, setIsLogin }) {
           src={setting}
           onClick={() => {
             localStorage.removeItem("token");
-            setIsLogin(false);
+            dispatch(handleIsLogin(false));
           }}
         />
       </div>

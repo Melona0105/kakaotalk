@@ -12,8 +12,8 @@ export async function handleLogin(email, password, callback) {
     const { accessToken } = result.data;
 
     localStorage.setItem("token", accessToken);
-    callback(true);
+    callback();
   } catch (err) {
-    console.log("데이터베이스에 이메일이 없습니다.");
+    console.log("이메일 또는 비밀번호를 다시 확인해주세요.");
   }
 }
