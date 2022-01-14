@@ -7,6 +7,8 @@ export default function Room({ data }) {
   const [isChattingOn, setIsChattingOn] = useState(false);
   const { id, img, username, noti, time, message, newMsg, newMsgCount } = data;
 
+  const roomStyle = "top=100, left=100, width=375, height=640";
+
   return (
     <>
       <div
@@ -17,9 +19,10 @@ export default function Room({ data }) {
       >
         {isChattingOn && (
           <Popup
-            roomId={id}
+            style={roomStyle}
+            url={`/room/${id}`}
             username={username}
-            setIsChattingOn={setIsChattingOn}
+            callback={setIsChattingOn}
           ></Popup>
         )}
         <div className="room-left">

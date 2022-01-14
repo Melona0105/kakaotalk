@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { handleIsLogin, handleLoadingOn } from "../../actions";
 import axios from "axios";
+import LoginInput from "./LoginInput";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -37,6 +38,27 @@ export default function Login() {
     }
   }
 
+  const inputs = [
+    {
+      type: "text",
+      initView: "카카오계정(이메일)",
+      content: email,
+      callback: setEmail,
+    },
+    {
+      type: "password",
+      initView: "비밀번호",
+      content: password,
+      callback: setPassword,
+    },
+  ];
+
+  function enterLogin() {
+    handleLogin(email, password, () => {
+      dispatch(handleIsLogin(true));
+    });
+  }
+
   // 입력된 값이 있으면, 버튼 활성화시키기
   useEffect(() => {
     email.length >= 3 && password.length >= 3
@@ -51,25 +73,22 @@ export default function Login() {
           <img src={kakao} />
         </div>
         <div className="login-inner-container-body">
-          <input
-            placeholder="카카오계정(이메일)"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          ></input>
-          <input
-            placeholder="비밀번호"
-            value={password}
-            type="password"
-            onChange={(e) => setPassword(e.target.value)}
-          ></input>
+          {inputs.map((el) => (
+            <LoginInput
+              key={el.type}
+              type={el.type}
+              initView={el.initView}
+              content={el.content}
+              enterLogin={enterLogin}
+              callback={el.callback}
+            />
+          ))}
           {isInputFill ? (
             <div
               className="login-button-on"
               onClick={() => {
                 if (email && password) {
-                  handleLogin(email, password, () => {
-                    dispatch(handleIsLogin(true));
-                  });
+                  enterLogin();
                 }
               }}
             >

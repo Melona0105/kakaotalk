@@ -1,0 +1,54 @@
+.detail-setting-container {
+  display: flex;
+  flex-direction: column;
+  width: 595px;
+  height: 445px;
+  margin: 0;
+}
+
+.detail-setting-container > nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  font-size: 16px;
+  font-weight: 700;
+  border-bottom: 1px solid lightgray;
+}
+
+.detail-setting-inner-container {
+  display: flex;
+  height: 100%;
+}
+
+.detail-nav {
+  display: flex;
+  flex: 1;
+  background: #f8f8f8;
+  border-right: 1px solid lightgray;
+}
+
+.detail-nav > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  font-size: 14px;
+  font-weight: 800;
+  height: 50px;
+}
+
+.detail-nav > div:hover {
+  background: #f0f0f0;
+}
+
+.detail-main {
+  display: flex;
+  flex-direction: column;
+  flex: 3;
+}
+
+.detail-main > img {
+  width: 90px;
+  height: 90px;
+}

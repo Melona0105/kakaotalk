@@ -5,17 +5,14 @@ import "../css/pages/MainPage.css";
 import ChattingRoomPage from "./ChattingRoomPage";
 import SeeMorePage from "./SeeMorePage";
 import aixos from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { handleUserInfo } from "../actions";
 
 export default function MainPage() {
   const [currentPage, setIsCurrentPage] = useState(0);
-  const [userInfo, setUserInfo] = useState({
-    photo: undefined,
-    username: undefined,
-    email: undefined,
-    birth: undefined,
-    song: undefined,
-    comment: undefined,
-  });
+
+  const userInfo = useSelector((state) => state.UserInfoReducer);
+  const dispatch = useDispatch();
 
   useEffect(async () => {
     const { data } = await aixos({
@@ -23,15 +20,19 @@ export default function MainPage() {
       url: "http://localhost:4000/users",
       headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
     }).then((res) => res.data);
-    setUserInfo(data);
+    dispatch(handleUserInfo({ ...data }));
   }, [currentPage]);
 
   return (
     <div className="mainpage-container">
-      <Nav currentPage={currentPage} setIsCurrentPage={setIsCurrentPage} />
-      {currentPage === 0 && <FriendPage userInfo={userInfo} />}
+      <Nav
+        currentPage={currentPage}
+        setIsCurrentPage={setIsCurrentPage}
+        userInfo={userInfo}
+      />
+      {currentPage === 0 && <FriendPage />}
       {currentPage === 1 && <ChattingRoomPage />}
-      {currentPage === 2 && <SeeMorePage userInfo={userInfo} />}
+      {currentPage === 2 && <SeeMorePage />}
     </div>
   );
 }

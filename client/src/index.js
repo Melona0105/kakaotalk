@@ -9,6 +9,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import InnerRoom from "./components/chatting room/InnerRoom";
 import SignUp from "./components/users/signup";
 import FindAccount from "./components/users/FindAccount";
+import DetailSetting from "./components/settings/DetailSetting";
 
 // TODO : 계정찾기 만들어야함
 ReactDOM.render(
@@ -20,6 +21,7 @@ ReactDOM.render(
           <Route path="/room/:roomId" element={<InnerRoom />} />
           <Route path="/account" element={<FindAccount />} />
           <Route path="/signup" element={<SignUp />} />
+          <Route path="/setting" element={<DetailSetting />} />
         </Routes>
       </BrowserRouter>
     </Provider>

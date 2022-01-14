@@ -11,7 +11,8 @@ import Friend from "../components/friend/Friend";
 import { getCurrentDate } from "../functions";
 import "../css/pages/FriendPage.css";
 
-export default function FriendPage({ userInfo }) {
+export default function FriendPage() {
+  const userInfo = useSelector((state) => state.UserInfoReducer);
   const [isBirthdayOn, setIsBirthdayOn] = useState(false);
   const { isSearchOn } = useSelector((state) => state.SearchOnReducer);
   const { keyWord } = useSelector((state) => state.SearchKeyWordReducer);

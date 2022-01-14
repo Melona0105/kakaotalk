@@ -5,21 +5,21 @@ export default class Popup extends React.PureComponent {
   constructor(props) {
     super(props);
     this.el = document.createElement("div");
+    this.el.className = this.props.username;
     this.newWindow = null;
   }
 
   componentDidMount() {
     this.newWindow = window.open(
-      `/room/${this.props.roomId}`, // 룸 아이디
-      // "",
+      this.props.url,
       this.props.username,
-      "top=100, left=100, width=375, height=640"
+      this.props.style
     );
     this.newWindow.document.body.appendChild(this.el);
     this.newWindow.document.title = this.props.username;
     this.newWindow.onkeydown = (e) => {
       if (e.key === "Escape") {
-        this.props.setIsChattingOn(false);
+        this.props.callback(false);
         this.newWindow.close();
       }
     };
