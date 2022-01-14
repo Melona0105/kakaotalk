@@ -5,11 +5,12 @@ import seemore from "../../images/nav/seemore.png";
 import noti from "../../images/nav/noti.png";
 import setting from "../../images/nav/setting.png";
 import NavMenu from "./NavMenu";
-import { useDispatch } from "react-redux";
-import { handleIsLogin } from "../../actions";
+import { useState } from "react";
+import Setting from "../settings/Setting";
 export default function Nav({ currentPage, setIsCurrentPage }) {
   const menus = [friend, chat, seemore];
-  const dispatch = useDispatch();
+  const [isSettingOn, setIsSettingOn] = useState(false);
+  const [settingLocation, setSettingLocation] = useState({ top: 0, left: 0 });
 
   return (
     <div className="nav-container">
@@ -28,11 +29,14 @@ export default function Nav({ currentPage, setIsCurrentPage }) {
         <img src={noti} />
         <img
           src={setting}
-          onClick={() => {
-            localStorage.removeItem("token");
-            dispatch(handleIsLogin(false));
+          onClick={(e) => {
+            setSettingLocation({ top: e.pageY, left: e.pageX });
+            setIsSettingOn(true);
           }}
         />
+        {isSettingOn && (
+          <Setting location={settingLocation} setIsSettingOn={setIsSettingOn} />
+        )}
       </div>
     </div>
   );
