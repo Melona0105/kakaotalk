@@ -20,9 +20,8 @@ export default function MainPage() {
       url: "http://localhost:4000/users",
       headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
     }).then((res) => res.data);
-    dispatch(handleUserInfo({ ...data }));
+    localStorage.setItem("userInfo", JSON.stringify(data));
   }, [currentPage]);
-
   return (
     <div className="mainpage-container">
       <Nav

@@ -12,7 +12,7 @@ import { getCurrentDate } from "../functions";
 import "../css/pages/FriendPage.css";
 
 export default function FriendPage() {
-  const userInfo = useSelector((state) => state.UserInfoReducer);
+  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
   const [isBirthdayOn, setIsBirthdayOn] = useState(false);
   const { isSearchOn } = useSelector((state) => state.SearchOnReducer);
   const { keyWord } = useSelector((state) => state.SearchKeyWordReducer);

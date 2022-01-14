@@ -5,10 +5,9 @@ import "../css/pages/SeeMorePage.css";
 import SeeMoreMenu from "../components/seemore/SeeMoreMenu";
 import kakaoTalk from "../images/seemore/kakao talk.svg";
 import dev_info from "../images/seemore/dev info.png";
-import { useSelector } from "react-redux";
 
 export default function SeeMorePage() {
-  const userInfo = useSelector((state) => state.UserInfoReducer);
+  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
   const { username, email } = userInfo;
   const menus = [
     {
