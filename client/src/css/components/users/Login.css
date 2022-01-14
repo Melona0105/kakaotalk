@@ -36,14 +36,23 @@
 }
 
 .login-inner-container-body > input,
-.login-button {
+.login-button,
+.login-button-on {
   width: 240px;
   height: 35px;
   margin: 0;
   border: 1px solid lightgray;
+  outline: none;
 }
 
-.login-button {
+.login-inner-container-body > input {
+  width: 232px;
+  padding-left: 10px;
+}
+
+.login-button,
+.login-button-on {
+  border-radius: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -53,6 +62,12 @@
   width: 244px;
   height: 45px;
   margin-top: 5px;
+}
+
+.login-button-on {
+  columns: #fff;
+  background: #423530;
+  border: 1px solid #423530;
 }
 
 .auto-login {
@@ -67,6 +82,13 @@
   width: 14px;
   height: 14px;
   margin-right: 5px;
+}
+
+.login-error {
+  color: #f00;
+  font-size: 12px;
+  text-align: center;
+  margin-top: 20px;
 }
 
 .login-inner-container-footer {
