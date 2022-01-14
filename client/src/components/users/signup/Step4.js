@@ -5,7 +5,9 @@ import DateDropDowns from "./DateDropDowns";
 import ProgressBar from "./ProgressBar";
 import RadioBox from "./RadioBox";
 import { Link } from "react-router-dom";
-import { handleSignup } from "../../../controllers/users/Signup";
+import { useDispatch } from "react-redux";
+import { handleIsLogin, handleLoadingOn } from "../../../actions";
+import axios from "axios";
 
 export default function Step4({ currentUserInfo }) {
   const [userBirth, setUserBirth] = useState(undefined);
@@ -17,6 +19,45 @@ export default function Step4({ currentUserInfo }) {
     { value: "female", title: "여성" },
     { value: "none", title: "선택안함" },
   ];
+  const dispatch = useDispatch();
+
+  async function handleSignup(userInfo, callBack) {
+    const { email, username, password, userBirth, agreements } = userInfo;
+    try {
+      await dispatch(handleLoadingOn(true));
+      await axios({
+        method: "POST",
+        url: "http://localhost:4000/users/signup",
+        withCredentials: true,
+        data: { email, username, password, userBirth, agreements },
+      })
+        .then(async (res) => {
+          const result = await axios({
+            method: "POST",
+            url: "http://localhost:4000/users/login",
+            data: { email, password },
+            withCredentials: true,
+          });
+
+          const { accessToken } = result.data;
+
+          localStorage.setItem("token", accessToken);
+          callBack();
+          await dispatch(handleLoadingOn(false));
+        })
+        .catch(async (err) => {
+          const { status } = err.response;
+          if (status === 401) {
+            console.log("이미 가입된 계정입니다.");
+          }
+          await dispatch(handleLoadingOn(false));
+        });
+      // 성공적으로 가입이 되었으니 현재 입력한 것들로 로그인시켜주기
+    } catch (err) {
+      console.log("서버 에러가 발생했습니다.");
+      await dispatch(handleLoadingOn(false));
+    }
+  }
 
   useEffect(() => {
     username.length ? setIsNameFill(true) : setIsNameFill(false);
@@ -97,7 +138,9 @@ export default function Step4({ currentUserInfo }) {
               to="/"
               className="step4-submit-on"
               onClick={() => {
-                handleSignup(userInfo);
+                handleSignup(userInfo, () => {
+                  dispatch(handleIsLogin(true));
+                });
               }}
             >
               확인

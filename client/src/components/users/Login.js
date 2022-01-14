@@ -2,14 +2,37 @@ import react, { useState } from "react";
 import kakao from "../../images/Kakao.png";
 import "../../css/components/users/Login.css";
 import { Link } from "react-router-dom";
-import { handleLogin } from "../../controllers/users/Login";
 import { useDispatch } from "react-redux";
-import { handleIsLogin } from "../../actions";
+import { handleIsLogin, handleLoadingOn } from "../../actions";
+import axios from "axios";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
+
+  async function handleLogin(email, password, callback) {
+    try {
+      await dispatch(handleLoadingOn(true));
+      const result = await axios({
+        method: "POST",
+        url: "http://localhost:4000/users/login",
+        data: { email, password },
+        withCredentials: true,
+      });
+
+      const { accessToken } = result.data;
+
+      // 받은 토큰을 로컬스토리지에 저장한다.
+      localStorage.setItem("token", accessToken);
+      await dispatch(handleLoadingOn(false));
+      callback();
+    } catch (err) {
+      console.log("이메일 또는 비밀번호를 다시 확인해주세요.");
+      await dispatch(handleLoadingOn(false));
+    }
+  }
+
   return (
     <div className="login-container">
       <div className="login-inner-container">

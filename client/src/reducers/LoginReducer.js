@@ -1,9 +1,9 @@
 import { currentIsLogin } from "./InitialState";
-import { handleLogin } from "../actions";
+import { handleLoginCase } from "../actions";
 
 const LoginReducer = (state = currentIsLogin, action) => {
   switch (action.type) {
-    case handleLogin:
+    case handleLoginCase:
       return Object.assign({}, state, { isLogin: action.paylaod });
 
     default:

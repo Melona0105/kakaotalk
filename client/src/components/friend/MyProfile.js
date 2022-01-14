@@ -12,9 +12,9 @@ export default function MyProfile({ data }) {
       <div className="my-profile-detail">
         <div>
           <div className="my-profile-username">{username}</div>
-          <div className="my-profile-comment">{comment}</div>
+          {comment && <div className="my-profile-comment">{comment}</div>}
         </div>
-        <Melon song={song} />
+        {song && <Melon song={song} />}
       </div>
     </div>
   );

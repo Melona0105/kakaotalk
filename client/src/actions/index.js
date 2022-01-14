@@ -14,10 +14,18 @@ export const handleIsSearchOn = (input) => {
   };
 };
 
-export const handleLogin = "Handle_Login";
+export const handleLoginCase = "Login_Case";
 export const handleIsLogin = (input) => {
   return {
-    type: handleLogin,
+    type: handleLoginCase,
+    paylaod: input,
+  };
+};
+
+export const loadingCase = "Loading_Case";
+export const handleLoadingOn = (input) => {
+  return {
+    type: loadingCase,
     paylaod: input,
   };
 };

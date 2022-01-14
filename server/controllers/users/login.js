@@ -27,6 +27,6 @@ module.exports = async function login(req, res) {
     .json({ accessToken, userInfo: { email: userInfo.email }, message: "ok" });
 };
 
-function createAccessToken(email) {
-  return sign({ email }, process.env.ACCESS_SECRET, { expiresIn: "1d" });
+function createAccessToken(data) {
+  return sign({ data }, process.env.ACCESS_SECRET, { expiresIn: "1d" });
 }
