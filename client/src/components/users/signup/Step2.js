@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react";
 import "../../../css/components/users/signup/Step2.css";
 import { checkKorean, checkInvalidString } from "../../../functions";
-import reset_button from "../../../images/signup/reset button.png";
 import RemoveButton from "../../etc/RomoveButton";
 import ProgressBar from "./ProgressBar";
+import axios from "axios";
 
 export default function Step2({ nextStep, setCurrentEmail }) {
   const [isEmailInput, setIsEmailInput] = useState(false);
   const [isEmailError, setIsEmailError] = useState(undefined);
   const [inputEmail, setInputEmail] = useState("");
   const [isEmailFill, setIsEmailFill] = useState(false);
+  const [isEmailExist, setIsEmailExist] = useState(false);
 
   // 이메일이 입력되었는지 감지하는 함수
   function checkValidEmail(input) {
@@ -40,6 +41,31 @@ export default function Step2({ nextStep, setCurrentEmail }) {
     setIsEmailError(error);
   }
 
+  // 변할때마다 서버에 해당 이메일을 보내서 이메일을 확인한다.
+  async function checkExistedEmail() {
+    if (isEmailInput) {
+      try {
+        const response = await axios({
+          method: "POST",
+          url: "http://localhost:4000/users",
+          withCredentials: true,
+          data: { email: inputEmail },
+        });
+        const { status } = response;
+        if (status === 201) {
+          console.log("사용가능");
+        } else {
+          console.log("이미 존재합니다.");
+        }
+        // 이 값이 이미 있는 값이라면, 에러를 띄운다.
+
+        // 아니라면 그냥 사용가능하다고 띄워준다.
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  }
+
   useEffect(() => {
     if (inputEmail.length) {
       setIsEmailFill(true);
@@ -65,7 +91,10 @@ export default function Step2({ nextStep, setCurrentEmail }) {
               <input
                 placeholder="아이디 입력"
                 value={inputEmail}
-                onChange={(e) => checkValidEmail(e.target.value)}
+                onChange={(e) => {
+                  checkValidEmail(e.target.value);
+                  checkExistedEmail();
+                }}
               />
               {isEmailFill && (
                 <RemoveButton
@@ -75,7 +104,6 @@ export default function Step2({ nextStep, setCurrentEmail }) {
                   }}
                 />
               )}
-              <div>@kakao.com</div>
             </div>
             {isEmailError && <div className="email-error">{isEmailError}</div>}
           </div>

@@ -1,11 +1,12 @@
-import react, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import kakao from "../../images/Kakao.png";
 import "../../css/components/users/Login.css";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { handleIsLogin, handleLoadingOn } from "../../actions";
-import axios from "axios";
+
 import LoginInput from "./LoginInput";
+import Service from "../../services";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -16,25 +17,16 @@ export default function Login() {
 
   async function handleLogin(email, password, callback) {
     setIsLoginError(false);
+    dispatch(handleLoadingOn(true));
+
     try {
-      await dispatch(handleLoadingOn(true));
-      const result = await axios({
-        method: "POST",
-        url: "http://localhost:4000/users/login",
-        data: { email, password },
-        withCredentials: true,
-      });
-
-      const { accessToken } = result.data;
-
-      // 받은 토큰을 로컬스토리지에 저장한다.
-      localStorage.setItem("token", accessToken);
-      await dispatch(handleLoadingOn(false));
+      await Service.user.login(email, password);
       callback();
     } catch (err) {
       console.log("이메일 또는 비밀번호를 다시 확인해주세요.");
-      await dispatch(handleLoadingOn(false));
       setIsLoginError(true);
+    } finally {
+      dispatch(handleLoadingOn(false));
     }
   }
 

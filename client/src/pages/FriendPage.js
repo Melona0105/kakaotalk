@@ -13,6 +13,7 @@ import "../css/pages/FriendPage.css";
 
 export default function FriendPage() {
   const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+  console.log(userInfo);
   const [isBirthdayOn, setIsBirthdayOn] = useState(false);
   const { isSearchOn } = useSelector((state) => state.SearchOnReducer);
   const { keyWord } = useSelector((state) => state.SearchKeyWordReducer);
