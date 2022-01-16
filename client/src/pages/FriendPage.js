@@ -22,63 +22,63 @@ export default function FriendPage() {
       photo: user1,
       username: "현광진", // 내가 친구 설정한 닉네임임
       birth: "1992-01-11",
-      song: null,
+      music: null,
       comment: "INNTW",
     },
     {
       photo: user1,
       username: "최우석",
       birth: "1994-03-16",
-      song: null,
+      music: null,
       comment: "배고프네..",
     },
     {
       photo: user1,
       username: "이형범",
       birth: "1992-05-25",
-      song: null,
+      music: null,
       comment: "감사합니다.",
     },
     {
       photo: user1,
       username: "김아현",
       birth: "1992-03-30",
-      song: null,
+      music: null,
       comment: "",
     },
     {
       photo: user1,
       username: "윤예린",
       birth: "1992-06-08",
-      song: null,
+      music: null,
       comment: "",
     },
     {
       photo: user1,
       username: "박성민",
       birth: "1992-10-18",
-      song: "커피 한잔 할래요 - 폴킴",
+      music: "커피 한잔 할래요 - 폴킴",
       comment: "",
     },
     {
       photo: user1,
       username: "송자혜",
       birth: "1994-11-10",
-      song: null,
+      music: null,
       comment: "",
     },
     {
       photo: user1,
       username: "공윤구",
       birth: "1993-08-16",
-      song: null,
+      music: null,
       comment: "",
     },
     {
       photo: user1,
       username: "이찬영",
       birth: "1993-11-01",
-      song: "시간을 거슬러 - SG워너비",
+      music: "시간을 거슬러 - SG워너비",
       comment: "",
     },
   ].filter((el) => filterDataByKeyWord(el.username, keyWord));
@@ -154,7 +154,7 @@ export default function FriendPage() {
                 key={el.username}
                 src={el.photo}
                 name={el.username}
-                song={el.song}
+                music={el.music}
                 comment={el.comment}
               />
             ))}

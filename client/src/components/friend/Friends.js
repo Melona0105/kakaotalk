@@ -27,7 +27,7 @@ export default function Friends({ data }) {
                 key={el.username}
                 src={el.photo}
                 name={el.username}
-                song={el.song}
+                music={el.music}
                 comment={el.comment}
               />
             ))}

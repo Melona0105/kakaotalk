@@ -1,4 +1,4 @@
-.profile-song {
+.profile-music {
   display: flex;
   border: 1px solid #36cc43;
   padding: 2px 5px;
@@ -12,6 +12,6 @@
   justify-content: space-around;
 }
 
-.profile-song > img {
+.profile-music > img {
   width: 13px;
 }

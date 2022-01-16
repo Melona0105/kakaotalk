@@ -5,7 +5,7 @@ import user1 from "../../images/friend/user1.png";
 import { useSelector } from "react-redux";
 
 export default function MyProfile() {
-  const { photo, username, comment, song } = useSelector(
+  const { photo, username, comment, music } = useSelector(
     (state) => state.UserInfoReducer
   );
 
@@ -19,7 +19,7 @@ export default function MyProfile() {
           <div className="my-profile-username">{username}</div>
           {comment && <div className="my-profile-comment">{comment}</div>}
         </div>
-        {song && <Melon song={song} />}
+        {music && <Melon music={music} />}
       </div>
     </div>
   );

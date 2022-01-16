@@ -7,6 +7,6 @@ export const userInfo = {
   username: undefined,
   email: undefined,
   birth: undefined,
-  song: undefined,
+  music: undefined,
   comment: undefined,
 };
