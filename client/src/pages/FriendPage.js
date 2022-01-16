@@ -3,85 +3,33 @@ import FriendNav from "../components/friend/FriendNav";
 import MyProfile from "../components/friend/MyProfile";
 import BirthdayFriend from "../components/friend/BirthdayFriend";
 import Friends from "../components/friend/Friends";
-import user1 from "../images/friend/user1.png";
 import search from "../images/friend/search.png";
 import { useSelector, useDispatch } from "react-redux";
 import { handleKeyword } from "../actions";
 import Friend from "../components/friend/Friend";
 import { getCurrentDate } from "../functions";
+import sample from "../images/seemore/kakao talk.svg";
 import "../css/pages/FriendPage.css";
 
-export default function FriendPage() {
+export default function FriendPage({ myFriend }) {
   const [isBirthdayOn, setIsBirthdayOn] = useState(false);
   const { isSearchOn } = useSelector((state) => state.SearchOnReducer);
   const { keyWord } = useSelector((state) => state.SearchKeyWordReducer);
   const dispatch = useDispatch();
-
-  let fakeData = [
-    {
-      photo: user1,
-      username: "현광진", // 내가 친구 설정한 닉네임임
-      birth: "1992-01-11",
-      music: null,
-      comment: "INNTW",
-    },
-    {
-      photo: user1,
-      username: "최우석",
-      birth: "1994-03-16",
-      music: null,
-      comment: "배고프네..",
-    },
-    {
-      photo: user1,
-      username: "이형범",
-      birth: "1992-05-25",
-      music: null,
-      comment: "감사합니다.",
-    },
-    {
-      photo: user1,
-      username: "김아현",
-      birth: "1992-03-30",
-      music: null,
-      comment: "",
-    },
-    {
-      photo: user1,
-      username: "윤예린",
-      birth: "1992-06-08",
-      music: null,
-      comment: "",
-    },
-    {
-      photo: user1,
-      username: "박성민",
-      birth: "1992-10-18",
-      music: "커피 한잔 할래요 - 폴킴",
-      comment: "",
-    },
-    {
-      photo: user1,
-      username: "송자혜",
-      birth: "1994-11-10",
-      music: null,
-      comment: "",
-    },
-    {
-      photo: user1,
-      username: "공윤구",
-      birth: "1993-08-16",
-      music: null,
-      comment: "",
-    },
-    {
-      photo: user1,
-      username: "이찬영",
-      birth: "1993-11-01",
-      music: "시간을 거슬러 - SG워너비",
-      comment: "",
-    },
-  ].filter((el) => filterDataByKeyWord(el.username, keyWord));
+  let friendDataFromServer;
+  if (!myFriend) {
+    friendDataFromServer = [
+      {
+        photo: sample,
+        username: "카카오톡",
+        comment: "친구를 추가해보세요",
+      },
+    ];
+  } else {
+    friendDataFromServer = myFriend.filter((el) =>
+      filterDataByKeyWord(el.username, keyWord)
+    );
+  }
 
   function sortDataToAlphabeticalOrder(data) {
     data.sort((a, b) => {
@@ -94,12 +42,14 @@ export default function FriendPage() {
   const toDayDate = getCurrentDate();
 
   function getBirthFriend(data) {
-    const result = data.filter((el) => el.birth.slice(5) === toDayDate);
+    const result = data.filter(
+      (el) => el.birth && el.birth.slice(5) === toDayDate
+    );
     return result;
   }
 
-  const birthFriend = getBirthFriend(fakeData);
-  sortDataToAlphabeticalOrder(fakeData);
+  const birthFriend = getBirthFriend(friendDataFromServer);
+  sortDataToAlphabeticalOrder(friendDataFromServer);
 
   function filterDataByKeyWord(data, keyword) {
     const len = keyword.length;
@@ -125,7 +75,7 @@ export default function FriendPage() {
     } else {
       setIsBirthdayOn(false);
     }
-  }, [fakeData]);
+  }, [friendDataFromServer]);
 
   return (
     <div className="friend-page-container">
@@ -145,11 +95,11 @@ export default function FriendPage() {
           <>
             <MyProfile />
             {isBirthdayOn && <BirthdayFriend birthData={birthFriend} />}
-            <Friends data={fakeData} />
+            <Friends data={friendDataFromServer} />
           </>
         ) : (
           <div className="friend-page-filtered-content">
-            {fakeData.map((el) => (
+            {friendDataFromServer.map((el) => (
               <Friend
                 key={el.username}
                 src={el.photo}

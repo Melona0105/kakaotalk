@@ -17,6 +17,7 @@
 .my-friends-title {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 5px;
 }
 
 .my-friends-title > div {

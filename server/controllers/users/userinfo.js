@@ -2,7 +2,7 @@ require("dotenv").config();
 const { User } = require("../../models");
 
 module.exports = async function userinfo(req, res) {
-  const email = req.token;
+  const { email } = req.userInfo;
   // 이메일 정보로 로그인한 유저의 정보를 가져온다.
   try {
     const userInfo = await User.findOne({ where: { email } }).then(

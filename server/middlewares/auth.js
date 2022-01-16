@@ -9,9 +9,9 @@ module.exports = async function auth(req, res, next) {
   }
   // 토큰이 존재한다면, 토큰을 해독해서 데이터베이스에 찾아본다. -> 값이 있다면 데이터 넘겨주고 아니면 에러 떄림
   try {
-    const { email } = await getDataFromToken(token).then((res) => res.data);
-    if (email) {
-      req.token = email;
+    const userInfo = await getDataFromToken(token).then((res) => res.data);
+    if (userInfo) {
+      req.userInfo = userInfo;
       next();
     }
   } catch {

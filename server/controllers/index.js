@@ -4,6 +4,7 @@ module.exports = {
   signup: require("./users/signup"),
   userinfo: require("./users/userinfo"),
   checkEmail: require("./users/checkEmail"),
+  getFriend: require("./users/getFriend"),
 
   // chats
 };
