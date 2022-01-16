@@ -29,3 +29,11 @@ export const handleLoadingOn = (input) => {
     paylaod: input,
   };
 };
+
+export const userInfoCase = "User_Info_Case";
+export const handleUserInfo = (input) => {
+  return {
+    type: userInfoCase,
+    paylaod: input,
+  };
+};

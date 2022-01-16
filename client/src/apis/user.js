@@ -1,3 +1,5 @@
+import { useDispatch } from "react-redux";
+import { handleUserInfo } from "../actions";
 import axiosInstance from "./axios";
 
 const userApis = {
@@ -11,7 +13,7 @@ const userApis = {
 
     const { accessToken } = result.data;
     return accessToken;
-  }
-}
+  },
+};
 
 export default userApis;

@@ -8,6 +8,7 @@ module.exports = async function userinfo(req, res) {
     const userInfo = await User.findOne({ where: { email } }).then(
       (res) => res.dataValues
     );
+
     // 비밀번호 지우고 줌
     delete userInfo.password;
     return res.status(201).send({ data: userInfo, message: "ok" });

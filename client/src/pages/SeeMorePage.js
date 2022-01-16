@@ -5,11 +5,11 @@ import "../css/pages/SeeMorePage.css";
 import SeeMoreMenu from "../components/seemore/SeeMoreMenu";
 import kakaoTalk from "../images/seemore/kakao talk.svg";
 import dev_info from "../images/seemore/dev info.png";
+import { useSelector } from "react-redux";
 
 export default function SeeMorePage() {
-  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
-  const { username, email } = userInfo;
-  const menus = [
+  const { username, email } = useSelector((state) => state.UserInfoReducer);
+  const projects = [
     {
       name: "Kakao Talk",
       url: `https://github.com/Melona0105/kakaotalk`,
@@ -36,7 +36,7 @@ export default function SeeMorePage() {
           </div>
         </div>
         <div className="seemore-page-content-body">
-          {menus.map((el) => (
+          {projects.map((el) => (
             <SeeMoreMenu key={el.name} data={el} />
           ))}
         </div>

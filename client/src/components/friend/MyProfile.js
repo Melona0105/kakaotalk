@@ -2,9 +2,13 @@ import myphoto from "../../images/friend/my photo.png";
 import "../../css/components/friend/MyProfile.css";
 import Melon from "../etc/Melon";
 import user1 from "../../images/friend/user1.png";
+import { useSelector } from "react-redux";
 
-export default function MyProfile({ data }) {
-  const { photo, username, song, comment } = data;
+export default function MyProfile() {
+  const { photo, username, comment, song } = useSelector(
+    (state) => state.UserInfoReducer
+  );
+
   return (
     <div className="my-profile">
       <div className="my-profile-img-container">

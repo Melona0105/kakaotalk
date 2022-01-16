@@ -1,8 +1,11 @@
 import user1 from "../../images/friend/user1.png";
 import "../../css/components/settings/DetailSetting.css";
+import { useSelector } from "react-redux";
 
 export default function DetailSetting() {
-  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+  const { photo, username, email } = useSelector(
+    (state) => state.UserInfoReducer
+  );
 
   return (
     <div className="detail-setting-container">
@@ -16,12 +19,8 @@ export default function DetailSetting() {
             <div>기본 프로필 관리</div>
             <div className="edit-detail-profile">
               <div>
-                {userInfo.photo ? (
-                  <img src={userInfo.photo} />
-                ) : (
-                  <img src={user1} />
-                )}
-                <div>{userInfo.username}</div>
+                {photo ? <img src={photo} /> : <img src={user1} />}
+                <div>{username}</div>
               </div>
               <div className="edit-button">편집</div>
             </div>
@@ -29,7 +28,7 @@ export default function DetailSetting() {
           <div className="detail-body-bottom">
             <div className="detail-email">
               <div>계정</div>
-              <div>{userInfo.email}</div>
+              <div>{email}</div>
             </div>
           </div>
         </div>

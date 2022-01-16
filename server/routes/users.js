@@ -7,7 +7,7 @@ const userRouter = Router();
 
 userRouter.post("/login", login);
 userRouter.post("/signup", signup);
-userRouter.get("/", auth, userinfo);
+userRouter.post("/userinfo", auth, userinfo);
 userRouter.post("/", checkEmail);
 
 module.exports = userRouter;
