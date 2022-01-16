@@ -1,5 +1,3 @@
-import { useDispatch } from "react-redux";
-import { handleUserInfo } from "../actions";
 import axiosInstance from "./axios";
 
 const userApis = {

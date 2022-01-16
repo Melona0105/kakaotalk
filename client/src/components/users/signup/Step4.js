@@ -10,7 +10,7 @@ import { handleIsLogin, handleLoadingOn } from "../../../actions";
 import axios from "axios";
 
 export default function Step4({ currentUserInfo }) {
-  const [userBirth, setUserBirth] = useState(undefined);
+  const [userbirth, setUserbirth] = useState(undefined);
   const [isNameFill, setIsNameFill] = useState(false);
   const [username, setUsername] = useState("");
   const [userInfo, setUserInfo] = useState({ ...currentUserInfo });
@@ -22,36 +22,28 @@ export default function Step4({ currentUserInfo }) {
   const dispatch = useDispatch();
 
   async function handleSignup(userInfo, callBack) {
-    const { email, username, password, userBirth, agreements } = userInfo;
+    const { email, username, password, userbirth, agreements } = userInfo;
     try {
       dispatch(handleLoadingOn(true));
       await axios({
         method: "POST",
         url: "http://localhost:4000/users/signup",
         withCredentials: true,
-        data: { email, username, password, userBirth, agreements },
-      })
-        .then(async (res) => {
-          const result = await axios({
-            method: "POST",
-            url: "http://localhost:4000/users/login",
-            data: { email, password },
-            withCredentials: true,
-          });
-
-          const { accessToken } = result.data;
-
-          localStorage.setItem("token", accessToken);
-          callBack();
-          dispatch(handleLoadingOn(false));
-        })
-        .catch((err) => {
-          const { status } = err.response;
-          if (status === 401) {
-            console.log("이미 가입된 계정입니다.");
-          }
-          dispatch(handleLoadingOn(false));
+        data: { email, username, password, userbirth, agreements },
+      }).then(async (res) => {
+        const result = await axios({
+          method: "POST",
+          url: "http://localhost:4000/users/login",
+          data: { email, password },
+          withCredentials: true,
         });
+
+        const { accessToken } = result.data;
+
+        localStorage.setItem("token", accessToken);
+        callBack();
+        dispatch(handleLoadingOn(false));
+      });
       // 성공적으로 가입이 되었으니 현재 입력한 것들로 로그인시켜주기
     } catch (err) {
       console.log("서버 에러가 발생했습니다.");
@@ -64,8 +56,8 @@ export default function Step4({ currentUserInfo }) {
   }, [username]);
 
   useEffect(() => {
-    setUserInfo({ ...currentUserInfo, userBirth, username });
-  }, [userBirth, username]);
+    setUserInfo({ ...currentUserInfo, userbirth, username });
+  }, [userbirth, username]);
 
   console.log(userInfo);
   return (
@@ -109,7 +101,7 @@ export default function Step4({ currentUserInfo }) {
             <div>생일</div>
             <div className="step4-birth-dropdowns">
               <div>
-                <DateDropDowns getUserbirth={setUserBirth} />
+                <DateDropDowns getUserbirth={setUserbirth} />
               </div>
               <input type="checkbox" id="date" className="outdate" />
               <label className="step4-checkbox" htmlFor="date"></label>

@@ -11,7 +11,7 @@ export default function SingUp() {
   const [currentPassword, serCurrentPassword] = useState(undefined); // 가입한 비밀번호
   const [currentUserInfo, setCurrentUserInfo] = useState({
     agreements,
-    email: currentEmail + "@kakao.com",
+    email: currentEmail,
     password: currentPassword,
   });
 
@@ -32,7 +32,7 @@ export default function SingUp() {
   useEffect(() => {
     setCurrentUserInfo({
       agreements: getAgreeIndex(agreements),
-      email: currentEmail + "@kakao.com",
+      email: currentEmail,
       password: currentPassword,
     });
   }, [agreements, currentEmail, currentPassword]);

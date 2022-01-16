@@ -1,14 +1,13 @@
+const { User } = require("../../models");
 const { compare } = require("bcrypt");
 const { sign } = require("jsonwebtoken");
-const { connection } = require("../../database");
 require("dotenv").config();
 
 module.exports = async function login(req, res) {
   const { email, password } = req.body;
   // 입력한 이메일에 해당하는 유저정보가 있는지 확인
-  const userInfo = await connection.query(
-    `SELECT * from user where email=${email}`
-  );
+  const userInfo = await User.findOne({ where: { email } });
+  console.log(email);
   console.log(userInfo);
   // 없으면 에러
   if (!userInfo) {

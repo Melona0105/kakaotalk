@@ -1,6 +1,6 @@
 import "../../css/components/settings/Setting.css";
-import { useDispatch } from "react-redux";
-import { handleIsLogin } from "../../actions";
+import { useDispatch, useSelector } from "react-redux";
+import { handleIsLogin, handleUserInfo } from "../../actions";
 import { useState } from "react";
 import Popup from "../chatting room/Popup";
 
@@ -9,6 +9,7 @@ export default function Setting({ location, setIsSettingOn }) {
   const dispatch = useDispatch();
   const [currentLocation, setCurrentLocation] = useState({ top: 0, left: 0 });
   function logoutHandler() {
+    dispatch(handleUserInfo(undefined));
     localStorage.removeItem("token");
     dispatch(handleIsLogin(false));
   }
@@ -44,7 +45,13 @@ export default function Setting({ location, setIsSettingOn }) {
             callback={settingPopupCallback}
           />
         )}
-        <div onClick={() => logoutHandler()}>로그아웃</div>
+        <div
+          onClick={() => {
+            logoutHandler();
+          }}
+        >
+          로그아웃
+        </div>
       </div>
       <div className="setting-back" onClick={() => setIsSettingOn(false)}></div>
     </>

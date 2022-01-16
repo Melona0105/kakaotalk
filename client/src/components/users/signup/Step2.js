@@ -42,29 +42,29 @@ export default function Step2({ nextStep, setCurrentEmail }) {
   }
 
   // 변할때마다 서버에 해당 이메일을 보내서 이메일을 확인한다.
-  async function checkExistedEmail() {
-    if (isEmailInput) {
-      try {
-        const response = await axios({
-          method: "POST",
-          url: "http://localhost:4000/users",
-          withCredentials: true,
-          data: { email: inputEmail },
-        });
-        const { status } = response;
-        if (status === 201) {
-          console.log("사용가능");
-        } else {
-          console.log("이미 존재합니다.");
-        }
-        // 이 값이 이미 있는 값이라면, 에러를 띄운다.
+  // async function checkExistedEmail() {
+  //   if (isEmailInput) {
+  //     try {
+  //       const response = await axios({
+  //         method: "POST",
+  //         url: "http://localhost:4000/users",
+  //         withCredentials: true,
+  //         data: { email: inputEmail },
+  //       });
+  //       const { status } = response;
+  //       if (status === 201) {
+  //         console.log("사용가능");
+  //       } else {
+  //         console.log("이미 존재합니다.");
+  //       }
+  //       // 이 값이 이미 있는 값이라면, 에러를 띄운다.
 
-        // 아니라면 그냥 사용가능하다고 띄워준다.
-      } catch (err) {
-        console.log(err);
-      }
-    }
-  }
+  //       // 아니라면 그냥 사용가능하다고 띄워준다.
+  //     } catch (err) {
+  //       console.log(err);
+  //     }
+  //   }
+  // }
 
   useEffect(() => {
     if (inputEmail.length) {
@@ -93,7 +93,7 @@ export default function Step2({ nextStep, setCurrentEmail }) {
                 value={inputEmail}
                 onChange={(e) => {
                   checkValidEmail(e.target.value);
-                  checkExistedEmail();
+                  // checkExistedEmail();
                 }}
               />
               {isEmailFill && (

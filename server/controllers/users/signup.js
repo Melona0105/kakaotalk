@@ -1,24 +1,13 @@
-const { connection } = require("../../database");
+const { User } = require("../../models");
 const { hash } = require("bcrypt");
 const bcryptSaltRounds = 12;
 
 module.exports = async function signup(req, res) {
   const { email, password, username, userBirth, music, comment, photo } =
     req.body;
-  // const userInfo = await User.findOne({ where: { email } });
-  const userInfo = await connection.query(
-    `select * from users where email=${email}`,
-    (err, result) => {
-      if (err) {
-        return err;
-      } else {
-        return result;
-      }
-    }
-  );
+  const userInfo = await User.findOne({ where: { username } });
   // 이미 가입된 계정인지 확인한다.
   if (userInfo) {
-    // 이미 가입된 계정일경우, 클라이언트에러
     return res.status(401).send({ message: `${email} is already exists.` });
   }
 
@@ -26,7 +15,7 @@ module.exports = async function signup(req, res) {
   try {
     const encrypted = await hash(password, bcryptSaltRounds);
     console.log("비밀번호 생성!");
-    await connection.query().create({
+    await User.create({
       email,
       password: encrypted,
       username,

@@ -1,11 +1,8 @@
 const express = require("express");
-// 콜스 미들웨어
 const cors = require("cors");
-// 라우팅
 const router = require("./routes");
-// const connectDatabase = require("./database");
-const app = express();
 
+const app = express();
 app.use(
   cors({
     origin: "http://localhost:3000",
