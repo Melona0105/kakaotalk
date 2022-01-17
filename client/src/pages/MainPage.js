@@ -16,12 +16,13 @@ export default function MainPage() {
   const [myFriend, setMyFriend] = useState(undefined);
   const dispatch = useDispatch();
   useEffect(async () => {
-    const { data } = await aixos({
+    const { userInfo } = await aixos({
       method: "POST",
       url: "http://localhost:4000/users/userinfo",
       headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
     }).then((res) => res.data);
-    dispatch(handleUserInfo(data));
+
+    dispatch(handleUserInfo(userInfo));
   }, [currentPage]);
 
   useEffect(async () => {

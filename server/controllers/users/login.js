@@ -31,7 +31,7 @@ module.exports = async function login(req, res) {
         delete userInfo.password;
         const accessToken = createAccessToken(userInfo);
         // 비밀번호도 맞으면, 유저정보를 꺼내준다.
-        return res.status(201).send(userInfo);
+        return res.status(201).send({ accessToken });
       }
     );
   } catch {
