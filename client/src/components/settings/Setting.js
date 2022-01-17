@@ -2,7 +2,7 @@ import "../../css/components/settings/Setting.css";
 import { useDispatch, useSelector } from "react-redux";
 import { handleIsLogin, handleUserInfo } from "../../actions";
 import { useState } from "react";
-import Popup from "../chatting room/Popup";
+import Popup from "../etc/Popup";
 
 export default function Setting({ location, setIsSettingOn }) {
   const [isDetailOn, setIsDetailOn] = useState(false);

@@ -1,0 +1,94 @@
+.add-friend-container {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.add-friend-container > :first-child {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  height: 420px;
+}
+
+.add-friend-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 17px;
+  font-weight: 600;
+  height: 50px;
+}
+
+.add-friend-input-container {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+.add-friend-inputform {
+  display: flex;
+  align-items: center;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #000;
+  margin-bottom: 20px;
+  width: 80%;
+  height: 30px;
+}
+
+.add-friend-inputform > input {
+  border: none;
+  height: 20px;
+  width: 200px;
+  outline: none;
+}
+
+.add-friend-inputform > img {
+  width: 25px;
+}
+
+.add-friend-text {
+  font-size: 13px;
+  color: #9e9e9e;
+  font-weight: 600;
+}
+
+.add-friend-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70px;
+}
+
+.add-friend-button-on,
+.add-friend-button-off {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  width: 80%;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.add-friend-button-off {
+  background: #f2f2f2;
+  color: #9d9d9d;
+}
+
+.add-friend-button-on {
+  background: #fee501;
+  color: #000;
+}
+.add-friend-info {
+  margin-top: 10px;
+}
+
+.isFreind-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

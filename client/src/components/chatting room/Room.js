@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { printNewMsgTime } from "../../functions";
-import Popup from "./Popup";
+import Popup from "../etc/Popup";
 import "../../css/components/chatting room/Room.css";
 
 export default function Room({ data }) {

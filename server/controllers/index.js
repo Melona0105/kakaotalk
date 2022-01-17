@@ -7,4 +7,8 @@ module.exports = {
   getFriend: require("./users/getFriend"),
 
   // chats
+
+  // friends
+  findFriend: require("./friends/findFriend"),
+  addFriend: require("./friends/addFriend"),
 };
