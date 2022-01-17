@@ -11,6 +11,7 @@ import axios from "axios";
 
 export default function MainPage() {
   const [currentPage, setIsCurrentPage] = useState(0);
+  const [isAddFriendOn, setIsAddFriendOn] = useState(false);
 
   const [myFriend, setMyFriend] = useState(undefined);
   const dispatch = useDispatch();
@@ -32,7 +33,7 @@ export default function MainPage() {
     }).then((res) => res.data);
     setMyFriend(data);
     dispatch(handleLoadingOn(false));
-  }, [currentPage]);
+  }, [currentPage, isAddFriendOn]);
 
   // 친구 목록이 없으면 어떻게 해줘야할까
   // 1 친구목록도 리덕스에 담는다.
@@ -40,7 +41,13 @@ export default function MainPage() {
   return (
     <div className="mainpage-container">
       <Nav currentPage={currentPage} setIsCurrentPage={setIsCurrentPage} />
-      {currentPage === 0 && <FriendPage myFriend={myFriend} />}
+      {currentPage === 0 && (
+        <FriendPage
+          isAddFriendOn={isAddFriendOn}
+          setIsAddFriendOn={setIsAddFriendOn}
+          myFriend={myFriend}
+        />
+      )}
       {currentPage === 1 && <ChattingRoomPage />}
       {currentPage === 2 && <SeeMorePage />}
     </div>

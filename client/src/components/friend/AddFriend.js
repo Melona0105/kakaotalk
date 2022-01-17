@@ -1,22 +1,24 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import "../../css/components/friend/AddFriend.css";
-import user1 from "../../images/friend/user1.png";
 import reset from "../../images/signup/reset button.png";
+import FriendInfo from "./FriendInfo";
 
-export default function AddFriend() {
+export default function AddFriend({ handelState }) {
   const [isInputFill, setIsInputFill] = useState(false);
   const [inputEmail, setInputEmail] = useState("");
   const [isEmailExist, setIsEmailExist] = useState(false);
   const [isErrorOn, setIsErrorOn] = useState(false);
   const [friendInfo, setFriendInfo] = useState(undefined);
   const [isFriend, setIsFriend] = useState(false);
+  const [isComplete, setIscomplete] = useState(false);
   useEffect(() => {
     inputEmail ? setIsInputFill(true) : setIsInputFill(false);
   }, [inputEmail]);
 
   async function findFriendFromServer() {
     setIsErrorOn(false);
+    setIscomplete(false);
     setIsFriend(false);
     try {
       const { status, data } = await axios({
@@ -32,7 +34,6 @@ export default function AddFriend() {
       if (status === 202) {
         setIsFriend(true);
       }
-      console.log(data);
 
       setFriendInfo(data.friendInfo);
       setIsEmailExist(true);
@@ -57,9 +58,9 @@ export default function AddFriend() {
         .catch((err) => {
           console.log(err);
         });
-
-      console.log(data);
+      setIscomplete(true);
     } catch {
+      alert("알수없는 에러가 발생했어요");
       // 친구가 추가되면 창을 닫아주고, 서버로부터 데이터를 다시 받아온다.
     }
   }
@@ -96,40 +97,34 @@ export default function AddFriend() {
             {isErrorOn && <div>이메일에 해당하는 친구가 없어요</div>}
             {isFriend && isEmailExist && (
               <div className="isFreind-container">
-                {friendInfo.photo ? (
-                  <img src={friendInfo.photo} />
-                ) : (
-                  <img src={user1} />
-                )}
-                <div>{friendInfo.username}</div>
+                <FriendInfo friendInfo={friendInfo} />
                 <div>이미 친구로 등록한 친구에요</div>
               </div>
             )}
             {!isFriend && isEmailExist && (
               <div className="isFreind-container">
-                {friendInfo.photo ? (
-                  <img src={friendInfo.photo} />
-                ) : (
-                  <img src={user1} />
-                )}
-                <div>{friendInfo.username}</div>
+                <FriendInfo friendInfo={friendInfo} />
               </div>
             )}
           </div>
         </div>
         <div className="add-friend-button">
-          <div
-            className={
-              !isFriend && isEmailExist
-                ? "add-friend-button-on"
-                : "add-friend-button-off"
-            }
-            onClick={() => {
-              !isFriend && isEmailExist && AddFriendToServer();
-            }}
-          >
-            친구 추가
-          </div>
+          {isComplete ? (
+            <div className="add-friend-button-off">친구가 추가되었습니다.</div>
+          ) : (
+            <div
+              className={
+                !isFriend && isEmailExist
+                  ? "add-friend-button-on"
+                  : "add-friend-button-off"
+              }
+              onClick={() => {
+                !isFriend && isEmailExist && AddFriendToServer();
+              }}
+            >
+              친구 추가
+            </div>
+          )}
         </div>
       </div>
     </div>

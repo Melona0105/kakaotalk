@@ -82,9 +82,11 @@
 .add-friend-button-on {
   background: #fee501;
   color: #000;
+  cursor: pointer;
 }
 .add-friend-info {
   margin-top: 10px;
+  font-size: 14px;
 }
 
 .isFreind-container {

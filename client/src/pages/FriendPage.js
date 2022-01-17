@@ -11,7 +11,11 @@ import { getCurrentDate } from "../functions";
 import sample from "../images/seemore/kakao talk.svg";
 import "../css/pages/FriendPage.css";
 
-export default function FriendPage({ myFriend }) {
+export default function FriendPage({
+  isAddFriendOn,
+  setIsAddFriendOn,
+  myFriend,
+}) {
   const [isBirthdayOn, setIsBirthdayOn] = useState(false);
   const { isSearchOn } = useSelector((state) => state.SearchOnReducer);
   const { keyWord } = useSelector((state) => state.SearchKeyWordReducer);
@@ -79,7 +83,10 @@ export default function FriendPage({ myFriend }) {
 
   return (
     <div className="friend-page-container">
-      <FriendNav />
+      <FriendNav
+        isAddFriendOn={isAddFriendOn}
+        setIsAddFriendOn={setIsAddFriendOn}
+      />
       <div className="friend-page-content">
         {isSearchOn && (
           <div className="friend-search-bar">
