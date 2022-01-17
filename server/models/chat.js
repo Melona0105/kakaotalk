@@ -9,14 +9,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // 유저는 모델챗을 여럿 가질 수 있기에 모델챗에 유저 아이디를 넣어준다.
-      models.User.hasMany(models.Chat, {
-        foreignKey: "user_id",
-      });
-
+      Chat.belongsTo(models.User, { foreignKey: "user_id" });
       // Room은 챗을 여럿 가질 수 있기에 모델챗에 Room 아이디를 넣어준다.
-      models.Room.hasMany(models.Chat, {
-        foreignKey: "room_id",
-      });
+      Chat.belongsTo(models.Room, { foreignKey: "room_id" });
     }
   }
   Chat.init(

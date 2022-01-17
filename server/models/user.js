@@ -9,7 +9,14 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      models.User.belongsToMany(models.Room, { through: "User_in_room" });
+      User.hasMany(models.Friend, { foreignKey: "user_id" });
+      User.hasMany(models.Friend, { foreignKey: "friend" });
+      User.hasMany(models.Chat, { foreignKey: "user_id" });
+      User.belongsToMany(models.Room, {
+        through: "User_in_room",
+        targetKey: "id",
+        foreignKey: "user_id",
+      });
     }
   }
   User.init(

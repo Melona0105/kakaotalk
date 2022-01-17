@@ -9,7 +9,11 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      models.Room.belongsToMany(models.User, { through: "User_in_room" });
+      Room.belongsToMany(models.User, {
+        through: "User_in_room",
+        targetKey: "id",
+        foreignKey: "room_id",
+      });
     }
   }
   Room.init(

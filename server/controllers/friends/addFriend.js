@@ -1,4 +1,3 @@
-require("dotenv").config();
 const { User, Friend } = require("../../models");
 
 module.exports = async function addFriend(req, res) {

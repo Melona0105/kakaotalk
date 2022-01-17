@@ -25,6 +25,7 @@ export default function Friends({ data }) {
             data.map((el) => (
               <Friend
                 key={el.username}
+                id={el.id}
                 src={el.photo}
                 name={el.username}
                 music={el.music}
