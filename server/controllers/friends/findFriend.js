@@ -1,5 +1,5 @@
 require("dotenv").config();
-const { User, Friend } = require("../../models");
+// const { User, Friend } = require("../../models");
 
 module.exports = async function findFriend(req, res) {
   const { id } = req.userInfo;

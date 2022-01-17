@@ -1,4 +1,4 @@
-const { User, Friend } = require("../../models");
+// const { User, Friend } = require("../../models");
 
 module.exports = async function addFriend(req, res) {
   const { id } = req.userInfo;

@@ -26,13 +26,18 @@ export default function MainPage() {
 
   useEffect(async () => {
     dispatch(handleLoadingOn(true));
-    const { data } = await axios({
-      method: "POST",
-      url: "http://localhost:4000/users/friend",
-      headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
-    }).then((res) => res.data);
-    setMyFriend(data);
-    dispatch(handleLoadingOn(false));
+    try {
+      const { data } = await axios({
+        method: "POST",
+        url: "http://localhost:4000/users/friend",
+        headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
+      }).then((res) => res.data);
+      setMyFriend(data);
+    } catch (err) {
+      console.log(err);
+    } finally {
+      dispatch(handleLoadingOn(false));
+    }
   }, [currentPage, isAddFriendOn]);
 
   // 친구 목록이 없으면 어떻게 해줘야할까

@@ -1,5 +1,5 @@
 require("dotenv").config();
-const { User } = require("../../models");
+// const { User } = require("../../models");
 
 module.exports = async function userinfo(req, res) {
   const { email } = req.userInfo;

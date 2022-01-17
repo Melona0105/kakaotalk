@@ -1,28 +1,43 @@
-const { User } = require("../../models");
+// const { User } = require("../../models");
+const db = require("../../database/");
 const { hash } = require("bcrypt");
 const bcryptSaltRounds = 12;
 
 module.exports = async function signup(req, res) {
   const { email, password, username, userBirth, music, comment, photo } =
     req.body;
-  const userInfo = await User.findOne({ where: { username } });
-  // 이미 가입된 계정인지 확인한다.
-  if (userInfo) {
-    return res.status(401).send({ message: `${email} is already exists.` });
-  }
-
-  // 가입되지않은경우, 암호화해서 서버에 저장한다
+  console.log(email);
+  // const userInfo = await User.findOne({ where: { username } });
   try {
-    const encrypted = await hash(password, bcryptSaltRounds);
-    await User.create({
-      email,
-      password: encrypted,
-      username,
-      userBirth,
-    });
-    return res.status(201).send({ message: "Join!" });
+    // 이미 가입된 계정인지 확인한다.
+    db.query(
+      `select * from users where email="${email}"`,
+      async (err, result1) => {
+        if (err) {
+          throw err;
+        }
+
+        const userInfo = result1[0];
+        // 데이터가 존재하면, 이미 있는 이메일 (이미 가입)
+        if (userInfo) {
+          return res.status(401).send({ message: "Already exists" });
+        }
+
+        // 데이터가 존재하지 않으면 (가입되지 않은경우, 암호화해서 저장)
+        const encrypted = await hash(password, bcryptSaltRounds);
+
+        db.query(
+          `insert into users (email, password, username, userBirth) VALUES ("${email}", "${encrypted}", "${username}", "${userBirth}")`,
+          (err, result2) => {
+            if (err) {
+              throw err;
+            }
+            return res.status(201).send({ message: "Welcome!" });
+          }
+        );
+      }
+    );
   } catch {
-    con;
     return res.status(500).send({ message: "Unexpected server error." });
   }
 };

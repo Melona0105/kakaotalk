@@ -1,4 +1,4 @@
-const { User } = require("../../models");
+// const { User } = require("../../models");
 
 module.exports = async function checkEmail(req, res) {
   const { email } = req.body;
