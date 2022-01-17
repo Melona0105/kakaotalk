@@ -1,36 +1,46 @@
 require("dotenv").config();
-// const { User, Friend } = require("../../models");
+const db = require("../../database/");
 
 module.exports = async function getFriend(req, res) {
   const { id } = req.userInfo;
   // 이메일 정보로 로그인한 유저의 정보를 가져온다.
-
   try {
     // 배열로 나옴 이 아래정보는
-    console.log("왜 안되냐?");
-    const friendDataArray = await Friend.findAll({ where: { user_id: id } })
-      .then((res) => res)
-      .catch((err) => {
-        console.log(err);
-      });
-    // 친구 데이터가 없을 경우,
-    if (!friendDataArray.length) {
-      return res.status(204).send({ data: null });
-    }
-    const friendsData = [];
+    db.query(`select * from friends where user_id="${id}"`, (err, result1) => {
+      if (err) {
+        throw err;
+      }
 
-    for (let i = 0; i < friendDataArray.length; i++) {
-      const friendId = friendDataArray[i].friend_id;
-      const currentFriendData = await User.findOne({ where: { id: friendId } });
-      delete currentFriendData.dataValues.password;
-      friendsData.push(currentFriendData.dataValues);
-    }
-    // TODO : 그 데이터를 순회하면서 그 아이디들을 담아서 준다.
-    // const friend
-    // 친구정보가 있을경우, 친구의 데이터를 찾아서 준다.
+      const friendDataArray = result1;
 
-    // 비밀번호 지우고 줌
-    return res.status(201).send({ data: friendsData, message: "ok" });
+      // 친구데이터가 없는 경우
+      if (!friendDataArray.length) {
+        return res.status(204).send();
+      }
+
+      // 친구 데이터가 있는 경우
+      const friendData = [];
+      for (let i = 0; i < friendDataArray.length; i++) {
+        const firendId = friendDataArray[i].friend_id;
+        db.query(
+          `select * from Users where id="${firendId}"`,
+          (err, result2) => {
+            if (err) {
+              throw err;
+            }
+
+            const data = result2[0];
+            delete data.password;
+
+            friendData.push(data);
+
+            if (i === friendDataArray.length - 1) {
+              return res.status(202).send({ friendData });
+            }
+          }
+        );
+      }
+    });
   } catch {
     return res.status(500).send({ message: "server error" });
   }

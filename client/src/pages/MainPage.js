@@ -28,12 +28,12 @@ export default function MainPage() {
   useEffect(async () => {
     dispatch(handleLoadingOn(true));
     try {
-      const { data } = await axios({
+      const { friendData } = await axios({
         method: "POST",
         url: "http://localhost:4000/users/friend",
         headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
       }).then((res) => res.data);
-      setMyFriend(data);
+      setMyFriend(friendData);
     } catch (err) {
       console.log(err);
     } finally {
