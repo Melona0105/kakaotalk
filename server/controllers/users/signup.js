@@ -14,7 +14,6 @@ module.exports = async function signup(req, res) {
   // 가입되지않은경우, 암호화해서 서버에 저장한다
   try {
     const encrypted = await hash(password, bcryptSaltRounds);
-    console.log("비밀번호 생성!");
     await User.create({
       email,
       password: encrypted,

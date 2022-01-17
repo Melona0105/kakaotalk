@@ -32,6 +32,7 @@ export default function AddFriend() {
       if (status === 202) {
         setIsFriend(true);
       }
+      console.log(data);
 
       setFriendInfo(data.friendInfo);
       setIsEmailExist(true);
@@ -41,6 +42,26 @@ export default function AddFriend() {
     }
 
     // 엔터를 누르면 서버에서 친구인지 아닌지를 확인한다.
+  }
+
+  async function AddFriendToServer() {
+    try {
+      // 친구목록에 추가
+      const { data } = await axios({
+        method: "PUT",
+        url: "http://localhost:4000/friends",
+        headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
+        data: { friendInfo },
+      })
+        .then((res) => res)
+        .catch((err) => {
+          console.log(err);
+        });
+
+      console.log(data);
+    } catch {
+      // 친구가 추가되면 창을 닫아주고, 서버로부터 데이터를 다시 받아온다.
+    }
   }
 
   return (
@@ -73,7 +94,7 @@ export default function AddFriend() {
           </div>
           <div className="add-friend-info">
             {isErrorOn && <div>이메일에 해당하는 친구가 없어요</div>}
-            {isFriend && (
+            {isFriend && isEmailExist && (
               <div className="isFreind-container">
                 {friendInfo.photo ? (
                   <img src={friendInfo.photo} />
@@ -104,7 +125,7 @@ export default function AddFriend() {
                 : "add-friend-button-off"
             }
             onClick={() => {
-              !isFriend && isEmailExist && console.log(1);
+              !isFriend && isEmailExist && AddFriendToServer();
             }}
           >
             친구 추가
