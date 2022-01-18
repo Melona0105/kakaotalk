@@ -6,9 +6,11 @@ import "../../css/components/chatting room/Room.css";
 
 export default function Room({ data }) {
   const [isChattingOn, setIsChattingOn] = useState(false);
-  const { room_id, photo, username, time, content, newMsgCount } = data;
+  const { id, photo, username, time, content, newMsgCount } = data;
 
   const roomStyle = "top=100, left=100, width=375, height=640";
+
+  // TODO : 안읽은 메세지를 카운트하는 기능 만들어야 함
 
   return (
     <>
@@ -21,7 +23,7 @@ export default function Room({ data }) {
         {isChattingOn && (
           <Popup
             style={roomStyle}
-            url={`/room/${room_id}`}
+            url={`/room/${id}`}
             username={username}
             callback={setIsChattingOn}
           ></Popup>

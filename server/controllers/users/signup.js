@@ -6,7 +6,6 @@ const bcryptSaltRounds = 12;
 module.exports = async function signup(req, res) {
   const { email, password, username, userBirth, music, comment, photo } =
     req.body;
-  console.log(email);
   // const userInfo = await User.findOne({ where: { username } });
   try {
     // 이미 가입된 계정인지 확인한다.

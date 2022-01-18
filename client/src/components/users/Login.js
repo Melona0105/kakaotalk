@@ -23,7 +23,6 @@ export default function Login() {
       await Service.user.login(email, password);
       callback();
     } catch (err) {
-      console.log("이메일 또는 비밀번호를 다시 확인해주세요.");
       setIsLoginError(true);
     } finally {
       dispatch(handleLoadingOn(false));

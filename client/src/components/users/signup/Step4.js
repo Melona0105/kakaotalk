@@ -46,7 +46,6 @@ export default function Step4({ currentUserInfo }) {
       });
       // 성공적으로 가입이 되었으니 현재 입력한 것들로 로그인시켜주기
     } catch (err) {
-      console.log("서버 에러가 발생했습니다.");
       dispatch(handleLoadingOn(false));
     }
   }

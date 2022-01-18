@@ -110,10 +110,12 @@ export default function FriendPage({
             {friendDataFromServer.map((el) => (
               <Friend
                 key={el.username}
+                id={el.id}
                 src={el.photo}
                 name={el.username}
                 music={el.music}
                 comment={el.comment}
+                option={el.option}
               />
             ))}
           </div>
