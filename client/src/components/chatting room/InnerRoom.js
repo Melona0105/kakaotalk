@@ -15,11 +15,26 @@ import { useEffect, useState } from "react";
 
 export default function InnerRoom() {
   // 현재 대화하는 사람의 데이터 이거 받아와서 넣어줘야함
+  // 이 룸 아이디로 채팅데이터가져온다.
   const { room_id } = useParams();
   const [currentChat, setCurrentChat] = useState([]);
   const [roomData, setRoomData] = useState({});
   const { id } = useSelector((state) => state.UserInfoReducer);
-  // 이 룸 아이디로 채팅데이터가져온다.
+  const [message, setMessage] = useState("");
+  const [isMessageFill, setIsMessageFill] = useState(false);
+
+  function sendMessage() {
+    // 데이터를 전송하고, 성공적으로 전송했다면, 칸을 비워준다.
+    setMessage("");
+  }
+
+  useEffect(() => {
+    if (message) {
+      setIsMessageFill(true);
+    } else {
+      setIsMessageFill(false);
+    }
+  }, [message]);
 
   useEffect(async () => {
     // 채팅 내용들을 가져오는 함수
@@ -34,7 +49,7 @@ export default function InnerRoom() {
     } catch (err) {
       console.log(err);
     }
-  }, []);
+  }, [isMessageFill]);
 
   useEffect(async () => {
     // 방 주인의 데이터를 가져오는 함수
@@ -50,17 +65,6 @@ export default function InnerRoom() {
       console.log(err);
     }
   }, []);
-  // TODO : 현재 채팅방의 룸 아이디로 채팅 데이터를 가져와야 함
-  const roomdata = {
-    id: 1,
-    img: user, // 채팅방 사진
-    username: "형범이형", // 채팅방 이름 ----- 앞에 친구목록에 있는 유저이름
-    noti: true, // 알람 온오프
-    time: "2022-01-10T21:00", // 메세지 시간
-    message: "확인 부탁드립니다.", // 메세지 내용
-    newMsg: false, // 새 메세지 여부
-    newMsgCount: 0, // 새 메세지 개수
-  };
 
   const sortedData = sortChatData(currentChat);
 
@@ -89,9 +93,25 @@ export default function InnerRoom() {
           </div>
         </div>
         <div className="inner-room-input-area">
-          <input />
+          <input
+            value={message}
+            onChange={(e) => {
+              setMessage(e.target.value);
+            }}
+          />
           <div className="send-button-container">
-            <div className="send-button">전송</div>
+            {isMessageFill ? (
+              <div
+                className="send-button-on"
+                onClick={() => {
+                  sendMessage();
+                }}
+              >
+                전송
+              </div>
+            ) : (
+              <div className="send-button-off">전송</div>
+            )}
           </div>
         </div>
       </div>
