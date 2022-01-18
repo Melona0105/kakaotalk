@@ -10,15 +10,19 @@ import { useParams } from "react-router-dom";
 import InnerRoomNav from "./InnerRoomNav";
 import { sortChatData } from "../../functions";
 import axios from "axios";
+import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
 export default function InnerRoom() {
   // 현재 대화하는 사람의 데이터 이거 받아와서 넣어줘야함
   const { room_id } = useParams();
   const [currentChat, setCurrentChat] = useState([]);
+  const [roomData, setRoomData] = useState({});
+  const { id } = useSelector((state) => state.UserInfoReducer);
   // 이 룸 아이디로 채팅데이터가져온다.
 
   useEffect(async () => {
+    // 채팅 내용들을 가져오는 함수
     try {
       const { chats } = await axios({
         method: "POST",
@@ -32,6 +36,20 @@ export default function InnerRoom() {
     }
   }, []);
 
+  useEffect(async () => {
+    // 방 주인의 데이터를 가져오는 함수
+    try {
+      const { roomInfo } = await axios({
+        method: "POST",
+        url: "http://localhost:4000/rooms/info",
+        headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
+        data: { room_id },
+      }).then((res) => res.data);
+      setRoomData(roomInfo.filter((el) => el.user_id !== id)[0]);
+    } catch (err) {
+      console.log(err);
+    }
+  }, []);
   // TODO : 현재 채팅방의 룸 아이디로 채팅 데이터를 가져와야 함
   const roomdata = {
     id: 1,
@@ -44,9 +62,6 @@ export default function InnerRoom() {
     newMsgCount: 0, // 새 메세지 개수
   };
 
-  const { id, img, username, noti, time, message, newMsg, newMsgCount } =
-    roomdata;
-
   const sortedData = sortChatData(currentChat);
 
   // 유저로 필터링해서, 상대방이면 왼쪽에 나면 오른쪽에 뿌린다.
@@ -54,11 +69,9 @@ export default function InnerRoom() {
   // 데이터를 같은 사람 + 1분단위로 묶어서 정리 -> 이걸 뿌려준다.
 
   // TODO : 텍스트박스 안에 텍스트 위로 올려주기
-  console.log(currentChat);
-  console.log(sortedData);
   return (
     <div className="inner-room-container">
-      <InnerRoomNav roomImg={user} username={username} />
+      <InnerRoomNav roomImg={user} roomData={roomData} />
       <div className="inner-room-container-body">
         <Chatting chattingData={sortedData} roomImg={user} />
       </div>

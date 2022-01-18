@@ -56,7 +56,7 @@ export default function Step3({ nextStep, currentEmail, serCurrentPassword }) {
         <div className="step3-body">
           <div className="step3-current-email-container">
             <div>카카오계정</div>
-            <div className="step3-current-email">{currentEmail}@kakao.com</div>
+            <div className="step3-current-email">{currentEmail}</div>
           </div>
           <div className="step3-password-form">
             <div>비밀번호</div>

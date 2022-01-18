@@ -18,7 +18,6 @@ module.exports = async function addFriend(req, res) {
         }
         // 채팅이 있을 경우
         if (result.length) {
-          console.log(result);
           return res.status(201).send({ chats: result });
         }
         /// 채팅이 없을 경우

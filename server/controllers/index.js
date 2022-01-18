@@ -14,5 +14,6 @@ module.exports = {
   addFriend: require("./friends/addFriend"),
 
   // rooms
+  getRoomId: require("./rooms/getRoomId"),
   getRoomInfo: require("./rooms/getRoomInfo"),
 };

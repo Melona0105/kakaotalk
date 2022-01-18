@@ -6,12 +6,16 @@ import control_bar from "../../images/chatting/control bar.png";
 import friend from "../../images/nav/friend.png";
 import "../../css/components/chatting room/InnerRoomNav.css";
 
-export default function InnerRoomNav({ roomImg, username }) {
+export default function InnerRoomNav({ roomImg, roomData }) {
+  const { photo, username } = roomData;
   return (
     <div className="inner-room-container-nav">
       <div className="inner-room-container-inner-nav">
         <div className="inner-nav-left">
-          <img className="inner-room-nav-user-img" src={roomImg} />
+          <img
+            className="inner-room-nav-user-img"
+            src={photo ? photo : roomImg}
+          />
           <div className="inner-room-nav-room-info">
             <div>{username}</div>
             <div className="inner-room-member">
