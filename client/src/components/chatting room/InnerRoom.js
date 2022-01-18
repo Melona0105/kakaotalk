@@ -23,9 +23,19 @@ export default function InnerRoom() {
   const [message, setMessage] = useState("");
   const [isMessageFill, setIsMessageFill] = useState(false);
 
-  function sendMessage() {
-    // 데이터를 전송하고, 성공적으로 전송했다면, 칸을 비워준다.
-    setMessage("");
+  // 데이터를 전송하고, 성공적으로 전송했다면, 칸을 비워준다.
+  async function sendMessageToServer() {
+    try {
+      await axios({
+        method: "POST",
+        url: `http://localhost:4000/chats/${room_id}`,
+        headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
+        data: { content: message },
+      }).then((res) => res.data);
+      setMessage("");
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   useEffect(() => {
@@ -104,7 +114,7 @@ export default function InnerRoom() {
               <div
                 className="send-button-on"
                 onClick={() => {
-                  sendMessage();
+                  sendMessageToServer();
                 }}
               >
                 전송
