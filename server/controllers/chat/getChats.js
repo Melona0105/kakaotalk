@@ -8,6 +8,7 @@ module.exports = async function addFriend(req, res) {
   // 방 아이디
   const { room_id } = req.body;
 
+  // 방이 없으면 방을 만든다.
   // 방 정보로 채팅을 주워온다.
   try {
     db.query(

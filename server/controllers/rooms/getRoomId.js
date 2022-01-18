@@ -4,7 +4,6 @@ module.exports = async function getRoomId(req, res) {
   // 더블클릭하면, 현재 유저 아이디의 방과 + 클릭한 유저 아이디의 방중 같은 방이 있는지 찾는다.
   const user_id = req.userInfo.id;
   const { friend_id } = req.body;
-
   try {
     // 주어진 아이디에 해당하는 방들을 모두 가져온다.
     // 로그인한 사람의 방과 주어진 아이디에 해당하는 사람의 방중 같은 아이디를 찾는다.
@@ -37,22 +36,23 @@ module.exports = async function getRoomId(req, res) {
               throw err;
             }
 
-            const room_Id = result3[result3.length - 1];
+            const room_id = result3[result3.length - 1];
 
             db.query(
-              `INSERT into users_in_rooms (user_id, room_id) VALUES (${user_id}, ${room_Id.id})`,
+              `INSERT into users_in_rooms (user_id, room_id) VALUES (${user_id}, ${room_id.id})`,
               (err, result4) => {
                 if (err) {
                   throw err;
                 }
 
                 db.query(
-                  `INSERT into users_in_rooms (user_id, room_id) VALUES (${friend_id}, ${room_Id.id})`,
+                  `INSERT into users_in_rooms (user_id, room_id) VALUES (${friend_id}, ${room_id.id})`,
                   (err, result5) => {
                     if (err) {
                       throw err;
                     }
-                    return res.status(201).send({ room_Id });
+
+                    return res.status(201).send({ room_id: room_id.id });
                   }
                 );
               }

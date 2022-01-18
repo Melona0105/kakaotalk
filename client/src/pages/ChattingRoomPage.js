@@ -15,8 +15,14 @@ export default function ChattingPage() {
       url: "http://localhost:4000/users/rooms",
       headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
     }).then((res) => res.data);
+    const result = [];
+    for (let i = 0; i < rooms.length; i++) {
+      if (rooms[i]) {
+        result.push(rooms[i]);
+      }
+    }
     setRoomData(
-      rooms.sort((a, b) => {
+      result.sort((a, b) => {
         return new Date(b.time) - new Date(a.time);
       })
     );

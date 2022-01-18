@@ -16,6 +16,7 @@ module.exports = async function getRooms(req, res) {
         if (!rooms.length) {
           return res.status(203).send();
         }
+
         const data = [];
         // 방이 있으면, 이방으로 데이터를  찾는다.
         for (let i = 0; i < rooms.length; i++) {
@@ -31,9 +32,9 @@ module.exports = async function getRooms(req, res) {
               if (err) {
                 throw err;
               }
+              const chats = result2[result2.length - 1];
               // 채팅방이 있는 경우의 데이터만 돌려준다.
-              data.push(result2[result2.length - 1]);
-
+              data.push(chats);
               if (i === rooms.length - 1) {
                 return res.status(201).send({ rooms: data });
               }
