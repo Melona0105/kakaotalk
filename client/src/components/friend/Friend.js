@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import "../../css/components/friend/Friend.css";
 import Melon from "../../components/etc/Melon";
 
-export default function Friend({ id, src, name, comment, music }) {
+export default function Friend({ id, src, name, comment, music, option }) {
   const [isChattingOn, setIsChattingOn] = useState(false);
   const [currentRoomId, setCurrentRommId] = useState(undefined);
   const friend_id = id;
@@ -33,8 +33,10 @@ export default function Friend({ id, src, name, comment, music }) {
     <div
       className="friend-container"
       onDoubleClick={async () => {
-        await getRoomData();
-        setIsChattingOn(true);
+        if (!option) {
+          await getRoomData();
+          setIsChattingOn(true);
+        }
       }}
     >
       <div className="friend-profile">

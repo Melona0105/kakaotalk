@@ -30,6 +30,7 @@ export default function Friends({ data }) {
                 name={el.username}
                 music={el.music}
                 comment={el.comment}
+                option={el.option}
               />
             ))}
         </div>

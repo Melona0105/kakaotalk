@@ -27,6 +27,7 @@ export default function FriendPage({
         photo: sample,
         username: "카카오톡",
         comment: "친구를 추가해보세요",
+        option: true,
       },
     ];
   } else {
