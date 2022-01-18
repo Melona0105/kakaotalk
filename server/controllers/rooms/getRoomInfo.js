@@ -6,7 +6,6 @@ module.exports = async function getRoomInfo(req, res) {
   // 주어진 방 번호
   const { room_id } = req.body;
 
-  console.log("헤헷");
   try {
     db.query(
       `select * from Users LEFT JOIN users_in_rooms ON users_in_rooms.user_id=Users.id where room_id=${room_id}`,

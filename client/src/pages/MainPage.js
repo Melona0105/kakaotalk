@@ -17,7 +17,7 @@ export default function MainPage() {
   const dispatch = useDispatch();
   useEffect(async () => {
     const { userInfo } = await aixos({
-      method: "POST",
+      method: "GET",
       url: "http://localhost:4000/users/userinfo",
       headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
     }).then((res) => res.data);
@@ -29,8 +29,8 @@ export default function MainPage() {
     dispatch(handleLoadingOn(true));
     try {
       const { friendData } = await axios({
-        method: "POST",
-        url: "http://localhost:4000/users/friend",
+        method: "GET",
+        url: "http://localhost:4000/users/friends",
         headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
       }).then((res) => res.data);
       setMyFriend(friendData);

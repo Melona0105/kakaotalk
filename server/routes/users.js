@@ -6,6 +6,7 @@ const {
   userinfo,
   checkEmail,
   getFriends,
+  getRooms,
 } = require("../controllers");
 const auth = require("../middlewares/auth");
 
@@ -13,8 +14,9 @@ const userRouter = Router();
 
 userRouter.post("/login", login);
 userRouter.post("/signup", signup);
-userRouter.post("/userinfo", auth, userinfo);
+userRouter.get("/userinfo", auth, userinfo);
 userRouter.post("/", checkEmail);
-userRouter.post("/friend", auth, getFriends);
+userRouter.get("/friends", auth, getFriends);
+userRouter.get("/rooms", auth, getRooms);
 
 module.exports = userRouter;

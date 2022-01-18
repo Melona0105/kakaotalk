@@ -5,7 +5,7 @@ module.exports = {
   userinfo: require("./users/userinfo"),
   checkEmail: require("./users/checkEmail"),
   getFriends: require("./users/getFriends"),
-
+  getRooms: require("./users/getRooms"),
   // chats
   getChats: require("./chat/getChats"),
 
