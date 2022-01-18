@@ -11,10 +11,6 @@ export default function Friend({ id, src, name, comment, music }) {
   const [currentRoomId, setCurrentRommId] = useState(undefined);
   const friend_id = id;
 
-  // 더블클릭하면, 현재 유저 아이디의 방과 + 클릭한 유저 아이디의 방중 같은 방이 있는지 찾는다.
-  // 방이 있다면 그 방으로 연결
-
-  // 방이 없다면, 새로 만들어서 서로 아이디에 그 방을 연결해주고 연결
   const roomStyle = "top=100, left=100, width=375, height=640";
 
   async function getRoomData() {
@@ -36,8 +32,8 @@ export default function Friend({ id, src, name, comment, music }) {
   return (
     <div
       className="friend-container"
-      onDoubleClick={() => {
-        getRoomData();
+      onDoubleClick={async () => {
+        await getRoomData();
         setIsChattingOn(true);
       }}
     >
@@ -52,7 +48,7 @@ export default function Friend({ id, src, name, comment, music }) {
       {isChattingOn && (
         <Popup
           style={roomStyle}
-          url={`/room/${friend_id}`}
+          url={`/room/${currentRoomId}`}
           username={name}
           callback={setIsChattingOn}
         ></Popup>

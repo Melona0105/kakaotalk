@@ -6,6 +6,8 @@ import Room from "../components/chatting room/Room";
 export default function ChattingPage() {
   // ? 메시지 데이터에서 읽었는지, 아닌지 여부를 판단
   // ? 그 개수를 넘겨줘서 새 메세지 수를 파악해야 할듯함.
+
+  // TODO : 여기도 룸 으로 데이터 불러오도록 하기
   const roomdata = [
     {
       id: 1,

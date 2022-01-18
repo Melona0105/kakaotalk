@@ -21,7 +21,7 @@ ReactDOM.render(
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<App />} />
-            <Route path="/room/:roomId" element={<InnerRoom />} />
+            <Route path="/room/:room_id" element={<InnerRoom />} />
             <Route path="/account" element={<FindAccount />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/setting" element={<DetailSetting />} />

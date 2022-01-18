@@ -14,7 +14,8 @@ export const getYesterDayDate = () => {
   return `${month}-${day}`;
 };
 
-export function printNewMsgTime(time) {
+export function printNewMsgTime(input) {
+  const time = input.split("").slice(0, -8).join("");
   const timeArray = time.slice(5).split("T");
   const now = timeArray[0];
   if (now === getCurrentDate()) {
@@ -50,7 +51,7 @@ export function sortChatData(data) {
   return data.reduce((acc, cur) => {
     const now = acc[acc.length - 1];
     // 이름이 같은지 확인
-    if (now?.user === cur.user) {
+    if (now?.user_id === cur.user_id) {
       // 이름이 같다면, 시간이 같은지 확인한다.
       // 시간이 같다면 그냥 넘어가고,
       // 다르면 데이터에 넣어줘야함

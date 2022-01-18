@@ -5,7 +5,7 @@ const {
   signup,
   userinfo,
   checkEmail,
-  getFriend,
+  getFriends,
 } = require("../controllers");
 const auth = require("../middlewares/auth");
 
@@ -15,6 +15,6 @@ userRouter.post("/login", login);
 userRouter.post("/signup", signup);
 userRouter.post("/userinfo", auth, userinfo);
 userRouter.post("/", checkEmail);
-userRouter.post("/friend", auth, getFriend);
+userRouter.post("/friend", auth, getFriends);
 
 module.exports = userRouter;

@@ -1,7 +1,7 @@
 require("dotenv").config();
-const db = require("../../database/");
+const db = require("../../database");
 
-module.exports = async function getFriend(req, res) {
+module.exports = async function getFriends(req, res) {
   const { id } = req.userInfo;
   // 이메일 정보로 로그인한 유저의 정보를 가져온다.
   try {
