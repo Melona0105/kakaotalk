@@ -7,7 +7,14 @@ export default function FriendChat({ username, content, time }) {
       <div>
         <div className="friend-name">{username}</div>
         {content.map((el) => (
-          <div className="friend-chat-content">{el}</div>
+          <div
+            className="friend-chat-content"
+            style={{
+              width: `${el.length >= 5 ? el.length * 11 : el.length * 15}px`,
+            }}
+          >
+            {el}
+          </div>
         ))}
       </div>
       <div className="friend-chat-time">{printNewMsgTime(time)}</div>

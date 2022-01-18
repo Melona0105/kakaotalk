@@ -3,11 +3,16 @@
   flex-direction: row-reverse;
   align-items: flex-end;
 }
-
+.my-chat-content-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
 .my-chat-content {
   font-size: 14px;
   font-weight: 500;
   display: flex;
+  justify-content: flex-end;
   border-radius: 3px;
   margin: 5px 10px 5px 10px;
   padding: 5px 10px;
@@ -15,8 +20,15 @@
 }
 
 .my-chat-time {
+  display: flex;
   font-size: 12px;
   color: #707b83;
   font-weight: 600;
   margin-bottom: 5px;
+}
+
+.my-chat-view {
+  margin-right: 5px;
+  font-weight: 600;
+  color: rgb(235, 247, 78);
 }

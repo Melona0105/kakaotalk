@@ -23,10 +23,10 @@ export default class Popup extends React.PureComponent {
         this.newWindow.close();
       }
     };
-  }
-
-  componentWillUnmount() {
-    this.newWindow.close();
+    this.newWindow.addEventListener("beforeunload", () => {
+      this.props.callback(false);
+      this.newWindow.close();
+    });
   }
 
   render() {

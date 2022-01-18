@@ -23,7 +23,7 @@ module.exports = async function getRooms(req, res) {
           const { room_id } = rooms[i];
 
           db.query(
-            `select R.id, R.noti, U.username, U.photo, C.content, C.time, C.view from rooms as R
+            `select R.id, R.noti, U.username, U.photo, C.content, C.time, C.view, C.user_id from rooms as R
            left JOIN users_in_rooms AS UR ON R.id=UR.room_id 
            left JOIN users as U ON U.id=UR.user_id 
            inner JOIN (select * from chats) AS C ON R.id=C.room_id 
@@ -32,12 +32,21 @@ module.exports = async function getRooms(req, res) {
               if (err) {
                 throw err;
               }
-              const chats = result2[result2.length - 1];
+              // console.log(result2);
+              // const chats = result2[result2.length - 1];
+              // // 채팅방이 있는 경우의 데이터만 돌려준다.
+              // data.push(chats);
+              // if (i === rooms.length - 1) {
+              //   return res.status(201).send({ rooms: data });
+              // }
+              console.log(result2);
+              const chats = result2;
               // 채팅방이 있는 경우의 데이터만 돌려준다.
               data.push(chats);
               if (i === rooms.length - 1) {
                 return res.status(201).send({ rooms: data });
               }
+              // 여기까지
             }
           );
         }
