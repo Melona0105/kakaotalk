@@ -108,6 +108,11 @@ export default function InnerRoom() {
             onChange={(e) => {
               setMessage(e.target.value);
             }}
+            onKeyPress={(e) => {
+              if (e.key === "Enter" && isMessageFill) {
+                sendMessageToServer();
+              }
+            }}
           />
           <div className="send-button-container">
             {isMessageFill ? (

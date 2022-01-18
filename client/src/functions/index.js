@@ -1,31 +1,47 @@
 export function printNewMsgTime(input) {
-  const time = getFilteredTime(input).split("-");
-  const now = getFilteredTime(new Date().toLocaleString()).split("-");
+  const year = input.slice(0, 4);
+  const month = input.slice(5, 7);
+  const day = input.slice(8, 10);
 
-  // 데이터의 날짜가 현재 달과 같고
+  const hour = input.slice(11, 13);
+  const min = input.slice(14, 17);
 
-  if (time[1] === now[1]) {
-    // 일수가 같을경우,
-    if (time[2] === now[2]) {
-      // 시간을 리턴한다.
-      return `${time[3]} ${time[4]}`;
-    } else if (Number(time[2]) === Number(now[2]) - 1) {
-      return "어제";
-    } else {
-      return `${time[1]}월 ${time[2]}일`;
-    }
+  const time = `${hour >= 12 ? String(hour - 12).padStart(2, 0) : hour}:${min}`;
+  const string = hour >= 12 ? "오후" : "오전";
+
+  const today = getCurrentTime().split(" ");
+
+  // 날짜가 같으면 시간출력
+  if (today[2] === day) {
+    return `${string} ${time}`;
+    // 하루차이면 '어제'
+  } else if (+today[2] - 1 === +day) {
+    return "어제";
+  } else {
+    // 그 이상이면 그냥 날짜출력
+    return `${month}월 ${day}일`;
   }
 }
 
-export function getFilteredTime(input) {
-  const data = input.split(" ");
-  // 2022. 1. 18. 오후 11:17:52
-  const year = data[0].slice(0, -1);
-  const month = data[1].slice(0, -1).padStart(2, 0);
-  const string = data[3];
-  const day = data[2].slice(0, -1).padStart(2, 0);
-  const time = data[4].slice(0, -3);
-  return `${year}-${month}-${day}-${string}-${time}`;
+export function getCurrentTime(type) {
+  const date = new Date().toLocaleDateString().split(" ");
+  const time = new Date().toLocaleTimeString().split(" ");
+
+  const year = date[0].slice(0, -1);
+  const month = date[1].slice(0, -1).padStart(2, 0);
+  const day = date[2].slice(0, -1).padStart(2, 0);
+
+  const hour =
+    time[0] === "오후"
+      ? +time[1].split(":")[0] + 12
+      : time[1].split(":")[0].padStart(2, 0);
+
+  const min = time[1].split(":")[1];
+  if (type === "birth") {
+    return `${month}-${day}`;
+  } else {
+    return `${year} ${month} ${day} ${hour}:${min}`;
+  }
 }
 
 export function sortChatData(data) {

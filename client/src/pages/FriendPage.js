@@ -7,7 +7,7 @@ import search from "../images/friend/search.png";
 import { useSelector, useDispatch } from "react-redux";
 import { handleKeyword, handleIsSearchOn } from "../actions";
 import Friend from "../components/friend/Friend";
-import { getFilteredTime } from "../functions";
+import { getCurrentTime } from "../functions";
 import sample from "../images/seemore/kakao talk.svg";
 import "../css/pages/FriendPage.css";
 
@@ -44,7 +44,7 @@ export default function FriendPage({
     });
   }
 
-  const toDayDate = getFilteredTime(new Date().toLocaleString()).slice(5, -9);
+  const toDayDate = getCurrentTime("birth");
 
   function getBirthFriend(data) {
     const result = data.filter(
