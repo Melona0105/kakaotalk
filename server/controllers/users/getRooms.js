@@ -23,7 +23,7 @@ module.exports = async function getRooms(req, res) {
           const { room_id } = rooms[i];
 
           db.query(
-            `select R.id, R.noti, U.username, U.photo, C.content, C.time, C.read from rooms as R
+            `select R.id, R.noti, U.username, U.photo, C.content, C.time, C.view from rooms as R
            left JOIN users_in_rooms AS UR ON R.id=UR.room_id 
            left JOIN users as U ON U.id=UR.user_id 
            inner JOIN (select * from chats) AS C ON R.id=C.room_id 
@@ -47,51 +47,3 @@ module.exports = async function getRooms(req, res) {
     return res.status(500).send({ message: "server error" });
   }
 };
-
-const data = [
-  {
-    id: 1,
-    noti: 0,
-    username: "박승원",
-    photo: null,
-    content: "병신;",
-    time: "2021-01-18T07:00:00.000Z",
-    read: 0,
-  },
-  {
-    id: 1,
-    noti: 0,
-    username: "박승원",
-    photo: null,
-    content: "ㅎㅎㅎㅎㅎ 형 제발",
-    time: "2021-01-18T07:00:00.000Z",
-    read: 0,
-  },
-  {
-    id: 1,
-    noti: 0,
-    username: "박승원",
-    photo: null,
-    content: "ㅉㅉ",
-    time: "2021-01-18T07:01:00.000Z",
-    read: 0,
-  },
-  {
-    id: 1,
-    noti: 0,
-    username: "박승원",
-    photo: null,
-    content: "개 꿀 ㅋ",
-    time: "2021-01-18T07:01:00.000Z",
-    read: 0,
-  },
-  {
-    id: 27,
-    noti: 0,
-    username: "공윤구",
-    photo: null,
-    content: "뭐해",
-    time: "2021-01-18T07:01:00.000Z",
-    read: 0,
-  },
-];

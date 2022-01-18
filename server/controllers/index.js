@@ -6,8 +6,10 @@ module.exports = {
   checkEmail: require("./users/checkEmail"),
   getFriends: require("./users/getFriends"),
   getRooms: require("./users/getRooms"),
+
   // chats
   getChats: require("./chat/getChats"),
+  sendChat: require("./chat/sendChat"),
 
   // friends
   findFriend: require("./friends/findFriend"),

@@ -6,45 +6,29 @@ export const getCurrentDate = () => {
   return `${month}-${day}`;
 };
 
-export const getYesterDayDate = () => {
-  const date = new Date();
-  const month = String(date.getUTCMonth() + 1).padStart(2, 0);
-  const day = String(date.getUTCDate() - 1).padStart(2, 0);
-
-  return `${month}-${day}`;
-};
-
 export function printNewMsgTime(input) {
-  const time = input.split("").slice(0, -8).join("");
-  const timeArray = time.slice(5).split("T");
-  const now = timeArray[0];
-  if (now === getCurrentDate()) {
-    return transTimeToTwelveTime(timeArray[1]);
-  } else if (now === getYesterDayDate()) {
-    return "어제";
-  } else {
-    const msgDate = timeArray[0].split("-");
-    let month = msgDate[0];
-    month = removeFrontZero(month);
-    let day = msgDate[1];
-    day = removeFrontZero(day);
-    return `${month}월 ${day}일`;
-  }
-}
+  const data = input.split(" ");
+  // 2022. 1. 18. 오후 11:17:52
+  const year = data[0].slice(0, -1);
+  const month = data[1].slice(0, -1).padStart(2, 0);
+  const day = data[2].slice(0, -1).padStart(2, 0);
+  const time = data[4].slice(0, -3);
 
-function transTimeToTwelveTime(time) {
-  const timeArray = time.split(":");
-  if (+timeArray[0] >= 12) {
-    return `오후 ${+timeArray[0] - 12}:${timeArray[1]}`;
-  }
-  return `오전 ${time}`;
-}
+  const now = getCurrentDate().split("-");
 
-function removeFrontZero(input) {
-  if (input[0] === "0") {
-    input = input.slice(1);
+  //데이터의 날짜가 현재 달과 같고
+
+  if (month === now[0]) {
+    // 일수가 같을경우,
+    if (day === now[1]) {
+      // 시간을 리턴한다.
+      return `${data[3]} ${time}`;
+    } else if (Number(day) === Number(now[1]) - 1) {
+      return "어제";
+    } else {
+      return `${month}월 ${day}일`;
+    }
   }
-  return input;
 }
 
 export function sortChatData(data) {

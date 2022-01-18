@@ -12,7 +12,7 @@ module.exports = async function addFriend(req, res) {
   // 방 정보로 채팅을 주워온다.
   try {
     db.query(
-      `select chats.id, chats.user_id, chats.content, chats.room_id, chats.read, chats.time, users.username from chats LEFT JOIN users ON chats.user_id = users.id where room_id=${room_id};`,
+      `select chats.id, chats.user_id, chats.content, chats.room_id, chats.view, chats.time, users.username from chats LEFT JOIN users ON chats.user_id = users.id where room_id=${room_id};`,
       (err, result) => {
         if (err) {
           throw err;
