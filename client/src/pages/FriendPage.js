@@ -5,7 +5,7 @@ import BirthdayFriend from "../components/friend/BirthdayFriend";
 import Friends from "../components/friend/Friends";
 import search from "../images/friend/search.png";
 import { useSelector, useDispatch } from "react-redux";
-import { handleKeyword } from "../actions";
+import { handleKeyword, handleIsSearchOn } from "../actions";
 import Friend from "../components/friend/Friend";
 import { getCurrentDate } from "../functions";
 import sample from "../images/seemore/kakao talk.svg";
@@ -95,6 +95,12 @@ export default function FriendPage({
             <input
               placeholder="이름으로 검색"
               onChange={(e) => dispatch(handleKeyword(e.target.value))}
+              onKeyDown={(e) => {
+                if (e.key === "Escape") {
+                  dispatch(handleKeyword(""));
+                  dispatch(handleIsSearchOn(!isSearchOn));
+                }
+              }}
               value={keyWord}
             />
           </div>
