@@ -20,7 +20,6 @@ export default class Popup extends React.PureComponent {
     this.newWindow.onkeydown = (e) => {
       if (e.key === "Escape") {
         this.props.callback(false);
-        console.log(123);
         this.newWindow.close();
       }
     };

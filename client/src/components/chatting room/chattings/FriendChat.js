@@ -6,21 +6,27 @@ export default function FriendChat({ username, content, time }) {
     <div className="friend-chat-content-container">
       <div>
         <div className="friend-name">{username}</div>
-        {content.map((el, idx) => (
-          <div className="friend-chat-content-inner-container">
-            <div
-              className="friend-chat-content"
-              style={{
-                width: `${el.length >= 5 ? el.length * 11 : el.length * 15}px`,
-              }}
-            >
-              {el}
+        {content.map((el, idx) => {
+          let len = el.length;
+          if (!(el % 2)) {
+            len = el.length + 1;
+          }
+          return (
+            <div className="friend-chat-content-inner-container">
+              <div
+                className="friend-chat-content"
+                style={{
+                  width: `${len * 10}px`,
+                }}
+              >
+                {el}
+              </div>
+              <div className="friend-chat-time">
+                {idx === content.length - 1 && printNewMsgTime(time)}
+              </div>
             </div>
-            <div className="friend-chat-time">
-              {idx === content.length - 1 && printNewMsgTime(time)}
-            </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );

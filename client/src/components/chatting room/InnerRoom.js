@@ -8,10 +8,10 @@ import user from "../../images/friend/user1.png";
 import Chatting from "./chattings/Chatting";
 import { useParams } from "react-router-dom";
 import InnerRoomNav from "./InnerRoomNav";
-import { printNewMsgTime, sortChatData, getCurrentTime } from "../../functions";
+import { sortChatData, getCurrentTime } from "../../functions";
 import axios from "axios";
 import { useSelector } from "react-redux";
-import { memo, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function InnerRoom() {
   // 현재 대화하는 사람의 데이터 이거 받아와서 넣어줘야함
@@ -25,18 +25,20 @@ export default function InnerRoom() {
   let sortedData = sortChatData(currentChat);
 
   // 우선은 준걸 그대로 줘야 빠르게 되니 폼에 담아서 준다.
-  const newMsg = {
-    user_id: id,
-    room_id,
-    username,
-    content: "123",
-    time: getCurrentTime(),
-    view: 1,
-  };
   // 서버로 데이터를 전송하는 함수
   // ? 서버로 데이터를 전송하고, 그 후, 바뀐 데이터를 받아오는데
   // * 채팅에 그냥 room_id를 담아서 보내보자
+  // 이것을 웹소켓을 이용하면
   async function sendMsg(params) {
+    const newMsg = {
+      user_id: id,
+      room_id,
+      username,
+      content: "123",
+      time: getCurrentTime(),
+      view: 1,
+    };
+
     const webSocket = new WebSocket("ws://localhost:4000/chats");
     newMsg.content = message;
     const sendData = { room_id, newMsg };
@@ -61,20 +63,6 @@ export default function InnerRoom() {
     serverData.push(newChat);
     setCurrentChat(serverData);
   }
-  // 이것을 웹소켓을 이용하면
-  // async function sendMessageToServer() {
-  //   try {
-  //     await axios({
-  //       method: "POST",
-  //       url: `http://localhost:4000/chats/${room_id}`,
-  //       headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
-  //       data: { content: message },
-  //     }).then((res) => res.data);
-  //     setMessage("");
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // }
 
   useEffect(() => {
     if (message) {

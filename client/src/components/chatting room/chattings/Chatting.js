@@ -11,7 +11,7 @@ export default function Chatting({ chattingData, roomImg }) {
       {chattingData.map((el) =>
         el.user_id === id ? (
           <MyChat
-            key={el.content}
+            key={`${el.content}+${el.time}`}
             content={el.content}
             time={el.time}
             view={el.view}
@@ -22,7 +22,7 @@ export default function Chatting({ chattingData, roomImg }) {
               <img src={roomImg} />
             </div>
             <FriendChat
-              key={el.content}
+              key={`${el.content}+${el.time}`}
               username={el.username}
               content={el.content}
               time={el.time}
