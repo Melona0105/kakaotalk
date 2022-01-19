@@ -4,6 +4,7 @@ import SearchOnReducer from "./SearchOnReducer";
 import LoginReducer from "./LoginReducer";
 import LoadingReducer from "./LoadingReducer";
 import UserInfoReducer from "./UserInfoReducer";
+import NewMessageReducer from "./NewMessageReducer";
 
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   LoginReducer,
   LoadingReducer,
   UserInfoReducer,
+  NewMessageReducer,
 });
 
 export default persistReducer(persistConfig, rootReducer);

@@ -18,6 +18,8 @@ module.exports = async function addFriend(req, res) {
           throw err;
         }
         // 채팅이 있을 경우
+        // ? 이 때, 요청한 데이터가 내 아이디와 일치하지 않으면(남의 카톡이면) 읽은것으로 표시해준다.
+
         if (result.length) {
           return res.status(201).send({ chats: result });
         }

@@ -37,3 +37,11 @@ export const handleUserInfo = (input) => {
     paylaod: input,
   };
 };
+
+export const newMessageCase = "New_Message_Case";
+export const handleNewMessage = (input) => {
+  return {
+    type: newMessageCase,
+    paylaod: input,
+  };
+};

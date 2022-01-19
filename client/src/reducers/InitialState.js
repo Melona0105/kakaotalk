@@ -10,3 +10,5 @@ export const userInfo = {
   music: undefined,
   comment: undefined,
 };
+
+export const messageLength = { messageLength: 0 };

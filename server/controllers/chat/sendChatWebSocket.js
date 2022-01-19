@@ -4,11 +4,8 @@ const db = require("../../database");
 module.exports = (server) => {
   // express 서버와 연결
   const wss = new WebSocket.Server({ server, path: "/chats" });
-
   // 웹 소켓 연결시
   wss.on("connection", (ws, req) => {
-    console.log(req.headers);
-    console.log(req.body);
     ws.on("message", (newdata) => {
       try {
         // 방 번호와, 채팅 내역
