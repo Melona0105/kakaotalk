@@ -10,8 +10,6 @@ export default function Room({ data }) {
 
   const roomStyle = "top=100, left=100, width=375, height=640";
 
-  // TODO : 안읽은 메세지를 카운트하는 기능 만들어야 함
-
   return (
     <>
       <div

@@ -1,7 +1,7 @@
 const express = require("express");
 const app = require("./app");
 const http = require("http");
-const WebSocket = require("./socket");
+const WebSocket = require("./controllers/chat/sendChatWebSocket");
 require("dotenv").config();
 
 const port = 4000;

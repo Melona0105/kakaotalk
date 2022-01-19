@@ -9,7 +9,6 @@ module.exports = {
 
   // chats
   getChats: require("./chat/getChats"),
-  sendChat: require("./chat/sendChat"),
 
   // friends
   findFriend: require("./friends/findFriend"),
