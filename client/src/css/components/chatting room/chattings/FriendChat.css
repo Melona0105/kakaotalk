@@ -8,6 +8,10 @@
   color: #555e63;
 }
 
+.friend-chat-content-inner-container {
+  display: flex;
+}
+
 .friend-chat-content {
   font-size: 14px;
   font-weight: 500;

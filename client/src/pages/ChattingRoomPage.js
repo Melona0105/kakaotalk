@@ -13,7 +13,6 @@ export default function ChattingPage() {
 
   // 여기서 넘어오는 오리지날 데이터에서 소팅된 개수들을 적어놓는다.
   const [original, setOriginal] = useState([]);
-  console.log(original);
   useEffect(async () => {
     const { rooms } = await axios({
       method: "GET",
