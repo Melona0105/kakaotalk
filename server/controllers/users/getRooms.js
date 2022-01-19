@@ -39,7 +39,6 @@ module.exports = async function getRooms(req, res) {
               // if (i === rooms.length - 1) {
               //   return res.status(201).send({ rooms: data });
               // }
-              console.log(result2);
               const chats = result2;
               // 채팅방이 있는 경우의 데이터만 돌려준다.
               data.push(chats);
