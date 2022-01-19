@@ -1,12 +1,14 @@
-const WebSocket = require("ws");
+const { Server } = require("socket.io");
 const db = require("../../database");
+const cors = require("cors");
 
 module.exports = (server) => {
   // express 서버와 연결
-  const wss = new WebSocket.Server({ server, path: "/chats" });
-  // 웹 소켓 연결시
-  wss.on("connection", (ws, req) => {
-    ws.on("message", (newdata) => {
+  const io = new Server(server, { cors: { origin: "*", credentials: true } });
+
+  io.on("connection", (socket) => {
+    console.log(socket.id);
+    socket.on("message", (newdata) => {
       try {
         // 방 번호와, 채팅 내역
         const { room_id, newMsg } = JSON.parse(newdata);
@@ -18,7 +20,7 @@ module.exports = (server) => {
               throw err;
             }
             // 성공하면 데이터를 돌려준다.
-            ws.send(JSON.stringify(newMsg));
+            io.emit("message", JSON.stringify(newMsg));
           }
         );
       } catch (err) {
@@ -26,16 +28,6 @@ module.exports = (server) => {
       }
       // 이 공간에 이제 db 쿼리 작성
     });
-    ws.on("error", (error) => {
-      // 에러 시
-      console.error(error);
-    });
-    ws.on("close", () => {
-      // 연결 종료 시
-      clearInterval(ws.interval);
-    });
-
-    // * A가 서버에 데이터를 보내면, 서버에서는 B,A에게 둘다 데이터를 돌려준다. --> 기본원리
   });
 };
 

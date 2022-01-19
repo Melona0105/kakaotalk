@@ -12,6 +12,7 @@ import { sortChatData, getCurrentTime } from "../../functions";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useRef, useState } from "react";
+import { io } from "socket.io-client";
 // import { handleNewMessage } from "../../actions";
 
 export default function InnerRoom() {
@@ -27,25 +28,20 @@ export default function InnerRoom() {
   const [isMessageFill, setIsMessageFill] = useState(false);
   const [isChange, setIsChange] = useState(false);
   const dispatch = useDispatch();
-  const ws = useRef();
+
+  const socketRef = useRef();
 
   useEffect(() => {
     // 소켓이 존재하지 않으면, 소켓을 열어준다.
-    if (!ws.current) {
-      ws.current = new WebSocket("ws://localhost:4000/chats");
+    socketRef.current = io.connect("http://localhost:4000");
 
-      ws.current.onopen = () => {
-        console.log("연결");
-      };
+    socketRef.current.on("message", (event) => {
+      const newData = JSON.parse(event.data);
+      setCurrentChat([...currentChat, newData]);
+    });
 
-      ws.current.onmessage = (event) => {
-        const newData = JSON.parse(event.data);
-        console.log(newData);
-        insertServerData(newData);
-        // 바로 데이터를 돌려주면, 이 데이터를 현재 출력중인 데이터에 푸쉬해서 추가적으로 뿌려지게 한다.
-      };
-    }
-  });
+    return () => socketRef.current.disconnect();
+  }, [currentChat]);
 
   // let sortedData = sortChatData(currentChat);
   // 우선은 준걸 그대로 줘야 빠르게 되니 폼에 담아서 준다.
@@ -66,17 +62,10 @@ export default function InnerRoom() {
     newMsg.content = message;
     const sendData = { room_id, newMsg };
     // 웹소켓 개방
-    ws.current.send(JSON.stringify(sendData));
+    socketRef.current.emit("message", JSON.stringify(sendData));
     // 데이터 전송
     setMessage("");
     setIsChange(!isChange);
-  }
-
-  function insertServerData(newChat) {
-    // 웹소켓을 통해 서버로 부터 받아온 데이터를 추가해준다.
-    const serverData = [...currentChat];
-    serverData.push(newChat);
-    setCurrentChat(serverData);
   }
 
   useEffect(() => {
