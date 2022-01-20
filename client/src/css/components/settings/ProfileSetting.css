@@ -1,0 +1,44 @@
+.profile-setting-container > :first-child {
+  border-bottom: 1px solid lightgray;
+  margin-bottom: 20px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.pofile-setting-edit {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.pofile-setting-edit > div {
+  display: flex;
+  align-items: center;
+}
+
+.pofile-setting-edit > div > img {
+  width: 85px;
+  height: 85px;
+  margin-right: 10px;
+}
+
+.pofile-setting-edit-button {
+  border: 1px solid lightgray;
+  padding: 4px 30px;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.pofile-setting-email {
+  display: flex;
+  font-size: 13px;
+  font-weight: 500;
+}
+.pofile-setting-email > :first-child {
+  font-size: 14px;
+  margin-right: 10px;
+  color: #808080;
+  font-weight: 600;
+}

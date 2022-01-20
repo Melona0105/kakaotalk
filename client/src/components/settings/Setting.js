@@ -1,5 +1,5 @@
 import "../../css/components/settings/Setting.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
   handleIsLogin,
   handleUserInfo,

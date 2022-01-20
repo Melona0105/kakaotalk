@@ -1,0 +1,68 @@
+.friend-setting-item {
+  margin-bottom: 40px;
+}
+.friend-setting-item > div {
+  margin-bottom: 10px;
+}
+
+.friend-setting-item-title {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.friend-setting-item-text {
+  font-size: 13px;
+  font-weight: 500;
+  color: #808080;
+}
+
+.friend-setting-birth {
+  display: flex;
+  font-size: 13px;
+}
+
+.friend-setting-birth > input {
+  margin-right: 10px;
+}
+
+.friend-setting-view-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  font-size: 13px;
+  font-weight: 600;
+  width: 80px;
+  height: 30px;
+}
+input[class="friend-birth-button"] {
+  display: none;
+}
+
+input[class="friend-birth-button"] + label {
+  content: "✔";
+  color: #909090;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 1px solid #909090;
+  position: relative;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+input[class="friend-birth-button"]:checked + label::after {
+  content: "✔";
+  background: #fada0b;
+  color: #fff;
+  font-size: 10px;
+  width: 15px;
+  height: 15px;
+  border: none;
+  border-radius: 50%;
+  text-align: center;
+  position: absolute;
+  left: 0;
+  top: 0;
+}

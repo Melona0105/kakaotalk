@@ -1,36 +1,31 @@
-import user1 from "../../images/friend/user1.png";
 import "../../css/components/settings/DetailSetting.css";
-import { useSelector } from "react-redux";
+import SettingNav from "./SettingNav";
+import { useState } from "react";
+import ProfileSetting from "./ProfileSetting";
+import FriendSetting from "./FriendSetting";
 
 export default function DetailSetting() {
-  const { photo, username, email } = useSelector(
-    (state) => state.UserInfoReducer
-  );
+  const [currentSetting, setCurrentSetting] = useState(0);
+  const menus = ["프로필", "친구"];
 
   return (
     <div className="detail-setting-container">
       <nav>설정</nav>
       <div className="detail-setting-inner-container">
         <div className="detail-nav">
-          <div>프로필</div>
+          {menus.map((el, index) => (
+            <SettingNav
+              key={el}
+              currentSetting={currentSetting}
+              menu={el}
+              index={index}
+              setCurrentSetting={setCurrentSetting}
+            />
+          ))}
         </div>
         <div className="detail-body">
-          <div className="detail-body-top">
-            <div>기본 프로필 관리</div>
-            <div className="edit-detail-profile">
-              <div>
-                {photo ? <img src={photo} /> : <img src={user1} />}
-                <div>{username}</div>
-              </div>
-              <div className="edit-button">편집</div>
-            </div>
-          </div>
-          <div className="detail-body-bottom">
-            <div className="detail-email">
-              <div>계정</div>
-              <div>{email}</div>
-            </div>
-          </div>
+          {currentSetting === 0 && <ProfileSetting />}
+          {currentSetting === 1 && <FriendSetting />}
         </div>
       </div>
     </div>
