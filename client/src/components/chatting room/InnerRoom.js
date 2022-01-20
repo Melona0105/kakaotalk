@@ -13,7 +13,7 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useRef, useState } from "react";
 import { io } from "socket.io-client";
-import { handleIsMsgChange, handleNewMessage } from "../../actions";
+import { handleIsMsgChange } from "../../actions";
 
 export default function InnerRoom() {
   // 현재 대화하는 사람의 데이터 이거 받아와서 넣어줘야함
@@ -25,19 +25,10 @@ export default function InnerRoom() {
   const { id, username } = useSelector((state) => state.UserInfoReducer);
   const [message, setMessage] = useState("");
   const [isMessageFill, setIsMessageFill] = useState(false);
-  // TODO : 메세지 변화를 리덕스에 넣고, 그거 바뀌면 전부다 알림이 새로고침 되도록 하기
+  // 메세지 변화를 리덕스에 넣고, 그거 바뀌면 전부다 알림이 새로고침 되도록 하기
   const { isMsgChange } = useSelector((state) => state.MsgChangeReducer);
   const dispatch = useDispatch();
-  console.log(room_id);
   const socketRef = useRef();
-  useEffect(() => {
-    dispatch(
-      handleNewMessage(
-        room_id,
-        currentChat.filter((el) => el.view === 1).length
-      )
-    );
-  }, [currentChat]);
 
   useEffect(() => {
     // 소켓이 존재하지 않으면, 소켓을 열어준다.

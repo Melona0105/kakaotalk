@@ -4,7 +4,6 @@ import SearchOnReducer from "./friendPage/SearchOnReducer";
 import LoginReducer from "./mainPage/LoginReducer";
 import LoadingReducer from "./mainPage/LoadingReducer";
 import UserInfoReducer from "./chattingRoom/UserInfoReducer";
-import NewMessageReducer from "./chattingRoom/NewMessageReducer";
 import CurrentPageReducer from "./mainPage/CurrentPageReducer";
 import MsgChangeReducer from "./chattingRoom/MsgChangeReducer";
 import RenderingReducer from "./mainPage/RenderingReducer";
@@ -23,7 +22,6 @@ const rootReducer = combineReducers({
   LoginReducer,
   LoadingReducer,
   UserInfoReducer,
-  NewMessageReducer,
   CurrentPageReducer,
   MsgChangeReducer,
   RenderingReducer,

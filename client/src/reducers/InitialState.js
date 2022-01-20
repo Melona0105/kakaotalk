@@ -17,8 +17,6 @@ export const userInfo = {
   music: undefined,
   comment: undefined,
 };
-// 새 메시지 정보확인
-export const newMsg = { room_id: undefined, newMsg: 0 };
 // 현재페이지 저장
 export const currentPage = { currentPage: 0 };
 // 메세지 확인

@@ -87,7 +87,6 @@ export default function MainPage() {
     }
     setCountNewMsg(getNewMessage(result));
     setTotalNewMsg(getTotalNewMessage(getNewMessage(result)));
-    //
     getRoomDataFromServer(result);
   }, [isNewData, isMsgChange, currentPage]);
 
@@ -97,7 +96,6 @@ export default function MainPage() {
       return acc;
     });
   }
-
   return (
     <div className="mainpage-container">
       <Nav currentPage={currentPage} totalNewMsg={totalNewMsg} />

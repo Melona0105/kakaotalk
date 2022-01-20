@@ -43,15 +43,6 @@ export const handleUserInfo = (input) => {
   };
 };
 
-// 새 메시지 정보확인
-export const newMessageCase = "New_Message_Case";
-export const handleNewMessage = (room_id, newMsg) => {
-  return {
-    type: newMessageCase,
-    paylaod: { room_id, newMsg },
-  };
-};
-
 // 현재페이지 저장
 export const currentPageCase = "Current_Page";
 export const handleCurrentPage = (input) => {
