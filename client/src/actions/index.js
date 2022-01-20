@@ -1,3 +1,4 @@
+// 검색어저장
 export const keyWord = "Key_Word";
 export const handleKeyword = (input) => {
   return {
@@ -6,6 +7,7 @@ export const handleKeyword = (input) => {
   };
 };
 
+// 검색상태유지
 export const searchOn = "Search_On";
 export const handleIsSearchOn = (input) => {
   return {
@@ -14,6 +16,7 @@ export const handleIsSearchOn = (input) => {
   };
 };
 
+// 로그인유지
 export const handleLoginCase = "Login_Case";
 export const handleIsLogin = (input) => {
   return {
@@ -22,6 +25,7 @@ export const handleIsLogin = (input) => {
   };
 };
 
+// 로딩
 export const loadingCase = "Loading_Case";
 export const handleLoadingOn = (input) => {
   return {
@@ -30,6 +34,7 @@ export const handleLoadingOn = (input) => {
   };
 };
 
+// 유저정보 유지
 export const userInfoCase = "User_Info_Case";
 export const handleUserInfo = (input) => {
   return {
@@ -38,6 +43,7 @@ export const handleUserInfo = (input) => {
   };
 };
 
+// 새 메시지 정보확인
 export const newMessageCase = "New_Message_Case";
 export const handleNewMessage = (room_id, newMsg) => {
   return {
@@ -46,6 +52,7 @@ export const handleNewMessage = (room_id, newMsg) => {
   };
 };
 
+// 현재페이지 저장
 export const currentPageCase = "Current_Page";
 export const handleCurrentPage = (input) => {
   return {
@@ -54,10 +61,20 @@ export const handleCurrentPage = (input) => {
   };
 };
 
+// 메세지 확인
 export const isMsgChangeCase = "Msg_Change_Case";
 export const handleIsMsgChange = (input) => {
   return {
     type: isMsgChangeCase,
+    paylaod: input,
+  };
+};
+
+// 렌더링을 주기위한 리듀서..
+export const isRenderCase = "New_Rendering";
+export const handleIsRendering = (input) => {
+  return {
+    type: isRenderCase,
     paylaod: input,
   };
 };

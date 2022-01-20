@@ -48,7 +48,6 @@ export default function ChattingPage({
     }
   }, [isNewData]);
 
-  console.log(roomData);
   return (
     <div className="chatting-page-container">
       <RommPageNav />

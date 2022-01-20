@@ -1,10 +1,14 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { Component, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import "../../css/components/friend/AddFriend.css";
 import reset from "../../images/signup/reset button.png";
+import { handleIsRendering } from "../../actions";
 import FriendInfo from "./FriendInfo";
 
 export default function AddFriend() {
+  const { isRendering } = useSelector((state) => state.RenderingReducer);
+  const dispatch = useDispatch();
   const [isInputFill, setIsInputFill] = useState(false);
   const [inputEmail, setInputEmail] = useState("");
   const [isEmailExist, setIsEmailExist] = useState(false);
@@ -119,7 +123,12 @@ export default function AddFriend() {
                   : "add-friend-button-off"
               }
               onClick={() => {
-                !isFriend && isEmailExist && AddFriendToServer();
+                if (!isFriend && isEmailExist) {
+                  // 왜 이거로 바꿔도 상태가 안 바뀌지?
+                  dispatch(handleIsRendering(!isRendering));
+                  AddFriendToServer();
+                  Component.forceUpdate();
+                }
                 // 친구를 추가하는 시점에서 밖의 상태를 건드려서 렌더링을 시킨다 -> 하나 만들지 기존에 있는거 활용할 수 있을지 찾아보기
               }}
             >

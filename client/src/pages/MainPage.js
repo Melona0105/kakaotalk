@@ -87,6 +87,7 @@ export default function MainPage() {
     }
     setCountNewMsg(getNewMessage(result));
     setTotalNewMsg(getTotalNewMessage(getNewMessage(result)));
+    //
     getRoomDataFromServer(result);
   }, [isNewData, isMsgChange, currentPage]);
 
@@ -96,9 +97,6 @@ export default function MainPage() {
       return acc;
     });
   }
-
-  // 아직 한번도 채팅을 하지 않았다면, 채팅 추가해주기
-  useEffect(() => {});
 
   return (
     <div className="mainpage-container">
