@@ -5,6 +5,7 @@ import LoginReducer from "./LoginReducer";
 import LoadingReducer from "./LoadingReducer";
 import UserInfoReducer from "./UserInfoReducer";
 import NewMessageReducer from "./NewMessageReducer";
+import CurrentPageReducer from "./CurrentPageReducer";
 
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
@@ -21,6 +22,7 @@ const rootReducer = combineReducers({
   LoadingReducer,
   UserInfoReducer,
   NewMessageReducer,
+  CurrentPageReducer,
 });
 
 export default persistReducer(persistConfig, rootReducer);

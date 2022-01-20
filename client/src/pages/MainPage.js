@@ -5,12 +5,12 @@ import "../css/pages/MainPage.css";
 import ChattingRoomPage from "./ChattingRoomPage";
 import SeeMorePage from "./SeeMorePage";
 import aixos from "axios";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { handleLoadingOn, handleUserInfo } from "../actions";
 import axios from "axios";
 
 export default function MainPage() {
-  const [currentPage, setIsCurrentPage] = useState(0);
+  const { currentPage } = useSelector((state) => state.CurrentPageReducer);
   const [isAddFriendOn, setIsAddFriendOn] = useState(false);
 
   const [myFriend, setMyFriend] = useState(undefined);
@@ -46,7 +46,7 @@ export default function MainPage() {
 
   return (
     <div className="mainpage-container">
-      <Nav currentPage={currentPage} setIsCurrentPage={setIsCurrentPage} />
+      <Nav currentPage={currentPage} />
       {currentPage === 0 && (
         <FriendPage
           isAddFriendOn={isAddFriendOn}

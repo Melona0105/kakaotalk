@@ -12,6 +12,7 @@ export default function ChattingPage() {
   const [roomData, setRoomData] = useState([]);
   const [isNewData, setIsNewData] = useState(false);
   const [countNewMsg, setCountNewMsg] = useState([]);
+  // TODO : 메세지 변화를 리덕스에 넣고, 그거 바뀌면 전부다 알림이 새로고침 되도록 하기
   const socketRef = useRef();
 
   useEffect(async () => {

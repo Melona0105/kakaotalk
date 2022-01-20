@@ -45,3 +45,11 @@ export const handleNewMessage = (room_id, newMsg) => {
     paylaod: { room_id, newMsg },
   };
 };
+
+export const currentPageCase = "Current_Page";
+export const handleCurrentPage = (input) => {
+  return {
+    type: currentPageCase,
+    paylaod: input,
+  };
+};

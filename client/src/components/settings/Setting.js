@@ -1,6 +1,10 @@
 import "../../css/components/settings/Setting.css";
 import { useDispatch, useSelector } from "react-redux";
-import { handleIsLogin, handleUserInfo } from "../../actions";
+import {
+  handleIsLogin,
+  handleUserInfo,
+  handleCurrentPage,
+} from "../../actions";
 import { useState } from "react";
 import Popup from "../etc/Popup";
 
@@ -8,10 +12,12 @@ export default function Setting({ location, setIsSettingOn }) {
   const [isDetailOn, setIsDetailOn] = useState(false);
   const dispatch = useDispatch();
   const [currentLocation, setCurrentLocation] = useState({ top: 0, left: 0 });
+
   function logoutHandler() {
     dispatch(handleUserInfo(undefined));
     localStorage.removeItem("token");
     dispatch(handleIsLogin(false));
+    dispatch(handleCurrentPage(0));
   }
 
   const roomStyle = `top=${currentLocation.top - 450}, left=${
