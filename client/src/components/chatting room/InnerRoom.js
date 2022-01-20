@@ -13,7 +13,7 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useRef, useState } from "react";
 import { io } from "socket.io-client";
-import { handleNewMessage } from "../../actions";
+import { handleIsMsgChange, handleNewMessage } from "../../actions";
 
 export default function InnerRoom() {
   // 현재 대화하는 사람의 데이터 이거 받아와서 넣어줘야함
@@ -25,7 +25,8 @@ export default function InnerRoom() {
   const { id, username } = useSelector((state) => state.UserInfoReducer);
   const [message, setMessage] = useState("");
   const [isMessageFill, setIsMessageFill] = useState(false);
-  const [isChange, setIsChange] = useState(false);
+  // TODO : 메세지 변화를 리덕스에 넣고, 그거 바뀌면 전부다 알림이 새로고침 되도록 하기
+  const { isMsgChange } = useSelector((state) => state.MsgChangeReducer);
   const dispatch = useDispatch();
   console.log(room_id);
   const socketRef = useRef();
@@ -78,7 +79,7 @@ export default function InnerRoom() {
     socketRef.current.emit("message", sendData);
     // 데이터 전송
     setMessage("");
-    setIsChange(!isChange);
+    dispatch(handleIsMsgChange(!isMsgChange));
   }
 
   useEffect(() => {
@@ -103,7 +104,7 @@ export default function InnerRoom() {
     } catch (err) {
       console.log(err);
     }
-  }, [isChange]);
+  }, [isMsgChange]);
 
   useEffect(async () => {
     // 방 주인의 데이터를 가져오는 함수

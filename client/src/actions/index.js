@@ -53,3 +53,11 @@ export const handleCurrentPage = (input) => {
     paylaod: input,
   };
 };
+
+export const isMsgChangeCase = "Msg_Change_Case";
+export const handleIsMsgChange = (input) => {
+  return {
+    type: isMsgChangeCase,
+    paylaod: input,
+  };
+};

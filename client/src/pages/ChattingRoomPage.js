@@ -8,6 +8,7 @@ import { io } from "socket.io-client";
 
 export default function ChattingPage() {
   const { id } = useSelector((state) => state.UserInfoReducer);
+  const { isMsgChange } = useSelector((state) => state.MsgChangeReducer);
   const { room_id, newMsg } = useSelector((state) => state.NewMessageReducer);
   const [roomData, setRoomData] = useState([]);
   const [isNewData, setIsNewData] = useState(false);
@@ -30,7 +31,7 @@ export default function ChattingPage() {
     setCountNewMsg(getNewMessage(result));
     // setCountNewMsg(result.filter((el) => el.view === 1).length);
     getRoomDataFromServer(result);
-  }, [isNewData]);
+  }, [isNewData, isMsgChange]);
 
   // 들어온 데이터 안의 배열들을 순회하면서 거기서 일치하는 값을 뽑아낸다.
   function getNewMessage(array) {

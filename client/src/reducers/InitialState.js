@@ -13,3 +13,5 @@ export const userInfo = {
 
 export const newMsg = { room_id: undefined, newMsg: 0 };
 export const currentPage = { currentPage: 0 };
+
+export const isMsgChange = { isMsgChange: false };
