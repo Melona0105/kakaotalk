@@ -6,9 +6,9 @@ import "../../css/components/chatting room/Room.css";
 import { useDispatch, useSelector } from "react-redux";
 import { handleIsMsgChange } from "../../actions";
 
-export default function Room({ data, view }) {
+export default function Room({ data }) {
   const [isChattingOn, setIsChattingOn] = useState(false);
-  const { id, photo, username, time, content } = data;
+  const { id, photo, username, time, content, view } = data;
   const roomStyle = "top=100, left=100, width=375, height=640";
   const { isMsgChange } = useSelector((state) => state.MsgChangeReducer);
   const dispatch = useDispatch();

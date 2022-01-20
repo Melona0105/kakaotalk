@@ -13,7 +13,6 @@ export default function MainPage() {
   const { currentPage } = useSelector((state) => state.CurrentPageReducer);
   const [isAddFriendOn, setIsAddFriendOn] = useState(false);
   const [isNewData, setIsNewData] = useState(false);
-  const [countNewMsg, setCountNewMsg] = useState([]);
   const [myFriend, setMyFriend] = useState(undefined);
   const dispatch = useDispatch();
   const { isMsgChange } = useSelector((state) => state.MsgChangeReducer);
@@ -37,6 +36,7 @@ export default function MainPage() {
       const now = serverData[i];
       data.push(now[now.length - 1]);
     }
+    // 여기서 바꿔주면 되겠는데?
     data.sort((a, b) => {
       return new Date(b.time) - new Date(a.time);
     });
@@ -85,9 +85,9 @@ export default function MainPage() {
         result.push(rooms[i]);
       }
     }
-    setCountNewMsg(getNewMessage(result));
     setTotalNewMsg(getTotalNewMessage(getNewMessage(result)));
-    getRoomDataFromServer(result);
+    const answer = applyNewMsgToRoomData(result, getNewMessage(result));
+    getRoomDataFromServer(answer);
   }, [isNewData, isMsgChange, currentPage]);
 
   function getTotalNewMessage(array) {
@@ -96,6 +96,18 @@ export default function MainPage() {
       return acc;
     });
   }
+
+  function applyNewMsgToRoomData(roomData, newMsg) {
+    // 데이터를 순회하면서 끝에만얘네들을 넣어주면 된다.
+    const result = [...roomData];
+    for (let i = 0; i < result.length; i++) {
+      const now = result[i]; // 이번 차례 배열
+      now[now.length - 1].view = newMsg[i];
+    }
+
+    return result;
+  }
+
   return (
     <div className="mainpage-container">
       <Nav currentPage={currentPage} totalNewMsg={totalNewMsg} />
@@ -110,7 +122,6 @@ export default function MainPage() {
         <ChattingRoomPage
           isNewData={isNewData}
           roomData={roomData}
-          countNewMsg={countNewMsg}
           setIsNewData={setIsNewData}
         />
       )}

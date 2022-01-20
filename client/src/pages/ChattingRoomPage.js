@@ -5,12 +5,7 @@ import { useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import { io } from "socket.io-client";
 
-export default function ChattingPage({
-  isNewData,
-  roomData,
-  countNewMsg,
-  setIsNewData,
-}) {
+export default function ChattingPage({ isNewData, roomData, setIsNewData }) {
   const { currentPage } = useSelector((state) => state.CurrentPageReducer);
   // * TODO : 메세지 변화를 리덕스에 넣고, 그거 바뀌면 전부다 알림이 새로고침 되도록 하기 --- OK
   const socketRef = useRef();
@@ -43,9 +38,7 @@ export default function ChattingPage({
       <RommPageNav />
       <div className="chatting-page-content">
         {roomData.length ? (
-          roomData.map((el, idx) => (
-            <Room key={el.username} data={el} view={countNewMsg[idx]} />
-          ))
+          roomData.map((el) => <Room key={el.username} data={el} />)
         ) : (
           <div className="chatting-page-blank">
             <div>아직 대화가 없어요.</div>
