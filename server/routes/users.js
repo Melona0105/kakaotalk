@@ -15,7 +15,7 @@ const userRouter = Router();
 userRouter.post("/login", login);
 userRouter.post("/signup", signup);
 userRouter.get("/userinfo", auth, userinfo);
-userRouter.post("/", checkEmail);
+userRouter.post("/email", checkEmail);
 userRouter.get("/friends", auth, getFriends);
 userRouter.get("/rooms", auth, getRooms);
 

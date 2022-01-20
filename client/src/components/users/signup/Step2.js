@@ -7,7 +7,7 @@ import axios from "axios";
 
 export default function Step2({ nextStep, setCurrentEmail }) {
   const [isEmailInput, setIsEmailInput] = useState(false);
-  const [isEmailError, setIsEmailError] = useState(undefined);
+  const [errorMessage, setErrorMessage] = useState(undefined);
   const [inputEmail, setInputEmail] = useState("");
   const [isEmailFill, setIsEmailFill] = useState(false);
   const [isEmailExist, setIsEmailExist] = useState(false);
@@ -15,8 +15,9 @@ export default function Step2({ nextStep, setCurrentEmail }) {
   // 이메일이 입력되었는지 감지하는 함수
   function checkValidEmail(input) {
     setInputEmail(input);
+    setIsEmailExist(false);
     // 초기화
-    setIsEmailError(undefined);
+    setErrorMessage(undefined);
 
     // 길이가 3이상
     if (input.length < 3) {
@@ -38,33 +39,35 @@ export default function Step2({ nextStep, setCurrentEmail }) {
 
   function resetInputAndSetError(error) {
     setIsEmailInput(false);
-    setIsEmailError(error);
+    setErrorMessage(error);
   }
 
-  // 변할때마다 서버에 해당 이메일을 보내서 이메일을 확인한다.
-  // async function checkExistedEmail() {
-  //   if (isEmailInput) {
-  //     try {
-  //       const response = await axios({
-  //         method: "POST",
-  //         url: "http://localhost:4000/users",
-  //         withCredentials: true,
-  //         data: { email: inputEmail },
-  //       });
-  //       const { status } = response;
-  //       if (status === 201) {
-  //         console.log("사용가능");
-  //       } else {
-  //         console.log("이미 존재합니다.");
-  //       }
-  //       // 이 값이 이미 있는 값이라면, 에러를 띄운다.
+  // TODO : 이메일이 다 입력되고 나면, 서버에 요청해서 확인해야한다.
+  async function checkExistedEmail() {
+    try {
+      const data = await axios({
+        method: "POST",
+        url: "http://localhost:4000/users/email",
+        data: { email: inputEmail },
+      }).then((res) => res);
+      return true;
+    } catch {
+      return false;
+    }
+  }
 
-  //       // 아니라면 그냥 사용가능하다고 띄워준다.
-  //     } catch (err) {
-  //       console.log(err);
-  //     }
-  //   }
-  // }
+  async function handleButtonNext() {
+    const check = await checkExistedEmail();
+    // 이메일이 유효하면
+    if (check) {
+      nextStep(3);
+    } else {
+      // 유효하지 않으면 경고창 띄우기
+      setErrorMessage(
+        "이미 존재하는 이메일입니다. 다른 이메일을 사용해주세요."
+      );
+    }
+  }
 
   useEffect(() => {
     if (inputEmail.length) {
@@ -105,7 +108,8 @@ export default function Step2({ nextStep, setCurrentEmail }) {
                 />
               )}
             </div>
-            {isEmailError && <div className="email-error">{isEmailError}</div>}
+            {errorMessage && <div className="email-error">{errorMessage}</div>}
+            {isEmailExist}
           </div>
           <div className="step2-description">
             <li>입력한 카카오메일로 카카오계정에 로그인할 수 있습니다.</li>
@@ -126,8 +130,7 @@ export default function Step2({ nextStep, setCurrentEmail }) {
                 : { backgroundColor: "#f0f0f0" }
             }
             onClick={() => {
-              isEmailInput && nextStep(3);
-              setCurrentEmail(isEmailInput);
+              handleButtonNext();
             }}
           >
             다음
