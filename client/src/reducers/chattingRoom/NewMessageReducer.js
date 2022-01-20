@@ -1,5 +1,5 @@
-import { newMsg } from "./InitialState";
-import { newMessageCase } from "../actions";
+import { newMsg } from "../InitialState";
+import { newMessageCase } from "../../actions";
 
 const NewMessageReducer = (state = newMsg, action) => {
   switch (action.type) {

@@ -1,5 +1,5 @@
-import { isSearchOn } from "./InitialState";
-import { searchOn } from "../actions";
+import { isSearchOn } from "../InitialState";
+import { searchOn } from "../../actions";
 
 const SearchOnReducer = (state = isSearchOn, action) => {
   switch (action.type) {

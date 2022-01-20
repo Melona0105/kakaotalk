@@ -1,5 +1,5 @@
-import { currentKeyword } from "./InitialState";
-import { keyWord } from "../actions";
+import { currentKeyword } from "../InitialState";
+import { keyWord } from "../../actions";
 
 const SearchKeyWordReducer = (state = currentKeyword, action) => {
   switch (action.type) {

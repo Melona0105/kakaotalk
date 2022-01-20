@@ -1,5 +1,5 @@
-import { userInfo } from "./InitialState";
-import { userInfoCase } from "../actions";
+import { userInfo } from "../InitialState";
+import { userInfoCase } from "../../actions";
 
 const UserInfoReducer = (state = userInfo, action) => {
   switch (action.type) {

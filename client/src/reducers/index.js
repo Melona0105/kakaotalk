@@ -1,11 +1,11 @@
 import { combineReducers } from "@reduxjs/toolkit";
-import SearchKeyWordReducer from "./SearchKeyWordReducer";
-import SearchOnReducer from "./SearchOnReducer";
-import LoginReducer from "./LoginReducer";
-import LoadingReducer from "./LoadingReducer";
-import UserInfoReducer from "./UserInfoReducer";
-import NewMessageReducer from "./NewMessageReducer";
-import CurrentPageReducer from "./CurrentPageReducer";
+import SearchKeyWordReducer from "./friendPage/SearchKeyWordReducer";
+import SearchOnReducer from "./friendPage/SearchOnReducer";
+import LoginReducer from "./mainPage/LoginReducer";
+import LoadingReducer from "./mainPage/LoadingReducer";
+import UserInfoReducer from "./chattingRoom/UserInfoReducer";
+import NewMessageReducer from "./chattingRoom/NewMessageReducer";
+import CurrentPageReducer from "./mainPage/CurrentPageReducer";
 
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";

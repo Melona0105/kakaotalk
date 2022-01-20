@@ -1,5 +1,5 @@
-import { currentIsLogin } from "./InitialState";
-import { handleLoginCase } from "../actions";
+import { currentIsLogin } from "../InitialState";
+import { handleLoginCase } from "../../actions";
 
 const LoginReducer = (state = currentIsLogin, action) => {
   switch (action.type) {

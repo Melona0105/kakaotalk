@@ -1,5 +1,5 @@
-import { currentPage } from "./InitialState";
-import { currentPageCase } from "../actions";
+import { currentPage } from "../InitialState";
+import { currentPageCase } from "../../actions";
 
 const CurrentPageReducer = (state = currentPage, action) => {
   switch (action.type) {

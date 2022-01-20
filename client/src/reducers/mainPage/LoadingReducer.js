@@ -1,5 +1,5 @@
-import { isLoadingOn } from "./InitialState";
-import { loadingCase } from "../actions";
+import { isLoadingOn } from "../InitialState";
+import { loadingCase } from "../../actions";
 
 const LoadingRedcuer = (state = isLoadingOn, action) => {
   switch (action.type) {
