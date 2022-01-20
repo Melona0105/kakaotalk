@@ -1,21 +1,21 @@
 import "../css/pages/ChattingPage.css";
 import RommPageNav from "../components/chatting room/RommPageNav";
 import Room from "../components/chatting room/Room";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
+import { io } from "socket.io-client";
 
 export default function ChattingPage() {
   const { id } = useSelector((state) => state.UserInfoReducer);
-  // const { messageLength } = useSelector((state) => state.NewMessageReducer);
   // ? 메시지 데이터에서 읽었는지, 아닌지 여부를 판단
   // ? 그 개수를 넘겨줘서 새 메세지 수를 파악해야 할듯함.
   const [roomData, setRoomData] = useState([]);
+  const [isNewData, setIsNewData] = useState(false);
+  const socketRef = useRef();
   // 여기서 넘어오는 오리지날 데이터에서 소팅된 개수들을 적어놓는다.
   // TODO : 무엇을 수정해줘야 채팅들이 바뀌면, 채팅방도 바뀔까?
-
   // 리덕스에 누른 데이터의 배열의 길이를 받아오게한 뒤, 배열으 ㅣ길이가 바뀌면 아래 함수가 다시 실행되게?
-  const [original, setOriginal] = useState([]);
   useEffect(async () => {
     const { rooms } = await axios({
       method: "GET",
@@ -28,9 +28,29 @@ export default function ChattingPage() {
         result.push(rooms[i]);
       }
     }
-    setOriginal(result);
     getRoomDataFromServer(result);
-  }, []);
+  }, [isNewData]);
+
+  // 데이터가 들어오면, 새로 렌더링을 하고, -- > 데이터에 종속시키면 될듯
+
+  useEffect(() => {
+    // 소켓이 존재하지 않으면, 소켓을 열어준다.
+    const client = io("http://localhost:4000");
+    client.on("connect", () => {
+      console.log("connected");
+    });
+    client.on("disconnect", () => {
+      console.log("discoonected");
+    });
+    client.on("message", (message) => {
+      // 여기도 socket 연결을 해놓고, 새로 데이터가 올때마다 새로 렌더링한다.
+      setIsNewData(!isNewData);
+    });
+    socketRef.current = client;
+    return () => {
+      client.removeAllListeners();
+    };
+  }, [isNewData]);
 
   function getRoomDataFromServer(serverData) {
     const data = [];

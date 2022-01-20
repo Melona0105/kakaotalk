@@ -13,7 +13,6 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useRef, useState } from "react";
 import { io } from "socket.io-client";
-// import { handleNewMessage } from "../../actions";
 
 export default function InnerRoom() {
   // 현재 대화하는 사람의 데이터 이거 받아와서 넣어줘야함
@@ -23,7 +22,6 @@ export default function InnerRoom() {
   const [sortedData, setSortedData] = useState([]);
   const [roomData, setRoomData] = useState({});
   const { id, username } = useSelector((state) => state.UserInfoReducer);
-  // const { messageLength } = useSelector((state) => state.NewMessageReducer);
   const [message, setMessage] = useState("");
   const [isMessageFill, setIsMessageFill] = useState(false);
   const [isChange, setIsChange] = useState(false);
