@@ -13,6 +13,7 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useRef, useState } from "react";
 import { io } from "socket.io-client";
+import { handleNewMessage } from "../../actions";
 
 export default function InnerRoom() {
   // 현재 대화하는 사람의 데이터 이거 받아와서 넣어줘야함
@@ -26,8 +27,16 @@ export default function InnerRoom() {
   const [isMessageFill, setIsMessageFill] = useState(false);
   const [isChange, setIsChange] = useState(false);
   const dispatch = useDispatch();
-
+  console.log(room_id);
   const socketRef = useRef();
+  useEffect(() => {
+    dispatch(
+      handleNewMessage(
+        room_id,
+        currentChat.filter((el) => el.view === 1).length
+      )
+    );
+  }, [currentChat]);
 
   useEffect(() => {
     // 소켓이 존재하지 않으면, 소켓을 열어준다.
@@ -118,7 +127,6 @@ export default function InnerRoom() {
     setSortedData(nextState);
   }, [currentChat]);
 
-  console.log(sortedData);
   // 유저로 필터링해서, 상대방이면 왼쪽에 나면 오른쪽에 뿌린다.
   // 각각을 컴포넌트화 하는게 좋을듯
   // 데이터를 같은 사람 + 1분단위로 묶어서 정리 -> 이걸 뿌려준다.

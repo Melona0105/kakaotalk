@@ -11,4 +11,4 @@ export const userInfo = {
   comment: undefined,
 };
 
-export const messageLength = { messageLength: 0 };
+export const newMsg = { room_id: undefined, newMsg: 0 };

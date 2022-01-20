@@ -7,7 +7,6 @@ module.exports = (server) => {
   const io = new Server(server, { cors: { origin: "*", credentials: true } });
 
   io.on("connection", (socket) => {
-    console.log(1, "-   --한번만 연결되면 좋을텐데");
     socket.on("message", (newdata) => {
       try {
         // 방 번호와, 채팅 내역

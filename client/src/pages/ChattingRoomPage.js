@@ -8,14 +8,12 @@ import { io } from "socket.io-client";
 
 export default function ChattingPage() {
   const { id } = useSelector((state) => state.UserInfoReducer);
-  // ? 메시지 데이터에서 읽었는지, 아닌지 여부를 판단
-  // ? 그 개수를 넘겨줘서 새 메세지 수를 파악해야 할듯함.
+  const { room_id, newMsg } = useSelector((state) => state.NewMessageReducer);
   const [roomData, setRoomData] = useState([]);
   const [isNewData, setIsNewData] = useState(false);
+  const [countNewMsg, setCountNewMsg] = useState([]);
   const socketRef = useRef();
-  // 여기서 넘어오는 오리지날 데이터에서 소팅된 개수들을 적어놓는다.
-  // TODO : 무엇을 수정해줘야 채팅들이 바뀌면, 채팅방도 바뀔까?
-  // 리덕스에 누른 데이터의 배열의 길이를 받아오게한 뒤, 배열으 ㅣ길이가 바뀌면 아래 함수가 다시 실행되게?
+
   useEffect(async () => {
     const { rooms } = await axios({
       method: "GET",
@@ -28,8 +26,20 @@ export default function ChattingPage() {
         result.push(rooms[i]);
       }
     }
+    setCountNewMsg(getNewMessage(result));
+    // setCountNewMsg(result.filter((el) => el.view === 1).length);
     getRoomDataFromServer(result);
   }, [isNewData]);
+
+  // 들어온 데이터 안의 배열들을 순회하면서 거기서 일치하는 값을 뽑아낸다.
+  function getNewMessage(array) {
+    const answer = [];
+    for (let i = 0; i < array.length; i++) {
+      const now = array[i];
+      answer.push(now.filter((el) => el.user_id !== id && el.view).length);
+    }
+    return answer;
+  }
 
   // 데이터가 들어오면, 새로 렌더링을 하고, -- > 데이터에 종속시키면 될듯
 
@@ -37,7 +47,7 @@ export default function ChattingPage() {
     // 소켓이 존재하지 않으면, 소켓을 열어준다.
     const client = io("http://localhost:4000");
     client.on("connect", () => {
-      console.log("connected");
+      // console.log("connected");12
     });
     client.on("disconnect", () => {
       console.log("discoonected");
@@ -52,6 +62,15 @@ export default function ChattingPage() {
     };
   }, [isNewData]);
 
+  useEffect(() => {
+    if (room_id) {
+      for (let i = 0; i < roomData.length; i++) {
+        const now = roomData[i];
+        now.view = newMsg;
+      }
+    }
+  }, [isNewData]);
+
   function getRoomDataFromServer(serverData) {
     const data = [];
     for (let i = 0; i < serverData.length; i++) {
@@ -64,22 +83,13 @@ export default function ChattingPage() {
     setRoomData(data);
   }
 
-  function getNewDataCount(data) {
-    const counts = [];
-    // 순회하면서 user_id가 로그인 한 사람이 아니고, view가 1인 개수만 모음
-    for (let i = 0; i < data.length; i++) {
-      const now = data[i];
-      for (let j = 0; j < now.length; j++) {
-        // ! 새로 쿼리를 보내서, 채팅내역중 view가 1인것만 꺼내오는게 빠르려나? --> 내일 고민해보기
-      }
-    }
-  }
+  // 현재 배열에 새 데이터값을 합친다. 어떻게?
   return (
     <div className="chatting-page-container">
       <RommPageNav />
       <div className="chatting-page-content">
-        {roomData.map((el) => (
-          <Room key={el.username} data={el} />
+        {roomData.map((el, idx) => (
+          <Room key={el.username} data={el} view={countNewMsg[idx]} />
         ))}
       </div>
     </div>

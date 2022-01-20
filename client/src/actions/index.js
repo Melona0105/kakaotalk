@@ -39,9 +39,9 @@ export const handleUserInfo = (input) => {
 };
 
 export const newMessageCase = "New_Message_Case";
-export const handleNewMessage = (input) => {
+export const handleNewMessage = (room_id, newMsg) => {
   return {
     type: newMessageCase,
-    paylaod: input,
+    paylaod: { room_id, newMsg },
   };
 };

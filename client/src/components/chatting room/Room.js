@@ -4,9 +4,9 @@ import { printNewMsgTime } from "../../functions";
 import Popup from "../etc/Popup";
 import "../../css/components/chatting room/Room.css";
 
-export default function Room({ data }) {
+export default function Room({ data, view }) {
   const [isChattingOn, setIsChattingOn] = useState(false);
-  const { id, photo, username, time, content, newMsgCount } = data;
+  const { id, photo, username, time, content } = data;
 
   const roomStyle = "top=100, left=100, width=375, height=640";
 
@@ -35,9 +35,7 @@ export default function Room({ data }) {
         </div>
         <div className="room-right">
           <div>{printNewMsgTime(time)}</div>
-          {newMsgCount && (
-            <div className="room-newMsg-count">{newMsgCount}</div>
-          )}
+          {view !== 0 && <div className="room-newMsg-count">{view}</div>}
         </div>
       </div>
     </>
