@@ -99,10 +99,10 @@ export default function Login() {
           )}
         </div>
         <div className="login-inner-container-footer">
-          <Link className="link-button" to="/account">
+          {/* <Link className="link-button" to="/account">
             계정 찾기
           </Link>
-          <div className="login-center-bar"></div>
+          <div className="login-center-bar"></div> */}
           <Link className="link-button" to="/signup">
             회원가입
           </Link>
