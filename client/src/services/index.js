@@ -1,4 +1,4 @@
-import userService from "./user"
+import userService from "./users"
 
 const Service = {
   user: userService,

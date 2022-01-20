@@ -12,6 +12,20 @@ const userService = {
       throw err;
     }
   },
+
+  checkEmail: async (email) => {
+    try {
+      const result = await Apis.users.checkEmail(email);
+
+      if (result.status === 201) {
+        return true;
+      } else {
+        return false;
+      }
+    } catch (err) {
+      throw err;
+    }
+  },
 };
 
 export default userService;

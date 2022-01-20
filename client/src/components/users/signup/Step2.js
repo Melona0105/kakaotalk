@@ -3,7 +3,7 @@ import "../../../css/components/users/signup/Step2.css";
 import { checkKorean, checkInvalidString } from "../../../functions";
 import RemoveButton from "../../etc/RomoveButton";
 import ProgressBar from "./ProgressBar";
-import axios from "axios";
+import Service from "../../../services";
 
 export default function Step2({ nextStep, setCurrentEmail }) {
   const [isEmailInput, setIsEmailInput] = useState(false);
@@ -45,12 +45,7 @@ export default function Step2({ nextStep, setCurrentEmail }) {
   // TODO : 이메일이 다 입력되고 나면, 서버에 요청해서 확인해야한다.
   async function checkExistedEmail() {
     try {
-      const data = await axios({
-        method: "POST",
-        url: "http://localhost:4000/users/email",
-        data: { email: inputEmail },
-      }).then((res) => res);
-      return true;
+      return await Service.user.checkEmail(inputEmail);
     } catch {
       return false;
     }

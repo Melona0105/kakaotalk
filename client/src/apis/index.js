@@ -1,4 +1,4 @@
-import userApis from "./users/user";
+import userApis from "./users";
 
 const Apis = {
   users: userApis,
