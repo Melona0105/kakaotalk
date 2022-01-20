@@ -44,5 +44,6 @@ function getCurrentTime() {
       : time[1].split(":")[0].padStart(2, 0);
 
   const min = time[1].split(":")[1];
-  return `${year}-${month}-${day} ${hour}:${min}`;
+  const second = time[1].split(":")[2];
+  return `${year}-${month}-${day} ${hour}:${min}:${second}`;
 }

@@ -4,7 +4,7 @@ export function printNewMsgTime(input) {
   const day = input.slice(8, 10);
 
   const hour = input.slice(11, 13);
-  const min = input.slice(14, 17);
+  const min = input.slice(14, 16);
 
   const time = `${hour >= 12 ? String(hour - 12).padStart(2, 0) : hour}:${min}`;
   const string = hour >= 12 ? "오후" : "오전";
