@@ -2,15 +2,17 @@ import react from "react";
 import axios from "axios";
 import user1 from "../../images/friend/user1.png";
 import Popup from "../etc/Popup";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "../../css/components/friend/Friend.css";
 import Melon from "../../components/etc/Melon";
+import FriendMouseMenu from "./FriendMouseMenu";
 
 export default function Friend({ id, src, name, comment, music, option }) {
   const [isChattingOn, setIsChattingOn] = useState(false);
   const [currentRoomId, setCurrentRommId] = useState(undefined);
+  const [isRightButtonOn, setIsRightButtonOn] = useState(false);
+  const [settingLocation, setSettingLocation] = useState({ top: 0, left: 0 });
   const friend_id = id;
-
   const roomStyle = "top=100, left=100, width=375, height=640";
 
   async function getRoomData() {
@@ -38,6 +40,11 @@ export default function Friend({ id, src, name, comment, music, option }) {
           setIsChattingOn(true);
         }
       }}
+      onContextMenuCapture={(e) => {
+        e.preventDefault();
+        setIsRightButtonOn(true);
+        setSettingLocation({ top: e.pageY, left: e.pageX });
+      }}
     >
       <div className="friend-profile">
         {src ? <img src={src} /> : <img src={user1} />}
@@ -47,6 +54,12 @@ export default function Friend({ id, src, name, comment, music, option }) {
         </div>
       </div>
       {music && <Melon music={music} />}
+      {isRightButtonOn && (
+        <FriendMouseMenu
+          location={settingLocation}
+          setIsRightButtonOn={setIsRightButtonOn}
+        />
+      )}
       {isChattingOn && (
         <Popup
           style={roomStyle}

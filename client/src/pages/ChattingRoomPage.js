@@ -12,6 +12,7 @@ export default function ChattingPage({
   setIsNewData,
 }) {
   const { room_id, newMsg } = useSelector((state) => state.NewMessageReducer);
+  const { currentPage } = useSelector((state) => state.CurrentPageReducer);
   // TODO : 메세지 변화를 리덕스에 넣고, 그거 바뀌면 전부다 알림이 새로고침 되도록 하기
   const socketRef = useRef();
 
@@ -34,7 +35,7 @@ export default function ChattingPage({
     return () => {
       client.removeAllListeners();
     };
-  }, [isNewData]);
+  }, [isNewData, currentPage]);
 
   useEffect(() => {
     if (room_id) {
