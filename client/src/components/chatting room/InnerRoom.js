@@ -33,14 +33,20 @@ export default function InnerRoom() {
 
   useEffect(() => {
     // 소켓이 존재하지 않으면, 소켓을 열어준다.
-    socketRef.current = io.connect("http://localhost:4000");
-
-    socketRef.current.on("message", (event) => {
-      const newData = JSON.parse(event.data);
-      setCurrentChat([...currentChat, newData]);
+    const client = io("http://localhost:4000");
+    client.on("connect", () => {
+      console.log("connected");
     });
-
-    return () => socketRef.current.disconnect();
+    client.on("disconnect", () => {
+      console.log("discoonected");
+    });
+    client.on("message", (message) => {
+      setCurrentChat([...currentChat, message]);
+    });
+    socketRef.current = client;
+    return () => {
+      client.removeAllListeners();
+    };
   }, [currentChat]);
 
   // let sortedData = sortChatData(currentChat);
@@ -49,7 +55,7 @@ export default function InnerRoom() {
   // ? 서버로 데이터를 전송하고, 그 후, 바뀐 데이터를 받아오는데
   // * 채팅에 그냥 room_id를 담아서 보내보자
   // 이것을 웹소켓을 이용하면
-  async function sendMsg() {
+  function sendMsg() {
     const newMsg = {
       user_id: id,
       room_id,
@@ -62,7 +68,7 @@ export default function InnerRoom() {
     newMsg.content = message;
     const sendData = { room_id, newMsg };
     // 웹소켓 개방
-    socketRef.current.emit("message", JSON.stringify(sendData));
+    socketRef.current.emit("message", sendData);
     // 데이터 전송
     setMessage("");
     setIsChange(!isChange);
@@ -114,6 +120,7 @@ export default function InnerRoom() {
     setSortedData(nextState);
   }, [currentChat]);
 
+  console.log(sortedData);
   // 유저로 필터링해서, 상대방이면 왼쪽에 나면 오른쪽에 뿌린다.
   // 각각을 컴포넌트화 하는게 좋을듯
   // 데이터를 같은 사람 + 1분단위로 묶어서 정리 -> 이걸 뿌려준다.

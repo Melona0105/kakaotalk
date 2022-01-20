@@ -7,11 +7,11 @@ module.exports = (server) => {
   const io = new Server(server, { cors: { origin: "*", credentials: true } });
 
   io.on("connection", (socket) => {
-    console.log(socket.id);
+    console.log(1, "-   --한번만 연결되면 좋을텐데");
     socket.on("message", (newdata) => {
       try {
         // 방 번호와, 채팅 내역
-        const { room_id, newMsg } = JSON.parse(newdata);
+        const { room_id, newMsg } = newdata;
         const { user_id, content } = newMsg;
         db.query(
           `INSERT INTO chats (user_id, content, room_id, view, time) VALUES ("${user_id}", "${content}", "${room_id}", "${1}", "${getCurrentTime()}")`,
@@ -20,7 +20,7 @@ module.exports = (server) => {
               throw err;
             }
             // 성공하면 데이터를 돌려준다.
-            io.emit("message", JSON.stringify(newMsg));
+            io.emit("message", newMsg);
           }
         );
       } catch (err) {
