@@ -10,12 +10,10 @@ export default function Step2({ nextStep, setCurrentEmail }) {
   const [errorMessage, setErrorMessage] = useState(undefined);
   const [inputEmail, setInputEmail] = useState("");
   const [isEmailFill, setIsEmailFill] = useState(false);
-  const [isEmailExist, setIsEmailExist] = useState(false);
 
   // 이메일이 입력되었는지 감지하는 함수
   function checkValidEmail(input) {
     setInputEmail(input);
-    setIsEmailExist(false);
     // 초기화
     setErrorMessage(undefined);
 
@@ -32,6 +30,8 @@ export default function Step2({ nextStep, setCurrentEmail }) {
       resetInputAndSetError(
         "아이디는 영문 소문자, 숫자, 빼기(-), 밑줄(_), 마침표(.)만 사용할 수 있습니다."
       );
+    } else if (inputEmail.split("").findIndex((el) => el === "@") === -1) {
+      resetInputAndSetError("올바른 이메일 형식을 입력해주세요.");
     } else {
       setIsEmailInput(input);
     }
@@ -60,10 +60,11 @@ export default function Step2({ nextStep, setCurrentEmail }) {
     const check = await checkExistedEmail();
     // 이메일이 유효하면
     if (check) {
+      setCurrentEmail(inputEmail);
       nextStep(3);
     } else {
       // 유효하지 않으면 경고창 띄우기
-      setErrorMessage(
+      resetInputAndSetError(
         "이미 존재하는 이메일입니다. 다른 이메일을 사용해주세요."
       );
     }
@@ -96,7 +97,6 @@ export default function Step2({ nextStep, setCurrentEmail }) {
                 value={inputEmail}
                 onChange={(e) => {
                   checkValidEmail(e.target.value);
-                  // checkExistedEmail();
                 }}
               />
               {isEmailFill && (
@@ -109,7 +109,6 @@ export default function Step2({ nextStep, setCurrentEmail }) {
               )}
             </div>
             {errorMessage && <div className="email-error">{errorMessage}</div>}
-            {isEmailExist}
           </div>
           <div className="step2-description">
             <li>입력한 카카오메일로 카카오계정에 로그인할 수 있습니다.</li>
@@ -130,7 +129,7 @@ export default function Step2({ nextStep, setCurrentEmail }) {
                 : { backgroundColor: "#f0f0f0" }
             }
             onClick={() => {
-              handleButtonNext();
+              isEmailFill && isEmailInput && handleButtonNext();
             }}
           >
             다음

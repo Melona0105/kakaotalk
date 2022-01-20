@@ -11,6 +11,19 @@
   flex-direction: column;
   width: 500px;
   height: 600px;
+  color: #808080;
+}
+
+.step1-inner-container > :first-child {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.go-back {
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
 }
 
 .inner-checkbox > img {

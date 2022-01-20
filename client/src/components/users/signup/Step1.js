@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "../../../css/components/users/signup/Step1.css";
 import ProgressBar from "./ProgressBar";
+import { Link } from "react-router-dom";
 import CheckBox from "./CheckBox";
 
 export default function Step1({ nextStep, setAgreements }) {
@@ -43,7 +44,12 @@ export default function Step1({ nextStep, setAgreements }) {
   return (
     <div className="step1-container">
       <div className="step1-inner-container">
-        <ProgressBar width="25%" />
+        <div>
+          <ProgressBar width="25%" />
+          <Link className="go-back" to="/">
+            처음으로
+          </Link>
+        </div>
         <div className="step1-header">
           <div>카카오계정</div>
           <div>서비스 약관에 동의해 주세요.</div>
