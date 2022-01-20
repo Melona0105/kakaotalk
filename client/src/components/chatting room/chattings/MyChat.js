@@ -15,7 +15,7 @@ export default function MyChat({ content, time, view }) {
               <div
                 className="my-chat-content"
                 style={{
-                  width: `${len * 10}px`,
+                  width: `${len * 11}px`,
                 }}
               >
                 {el}

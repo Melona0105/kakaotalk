@@ -7,7 +7,7 @@ import setting from "../../images/nav/setting.png";
 import NavMenu from "./NavMenu";
 import { useState } from "react";
 import Setting from "../settings/Setting";
-export default function Nav({ currentPage }) {
+export default function Nav({ currentPage, totalNewMsg }) {
   const menus = [friend, chat, seemore];
   const [isSettingOn, setIsSettingOn] = useState(false);
   const [settingLocation, setSettingLocation] = useState({ top: 0, left: 0 });
@@ -16,7 +16,13 @@ export default function Nav({ currentPage }) {
     <div className="nav-container">
       <div className="nav-continer-innerbox pages">
         {menus.map((el, index) => (
-          <NavMenu key={el} currentPage={currentPage} index={index} src={el} />
+          <NavMenu
+            key={el}
+            currentPage={currentPage}
+            index={index}
+            src={el}
+            totalNewMsg={totalNewMsg}
+          />
         ))}
       </div>
       <div className="nav-continer-innerbox options">

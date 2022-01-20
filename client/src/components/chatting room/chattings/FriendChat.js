@@ -16,7 +16,7 @@ export default function FriendChat({ username, content, time }) {
               <div
                 className="friend-chat-content"
                 style={{
-                  width: `${len * 10}px`,
+                  width: `${len * 11}px`,
                 }}
               >
                 {el}

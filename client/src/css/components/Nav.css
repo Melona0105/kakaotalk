@@ -14,9 +14,16 @@
   margin: 40px 0px 10px 0px;
 }
 
-.nav-continer-innerbox > img {
-  width: 30px;
+.nav-menu-container {
+  display: flex;
+  flex-direction: row-reverse;
   margin: 10px;
+}
+
+.nav-continer-innerbox > img,
+.nav-menu-container > img {
+  width: 30px;
+  margin: 5px;
 }
 
 .deselected:hover {
@@ -30,4 +37,18 @@
 .options > img:hover {
   border-radius: 50%;
   background: #dfdfdf;
+}
+
+.nav-message {
+  position: absolute;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 18px;
+  height: 18px;
+  color: #fff;
+  background: #fe5a4a;
+  font-size: 10px;
+  font-weight: 700;
 }
