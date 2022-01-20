@@ -13,7 +13,7 @@ export default function ChattingPage({
 }) {
   const { room_id, newMsg } = useSelector((state) => state.NewMessageReducer);
   const { currentPage } = useSelector((state) => state.CurrentPageReducer);
-  // TODO : 메세지 변화를 리덕스에 넣고, 그거 바뀌면 전부다 알림이 새로고침 되도록 하기
+  // * TODO : 메세지 변화를 리덕스에 넣고, 그거 바뀌면 전부다 알림이 새로고침 되도록 하기 --- OK
   const socketRef = useRef();
 
   // 데이터가 들어오면, 새로 렌더링을 하고, -- > 데이터에 종속시키면 될듯
@@ -37,6 +37,8 @@ export default function ChattingPage({
     };
   }, [isNewData, currentPage]);
 
+  // 현재 배열에 새 데이터값을 합친다. 어떻게?
+  // 항상 포문돌리는건 나중에 한번씩 보면서 어떻게 포문말고 다른거로 할지 고민해보기
   useEffect(() => {
     if (room_id) {
       for (let i = 0; i < roomData.length; i++) {
@@ -46,14 +48,22 @@ export default function ChattingPage({
     }
   }, [isNewData]);
 
-  // 현재 배열에 새 데이터값을 합친다. 어떻게?
+  console.log(roomData);
   return (
     <div className="chatting-page-container">
       <RommPageNav />
       <div className="chatting-page-content">
-        {roomData.map((el, idx) => (
-          <Room key={el.username} data={el} view={countNewMsg[idx]} />
-        ))}
+        {roomData.length ? (
+          roomData.map((el, idx) => (
+            <Room key={el.username} data={el} view={countNewMsg[idx]} />
+          ))
+        ) : (
+          <div className="chatting-page-blank">
+            <div>아직 대화가 없어요.</div>
+            <div>새로운 대화를 시작해보세요.</div>
+          </div>
+        )}
+        {}
       </div>
     </div>
   );

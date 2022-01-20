@@ -96,6 +96,9 @@ export default function MainPage() {
     });
   }
 
+  // 아직 한번도 채팅을 하지 않았다면, 채팅 추가해주기
+  useEffect(() => {});
+
   return (
     <div className="mainpage-container">
       <Nav currentPage={currentPage} totalNewMsg={totalNewMsg} />

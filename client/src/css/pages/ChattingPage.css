@@ -6,3 +6,13 @@
   height: 94vh;
   overflow: auto;
 }
+
+.chatting-page-blank {
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  color: #808080;
+}
