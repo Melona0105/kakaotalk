@@ -53,6 +53,7 @@ export default function MainPage() {
     dispatch(handleUserInfo(userInfo));
   }, [currentPage]);
 
+  // TODO : 친구 추가 후, 친구 목록 어떻게 다시 불러오게 할까?
   useEffect(async () => {
     dispatch(handleLoadingOn(true));
     try {
@@ -67,10 +68,10 @@ export default function MainPage() {
     } finally {
       dispatch(handleLoadingOn(false));
     }
-  }, [currentPage, isAddFriendOn]);
+  }, [currentPage, isAddFriendOn, currentPage]);
 
-  // 친구 목록이 없으면 어떻게 해줘야할까
-  // 1 친구목록도 리덕스에 담는다.
+  // * TODO : 친구 목록이 없으면 어떻게 해줘야할까 --- OK
+  // 친구목록이 비었을 경우를 만들어주면 됨
 
   useEffect(async () => {
     const { rooms } = await axios({
@@ -87,7 +88,7 @@ export default function MainPage() {
     setCountNewMsg(getNewMessage(result));
     setTotalNewMsg(getTotalNewMessage(getNewMessage(result)));
     getRoomDataFromServer(result);
-  }, [isNewData, isMsgChange]);
+  }, [isNewData, isMsgChange, currentPage]);
 
   function getTotalNewMessage(array) {
     return array.reduce((acc, cur) => {

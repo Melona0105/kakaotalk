@@ -1,6 +1,7 @@
 import { newMsg } from "../InitialState";
 import { newMessageCase } from "../../actions";
 
+// 새 메세지의 정보를 가져오기위함
 const NewMessageReducer = (state = newMsg, action) => {
   switch (action.type) {
     case newMessageCase:

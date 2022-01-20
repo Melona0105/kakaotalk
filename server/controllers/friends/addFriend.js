@@ -11,7 +11,7 @@ module.exports = async function addFriend(req, res) {
     const friend_id = friendInfo.id;
     // 친구목록에 데이터를 삽입해준다.
     db.query(
-      `insert into friends (user_id, friend_id) values (${id}, ${friend_id})`,
+      `insert into friends (user_id, friend_id, status) values (${id}, ${friend_id}, 0)`,
       (err, result) => {
         if (err) {
           throw err;

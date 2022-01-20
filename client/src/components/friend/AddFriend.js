@@ -4,7 +4,7 @@ import "../../css/components/friend/AddFriend.css";
 import reset from "../../images/signup/reset button.png";
 import FriendInfo from "./FriendInfo";
 
-export default function AddFriend({ handelState }) {
+export default function AddFriend() {
   const [isInputFill, setIsInputFill] = useState(false);
   const [inputEmail, setInputEmail] = useState("");
   const [isEmailExist, setIsEmailExist] = useState(false);
@@ -120,6 +120,7 @@ export default function AddFriend({ handelState }) {
               }
               onClick={() => {
                 !isFriend && isEmailExist && AddFriendToServer();
+                // 친구를 추가하는 시점에서 밖의 상태를 건드려서 렌더링을 시킨다 -> 하나 만들지 기존에 있는거 활용할 수 있을지 찾아보기
               }}
             >
               친구 추가
