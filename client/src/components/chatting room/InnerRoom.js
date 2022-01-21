@@ -3,7 +3,6 @@ import upload from "../../images/chatting/upload.png";
 import schedule from "../../images/chatting/schedule.png";
 import face_talk from "../../images/chatting/face talk.png";
 import voice_talk from "../../images/chatting/voice talk.png";
-import "../../css/components/chatting room/InnerRoom.css";
 import user from "../../images/friend/user1.png";
 import Chatting from "./chattings/Chatting";
 import { useParams } from "react-router-dom";
@@ -14,6 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useRef, useState } from "react";
 import { io } from "socket.io-client";
 import { handleIsMsgChange } from "../../actions";
+import "../../css/components/chatting room/InnerRoom.css";
 
 export default function InnerRoom() {
   // 현재 대화하는 사람의 데이터 이거 받아와서 넣어줘야함
@@ -40,6 +40,8 @@ export default function InnerRoom() {
       console.log("discoonected");
     });
     client.on("message", (message) => {
+      // 불러오기전에, 한번 데이터를 새로 받아줘야 함 
+      dispatch(handleIsMsgChange(!isMsgChange));
       setCurrentChat([...currentChat, message]);
     });
     socketRef.current = client;
