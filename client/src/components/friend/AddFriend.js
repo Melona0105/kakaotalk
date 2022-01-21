@@ -57,14 +57,10 @@ export default function AddFriend() {
         url: "http://localhost:4000/friends",
         headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
         data: { friendInfo },
-      })
-        .then((res) => res)
-        .catch((err) => {
-          console.log(err);
-        });
+      }).then((res) => res);
       setIscomplete(true);
-    } catch {
-      alert("알수없는 에러가 발생했어요");
+    } catch (err) {
+      console.log(err);
       // 친구가 추가되면 창을 닫아주고, 서버로부터 데이터를 다시 받아온다.
     }
   }
