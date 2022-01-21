@@ -18,8 +18,26 @@ export default function FriendMouseMenu({
     });
   }
 
+  async function blockFriend() {
+    axios({
+      method: "PUT",
+      url: "http://localhost:4000/friends/block",
+      headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
+      data: { username },
+    });
+  }
+
+  async function hideFriend() {
+    axios({
+      method: "PUT",
+      url: "http://localhost:4000/friends/hide",
+      headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
+      data: { username },
+    });
+  }
+
   // TODO : 친구 상태 변경 후 렌더링을 어떻게 시킬지 고민해보자
-  
+
   return (
     <>
       <div
@@ -30,8 +48,8 @@ export default function FriendMouseMenu({
         }}
       >
         <div onClick={() => console.log("채팅")}>채팅하기</div>
-        <div onClick={() => console.log("숨김")}>숨김</div>
-        <div onClick={() => console.log("차단")}>차단</div>
+        <div onClick={() => hideFriend()}>숨김</div>
+        <div onClick={() => blockFriend()}>차단</div>
         <div onClick={() => deleteFriend()}>친구 삭제</div>
       </div>
       <div
