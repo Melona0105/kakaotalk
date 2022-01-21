@@ -2,7 +2,6 @@ const db = require("../../database/");
 
 module.exports = async function checkEmail(req, res) {
   const { email } = req.body;
-  console.log(1);
   try {
     db.query(
       `select * from users where email="${email}"`,

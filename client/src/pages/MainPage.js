@@ -45,15 +45,17 @@ export default function MainPage() {
   // TODO : 친구 추가 후, 친구 목록 어떻게 다시 불러오게 할까?
   // * 왜 이러면 한박자 늦을까?
   useEffect(async () => {
+    // ! Mysql에서 데이터를 바꾸고 새로고침을해도 데이터가 안 바뀌고 들어오네???? 뭐지???
+    // ! 근데 친구이름은 바꾸면 바로 바뀌는데 내 이름은 왜 안바뀌지?
     dispatch(handleLoadingOn(true));
     try {
-      // const { userInfo } = await Service.user.userInfo();
+      // ! const { userInfo } = await Service.user.userInfo();
       const { userInfo } = await aixos({
         method: "GET",
         url: "http://localhost:4000/users/userinfo",
         headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
       }).then((res) => res.data);
-
+      // ! console.log(userInfo);
       dispatch(handleUserInfo(userInfo));
     } catch (err) {
       throw err;
@@ -64,13 +66,13 @@ export default function MainPage() {
 
   // TODO : 친구 추가 후, 친구 목록 어떻게 다시 불러오게 할까?
   // ! 리덕스로 왜 둘이 연결이 안될까
-  // * 연결되면 그냥 친구정보를 리덕스로 유지하고 이걸 상태를 바꾸는 식으로 하면 될것 같은데... 왜?
+  // ! 연결되면 그냥 친구정보를 리덕스로 유지하고 이걸 상태를 바꾸는 식으로 하면 될것 같은데... 왜?
   useEffect(async () => {
     // 데이터 받아오기전에, 로딩 시작
     dispatch(handleLoadingOn(true));
     // 데이터를 받아오기
     try {
-      // const result = await Service.user.getFriends();
+      // ! const result = await Service.user.getFriends();
       const result = await axios({
         method: "GET",
         url: "http://localhost:4000/users/friends",
@@ -92,7 +94,7 @@ export default function MainPage() {
   // 친구목록이 비었을 경우를 만들어주면 됨
   // 채팅방의 정보를 읽어오는 함수
   useEffect(async () => {
-    // const { rooms } = await Service.user.getRooms();
+    // ! const { rooms } = await Service.user.getRooms();
     const { rooms } = await axios({
       method: "GET",
       url: "http://localhost:4000/users/rooms",

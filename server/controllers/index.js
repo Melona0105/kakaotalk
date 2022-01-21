@@ -21,4 +21,7 @@ module.exports = {
   // rooms
   getRoomId: require("./rooms/getRoomId"),
   getRoomInfo: require("./rooms/getRoomInfo"),
+
+  //edit
+  username: require("./edit/username"),
 };

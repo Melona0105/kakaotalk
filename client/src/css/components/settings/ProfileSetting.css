@@ -17,6 +17,15 @@
   align-items: center;
 }
 
+.edit-username {
+  height: 30px;
+  border: none;
+  border-bottom: 1px solid lightgray;
+  outline: none;
+  font-size: 16px;
+  font-weight: 600;
+}
+
 .pofile-setting-edit > div > img {
   width: 85px;
   height: 85px;

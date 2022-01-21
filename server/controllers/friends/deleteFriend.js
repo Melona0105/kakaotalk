@@ -4,7 +4,6 @@ module.exports = async function deleteFriend(req, res) {
   const { id } = req.userInfo;
   const { username } = req.body;
   try {
-    console.log("쿼리 시작");
     // 선택한 사람의 유저네임을 갖고, 내 아이로 친구인 사람을 찾는다.
     db.query(
       `select F.friend_id from Users LEFT JOIN Friends as F
