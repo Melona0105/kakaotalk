@@ -57,11 +57,12 @@ export default function MainPage() {
   useEffect(async () => {
     dispatch(handleLoadingOn(true));
     try {
-      const { friendData } = await axios({
+      const friendData = await axios({
         method: "GET",
         url: "http://localhost:4000/users/friends",
         headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
       }).then((res) => res.data);
+      console.log(friendData);
       setMyFriend(friendData);
     } catch (err) {
       console.log(err);
