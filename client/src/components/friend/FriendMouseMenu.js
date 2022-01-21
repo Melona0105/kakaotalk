@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "../../css/components/friend/FriendMouseMenu.css";
-import axios from "axios";
+import { hideFriend, blockFriend, deleteFriend } from "../../functions";
 
 export default function FriendMouseMenu({
   username,
@@ -8,33 +8,6 @@ export default function FriendMouseMenu({
   setIsRightButtonOn,
 }) {
   const [currentLocation, setCurrentLocation] = useState({ top: 0, left: 0 });
-
-  async function deleteFriend() {
-    axios({
-      method: "DELETE",
-      url: "http://localhost:4000/friends",
-      headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
-      data: { username },
-    });
-  }
-
-  async function blockFriend() {
-    axios({
-      method: "PUT",
-      url: "http://localhost:4000/friends/block",
-      headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
-      data: { username },
-    });
-  }
-
-  async function hideFriend() {
-    axios({
-      method: "PUT",
-      url: "http://localhost:4000/friends/hide",
-      headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
-      data: { username },
-    });
-  }
 
   // TODO : 친구 상태 변경 후 렌더링을 어떻게 시킬지 고민해보자
 
@@ -48,9 +21,9 @@ export default function FriendMouseMenu({
         }}
       >
         <div onClick={() => console.log("채팅")}>채팅하기</div>
-        <div onClick={() => hideFriend()}>숨김</div>
-        <div onClick={() => blockFriend()}>차단</div>
-        <div onClick={() => deleteFriend()}>친구 삭제</div>
+        <div onClick={() => hideFriend(username)}>숨김</div>
+        <div onClick={() => blockFriend(username)}>차단</div>
+        <div onClick={() => deleteFriend(username)}>친구 삭제</div>
       </div>
       <div
         className="friend-mouse-menu-back"

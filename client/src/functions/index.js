@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export function printNewMsgTime(input) {
   const year = input.slice(0, 4);
   const month = input.slice(5, 7);
@@ -104,5 +106,41 @@ export function sortDataToAlphabeticalOrder(data) {
     if (a.username < b.username) {
       return -1;
     }
+  });
+}
+
+export async function deleteFriend(username) {
+  axios({
+    method: "DELETE",
+    url: "http://localhost:4000/friends",
+    headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
+    data: { username },
+  });
+}
+
+export async function blockFriend(username) {
+  axios({
+    method: "PUT",
+    url: "http://localhost:4000/friends/block",
+    headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
+    data: { username },
+  });
+}
+
+export async function hideFriend(username) {
+  axios({
+    method: "PUT",
+    url: "http://localhost:4000/friends/hide",
+    headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
+    data: { username },
+  });
+}
+
+export async function rollbackFriend(username) {
+  axios({
+    method: "PUT",
+    url: "http://localhost:4000/friends/rollback",
+    headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
+    data: { username },
   });
 }

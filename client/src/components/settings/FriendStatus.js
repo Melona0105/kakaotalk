@@ -82,10 +82,19 @@ export default function FriendStatus() {
           searchOnChange={searchOnChange}
           searchOnKeyDown={searchOnKeyDown}
         />
-        <div>
-          <div>친구</div>
+        <div className="friend-status-content">
+          {friendData.length !== 0 && (
+            <div>{`친구 (${friendData.length})`}</div>
+          )}
+          {!friendData.length && (
+            <div className="friend-status-noti">목록이 없습니다.</div>
+          )}
           {friendData.map((el) => (
-            <FriendStatusCard key={el.email} data={el} />
+            <FriendStatusCard
+              key={el.email}
+              data={el}
+              currentStatus={currentStatus}
+            />
           ))}
         </div>
       </div>
