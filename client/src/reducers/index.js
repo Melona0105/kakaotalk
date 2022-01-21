@@ -6,7 +6,7 @@ import LoadingReducer from "./mainPage/LoadingReducer";
 import UserInfoReducer from "./chattingRoom/UserInfoReducer";
 import CurrentPageReducer from "./mainPage/CurrentPageReducer";
 import MsgChangeReducer from "./chattingRoom/MsgChangeReducer";
-import RenderingReducer from "./mainPage/RenderingReducer";
+import UserFriendsInfoReducer from "./mainPage/UserFriendsInfoReducer";
 
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
@@ -24,7 +24,7 @@ const rootReducer = combineReducers({
   UserInfoReducer,
   CurrentPageReducer,
   MsgChangeReducer,
-  RenderingReducer,
+  UserFriendsInfoReducer,
 });
 
 export default persistReducer(persistConfig, rootReducer);

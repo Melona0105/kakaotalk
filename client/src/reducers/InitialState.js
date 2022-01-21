@@ -23,4 +23,4 @@ export const currentPage = { currentPage: 0 };
 export const isMsgChange = { isMsgChange: false };
 
 // 렌더링을 주기위한 리듀서 -> 이거 다른방법 있는지 찾아보자 -> 비효율적일듯함
-export const isRendering = { isRendering: false };
+export const userFriends = { userFriends: [] };

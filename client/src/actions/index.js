@@ -62,10 +62,10 @@ export const handleIsMsgChange = (input) => {
 };
 
 // 렌더링을 주기위한 리듀서..
-export const isRenderCase = "New_Rendering";
-export const handleIsRendering = (input) => {
+export const userFriendsInfo = "Friends_Info";
+export const handleUserFriends = (input) => {
   return {
-    type: isRenderCase,
+    type: userFriendsInfo,
     paylaod: input,
   };
 };

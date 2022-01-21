@@ -1,13 +1,12 @@
 import axios from "axios";
-import { Component, useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import "../../css/components/friend/AddFriend.css";
 import reset from "../../images/signup/reset button.png";
-import { handleIsRendering } from "../../actions";
+import { handleLoadingOn, handleUserFriends } from "../../actions";
 import FriendInfo from "./FriendInfo";
 
 export default function AddFriend() {
-  const { isRendering } = useSelector((state) => state.RenderingReducer);
   const dispatch = useDispatch();
   const [isInputFill, setIsInputFill] = useState(false);
   const [inputEmail, setInputEmail] = useState("");
@@ -50,6 +49,7 @@ export default function AddFriend() {
   }
 
   async function AddFriendToServer() {
+    dispatch(handleLoadingOn(true));
     try {
       // 친구목록에 추가
       const { data } = await axios({
@@ -58,13 +58,25 @@ export default function AddFriend() {
         headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
         data: { friendInfo },
       }).then((res) => res);
+      // 추가하고 완료되었다고 상태 변경
       setIscomplete(true);
+      // 바뀌었으니, 친구데이터를 다시 새로 받아온다.
+
+      const newData = await axios({
+        method: "GET",
+        url: "http://localhost:4000/users/friends",
+        headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
+      }).then((res) => res.data);
+      console.log(newData);
+
+      dispatch(handleUserFriends(newData));
     } catch (err) {
       console.log(err);
       // 친구가 추가되면 창을 닫아주고, 서버로부터 데이터를 다시 받아온다.
+    } finally {
+      dispatch(handleLoadingOn(false));
     }
   }
-
   return (
     <div className="add-friend-container">
       <div>
@@ -121,9 +133,7 @@ export default function AddFriend() {
               onClick={() => {
                 if (!isFriend && isEmailExist) {
                   // 왜 이거로 바꿔도 상태가 안 바뀌지?
-                  dispatch(handleIsRendering(!isRendering));
                   AddFriendToServer();
-                  Component.forceUpdate();
                 }
                 // 친구를 추가하는 시점에서 밖의 상태를 건드려서 렌더링을 시킨다 -> 하나 만들지 기존에 있는거 활용할 수 있을지 찾아보기
               }}

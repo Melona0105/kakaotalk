@@ -6,7 +6,8 @@ import { handleKeyword, handleIsSearchOn } from "../../actions";
 import { useState } from "react";
 import Popup from "../etc/Popup";
 
-export default function FriendNav({ isAddFriendOn, setIsAddFriendOn }) {
+export default function FriendNav() {
+  const [isAddFriendOn, setIsAddFriendOn] = useState(false);
   const { isSearchOn } = useSelector((state) => state.SearchOnReducer);
   const dispatch = useDispatch();
 

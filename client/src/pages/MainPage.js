@@ -6,15 +6,14 @@ import ChattingRoomPage from "./ChattingRoomPage";
 import SeeMorePage from "./SeeMorePage";
 import aixos from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { handleLoadingOn, handleUserInfo } from "../actions";
+import { handleLoadingOn, handleUserInfo, handleUserFriends } from "../actions";
 import axios from "axios";
 
 export default function MainPage() {
-  const { currentPage } = useSelector((state) => state.CurrentPageReducer);
-  const [isAddFriendOn, setIsAddFriendOn] = useState(false);
-  const [isNewData, setIsNewData] = useState(false);
-  const [myFriend, setMyFriend] = useState(undefined);
   const dispatch = useDispatch();
+  const { currentPage } = useSelector((state) => state.CurrentPageReducer);
+  const { userFriends } = useSelector((state) => state.UserFriendsInfoReducer);
+  const [isNewData, setIsNewData] = useState(false);
   const { isMsgChange } = useSelector((state) => state.MsgChangeReducer);
   const { id } = useSelector((state) => state.UserInfoReducer);
   const [roomData, setRoomData] = useState([]);
@@ -36,7 +35,6 @@ export default function MainPage() {
       const now = serverData[i];
       data.push(now[now.length - 1]);
     }
-    // 여기서 바꿔주면 되겠는데?
     data.sort((a, b) => {
       return new Date(b.time) - new Date(a.time);
     });
@@ -55,24 +53,30 @@ export default function MainPage() {
 
   // TODO : 친구 추가 후, 친구 목록 어떻게 다시 불러오게 할까?
   useEffect(async () => {
+    // 데이터 받아오기전에, 로딩 시작
     dispatch(handleLoadingOn(true));
+    // 데이터를 받아오기
     try {
-      const friendData = await axios({
+      const result = await axios({
         method: "GET",
         url: "http://localhost:4000/users/friends",
         headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
       }).then((res) => res.data);
-      setMyFriend(friendData.filter((el) => el.status === 0));
+      result
+        ? dispatch(handleUserFriends(result.filter((el) => el.status === 0)))
+        : dispatch(handleUserFriends([]));
     } catch (err) {
+      // 실패할 경우
       console.log(err);
     } finally {
+      // 데이터받는 동작이 종료되면, 로딩 종료
       dispatch(handleLoadingOn(false));
     }
-  }, [currentPage, isAddFriendOn, currentPage]);
-
+    // 페이지 바뀔때
+  }, [currentPage]);
   // * TODO : 친구 목록이 없으면 어떻게 해줘야할까 --- OK
   // 친구목록이 비었을 경우를 만들어주면 됨
-
+  // 채팅방의 정보를 읽어오는 함수
   useEffect(async () => {
     const { rooms } = await axios({
       method: "GET",
@@ -88,7 +92,7 @@ export default function MainPage() {
     setTotalNewMsg(getTotalNewMessage(getNewMessage(result)));
     const answer = applyNewMsgToRoomData(result, getNewMessage(result));
     getRoomDataFromServer(answer);
-  }, [isNewData, isMsgChange, currentPage]);
+  }, [isNewData, isMsgChange, currentPage, userFriends]);
 
   function getTotalNewMessage(array) {
     return array.reduce((acc, cur) => {
@@ -111,13 +115,7 @@ export default function MainPage() {
   return (
     <div className="mainpage-container">
       <Nav currentPage={currentPage} totalNewMsg={totalNewMsg} />
-      {currentPage === 0 && (
-        <FriendPage
-          isAddFriendOn={isAddFriendOn}
-          setIsAddFriendOn={setIsAddFriendOn}
-          myFriend={myFriend}
-        />
-      )}
+      {currentPage === 0 && <FriendPage userFriends={userFriends} />}
       {currentPage === 1 && (
         <ChattingRoomPage
           isNewData={isNewData}

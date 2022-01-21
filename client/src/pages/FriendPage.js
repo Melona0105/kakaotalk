@@ -15,17 +15,13 @@ import sample from "../images/seemore/kakao talk.svg";
 import "../css/pages/FriendPage.css";
 import SearchBar from "../components/etc/SearchBar";
 
-export default function FriendPage({
-  isAddFriendOn,
-  setIsAddFriendOn,
-  myFriend,
-}) {
+export default function FriendPage({ userFriends }) {
   const [isBirthdayOn, setIsBirthdayOn] = useState(false);
   const { isSearchOn } = useSelector((state) => state.SearchOnReducer);
   const { keyWord } = useSelector((state) => state.SearchKeyWordReducer);
   const dispatch = useDispatch();
   let friendDataFromServer;
-  if (!myFriend || myFriend.length === 0) {
+  if (!userFriends || userFriends.length === 0) {
     friendDataFromServer = [
       {
         photo: sample,
@@ -35,7 +31,7 @@ export default function FriendPage({
       },
     ];
   } else {
-    friendDataFromServer = myFriend.filter((el) =>
+    friendDataFromServer = userFriends.filter((el) =>
       filterDataByKeyWord(el.username, keyWord)
     );
   }
@@ -73,10 +69,7 @@ export default function FriendPage({
 
   return (
     <div className="friend-page-container">
-      <FriendNav
-        isAddFriendOn={isAddFriendOn}
-        setIsAddFriendOn={setIsAddFriendOn}
-      />
+      <FriendNav />
       <div className="friend-page-content">
         {isSearchOn && (
           <SearchBar
