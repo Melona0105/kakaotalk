@@ -8,6 +8,7 @@ import aixos from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { handleLoadingOn, handleUserInfo, handleUserFriends } from "../actions";
 import axios from "axios";
+import userService from "../services/users";
 
 export default function MainPage() {
   const dispatch = useDispatch();
@@ -41,14 +42,22 @@ export default function MainPage() {
     setRoomData(data);
   }
 
+  // TODO : 왜 API로 바꾸면 처음에 새로고침을 해야 데이터를 제대로 받아올까?
   useEffect(async () => {
-    const { userInfo } = await aixos({
-      method: "GET",
-      url: "http://localhost:4000/users/userinfo",
-      headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
-    }).then((res) => res.data);
-
-    dispatch(handleUserInfo(userInfo));
+    dispatch(handleLoadingOn(true));
+    try {
+      // const { userInfo } = await userService.userInfo();
+      const { userInfo } = await aixos({
+        method: "GET",
+        url: "http://localhost:4000/users/userinfo",
+        headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
+      }).then((res) => res.data);
+      dispatch(handleUserInfo(userInfo));
+    } catch (err) {
+      throw err;
+    } finally {
+      dispatch(handleLoadingOn(false));
+    }
   }, [currentPage]);
 
   // TODO : 친구 추가 후, 친구 목록 어떻게 다시 불러오게 할까?
@@ -57,6 +66,7 @@ export default function MainPage() {
     dispatch(handleLoadingOn(true));
     // 데이터를 받아오기
     try {
+      // const result = await userService.getFriends();
       const result = await axios({
         method: "GET",
         url: "http://localhost:4000/users/friends",
@@ -65,6 +75,8 @@ export default function MainPage() {
       result
         ? dispatch(handleUserFriends(result.filter((el) => el.status === 0)))
         : dispatch(handleUserFriends([]));
+
+      console.log(userFriends);
     } catch (err) {
       // 실패할 경우
       console.log(err);
@@ -74,6 +86,7 @@ export default function MainPage() {
     }
     // 페이지 바뀔때
   }, [currentPage]);
+
   // * TODO : 친구 목록이 없으면 어떻게 해줘야할까 --- OK
   // 친구목록이 비었을 경우를 만들어주면 됨
   // 채팅방의 정보를 읽어오는 함수

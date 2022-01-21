@@ -27,7 +27,7 @@ const userApis = {
   userInfo: async () => {
     const result = await axiosInstance({
       method: "GET",
-      url: "users/userinfo",
+      url: "/users/userinfo",
       headers,
     });
 
@@ -37,7 +37,7 @@ const userApis = {
   getFriends: async () => {
     const result = await axiosInstance({
       method: "GET",
-      url: "users/friends",
+      url: "/users/friends",
       headers,
     });
 
@@ -47,7 +47,7 @@ const userApis = {
   getRooms: async () => {
     const result = await axiosInstance({
       method: "GET",
-      url: "users/rooms",
+      url: "/users/rooms",
       headers,
     });
 
@@ -57,7 +57,7 @@ const userApis = {
   // signUp: async (email, username, password, userbirth, agreements) => {
   //   const result = await axiosInstance({
   //     method: "POST",
-  //     url: "users/signup",
+  //     url: "/users/signup",
   //     withCredentials: true,
   //     data: { email, username, password, userbirth, agreements },
   //   });
