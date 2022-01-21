@@ -80,3 +80,29 @@ export function checkInvalidString(string, email) {
     return true;
   }
 }
+
+export function filterDataByKeyWord(data, keyword) {
+  const len = keyword.length;
+  const newData = data.split("");
+  const arr = [];
+  for (let i = 0; i < newData.length; i++) {
+    if (i + len <= newData.length) {
+      arr.push(newData.slice(i, i + len).join(""));
+    }
+  }
+
+  const result = arr.filter((el) => el === keyword);
+  if (result.length) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+export function sortDataToAlphabeticalOrder(data) {
+  data.sort((a, b) => {
+    if (a.username < b.username) {
+      return -1;
+    }
+  });
+}

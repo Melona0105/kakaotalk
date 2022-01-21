@@ -1,6 +1,9 @@
+import react, { useState } from "react";
 import "../../css/components/settings/FriendSetting.css";
+import FriendStatus from "./FriendStatus";
 
 export default function FriendSetting() {
+  const [isFriendsOn, setIsFriendsOn] = useState(false);
   return (
     <div className="friend-setting-container">
       <div className="friend-setting-item">
@@ -8,7 +11,15 @@ export default function FriendSetting() {
         <div className="friend-setting-item-text">
           숨김 / 차단된 친구 목록을 관리할 수 있습니다.
         </div>
-        <div className="friend-setting-view-button">목록 보기</div>
+        <div
+          className="friend-setting-view-button"
+          onClick={() => {
+            setIsFriendsOn(!isFriendsOn);
+          }}
+        >
+          목록 보기
+        </div>
+        {isFriendsOn && <FriendStatus />}
       </div>
       <div className="friend-setting-item">
         <div className="friend-setting-item-title">생일 친구</div>

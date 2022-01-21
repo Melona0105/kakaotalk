@@ -35,6 +35,7 @@
   font-weight: 600;
   width: 80px;
   height: 30px;
+  cursor: pointer;
 }
 input[class="friend-birth-button"] {
   display: none;
