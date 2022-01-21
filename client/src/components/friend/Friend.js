@@ -41,9 +41,11 @@ export default function Friend({ id, src, name, comment, music, option }) {
         }
       }}
       onContextMenuCapture={(e) => {
-        e.preventDefault();
-        setIsRightButtonOn(true);
-        setSettingLocation({ top: e.pageY, left: e.pageX });
+        if (!option) {
+          e.preventDefault();
+          setIsRightButtonOn(true);
+          setSettingLocation({ top: e.pageY, left: e.pageX });
+        }
       }}
     >
       <div className="friend-profile">
@@ -56,6 +58,7 @@ export default function Friend({ id, src, name, comment, music, option }) {
       {music && <Melon music={music} />}
       {isRightButtonOn && (
         <FriendMouseMenu
+          username={name}
           location={settingLocation}
           setIsRightButtonOn={setIsRightButtonOn}
         />

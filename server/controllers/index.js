@@ -13,6 +13,7 @@ module.exports = {
   // friends
   findFriend: require("./friends/findFriend"),
   addFriend: require("./friends/addFriend"),
+  deleteFriend: require("./friends/deleteFriend"),
 
   // rooms
   getRoomId: require("./rooms/getRoomId"),

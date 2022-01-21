@@ -1,4 +1,3 @@
-require("dotenv").config();
 const db = require("../../database/");
 
 module.exports = async function findFriend(req, res) {

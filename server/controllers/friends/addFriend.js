@@ -1,5 +1,3 @@
-// const { User, Friend } = require("../../models");
-
 const db = require("../../database");
 
 module.exports = async function addFriend(req, res) {
