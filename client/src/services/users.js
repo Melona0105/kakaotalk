@@ -26,6 +26,49 @@ const userService = {
       throw err;
     }
   },
+
+  userInfo: async () => {
+    try {
+      return await Apis.users.userInfo();
+    } catch (err) {
+      throw err;
+    }
+  },
+
+  getFriends: async () => {
+    try {
+      return await Apis.users.getFriends();
+    } catch (err) {
+      throw err;
+    }
+  },
+
+  getRooms: async () => {
+    try {
+      const { rooms } = await Apis.users.getRooms();
+      const result = [];
+      for (let i = 0; i < rooms.length; i++) {
+        if (rooms[i]) {
+          result.push(rooms[i]);
+        }
+      }
+      return result;
+    } catch (err) {
+      throw err;
+    }
+  },
+
+  // signUp: async ({ email, username, password, userbirth, agreements }) => {
+  //   try {
+  //     const result = await Apis.users
+  //       .signUp(email, username, password, userbirth, agreements)
+  //       .then(async () => {
+  //         await Apis.users.login(email, password);
+  //       });
+  //   } catch (err) {
+  //     throw err;
+  //   }
+  // },
 };
 
 export default userService;

@@ -9,11 +9,9 @@ import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import InnerRoom from "./components/chatting room/InnerRoom";
 import SignUp from "./components/users/signup";
-import FindAccount from "./components/users/FindAccount";
 import DetailSetting from "./components/settings/DetailSetting";
 import AddFriend from "./components/friend/AddFriend";
 
-// TODO : 계정찾기 만들어야함
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
@@ -22,7 +20,6 @@ ReactDOM.render(
           <Routes>
             <Route path="/" element={<App />} />
             <Route path="/room/:room_id" element={<InnerRoom />} />
-            <Route path="/account" element={<FindAccount />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/setting" element={<DetailSetting />} />
             <Route path="/friend" element={<AddFriend />} />

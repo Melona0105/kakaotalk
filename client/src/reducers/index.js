@@ -16,7 +16,7 @@ const persistConfig = {
   storage,
 };
 
-const rootReducer = combineReducers({
+const appReducer = combineReducers({
   SearchKeyWordReducer,
   SearchOnReducer,
   LoginReducer,
@@ -27,4 +27,4 @@ const rootReducer = combineReducers({
   UserFriendsInfoReducer,
 });
 
-export default persistReducer(persistConfig, rootReducer);
+export default persistReducer(persistConfig, appReducer);
