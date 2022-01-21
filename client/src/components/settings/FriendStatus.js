@@ -53,12 +53,23 @@ export default function FriendStatus() {
     setSortedData(nextState);
   }, [currentKeyword]);
 
+  function handleMenuStyle(input) {
+    return currentStatus === input
+      ? {
+          color: "#000",
+          borderBottom: "1px solid #000",
+          fontWeight: "600",
+        }
+      : {};
+  }
+
   return (
     <div className="friend-status-container">
       <div className="friend-status-header">
         <div>친구 관리</div>
         <div className="friend-status-menu">
           <div
+            style={handleMenuStyle(1)}
             onClick={() => {
               setCurrentStatus(1);
               setCurrentKeyword("");
@@ -67,6 +78,7 @@ export default function FriendStatus() {
             숨김 친구
           </div>
           <div
+            style={handleMenuStyle(2)}
             onClick={() => {
               setCurrentStatus(2);
               setCurrentKeyword("");

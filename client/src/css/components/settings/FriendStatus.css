@@ -27,7 +27,6 @@
 
 .friend-status-menu {
   display: flex;
-
   width: 100%;
   justify-content: space-around;
   height: 30px;
@@ -37,7 +36,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border-bottom: 1px solid #919991;
+  border-bottom: 1px solid #adb4ad;
+  color: #adb4ad;
   flex: 1;
 }
 

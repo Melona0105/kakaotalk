@@ -4,11 +4,9 @@ export default function SettingNav({
   setCurrentSetting,
   index,
 }) {
-  const style =
-    currentSetting === index ? { backgroundColor: "#e6e6e6" } : { undefined };
   return (
     <div
-      style={style}
+      style={{ backgroundColor: currentSetting === index && "#e6e6e6" }}
       onClick={() => {
         setCurrentSetting(index);
       }}
