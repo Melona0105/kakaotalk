@@ -45,14 +45,7 @@ const userService = {
 
   getRooms: async () => {
     try {
-      const { rooms } = await Apis.users.getRooms();
-      const result = [];
-      for (let i = 0; i < rooms.length; i++) {
-        if (rooms[i]) {
-          result.push(rooms[i]);
-        }
-      }
-      return result;
+      return await Apis.users.getRooms();
     } catch (err) {
       throw err;
     }

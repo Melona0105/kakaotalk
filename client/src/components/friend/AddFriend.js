@@ -1,12 +1,13 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "../../css/components/friend/AddFriend.css";
 import reset from "../../images/signup/reset button.png";
 import { handleLoadingOn, handleUserFriends } from "../../actions";
 import FriendInfo from "./FriendInfo";
 
 export default function AddFriend() {
+  const { userFriends } = useSelector((state) => state.UserFriendsInfoReducer);
   const dispatch = useDispatch();
   const [isInputFill, setIsInputFill] = useState(false);
   const [inputEmail, setInputEmail] = useState("");
@@ -48,6 +49,8 @@ export default function AddFriend() {
     // 엔터를 누르면 서버에서 친구인지 아닌지를 확인한다.
   }
 
+  console.log(userFriends);
+  // ! 리덕스로 왜 둘이 연결이 안될까
   async function AddFriendToServer() {
     dispatch(handleLoadingOn(true));
     try {
@@ -132,10 +135,8 @@ export default function AddFriend() {
               }
               onClick={() => {
                 if (!isFriend && isEmailExist) {
-                  // 왜 이거로 바꿔도 상태가 안 바뀌지?
                   AddFriendToServer();
                 }
-                // 친구를 추가하는 시점에서 밖의 상태를 건드려서 렌더링을 시킨다 -> 하나 만들지 기존에 있는거 활용할 수 있을지 찾아보기
               }}
             >
               친구 추가

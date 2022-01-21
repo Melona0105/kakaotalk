@@ -8,7 +8,7 @@ import aixos from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { handleLoadingOn, handleUserInfo, handleUserFriends } from "../actions";
 import axios from "axios";
-import userService from "../services/users";
+import Service from "../services";
 
 export default function MainPage() {
   const dispatch = useDispatch();
@@ -42,16 +42,18 @@ export default function MainPage() {
     setRoomData(data);
   }
 
-  // TODO : 왜 API로 바꾸면 처음에 새로고침을 해야 데이터를 제대로 받아올까?
+  // TODO : 친구 추가 후, 친구 목록 어떻게 다시 불러오게 할까?
+  // * 왜 이러면 한박자 늦을까?
   useEffect(async () => {
     dispatch(handleLoadingOn(true));
     try {
-      // const { userInfo } = await userService.userInfo();
+      // const { userInfo } = await Service.user.userInfo();
       const { userInfo } = await aixos({
         method: "GET",
         url: "http://localhost:4000/users/userinfo",
         headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
       }).then((res) => res.data);
+
       dispatch(handleUserInfo(userInfo));
     } catch (err) {
       throw err;
@@ -61,12 +63,14 @@ export default function MainPage() {
   }, [currentPage]);
 
   // TODO : 친구 추가 후, 친구 목록 어떻게 다시 불러오게 할까?
+  // ! 리덕스로 왜 둘이 연결이 안될까
+  // * 연결되면 그냥 친구정보를 리덕스로 유지하고 이걸 상태를 바꾸는 식으로 하면 될것 같은데... 왜?
   useEffect(async () => {
     // 데이터 받아오기전에, 로딩 시작
     dispatch(handleLoadingOn(true));
     // 데이터를 받아오기
     try {
-      // const result = await userService.getFriends();
+      // const result = await Service.user.getFriends();
       const result = await axios({
         method: "GET",
         url: "http://localhost:4000/users/friends",
@@ -75,8 +79,6 @@ export default function MainPage() {
       result
         ? dispatch(handleUserFriends(result.filter((el) => el.status === 0)))
         : dispatch(handleUserFriends([]));
-
-      console.log(userFriends);
     } catch (err) {
       // 실패할 경우
       console.log(err);
@@ -86,11 +88,11 @@ export default function MainPage() {
     }
     // 페이지 바뀔때
   }, [currentPage]);
-
   // * TODO : 친구 목록이 없으면 어떻게 해줘야할까 --- OK
   // 친구목록이 비었을 경우를 만들어주면 됨
   // 채팅방의 정보를 읽어오는 함수
   useEffect(async () => {
+    // const { rooms } = await Service.user.getRooms();
     const { rooms } = await axios({
       method: "GET",
       url: "http://localhost:4000/users/rooms",
@@ -121,7 +123,6 @@ export default function MainPage() {
       const now = result[i]; // 이번 차례 배열
       now[now.length - 1].view = newMsg[i];
     }
-
     return result;
   }
 

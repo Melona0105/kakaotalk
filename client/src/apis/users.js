@@ -50,7 +50,6 @@ const userApis = {
       url: "/users/rooms",
       headers,
     });
-
     return result.data;
   },
 
