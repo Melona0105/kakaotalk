@@ -1,8 +1,8 @@
-import "../../css/components/settings/DetailSetting.css";
+import "../../../css/components/settings/detailSetting/SettingMain.css";
 import SettingNav from "./SettingNav";
 import { useState } from "react";
 import ProfileSetting from "./ProfileSetting";
-import FriendSetting from "./FriendSetting";
+import FriendSetting from "./friend/FriendSetting";
 
 export default function DetailSetting() {
   const [currentSetting, setCurrentSetting] = useState(0);

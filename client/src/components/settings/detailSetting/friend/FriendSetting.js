@@ -1,5 +1,5 @@
 import react, { useState } from "react";
-import "../../css/components/settings/FriendSetting.css";
+import "../../../../css/components/settings/detailSetting/friend/FriendSetting.css";
 import FriendStatus from "./FriendStatus";
 
 export default function FriendSetting() {

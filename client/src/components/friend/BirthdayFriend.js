@@ -6,7 +6,6 @@ import "../../css/components/friend/BirthdayFriend.css";
 
 export default function BirthdayFriend({ birthData }) {
   const [isDetailOn, setIsDetailOn] = useState(true);
-  // TODO : 클릭하면, 생일인 친구 데이터 불러온거 띄워주기
   return (
     <div className="birthday-friend-container">
       <div>

@@ -9,7 +9,7 @@ import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import InnerRoom from "./components/chatting room/InnerRoom";
 import SignUp from "./components/users/signup";
-import DetailSetting from "./components/settings/DetailSetting";
+import SettingMain from "./components/settings/detailSetting/SettingMain";
 import AddFriend from "./components/friend/AddFriend";
 
 ReactDOM.render(
@@ -21,7 +21,7 @@ ReactDOM.render(
             <Route path="/" element={<App />} />
             <Route path="/room/:room_id" element={<InnerRoom />} />
             <Route path="/signup" element={<SignUp />} />
-            <Route path="/setting" element={<DetailSetting />} />
+            <Route path="/setting" element={<SettingMain />} />
             <Route path="/friend" element={<AddFriend />} />
           </Routes>
         </BrowserRouter>

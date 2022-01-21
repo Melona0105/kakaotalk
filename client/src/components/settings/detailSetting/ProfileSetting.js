@@ -1,10 +1,10 @@
-import user1 from "../../images/friend/user1.png";
+import user1 from "../../../images/friend/user1.png";
 import { useSelector } from "react-redux";
-import "../../css/components/settings/ProfileSetting.css";
+import "../../../css/components/settings/detailSetting/ProfileSetting.css";
 import { useState } from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import { handleLoadingOn } from "../../actions";
+import { handleLoadingOn } from "../../../actions";
 
 export default function Profile() {
   const dispatch = useDispatch();

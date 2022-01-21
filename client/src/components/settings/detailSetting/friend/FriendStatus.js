@@ -1,10 +1,10 @@
 import react, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { handleLoadingOn } from "../../actions";
+import { handleLoadingOn } from "../../../../actions";
 import axios from "axios";
-import "../../css/components/settings/FriendStatus.css";
-import SearchBar from "../etc/SearchBar";
-import { filterDataByKeyWord } from "../../functions";
+import "../../../../css/components/settings/detailSetting/friend/FriendStatus.css";
+import SearchBar from "../../../etc/SearchBar";
+import { filterDataByKeyWord } from "../../../../functions";
 import FriendStatusCard from "./FriendStatusCard";
 
 export default function FriendStatus() {
