@@ -20,9 +20,8 @@ export default function FriendPage({
   const { isSearchOn } = useSelector((state) => state.SearchOnReducer);
   const { keyWord } = useSelector((state) => state.SearchKeyWordReducer);
   const dispatch = useDispatch();
-
   let friendDataFromServer;
-  if (!myFriend) {
+  if (!myFriend || myFriend.length === 0) {
     friendDataFromServer = [
       {
         photo: sample,

@@ -62,8 +62,7 @@ export default function MainPage() {
         url: "http://localhost:4000/users/friends",
         headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
       }).then((res) => res.data);
-      console.log(friendData);
-      setMyFriend(friendData);
+      setMyFriend(friendData.filter((el) => el.status === 0));
     } catch (err) {
       console.log(err);
     } finally {
