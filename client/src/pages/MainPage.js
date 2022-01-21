@@ -14,6 +14,7 @@ export default function MainPage() {
   const dispatch = useDispatch();
   const { currentPage } = useSelector((state) => state.CurrentPageReducer);
   const { userFriends } = useSelector((state) => state.UserFriendsInfoReducer);
+  const { isLoadingOn } = useSelector((state) => state.LoadingReducer);
   const [isNewData, setIsNewData] = useState(false);
   const { isMsgChange } = useSelector((state) => state.MsgChangeReducer);
   const { id } = useSelector((state) => state.UserInfoReducer);
@@ -89,6 +90,7 @@ export default function MainPage() {
       dispatch(handleLoadingOn(false));
     }
     // 페이지 바뀔때
+    // ! userFriends 받아오게하면 무한렌더링 걸림 ;
   }, [currentPage]);
   // * TODO : 친구 목록이 없으면 어떻게 해줘야할까 --- OK
   // 친구목록이 비었을 경우를 만들어주면 됨

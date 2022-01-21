@@ -24,6 +24,7 @@ export default function AddFriend() {
     setIsErrorOn(false);
     setIscomplete(false);
     setIsFriend(false);
+    dispatch(handleLoadingOn(true));
     try {
       const { status, data } = await axios({
         method: "POST",
@@ -44,6 +45,8 @@ export default function AddFriend() {
     } catch {
       setIsEmailExist(false);
       setIsErrorOn(true);
+    } finally {
+      dispatch(handleLoadingOn(false));
     }
 
     // 엔터를 누르면 서버에서 친구인지 아닌지를 확인한다.

@@ -1,5 +1,5 @@
 import react, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { handleLoadingOn } from "../../../../actions";
 import axios from "axios";
 import "../../../../css/components/settings/detailSetting/friend/FriendStatus.css";
@@ -13,6 +13,7 @@ export default function FriendStatus() {
   const [friendStatusData, setFriendStatusData] = useState([]);
   const [currentStatus, setCurrentStatus] = useState(1);
   const [sortedData, setSortedData] = useState([]);
+  // const { userFriends } = useSelector((state) => state.UserFriendsInfoReducer);
   const friendData = currentKeyword === "" ? friendStatusData : sortedData;
 
   function searchOnChange(e) {
@@ -24,7 +25,6 @@ export default function FriendStatus() {
       setCurrentKeyword("");
     }
   }
-
   // 친구목록 불러봐서 뿌려준다.
 
   useEffect(async () => {
@@ -35,6 +35,7 @@ export default function FriendStatus() {
         url: "http://localhost:4000/users/friends",
         headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
       }).then((res) => res.data);
+      console.log(friendData);
       setFriendStatusData(
         friendData.filter((el) => el.status === currentStatus)
       );
