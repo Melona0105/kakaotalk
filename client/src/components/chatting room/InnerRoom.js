@@ -30,17 +30,19 @@ export default function InnerRoom() {
   const dispatch = useDispatch();
   const socketRef = useRef();
 
+  const { status } = roomData;
+  console.log(status);
   useEffect(() => {
     // 소켓이 존재하지 않으면, 소켓을 열어준다.
     const client = io("http://localhost:4000");
     client.on("connect", () => {
-      console.log("connected");
+      // console.log("connected");
     });
     client.on("disconnect", () => {
       console.log("discoonected");
     });
     client.on("message", (message) => {
-      // 불러오기전에, 한번 데이터를 새로 받아줘야 함 
+      // 불러오기전에, 한번 데이터를 새로 받아줘야 함
       dispatch(handleIsMsgChange(!isMsgChange));
       setCurrentChat([...currentChat, message]);
     });
@@ -146,31 +148,40 @@ export default function InnerRoom() {
           </div>
         </div>
         <div className="inner-room-input-area">
-          <input
-            value={message}
-            onChange={(e) => {
-              setMessage(e.target.value);
-            }}
-            onKeyPress={(e) => {
-              if (e.key === "Enter" && isMessageFill) {
-                sendMsg();
-              }
-            }}
-          />
-          <div className="send-button-container">
-            {isMessageFill ? (
-              <div
-                className="send-button-on"
-                onClick={() => {
-                  sendMsg();
+          {status === 2 ? (
+            <div className="block-message">
+              차단친구와는 대화가 불가능합니다.
+            </div>
+          ) : (
+            <>
+              {" "}
+              <input
+                value={message}
+                onChange={(e) => {
+                  setMessage(e.target.value);
                 }}
-              >
-                전송
+                onKeyPress={(e) => {
+                  if (e.key === "Enter" && isMessageFill) {
+                    sendMsg();
+                  }
+                }}
+              />
+              <div className="send-button-container">
+                {isMessageFill ? (
+                  <div
+                    className="send-button-on"
+                    onClick={() => {
+                      sendMsg();
+                    }}
+                  >
+                    전송
+                  </div>
+                ) : (
+                  <div className="send-button-off">전송</div>
+                )}
               </div>
-            ) : (
-              <div className="send-button-off">전송</div>
-            )}
-          </div>
+            </>
+          )}
         </div>
       </div>
     </div>

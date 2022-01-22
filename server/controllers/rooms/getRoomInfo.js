@@ -8,7 +8,10 @@ module.exports = async function getRoomInfo(req, res) {
 
   try {
     db.query(
-      `select * from Users LEFT JOIN users_in_rooms ON users_in_rooms.user_id=Users.id where room_id=${room_id}`,
+      `select U.id, U.email, U.username, U.photo, F.status from Users as U
+      LEFT JOIN users_in_rooms as UR ON UR.user_id=U.id
+      left join friends as F ON F.friend_id=U.id
+      where room_id="${room_id}" and U.id!="${user_id}"`,
       (err, result) => {
         if (err) {
           throw err;

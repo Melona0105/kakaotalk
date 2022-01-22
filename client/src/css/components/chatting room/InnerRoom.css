@@ -72,6 +72,14 @@
   vertical-align: baseline;
 }
 
+.block-message {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  color: #b0b0b0;
+}
+
 .send-button-container {
   display: flex;
   align-items: center;
