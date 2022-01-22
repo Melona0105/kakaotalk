@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Nav from "../components/nav/Nav";
 import FriendPage from "../pages/FriendPage";
 import "../css/pages/MainPage.css";
@@ -7,6 +7,7 @@ import SeeMorePage from "./SeeMorePage";
 import { useDispatch, useSelector } from "react-redux";
 import { handleLoadingOn, handleUserInfo, handleUserFriends } from "../actions";
 import Service from "../services";
+import { io } from "socket.io-client";
 
 export default function MainPage() {
   const dispatch = useDispatch();
@@ -18,6 +19,27 @@ export default function MainPage() {
   const { id } = useSelector((state) => state.UserInfoReducer);
   const [roomData, setRoomData] = useState([]);
   const [totalNewMessage, setTotalNewMessage] = useState(0);
+  const [isRedering, setIsRedering] = useState(false);
+  const socketRef = useRef();
+
+  useEffect(() => {
+    // 소켓이 존재하지 않으면, 소켓을 열어준다.
+    const client = io("http://localhost:4000");
+    client.on("connect", () => {
+      console.log("connect");
+    });
+    client.on("disconnect", () => {
+      console.log("discoonected");
+    });
+    client.on("friends", (message) => {
+      // 여기도 socket 연결을 해놓고, 새로 데이터가 올때마다 새로 렌더링한다.
+      setIsRedering(!isRedering);
+    });
+    socketRef.current = client;
+    return () => {
+      client.removeAllListeners();
+    };
+  }, [isRedering]);
 
   // 들어온 데이터 안의 배열들을 순회하면서 거기서 일치하는 값을 뽑아낸다.
   function getNewMessage(array) {
@@ -46,7 +68,7 @@ export default function MainPage() {
   useEffect(async () => {
     dispatch(handleLoadingOn(true));
     try {
-      const userInfo = await Service.user.fetchUserInfo();
+      const userInfo = await Service.users.fetchUserInfo();
       dispatch(handleUserInfo(userInfo));
     } catch (err) {
       throw err;
@@ -63,7 +85,7 @@ export default function MainPage() {
     dispatch(handleLoadingOn(true));
     // 데이터를 받아오기
     try {
-      const result = await Service.user.getFriends();
+      const result = await Service.users.getFriends();
       result
         ? dispatch(handleUserFriends(result.filter((el) => el.status === 0)))
         : dispatch(handleUserFriends([]));
@@ -76,13 +98,13 @@ export default function MainPage() {
     }
     // 페이지 바뀔때
     // ! userFriends 받아오게하면 무한렌더링 걸림 ;
-  }, [currentPage]);
+  }, [currentPage, isRedering]);
 
   // * TODO : 친구 목록이 없으면 어떻게 해줘야할까 --- OK
   // 친구목록이 비었을 경우를 만들어주면 됨
   // 채팅방의 정보를 읽어오는 함수
   useEffect(async () => {
-    const { rooms } = await Service.user.getRooms();
+    const { rooms } = await Service.users.getRooms();
     const result = [];
     for (let i = 0; i < rooms.length; i++) {
       if (rooms[i]) {

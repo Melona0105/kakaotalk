@@ -8,6 +8,7 @@ module.exports = (server) => {
 
   io.on("connection", (socket) => {
     socket.on("message", (newdata) => {
+      console.log(newdata);
       try {
         // 방 번호와, 채팅 내역
         const { room_id, newMsg } = newdata;
@@ -26,6 +27,11 @@ module.exports = (server) => {
         console.log(err);
       }
       // 이 공간에 이제 db 쿼리 작성
+    });
+
+    socket.on("friends", (data) => {
+      console.log(data);
+      io.emit("friends", "data");
     });
   });
 };

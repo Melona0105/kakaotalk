@@ -22,6 +22,7 @@ export default function ChattingPage({ isNewData, roomData, setIsNewData }) {
       console.log("discoonected");
     });
     client.on("message", (message) => {
+      console.log(message);
       // 여기도 socket 연결을 해놓고, 새로 데이터가 올때마다 새로 렌더링한다.
       setIsNewData(!isNewData);
     });
@@ -29,7 +30,7 @@ export default function ChattingPage({ isNewData, roomData, setIsNewData }) {
     return () => {
       client.removeAllListeners();
     };
-  }, [isNewData, currentPage]);
+  }, []);
 
   // 현재 배열에 새 데이터값을 합친다. 어떻게?
   // 항상 포문돌리는건 나중에 한번씩 보면서 어떻게 포문말고 다른거로 할지 고민해보기

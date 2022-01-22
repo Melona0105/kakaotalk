@@ -1,13 +1,13 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState, useRef } from "react";
+import { useDispatch } from "react-redux";
 import "../../css/components/friend/AddFriend.css";
 import reset from "../../images/signup/reset button.png";
 import { handleLoadingOn, handleUserFriends } from "../../actions";
 import FriendInfo from "./FriendInfo";
+import { io } from "socket.io-client";
 
 export default function AddFriend() {
-  const { userFriends } = useSelector((state) => state.UserFriendsInfoReducer);
   const dispatch = useDispatch();
   const [isInputFill, setIsInputFill] = useState(false);
   const [inputEmail, setInputEmail] = useState("");
@@ -16,6 +16,28 @@ export default function AddFriend() {
   const [friendInfo, setFriendInfo] = useState(undefined);
   const [isFriend, setIsFriend] = useState(false);
   const [isComplete, setIscomplete] = useState(false);
+  const socketRef = useRef();
+
+  useEffect(() => {
+    // 소켓이 존재하지 않으면, 소켓을 열어준다.
+    const client = io("http://localhost:4000");
+    client.on("connect", () => {
+      // console.log("connected");12
+    });
+    client.on("disconnect", () => {
+      console.log("discoonected");
+    });
+    client.on("friends", (message) => {
+      // 여기도 socket 연결을 해놓고, 새로 데이터가 올때마다 새로 렌더링한다.
+      console.log(message);
+      console.log(1);
+    });
+    socketRef.current = client;
+    return () => {
+      client.removeAllListeners();
+    };
+  }, [isComplete]);
+
   useEffect(() => {
     inputEmail ? setIsInputFill(true) : setIsInputFill(false);
   }, [inputEmail]);
@@ -52,8 +74,6 @@ export default function AddFriend() {
     // 엔터를 누르면 서버에서 친구인지 아닌지를 확인한다.
   }
 
-  console.log(userFriends);
-  // ! 리덕스로 왜 둘이 연결이 안될까
   async function AddFriendToServer() {
     dispatch(handleLoadingOn(true));
     try {
@@ -67,15 +87,7 @@ export default function AddFriend() {
       // 추가하고 완료되었다고 상태 변경
       setIscomplete(true);
       // 바뀌었으니, 친구데이터를 다시 새로 받아온다.
-
-      const newData = await axios({
-        method: "GET",
-        url: "http://localhost:4000/users/friends",
-        headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
-      }).then((res) => res.data);
-      console.log(newData);
-
-      dispatch(handleUserFriends(newData));
+      socketRef.current.emit("friends", "데이터입니다.");
     } catch (err) {
       console.log(err);
       // 친구가 추가되면 창을 닫아주고, 서버로부터 데이터를 다시 받아온다.

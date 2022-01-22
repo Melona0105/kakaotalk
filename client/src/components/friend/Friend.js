@@ -41,8 +41,8 @@ export default function Friend({ id, src, name, comment, music, option }) {
         }
       }}
       onContextMenuCapture={(e) => {
-        if (!option) {
-          e.preventDefault();
+        e.preventDefault();
+        if (!option && !isRightButtonOn) {
           setIsRightButtonOn(true);
           setSettingLocation({ top: e.pageY, left: e.pageX });
         }

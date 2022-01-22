@@ -31,7 +31,6 @@ export default function InnerRoom() {
   const socketRef = useRef();
 
   const { status } = roomData;
-  console.log(status);
   useEffect(() => {
     // 소켓이 존재하지 않으면, 소켓을 열어준다.
     const client = io("http://localhost:4000");
@@ -43,6 +42,7 @@ export default function InnerRoom() {
     });
     client.on("message", (message) => {
       // 불러오기전에, 한번 데이터를 새로 받아줘야 함
+      console.log(message);
       dispatch(handleIsMsgChange(!isMsgChange));
       setCurrentChat([...currentChat, message]);
     });
@@ -88,6 +88,7 @@ export default function InnerRoom() {
   useEffect(async () => {
     // 채팅 내용들을 가져오는 함수 처음에만 가져오고 다시들어오면 그때 넣어준다.
     try {
+      // ! 가져오는것 다 쿼리파라미터로
       const { chats } = await axios({
         method: "POST",
         url: "http://localhost:4000/chats",
@@ -154,7 +155,6 @@ export default function InnerRoom() {
             </div>
           ) : (
             <>
-              {" "}
               <input
                 value={message}
                 onChange={(e) => {

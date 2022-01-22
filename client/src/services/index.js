@@ -1,7 +1,9 @@
-import userService from "./users"
+import friendService from "./friends";
+import userService from "./users";
 
 const Service = {
-  user: userService,
-}
+  users: userService,
+  friends: friendService,
+};
 
 export default Service;
