@@ -22,15 +22,10 @@ export default function AddFriend() {
     // 소켓이 존재하지 않으면, 소켓을 열어준다.
     const client = io("http://localhost:4000");
     client.on("connect", () => {
-      // console.log("connected");12
+      // console.log("connected");
     });
     client.on("disconnect", () => {
       console.log("discoonected");
-    });
-    client.on("friends", (message) => {
-      // 여기도 socket 연결을 해놓고, 새로 데이터가 올때마다 새로 렌더링한다.
-      console.log(message);
-      console.log(1);
     });
     socketRef.current = client;
     return () => {

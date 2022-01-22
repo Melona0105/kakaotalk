@@ -8,7 +8,6 @@ module.exports = (server) => {
 
   io.on("connection", (socket) => {
     socket.on("message", (newdata) => {
-      console.log(newdata);
       try {
         // 방 번호와, 채팅 내역
         const { room_id, newMsg } = newdata;
@@ -30,7 +29,6 @@ module.exports = (server) => {
     });
 
     socket.on("friends", (data) => {
-      console.log(data);
       io.emit("friends", "data");
     });
   });
