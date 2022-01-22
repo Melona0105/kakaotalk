@@ -7,7 +7,7 @@ import user from "../../images/friend/user1.png";
 import Chatting from "./chattings/Chatting";
 import { useParams } from "react-router-dom";
 import InnerRoomNav from "./InnerRoomNav";
-import { sortChatData, getCurrentTime } from "../../functions";
+import { sortChatData, getCurrentTime } from "../../utils";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useRef, useState } from "react";

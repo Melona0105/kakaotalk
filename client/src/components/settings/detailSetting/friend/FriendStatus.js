@@ -4,7 +4,7 @@ import { handleLoadingOn } from "../../../../actions";
 import axios from "axios";
 import "../../../../css/components/settings/detailSetting/friend/FriendStatus.css";
 import SearchBar from "../../../etc/SearchBar";
-import { filterDataByKeyWord } from "../../../../functions";
+import { filterDataByKeyWord } from "../../../../utils";
 import FriendStatusCard from "./FriendStatusCard";
 import { io } from "socket.io-client";
 

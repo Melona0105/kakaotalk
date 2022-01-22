@@ -10,7 +10,7 @@ import {
   getCurrentTime,
   filterDataByKeyWord,
   sortDataToAlphabeticalOrder,
-} from "../functions";
+} from "../utils";
 import sample from "../images/seemore/kakao talk.svg";
 import "../css/pages/FriendPage.css";
 import SearchBar from "../components/etc/SearchBar";

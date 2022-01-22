@@ -1,5 +1,5 @@
 import "../../../css/components/chatting room/chattings/MyChat.css";
-import { printNewMsgTime } from "../../../functions";
+import { printNewMsgTime } from "../../../utils";
 
 export default function MyChat({ content, time, view }) {
   return (

@@ -1,4 +1,3 @@
-import myphoto from "../../images/friend/my photo.png";
 import "../../css/components/friend/MyProfile.css";
 import Melon from "../etc/Melon";
 import user1 from "../../images/friend/user1.png";

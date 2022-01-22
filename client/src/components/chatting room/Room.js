@@ -1,6 +1,6 @@
 import { useState } from "react";
 import user from "../../images/friend/user1.png";
-import { printNewMsgTime } from "../../functions";
+import { printNewMsgTime } from "../../utils";
 import Popup from "../etc/Popup";
 import "../../css/components/chatting room/Room.css";
 import { useDispatch, useSelector } from "react-redux";

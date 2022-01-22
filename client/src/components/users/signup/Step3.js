@@ -1,7 +1,6 @@
 import ProgressBar from "./ProgressBar";
-import reset_button from "../../../images/signup/reset button.png";
 import "../../../css/components/users/signup/Step3.css";
-import { checkKorean } from "../../../functions";
+import { checkKorean } from "../../../utils";
 import { useEffect, useState } from "react";
 import RemoveButton from "../../etc/RomoveButton";
 

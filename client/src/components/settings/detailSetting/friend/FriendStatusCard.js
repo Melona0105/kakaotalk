@@ -4,7 +4,7 @@ import {
   blockFriend,
   deleteFriend,
   rollbackFriend,
-} from "../../../../functions";
+} from "../../../../utils";
 import { io } from "socket.io-client";
 
 export default function FriendStatusCard({ data, currentStatus }) {

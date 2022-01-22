@@ -1,4 +1,4 @@
-import { printNewMsgTime } from "../../../functions";
+import { printNewMsgTime } from "../../../utils";
 import "../../../css/components/chatting room/chattings/FriendChat.css";
 
 export default function FriendChat({ username, content, time }) {
