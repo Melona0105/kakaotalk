@@ -4,10 +4,8 @@ import FriendPage from "../pages/FriendPage";
 import "../css/pages/MainPage.css";
 import ChattingRoomPage from "./ChattingRoomPage";
 import SeeMorePage from "./SeeMorePage";
-import aixos from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { handleLoadingOn, handleUserInfo, handleUserFriends } from "../actions";
-import axios from "axios";
 import Service from "../services";
 
 export default function MainPage() {
@@ -46,17 +44,9 @@ export default function MainPage() {
   // TODO : 친구 추가 후, 친구 목록 어떻게 다시 불러오게 할까?
   // * 왜 이러면 한박자 늦을까?
   useEffect(async () => {
-    // ! Mysql에서 데이터를 바꾸고 새로고침을해도 데이터가 안 바뀌고 들어오네???? 뭐지???
-    // ! 근데 친구이름은 바꾸면 바로 바뀌는데 내 이름은 왜 안바뀌지?
     dispatch(handleLoadingOn(true));
     try {
-      // ! const { userInfo } = await Service.user.userInfo();
-      const { userInfo } = await aixos({
-        method: "GET",
-        url: "http://localhost:4000/users/userinfo",
-        headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
-      }).then((res) => res.data);
-      // ! console.log(userInfo);
+      const userInfo = await Service.user.fetchUserInfo();
       dispatch(handleUserInfo(userInfo));
     } catch (err) {
       throw err;
@@ -73,12 +63,7 @@ export default function MainPage() {
     dispatch(handleLoadingOn(true));
     // 데이터를 받아오기
     try {
-      // ! const result = await Service.user.getFriends();
-      const result = await axios({
-        method: "GET",
-        url: "http://localhost:4000/users/friends",
-        headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
-      }).then((res) => res.data);
+      const result = await Service.user.getFriends();
       result
         ? dispatch(handleUserFriends(result.filter((el) => el.status === 0)))
         : dispatch(handleUserFriends([]));
@@ -96,12 +81,7 @@ export default function MainPage() {
   // 친구목록이 비었을 경우를 만들어주면 됨
   // 채팅방의 정보를 읽어오는 함수
   useEffect(async () => {
-    // ! const { rooms } = await Service.user.getRooms();
-    const { rooms } = await axios({
-      method: "GET",
-      url: "http://localhost:4000/users/rooms",
-      headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
-    }).then((res) => res.data);
+    const { rooms } = await Service.user.getRooms();
     const result = [];
     for (let i = 0; i < rooms.length; i++) {
       if (rooms[i]) {

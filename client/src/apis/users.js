@@ -1,5 +1,4 @@
 import axiosInstance from "./axios";
-const headers = { authorization: `Bearer ${localStorage.getItem("token")}` };
 
 const userApis = {
   login: async (email, password) => {
@@ -24,21 +23,19 @@ const userApis = {
     return result;
   },
 
-  userInfo: async () => {
+  getUserInfo: async () => {
     const result = await axiosInstance({
       method: "GET",
       url: "/users/userinfo",
-      headers,
     });
 
-    return result.data;
+    return result.data.userInfo;
   },
 
   getFriends: async () => {
     const result = await axiosInstance({
       method: "GET",
       url: "/users/friends",
-      headers,
     });
 
     return result.data;
@@ -48,7 +45,6 @@ const userApis = {
     const result = await axiosInstance({
       method: "GET",
       url: "/users/rooms",
-      headers,
     });
     return result.data;
   },

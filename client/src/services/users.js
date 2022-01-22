@@ -27,9 +27,9 @@ const userService = {
     }
   },
 
-  userInfo: async () => {
+  fetchUserInfo: async () => {
     try {
-      return await Apis.users.userInfo();
+      return await Apis.users.getUserInfo();
     } catch (err) {
       throw err;
     }
