@@ -17,7 +17,7 @@ export default function MainPage() {
   const { isMsgChange } = useSelector((state) => state.MsgChangeReducer);
   const { id } = useSelector((state) => state.UserInfoReducer);
   const [roomData, setRoomData] = useState([]);
-  const [totalNewMsg, setTotalNewMsg] = useState(0);
+  const [totalNewMessage, setTotalNewMessage] = useState(0);
 
   // 들어온 데이터 안의 배열들을 순회하면서 거기서 일치하는 값을 뽑아낸다.
   function getNewMessage(array) {
@@ -77,6 +77,7 @@ export default function MainPage() {
     // 페이지 바뀔때
     // ! userFriends 받아오게하면 무한렌더링 걸림 ;
   }, [currentPage]);
+
   // * TODO : 친구 목록이 없으면 어떻게 해줘야할까 --- OK
   // 친구목록이 비었을 경우를 만들어주면 됨
   // 채팅방의 정보를 읽어오는 함수
@@ -88,8 +89,13 @@ export default function MainPage() {
         result.push(rooms[i]);
       }
     }
-    setTotalNewMsg(getTotalNewMessage(getNewMessage(result)));
-    const answer = applyNewMsgToRoomData(result, getNewMessage(result));
+    // 새 메세지 개수 세기
+    const newMsg = getNewMessage(result);
+    // 전체 개수 세기
+    const totalNewMsg = getTotalNewMessage(newMsg);
+
+    setTotalNewMessage(totalNewMsg);
+    const answer = applyNewMsgToRoomData(result, newMsg);
     getRoomDataFromServer(answer);
   }, [isNewData, isMsgChange, currentPage, userFriends]);
 
@@ -112,7 +118,7 @@ export default function MainPage() {
 
   return (
     <div className="mainpage-container">
-      <Nav currentPage={currentPage} totalNewMsg={totalNewMsg} />
+      <Nav currentPage={currentPage} totalNewMessage={totalNewMessage} />
       {currentPage === 0 && <FriendPage userFriends={userFriends} />}
       {currentPage === 1 && (
         <ChattingRoomPage

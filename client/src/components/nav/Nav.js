@@ -7,7 +7,7 @@ import setting from "../../images/nav/setting.png";
 import NavMenu from "./NavMenu";
 import { useState } from "react";
 import Setting from "../settings/Setting";
-export default function Nav({ currentPage, totalNewMsg }) {
+export default function Nav({ currentPage, totalNewMessage }) {
   const menus = [friend, chat, seemore];
   const [isSettingOn, setIsSettingOn] = useState(false);
   const [settingLocation, setSettingLocation] = useState({ top: 0, left: 0 });
@@ -21,7 +21,7 @@ export default function Nav({ currentPage, totalNewMsg }) {
             currentPage={currentPage}
             index={index}
             src={el}
-            totalNewMsg={totalNewMsg}
+            totalNewMsg={totalNewMessage}
           />
         ))}
       </div>
