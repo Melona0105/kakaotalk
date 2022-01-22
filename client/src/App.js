@@ -4,12 +4,21 @@ import MainPage from "./pages/MainPage";
 import "./app.css";
 import { useSelector, useDispatch } from "react-redux";
 import { handleIsLogin } from "./actions";
+import client from "./Socket";
 
 function App() {
   const { isLogin } = useSelector((state) => state.LoginReducer);
   const { isLoadingOn } = useSelector((state) => state.LoadingReducer);
 
   const dispatch = useDispatch();
+
+  client.on("connect", () => {
+    console.log("connected");
+  });
+
+  client.on("disconnect", () => {
+    console.log("disconnected");
+  });
 
   useEffect(() => {
     localStorage.token

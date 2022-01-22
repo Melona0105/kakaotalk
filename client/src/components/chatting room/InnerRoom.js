@@ -10,8 +10,8 @@ import InnerRoomNav from "./InnerRoomNav";
 import { sortChatData, getCurrentTime } from "../../utils";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useRef, useState } from "react";
-import { io } from "socket.io-client";
+import { useEffect, useState } from "react";
+import client from "../../Socket";
 import { handleIsMsgChange } from "../../actions";
 import "../../css/components/chatting room/InnerRoom.css";
 
@@ -28,29 +28,13 @@ export default function InnerRoom() {
   // 메세지 변화를 리덕스에 넣고, 그거 바뀌면 전부다 알림이 새로고침 되도록 하기
   const { isMsgChange } = useSelector((state) => state.MsgChangeReducer);
   const dispatch = useDispatch();
-  const socketRef = useRef();
-
   const { status } = roomData;
-  useEffect(() => {
-    // 소켓이 존재하지 않으면, 소켓을 열어준다.
-    const client = io("http://localhost:4000");
-    client.on("connect", () => {
-      // console.log("connected");
-    });
-    client.on("disconnect", () => {
-      console.log("discoonected");
-    });
-    client.on("message", (message) => {
-      // 불러오기전에, 한번 데이터를 새로 받아줘야 함
-      console.log(message);
-      dispatch(handleIsMsgChange(!isMsgChange));
-      setCurrentChat([...currentChat, message]);
-    });
-    socketRef.current = client;
-    return () => {
-      client.removeAllListeners();
-    };
-  }, [currentChat]);
+
+  client.on("friends", (message) => {
+    // 여기도 socket 연결을 해놓고, 새로 데이터가 올때마다 새로 렌더링한다.
+    dispatch(handleIsMsgChange(!isMsgChange));
+    setCurrentChat([...currentChat, message]);
+  });
 
   // let sortedData = sortChatData(currentChat);
   // 우선은 준걸 그대로 줘야 빠르게 되니 폼에 담아서 준다.
@@ -71,7 +55,7 @@ export default function InnerRoom() {
     newMsg.content = message;
     const sendData = { room_id, newMsg };
     // 웹소켓 개방
-    socketRef.current.emit("message", sendData);
+    client.emit("message", sendData);
     // 데이터 전송
     setMessage("");
     dispatch(handleIsMsgChange(!isMsgChange));

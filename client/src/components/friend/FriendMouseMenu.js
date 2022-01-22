@@ -1,20 +1,16 @@
 import { useState, useRef } from "react";
 import "../../css/components/friend/FriendMouseMenu.css";
 import { hideFriend, blockFriend, deleteFriend } from "../../utils";
-import { io } from "socket.io-client";
+import client from "../../Socket";
 
 export default function FriendMouseMenu({
   username,
   location,
   setIsRightButtonOn,
 }) {
-  const socketRef = useRef();
-  const client = io("http://localhost:4000");
-  socketRef.current = client;
-
   function clickEvent(callback, username) {
     callback(username);
-    socketRef.current.emit("friends", "change");
+    client.emit("friends", "change");
   }
 
   return (

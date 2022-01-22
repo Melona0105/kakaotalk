@@ -5,7 +5,7 @@ import "../../css/components/friend/AddFriend.css";
 import reset from "../../images/signup/reset button.png";
 import { handleLoadingOn, handleUserFriends } from "../../actions";
 import FriendInfo from "./FriendInfo";
-import { io } from "socket.io-client";
+import client from "../../Socket";
 
 export default function AddFriend() {
   const dispatch = useDispatch();
@@ -16,22 +16,6 @@ export default function AddFriend() {
   const [friendInfo, setFriendInfo] = useState(undefined);
   const [isFriend, setIsFriend] = useState(false);
   const [isComplete, setIscomplete] = useState(false);
-  const socketRef = useRef();
-
-  useEffect(() => {
-    // 소켓이 존재하지 않으면, 소켓을 열어준다.
-    const client = io("http://localhost:4000");
-    client.on("connect", () => {
-      // console.log("connected");
-    });
-    client.on("disconnect", () => {
-      console.log("discoonected");
-    });
-    socketRef.current = client;
-    return () => {
-      client.removeAllListeners();
-    };
-  }, [isComplete]);
 
   useEffect(() => {
     inputEmail ? setIsInputFill(true) : setIsInputFill(false);
@@ -82,7 +66,7 @@ export default function AddFriend() {
       // 추가하고 완료되었다고 상태 변경
       setIscomplete(true);
       // 바뀌었으니, 친구데이터를 다시 새로 받아온다.
-      socketRef.current.emit("friends", "데이터입니다.");
+      client.emit("friends", "데이터입니다.");
     } catch (err) {
       console.log(err);
       // 친구가 추가되면 창을 닫아주고, 서버로부터 데이터를 다시 받아온다.

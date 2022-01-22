@@ -7,39 +7,23 @@ import SeeMorePage from "./SeeMorePage";
 import { useDispatch, useSelector } from "react-redux";
 import { handleLoadingOn, handleUserInfo, handleUserFriends } from "../actions";
 import Service from "../services";
-import { io } from "socket.io-client";
+import client from "../Socket";
 
 export default function MainPage() {
   const dispatch = useDispatch();
   const { currentPage } = useSelector((state) => state.CurrentPageReducer);
   const { userFriends } = useSelector((state) => state.UserFriendsInfoReducer);
-  const { isLoadingOn } = useSelector((state) => state.LoadingReducer);
   const [isNewData, setIsNewData] = useState(false);
   const { isMsgChange } = useSelector((state) => state.MsgChangeReducer);
   const { id } = useSelector((state) => state.UserInfoReducer);
   const [roomData, setRoomData] = useState([]);
   const [totalNewMessage, setTotalNewMessage] = useState(0);
   const [isRedering, setIsRedering] = useState(false);
-  const socketRef = useRef();
 
-  useEffect(() => {
-    // 소켓이 존재하지 않으면, 소켓을 열어준다.
-    const client = io("http://localhost:4000");
-    client.on("connect", () => {
-      // console.log("connect");
-    });
-    client.on("disconnect", () => {
-      console.log("discoonected");
-    });
-    client.on("friends", (message) => {
-      // 여기도 socket 연결을 해놓고, 새로 데이터가 올때마다 새로 렌더링한다.
-      setIsRedering(!isRedering);
-    });
-    socketRef.current = client;
-    return () => {
-      client.removeAllListeners();
-    };
-  }, [isRedering]);
+  client.on("friends", (message) => {
+    // 여기도 socket 연결을 해놓고, 새로 데이터가 올때마다 새로 렌더링한다.
+    setIsRedering(!isRedering);
+  });
 
   // 들어온 데이터 안의 배열들을 순회하면서 거기서 일치하는 값을 뽑아낸다.
   function getNewMessage(array) {

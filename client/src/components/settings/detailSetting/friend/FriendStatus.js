@@ -6,7 +6,7 @@ import "../../../../css/components/settings/detailSetting/friend/FriendStatus.cs
 import SearchBar from "../../../etc/SearchBar";
 import { filterDataByKeyWord } from "../../../../utils";
 import FriendStatusCard from "./FriendStatusCard";
-import { io } from "socket.io-client";
+import client from "../../../../Socket";
 
 export default function FriendStatus() {
   const dispatch = useDispatch();
@@ -16,7 +16,6 @@ export default function FriendStatus() {
   const [sortedData, setSortedData] = useState([]);
   const [isRendering, setIsRendering] = useState(false);
   const friendData = currentKeyword === "" ? friendStatusData : sortedData;
-  const socketRef = useRef();
 
   function searchOnChange(e) {
     setCurrentKeyword(e.target.value);
@@ -27,25 +26,11 @@ export default function FriendStatus() {
       setCurrentKeyword("");
     }
   }
-  // 친구목록 불러봐서 뿌려준다.
 
-  useEffect(() => {
-    // 소켓이 존재하지 않으면, 소켓을 열어준다.
-    const client = io("http://localhost:4000");
-    client.on("connect", () => {
-      // console.log("connected");
-    });
-    client.on("disconnect", () => {
-      console.log("discoonected");
-    });
-    client.on("friends", (message) => {
-      setIsRendering(!isRendering);
-    });
-    socketRef.current = client;
-    return () => {
-      client.removeAllListeners();
-    };
-  }, [isRendering]);
+  // 친구목록 불러봐서 뿌려준다.
+  client.on("friends", (message) => {
+    setIsRendering(!isRendering);
+  });
 
   useEffect(async () => {
     dispatch(handleLoadingOn(true));
