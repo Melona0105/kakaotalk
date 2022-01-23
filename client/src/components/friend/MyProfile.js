@@ -7,7 +7,6 @@ export default function MyProfile() {
   const { photo, username, comment, music } = useSelector(
     (state) => state.UserInfoReducer
   );
-
   return (
     <div className="my-profile">
       <div className="my-profile-img-container">

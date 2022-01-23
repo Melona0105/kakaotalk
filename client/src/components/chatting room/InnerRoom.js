@@ -30,7 +30,7 @@ export default function InnerRoom() {
   const dispatch = useDispatch();
   const { status } = roomData;
 
-  client.on("friends", (message) => {
+  client.on("message", (message) => {
     // 여기도 socket 연결을 해놓고, 새로 데이터가 올때마다 새로 렌더링한다.
     dispatch(handleIsMsgChange(!isMsgChange));
     setCurrentChat([...currentChat, message]);
@@ -84,9 +84,7 @@ export default function InnerRoom() {
     } catch (err) {
       console.log(err);
     }
-  }, [isMsgChange]);
 
-  useEffect(async () => {
     // 방 주인의 데이터를 가져오는 함수
     try {
       const { roomInfo } = await axios({
@@ -99,7 +97,7 @@ export default function InnerRoom() {
     } catch (err) {
       console.log(err);
     }
-  }, []);
+  }, [isMsgChange]);
 
   // 채팅을 새로보내면 새로 렌더링하게 하는 함수
   useEffect(() => {
