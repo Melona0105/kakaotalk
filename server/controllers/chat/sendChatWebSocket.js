@@ -13,7 +13,8 @@ module.exports = (server) => {
         const { room_id, newMsg } = newdata;
         const { user_id, content } = newMsg;
         db.query(
-          `INSERT INTO chats (user_id, content, room_id, view, time) VALUES ("${user_id}", "${content}", "${room_id}", "${1}", "${getCurrentTime()}")`,
+          `INSERT INTO chats (user_id, content, room_id, view, time) 
+           VALUES ("${user_id}", "${content}", "${room_id}", "${1}", "${getCurrentTime()}")`,
           (err, result) => {
             if (err) {
               throw err;

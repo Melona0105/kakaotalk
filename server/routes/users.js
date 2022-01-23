@@ -1,5 +1,7 @@
 const { Router } = require("express");
 
+const upload = require("../multer");
+
 const {
   login,
   signup,
@@ -7,6 +9,8 @@ const {
   checkEmail,
   getFriends,
   getRooms,
+  editUserName,
+  editUserPhoto,
 } = require("../controllers");
 const auth = require("../middlewares/auth");
 
@@ -18,5 +22,6 @@ userRouter.get("/userinfo", auth, userinfo);
 userRouter.post("/email", checkEmail);
 userRouter.get("/friends", auth, getFriends);
 userRouter.get("/rooms", auth, getRooms);
-
+userRouter.put("/username", auth, editUserName);
+userRouter.put("/photo", auth, upload.single("img"), editUserPhoto);
 module.exports = userRouter;

@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const router = require("./routes");
+const path = require("path");
 
 const app = express();
 app.use(
@@ -12,7 +13,7 @@ app.use(
 );
 
 app.use(express.json()); // req.body로 접근가능
-
+app.use(express.static(path.join(__dirname, "public")));
 // '/'로 진입하면 라우터로 보낸다.
 app.use("/", router);
 

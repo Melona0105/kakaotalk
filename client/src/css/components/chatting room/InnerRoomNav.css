@@ -5,8 +5,10 @@
 }
 
 .inner-room-nav-user-img {
-  width: 55px;
+  width: 45px;
+  height: 45px;
   margin-right: 10px;
+  border-radius: 40%;
 }
 
 .inner-room-nav-room-info {
@@ -17,6 +19,10 @@
   justify-content: space-around;
   height: 100%;
   padding-top: 20px;
+}
+
+.inner-room-nav-room-info > :first-child {
+  font-weight: 500;
 }
 
 .inner-room-container-nav {

@@ -1,5 +1,10 @@
 import user1 from "../../../../images/friend/user1.png";
-import { blockFriend, deleteFriend, rollbackFriend } from "../../../../utils";
+import {
+  blockFriend,
+  deleteFriend,
+  rollbackFriend,
+  server,
+} from "../../../../utils";
 import client from "../../../../Socket";
 
 export default function FriendStatusCard({ data, currentStatus }) {
@@ -13,7 +18,7 @@ export default function FriendStatusCard({ data, currentStatus }) {
   return (
     <div className="friend-status-card-container">
       <div>
-        <img src={photo ? photo : user1} />
+        <img src={photo ? `${server}${photo}` : user1} />
         <div>{username}</div>
       </div>
       <div className="friend-status-card-option">

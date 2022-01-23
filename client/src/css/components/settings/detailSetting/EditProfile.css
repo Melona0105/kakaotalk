@@ -1,4 +1,4 @@
-.profile-editor {
+.profile-editor-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -10,6 +10,23 @@
   position: absolute;
   top: 60px;
   background: #fff;
+}
+
+.photo-edit-container > label > img {
+  width: 70px;
+  height: 70px;
+  border-radius: 40%;
+  margin-bottom: 10px;
+}
+
+.photo-edit-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.photo-edit-file-upload {
+  display: none;
 }
 
 .edit-confirm-button-on,

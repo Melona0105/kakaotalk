@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export function printNewMsgTime(input) {
-  const year = input.slice(0, 4);
+  // const year = input.slice(0, 4);
   const month = input.slice(5, 7);
   const day = input.slice(8, 10);
 
@@ -144,3 +144,5 @@ export async function hideFriend(username) {
     data: { username },
   });
 }
+
+export const server = "http://localhost:4000/";

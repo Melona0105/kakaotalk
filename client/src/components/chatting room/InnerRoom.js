@@ -115,7 +115,7 @@ export default function InnerRoom() {
     <div className="inner-room-container">
       <InnerRoomNav roomImg={user} roomData={roomData} />
       <div className="inner-room-container-body">
-        <Chatting chattingData={sortedData} roomImg={user} />
+        <Chatting chattingData={sortedData} roomImg={user} roomData={roomData} />
       </div>
       <div className="inner-room-container-input">
         <div className="inner-room-input-nav">

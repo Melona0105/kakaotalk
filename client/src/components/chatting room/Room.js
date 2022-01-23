@@ -5,6 +5,7 @@ import Popup from "../etc/Popup";
 import "../../css/components/chatting room/Room.css";
 import { useDispatch, useSelector } from "react-redux";
 import { handleIsMsgChange } from "../../actions";
+import { server } from "../../utils";
 
 export default function Room({ data }) {
   const [isChattingOn, setIsChattingOn] = useState(false);
@@ -32,7 +33,7 @@ export default function Room({ data }) {
           ></Popup>
         )}
         <div className="room-left">
-          <img src={photo ? photo : user} />
+          <img src={photo ? `${server}${photo}` : user} />
           <div className="room-body">
             <div>{username}</div>
             <div>{content}</div>

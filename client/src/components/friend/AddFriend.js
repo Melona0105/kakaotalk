@@ -1,11 +1,12 @@
 import axios from "axios";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import "../../css/components/friend/AddFriend.css";
 import reset from "../../images/signup/reset button.png";
-import { handleLoadingOn, handleUserFriends } from "../../actions";
-import FriendInfo from "./FriendInfo";
+import { handleLoadingOn } from "../../actions";
 import client from "../../Socket";
+import user1 from "../../images/friend/user1.png";
+import { server } from "../../utils";
 
 export default function AddFriend() {
   const dispatch = useDispatch();
@@ -16,6 +17,7 @@ export default function AddFriend() {
   const [friendInfo, setFriendInfo] = useState(undefined);
   const [isFriend, setIsFriend] = useState(false);
   const [isComplete, setIscomplete] = useState(false);
+  const { photo } = friendInfo;
 
   useEffect(() => {
     inputEmail ? setIsInputFill(true) : setIsInputFill(false);
@@ -104,17 +106,12 @@ export default function AddFriend() {
           </div>
           <div className="add-friend-info">
             {isErrorOn && <div>이메일에 해당하는 친구가 없어요</div>}
-            {isFriend && isEmailExist && (
-              <div className="isFreind-container">
-                <FriendInfo friendInfo={friendInfo} />
+            <div className="isFreind-container">
+              {isFriend && isEmailExist && (
                 <div>이미 친구로 등록한 친구에요</div>
-              </div>
-            )}
-            {!isFriend && isEmailExist && (
-              <div className="isFreind-container">
-                <FriendInfo friendInfo={friendInfo} />
-              </div>
-            )}
+              )}
+              <img src={photo ? `${server}${photo}` : user1} />
+            </div>
           </div>
         </div>
         <div className="add-friend-button">

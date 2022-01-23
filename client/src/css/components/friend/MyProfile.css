@@ -9,12 +9,10 @@
   background: #f8f8f8;
 }
 
-.my-profile-img-container {
-  width: 70px;
-}
-
-.my-profile-img-container > img {
-  width: 65px;
+.my-profile-img-container > :first-child {
+  width: 55px;
+  height: 55px;
+  border-radius: 35%;
 }
 
 .my-profile-detail {

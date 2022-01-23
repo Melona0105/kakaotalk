@@ -19,7 +19,10 @@
 }
 
 .room-left > img {
-  width: 60px;
+  width: 45px;
+  height: 45px;
+  border-radius: 40%;
+  margin-right: 10px;
 }
 
 .room-body {

@@ -5,6 +5,7 @@ import hamburger from "../../images/chatting/hamburger.png";
 import control_bar from "../../images/chatting/control bar.png";
 import friend from "../../images/nav/friend.png";
 import "../../css/components/chatting room/InnerRoomNav.css";
+import { server } from "../../utils";
 
 export default function InnerRoomNav({ roomImg, roomData }) {
   const { photo, username } = roomData;
@@ -14,7 +15,7 @@ export default function InnerRoomNav({ roomImg, roomData }) {
         <div className="inner-nav-left">
           <img
             className="inner-room-nav-user-img"
-            src={photo ? photo : roomImg}
+            src={photo ? `${server}${photo}` : roomImg}
           />
           <div className="inner-room-nav-room-info">
             <div>{username}</div>

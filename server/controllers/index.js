@@ -6,6 +6,8 @@ module.exports = {
   checkEmail: require("./users/checkEmail"),
   getFriends: require("./users/getFriends"),
   getRooms: require("./users/getRooms"),
+  editUserName: require("./users/editUserName"),
+  editUserPhoto: require("./users/editUserPhoto"),
 
   // chats
   getChats: require("./chat/getChats"),
@@ -21,7 +23,4 @@ module.exports = {
   // rooms
   getRoomId: require("./rooms/getRoomId"),
   getRoomInfo: require("./rooms/getRoomInfo"),
-
-  //edit
-  username: require("./edit/username"),
 };

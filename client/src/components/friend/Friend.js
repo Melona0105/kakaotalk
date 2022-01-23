@@ -6,6 +6,7 @@ import { useState } from "react";
 import "../../css/components/friend/Friend.css";
 import Melon from "../../components/etc/Melon";
 import FriendMouseMenu from "./FriendMouseMenu";
+import { server } from "../../utils";
 
 export default function Friend({ id, src, name, comment, music, option }) {
   const [isChattingOn, setIsChattingOn] = useState(false);
@@ -49,7 +50,10 @@ export default function Friend({ id, src, name, comment, music, option }) {
       }}
     >
       <div className="friend-profile">
-        {src ? <img src={src} /> : <img src={user1} />}
+        <img
+          className="friend-profile-photo"
+          src={src ? `${server}${src}` : user1}
+        />
         <div>
           <div>{name}</div>
           <div className="friend-comment">{comment}</div>
