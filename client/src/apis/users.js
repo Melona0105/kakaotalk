@@ -48,17 +48,6 @@ const userApis = {
     });
     return result.data;
   },
-
-  // signUp: async (email, username, password, userbirth, agreements) => {
-  //   const result = await axiosInstance({
-  //     method: "POST",
-  //     url: "/users/signup",
-  //     withCredentials: true,
-  //     data: { email, username, password, userbirth, agreements },
-  //   });
-
-  //   return result;
-  // },
 };
 
 export default userApis;

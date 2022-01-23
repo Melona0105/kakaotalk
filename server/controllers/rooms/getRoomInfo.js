@@ -4,8 +4,8 @@ module.exports = async function getRoomInfo(req, res) {
   // 로그인한 사람의 유저아이디
   const user_id = req.userInfo.id;
   // 주어진 방 번호
-  const { room_id } = req.body;
 
+  const { room_id } = req.params;
   try {
     db.query(
       `select U.id, U.email, U.username, U.photo, F.status from Users as U

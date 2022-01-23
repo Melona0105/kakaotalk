@@ -88,10 +88,9 @@ export default function InnerRoom() {
     // 방 주인의 데이터를 가져오는 함수
     try {
       const { roomInfo } = await axios({
-        method: "POST",
-        url: "http://localhost:4000/rooms/info",
+        method: "GET",
+        url: `http://localhost:4000/rooms/info/${room_id}`,
         headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
-        data: { room_id },
       }).then((res) => res.data);
       setRoomData(roomInfo.filter((el) => el.user_id !== id)[0]);
     } catch (err) {
@@ -115,7 +114,11 @@ export default function InnerRoom() {
     <div className="inner-room-container">
       <InnerRoomNav roomImg={user} roomData={roomData} />
       <div className="inner-room-container-body">
-        <Chatting chattingData={sortedData} roomImg={user} roomData={roomData} />
+        <Chatting
+          chattingData={sortedData}
+          roomImg={user}
+          roomData={roomData}
+        />
       </div>
       <div className="inner-room-container-input">
         <div className="inner-room-input-nav">

@@ -102,7 +102,6 @@ export default function MainPage() {
   useEffect(async () => {
     const { rooms } = await Service.users.getRooms();
     const result = [];
-    console.log(rooms);
     if (rooms) {
       for (let i = 0; i < rooms.length; i++) {
         if (rooms[i].length) {

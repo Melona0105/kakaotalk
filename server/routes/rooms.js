@@ -6,6 +6,6 @@ const auth = require("../middlewares/auth");
 const roomRouter = Router();
 
 roomRouter.post("/", auth, getRoomId);
-roomRouter.post("/info", auth, getRoomInfo);
+roomRouter.get("/info/:room_id", auth, getRoomInfo);
 
 module.exports = roomRouter;
