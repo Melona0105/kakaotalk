@@ -17,7 +17,10 @@ function App() {
   }, [localStorage.token]);
 
   return (
-    <div className="kakao-talk">
+    <div
+      className="kakao-talk"
+      onContextMenuCapture={(e) => e.preventDefault()}
+    >
       {isLoadingOn && (
         <>
           <div className="loading">Loading...</div>
