@@ -20,7 +20,7 @@ export default function Login() {
     dispatch(handleLoadingOn(true));
 
     try {
-      await Service.user.login(email, password);
+      await Service.users.login(email, password);
       callback();
     } catch (err) {
       setIsLoginError(true);
@@ -99,10 +99,6 @@ export default function Login() {
           )}
         </div>
         <div className="login-inner-container-footer">
-          {/* <Link className="link-button" to="/account">
-            계정 찾기
-          </Link>
-          <div className="login-center-bar"></div> */}
           <Link className="link-button" to="/signup">
             회원가입
           </Link>
