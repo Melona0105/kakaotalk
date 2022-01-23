@@ -26,6 +26,7 @@ export default function MainPage() {
 
   // client.on("disconnect", () => {
   //   console.log("disconnected");
+
   // });
 
   client.on("friends", () => {
@@ -72,7 +73,7 @@ export default function MainPage() {
     } finally {
       dispatch(handleLoadingOn(false));
     }
-  }, [currentPage]);
+  }, [currentPage, isRedering]);
 
   // * 친구 추가 후, 친구 목록 어떻게 다시 불러오게 할까? ---OK
   // 처음에는 리덕스로 해봤는데, 리덕스는 새창열린거는 못 넘어가기때문에 웹소켓으로 해결함

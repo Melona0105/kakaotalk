@@ -1,21 +1,23 @@
 import user1 from "../../../images/friend/user1.png";
 import { useSelector } from "react-redux";
 import "../../../css/components/settings/detailSetting/ProfileSetting.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { handleLoadingOn } from "../../../actions";
+import client from "../../../Socket";
+import Service from "../../../services";
 
 export default function Profile() {
   const dispatch = useDispatch();
   const [isEditOn, setIsEditOn] = useState(false);
-  const { photo, username, email } = useSelector(
-    (state) => state.UserInfoReducer
-  );
+  const [userInfo, setUserInfo] = useState([]);
+  const { photo, username, email } = userInfo;
   const [editValue, setEditValue] = useState(username);
 
   function sendEditData() {
     // 사진바꾼것과, 이름 바꾼것 전송
+    client.emit("friends", "data");
     console.log("변경 내용 전송");
     editUsername();
   }
@@ -25,7 +27,7 @@ export default function Profile() {
   }
 
   async function editUsername() {
-    // 데이터 바꿨으니, 바꾼다음 유저인포 다시 로딩해주기 --> 근데 리덕스안되는데 씁..
+    // 데이터 바꿨으니, 바꾼다음 유저인포 다시 로딩해주기
     dispatch(handleLoadingOn(true));
     try {
       await axios({
@@ -40,6 +42,19 @@ export default function Profile() {
       dispatch(handleLoadingOn(false));
     }
   }
+
+  // 에딧상태가 바뀌면서 굳이 얘를 뭐가 바뀌는지 감지 안해줘도 다시 렌더링 해오네?
+  useEffect(async () => {
+    dispatch(handleLoadingOn(true));
+    try {
+      const data = await Service.users.fetchUserInfo();
+      setUserInfo(data);
+    } catch (err) {
+      throw err;
+    } finally {
+      dispatch(handleLoadingOn(false));
+    }
+  }, []);
 
   return (
     <div className="profile-setting-container">
