@@ -5,6 +5,6 @@ const auth = require("../middlewares/auth");
 
 const chatRouter = Router();
 
-chatRouter.post("/", auth, getChats);
+chatRouter.get("/:room_id", auth, getChats);
 
 module.exports = chatRouter;

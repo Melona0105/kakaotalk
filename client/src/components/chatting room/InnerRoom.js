@@ -74,10 +74,9 @@ export default function InnerRoom() {
     try {
       // ! 가져오는것 다 쿼리파라미터로
       const { chats } = await axios({
-        method: "POST",
-        url: "http://localhost:4000/chats",
+        method: "GET",
+        url: `http://localhost:4000/chats/${room_id}`,
         headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
-        data: { room_id },
       }).then((res) => res.data);
       setCurrentChat(chats);
       // dispatch(handleNewMessage(readChats.length));
