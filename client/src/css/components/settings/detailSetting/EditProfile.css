@@ -1,0 +1,44 @@
+.profile-editor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  width: 250px;
+  height: 300px;
+  position: absolute;
+  top: 60px;
+  background: #fff;
+}
+
+.edit-confirm-button-on,
+.edit-confirm-button-off {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  width: 200px;
+  height: 30px;
+  background: #f0f0f0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #909090;
+  border: none;
+}
+
+.edit-confirm-button-on {
+  background: #fee501;
+  cursor: pointer;
+  font-weight: 600;
+  color: #000;
+}
+
+.edit-username {
+  height: 30px;
+  border: none;
+  border-bottom: 1px solid lightgray;
+  outline: none;
+  font-size: 14px;
+  font-weight: 600;
+}

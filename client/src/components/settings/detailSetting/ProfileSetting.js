@@ -7,6 +7,7 @@ import { handleLoadingOn } from "../../../actions";
 import client from "../../../Socket";
 import Service from "../../../services";
 import LoadingPage from "../../../components/LoadingPage";
+import EditProfile from "./EditProfile";
 
 export default function Profile() {
   const dispatch = useDispatch();
@@ -23,9 +24,9 @@ export default function Profile() {
 
   function sendEditData() {
     // 사진바꾼것과, 이름 바꾼것 전송
-    client.emit("friends", "data");
     console.log("변경 내용 전송");
     editUsername();
+    client.emit("friends", "data");
   }
 
   async function editUsername() {
@@ -72,34 +73,25 @@ export default function Profile() {
           <div>기본 프로필 관리</div>
           <div className="pofile-setting-edit">
             <div>
-              <img
-                src={photo ? photo : user1}
-                onClick={() => isEditOn && editImage()}
-              />
-              {isEditOn ? (
-                <input
-                  placeholder={username}
-                  className="edit-username"
-                  onChange={(e) => {
-                    setEditValue(e.target.value);
-                  }}
-                ></input>
-              ) : (
-                <div>{username}</div>
-              )}
+              <img src={photo ? photo : user1} />
+              <div>{username}</div>
             </div>
             <div
               className="pofile-setting-edit-button"
-              onClick={() => {
-                setIsEditOn(!isEditOn);
-                if (isEditOn) {
-                  sendEditData();
-                }
-              }}
+              onClick={() => setIsEditOn(true)}
             >
-              {!isEditOn ? "편집" : "확인"}
+              편집
             </div>
           </div>
+          {isEditOn && (
+            <EditProfile
+              setIsEditOn={setIsEditOn}
+              userInfo={userInfo}
+              editValue={editValue}
+              setEditValue={setEditValue}
+              sendEditData={sendEditData}
+            />
+          )}
         </div>
         <div>
           <div className="pofile-setting-email">

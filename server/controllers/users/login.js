@@ -1,4 +1,3 @@
-// const { User } = require("../../models");
 const db = require("../../database/");
 const { compare } = require("bcrypt");
 const { sign } = require("jsonwebtoken");

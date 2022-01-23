@@ -204,7 +204,3 @@ input[class="gender-select"]:checked + label::after {
   text-decoration: none;
   cursor: pointer;
 }
-
-.step4-submit-on :focus {
-  cursor: grab;
-}
