@@ -4,6 +4,7 @@ import MainPage from "./pages/MainPage";
 import "./app.css";
 import { useSelector, useDispatch } from "react-redux";
 import { handleIsLogin } from "./actions";
+import LoadingPage from "./components/LoadingPage";
 
 function App() {
   const { isLogin } = useSelector((state) => state.LoginReducer);
@@ -21,12 +22,7 @@ function App() {
       className="kakao-talk"
       onContextMenuCapture={(e) => e.preventDefault()}
     >
-      {isLoadingOn && (
-        <>
-          <div className="loading">Loading...</div>
-          <div className="loading-back"></div>
-        </>
-      )}
+      {isLoadingOn && <LoadingPage />}
       {isLogin ? <MainPage /> : <Login />}
     </div>
   );

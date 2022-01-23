@@ -9,7 +9,6 @@ module.exports = async function userinfo(req, res) {
         throw err;
       }
       delete result.password;
-      console.log(result);
       return res.status(201).send({ userInfo: result[0], message: "ok" });
     });
   } catch {
