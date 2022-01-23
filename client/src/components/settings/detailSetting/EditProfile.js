@@ -27,10 +27,10 @@ export default function EditProfile({
     });
   }
 
-  function sendEditData() {
+  async function sendEditData() {
     // 사진바꾼것과, 이름 바꾼것 전송
-    editUsername();
-    editPhoto();
+    await editUsername();
+    await editPhoto();
     client.emit("friends", "data");
   }
 
