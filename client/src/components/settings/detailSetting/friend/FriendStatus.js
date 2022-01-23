@@ -40,7 +40,6 @@ export default function FriendStatus() {
         url: "http://localhost:4000/users/friends",
         headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
       }).then((res) => res.data);
-      console.log(friendData);
       setFriendStatusData(
         friendData.filter((el) => el.status === currentStatus)
       );

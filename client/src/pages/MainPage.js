@@ -102,19 +102,23 @@ export default function MainPage() {
   useEffect(async () => {
     const { rooms } = await Service.users.getRooms();
     const result = [];
-    for (let i = 0; i < rooms.length; i++) {
-      if (rooms[i]) {
-        result.push(rooms[i]);
+    if (rooms) {
+      for (let i = 0; i < rooms.length; i++) {
+        if (rooms[i]) {
+          result.push(rooms[i]);
+        }
       }
-    }
-    // 새 메세지 개수 세기
-    const newMsg = getNewMessage(result);
-    // 전체 개수 세기
-    const totalNewMsg = getTotalNewMessage(newMsg);
+      // 새 메세지 개수 세기
+      const newMsg = getNewMessage(result);
+      // 전체 개수 세기
+      const totalNewMsg = getTotalNewMessage(newMsg);
 
-    setTotalNewMessage(totalNewMsg);
-    const answer = applyNewMsgToRoomData(result, newMsg);
-    getRoomDataFromServer(answer);
+      setTotalNewMessage(totalNewMsg);
+      const answer = applyNewMsgToRoomData(result, newMsg);
+      getRoomDataFromServer(answer);
+    } else {
+      getRoomDataFromServer(result);
+    }
   }, [isNewData, isMsgChange, currentPage, userFriends]);
 
   function getTotalNewMessage(array) {

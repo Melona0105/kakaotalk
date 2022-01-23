@@ -63,9 +63,8 @@ export default function EditProfile({
           array.push(blobBin.charCodeAt(i));
         }
         const fileType = currentPhoto.split("image/")[1].split(";")[0];
-        // console.log(fileType);
         const blob = new Blob([new Uint8Array(array)], {
-          type: `image/jpg`,
+          type: `image/${fileType}`,
         });
         const file = new File([blob], `User-${id}-${Date.now()}.${fileType}`);
         const formData = new FormData();

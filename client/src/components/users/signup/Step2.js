@@ -45,7 +45,7 @@ export default function Step2({ nextStep, setCurrentEmail }) {
   // TODO : 이메일이 다 입력되고 나면, 서버에 요청해서 확인해야한다.
   async function checkExistedEmail() {
     try {
-      return await Service.user.checkEmail(inputEmail);
+      return await Service.users.checkEmail(inputEmail);
     } catch {
       return false;
     }

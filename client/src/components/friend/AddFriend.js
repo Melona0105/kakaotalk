@@ -17,7 +17,6 @@ export default function AddFriend() {
   const [friendInfo, setFriendInfo] = useState(undefined);
   const [isFriend, setIsFriend] = useState(false);
   const [isComplete, setIscomplete] = useState(false);
-  const { photo } = friendInfo;
 
   useEffect(() => {
     inputEmail ? setIsInputFill(true) : setIsInputFill(false);
@@ -106,11 +105,18 @@ export default function AddFriend() {
           </div>
           <div className="add-friend-info">
             {isErrorOn && <div>이메일에 해당하는 친구가 없어요</div>}
-            <div className="isFreind-container">
-              {isFriend && isEmailExist && (
-                <div>이미 친구로 등록한 친구에요</div>
+            <div className="isfriend-container">
+              {isFriend && <div>이미 친구로 등록한 친구에요</div>}
+              {isEmailExist && (
+                <>
+                  <img
+                    src={
+                      friendInfo.photo ? `${server}${friendInfo.photo}` : user1
+                    }
+                  />
+                  <div className="isfriend-username">{friendInfo.username}</div>
+                </>
               )}
-              <img src={photo ? `${server}${photo}` : user1} />
             </div>
           </div>
         </div>
