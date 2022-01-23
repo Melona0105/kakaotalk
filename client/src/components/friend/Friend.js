@@ -19,10 +19,9 @@ export default function Friend({ id, src, name, comment, music, option }) {
   async function getRoomData() {
     try {
       const { data } = await axios({
-        method: "POST",
-        url: "http://localhost:4000/rooms",
+        method: "GET",
+        url: `http://localhost:4000/rooms/${friend_id}`,
         headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
-        data: { friend_id },
       })
         .then((res) => res)
         .catch((err) => console.log(err));

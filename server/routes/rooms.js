@@ -5,7 +5,7 @@ const auth = require("../middlewares/auth");
 
 const roomRouter = Router();
 
-roomRouter.post("/", auth, getRoomId);
+roomRouter.get("/:friend_id", auth, getRoomId);
 roomRouter.get("/info/:room_id", auth, getRoomInfo);
 
 module.exports = roomRouter;

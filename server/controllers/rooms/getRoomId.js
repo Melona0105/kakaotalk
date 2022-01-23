@@ -3,7 +3,7 @@ const db = require("../../database");
 module.exports = async function getRoomId(req, res) {
   // 더블클릭하면, 현재 유저 아이디의 방과 + 클릭한 유저 아이디의 방중 같은 방이 있는지 찾는다.
   const user_id = req.userInfo.id;
-  const { friend_id } = req.body;
+  const { friend_id } = req.params;
   try {
     // 주어진 아이디에 해당하는 방들을 모두 가져온다.
     // 로그인한 사람의 방과 주어진 아이디에 해당하는 사람의 방중 같은 아이디를 찾는다.
