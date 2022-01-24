@@ -77,7 +77,9 @@ export default function InnerRoom() {
     } catch (err) {
       console.log(err);
     }
+  }, [isMsgChange]);
 
+  useEffect(async () => {
     // 방 주인의 데이터를 가져오는 함수
     try {
       await Service.rooms.fetchRoomInfo(room_id, id, setRoomData);
@@ -97,7 +99,6 @@ export default function InnerRoom() {
   // 각각을 컴포넌트화 하는게 좋을듯
   // 데이터를 같은 사람 + 1분단위로 묶어서 정리 -> 이걸 뿌려준다.
 
-  // TODO : 텍스트박스 안에 텍스트 위로 올려주기 CSS
   return (
     <div className="inner-room-container">
       <InnerRoomNav roomImg={user} roomData={roomData} />

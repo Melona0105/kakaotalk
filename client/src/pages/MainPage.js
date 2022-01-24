@@ -20,15 +20,6 @@ export default function MainPage() {
   const [totalNewMessage, setTotalNewMessage] = useState(0);
   const [isRedering, setIsRedering] = useState(false);
 
-  // client.on("connect", () => {
-  //   console.log("connected");
-  // });
-
-  // client.on("disconnect", () => {
-  //   console.log("disconnected");
-
-  // });
-
   client.on("friends", () => {
     // 여기도 socket 연결을 해놓고, 새로 데이터가 올때마다 새로 렌더링한다.
     setIsRedering(!isRedering);
@@ -69,7 +60,7 @@ export default function MainPage() {
       const userInfo = await Service.users.fetchUserInfo();
       dispatch(handleUserInfo(userInfo));
     } catch (err) {
-      throw err;
+      console.log(err);
     } finally {
       dispatch(handleLoadingOn(false));
     }

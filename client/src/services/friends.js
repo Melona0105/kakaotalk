@@ -1,4 +1,5 @@
 import Apis from "../apis";
+import client from "../Socket";
 
 const friendService = {
   getFindedFriend: async (friendEmail, callback1, callback2) => {
@@ -20,6 +21,42 @@ const friendService = {
       await Apis.friends.addFriend(friendInfo);
 
       callback(true);
+    } catch (err) {
+      throw err;
+    }
+  },
+
+  rollbackFriend: async (username) => {
+    try {
+      await Apis.friends.rollbackFriend(username);
+      client.emit("friends", "change");
+    } catch (err) {
+      throw err;
+    }
+  },
+
+  blockFriend: async (username) => {
+    try {
+      await Apis.friends.blockFriend(username);
+      client.emit("friends", "change");
+    } catch (err) {
+      throw err;
+    }
+  },
+
+  hideFriend: async (username) => {
+    try {
+      await Apis.friends.hideFriend(username);
+      client.emit("friends", "change");
+    } catch (err) {
+      throw err;
+    }
+  },
+
+  deleteFriend: async (username) => {
+    try {
+      await Apis.friends.deleteFriend(username);
+      client.emit("friends", "change");
     } catch (err) {
       throw err;
     }

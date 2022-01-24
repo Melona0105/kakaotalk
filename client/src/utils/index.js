@@ -1,4 +1,6 @@
 import axios from "axios";
+import {} from "../";
+import Service from "../services";
 
 export function printNewMsgTime(input) {
   // const year = input.slice(0, 4);
@@ -110,39 +112,19 @@ export function sortDataToAlphabeticalOrder(data) {
 }
 
 export async function rollbackFriend(username) {
-  await axios({
-    method: "PUT",
-    url: "http://localhost:4000/friends/rollback",
-    headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
-    data: { username },
-  });
+  await Service.friends.rollbackFriend(username);
 }
 
 export async function deleteFriend(username) {
-  await axios({
-    method: "DELETE",
-    url: "http://localhost:4000/friends",
-    headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
-    data: { username },
-  });
+  await Service.friends.deleteFriend(username);
 }
 
 export async function blockFriend(username) {
-  await axios({
-    method: "PUT",
-    url: "http://localhost:4000/friends/block",
-    headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
-    data: { username },
-  });
+  await Service.friends.blockFriend(username);
 }
 
 export async function hideFriend(username) {
-  await axios({
-    method: "PUT",
-    url: "http://localhost:4000/friends/hide",
-    headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
-    data: { username },
-  });
+  await Service.friends.hideFriend(username);
 }
 
 export const server = "http://localhost:4000/";

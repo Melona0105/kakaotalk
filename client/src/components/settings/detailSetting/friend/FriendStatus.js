@@ -27,15 +27,20 @@ export default function FriendStatus() {
     }
   }
 
-  // 친구목록 불러봐서 뿌려준다.
-  client.on("friends", (message) => {
+  client.on("friends", () => {
     setIsRendering(!isRendering);
   });
 
+  // 친구목록 불러봐서 뿌려준다.
   useEffect(async () => {
     dispatch(handleLoadingOn(true));
     try {
-      await Service.users.fetchFriends(currentStatus, setFriendStatusData);
+      const result = await Service.users.fetchFriends();
+      if (result) {
+        setFriendStatusData(result.filter((el) => el.status === currentStatus));
+      } else {
+        setFriendStatusData([]);
+      }
     } catch (err) {
       console.log(err);
     } finally {
@@ -43,13 +48,17 @@ export default function FriendStatus() {
     }
   }, [currentStatus, isRendering]);
 
+  console.log(friendData);
+  console.log(friendStatusData);
+  // 왜 친구목록이 터질까?
+
   useEffect(() => {
     let nextState = [...friendStatusData];
     nextState = nextState.filter((el) =>
       filterDataByKeyWord(el.username, currentKeyword)
     );
     setSortedData(nextState);
-  }, [currentKeyword]);
+  }, [currentKeyword, isRendering]);
 
   function handleMenuStyle(input) {
     return currentStatus === input
@@ -58,7 +67,7 @@ export default function FriendStatus() {
           borderBottom: "1px solid #000",
           fontWeight: "600",
         }
-      : {};
+      : null;
   }
 
   return (
