@@ -5,7 +5,7 @@ const friendApis = {
     const result = await axiosInstance({
       method: "POST",
       url: "/friends",
-      data: { email: email },
+      data: { email },
     });
 
     return result.data;

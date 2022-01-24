@@ -14,6 +14,7 @@ import { useEffect, useState } from "react";
 import client from "../../Socket";
 import { handleIsMsgChange } from "../../actions";
 import "../../css/components/chatting room/InnerRoom.css";
+import Service from "../../services";
 
 export default function InnerRoom() {
   // 현재 대화하는 사람의 데이터 이거 받아와서 넣어줘야함
@@ -72,13 +73,13 @@ export default function InnerRoom() {
   useEffect(async () => {
     // 채팅 내용들을 가져오는 함수 처음에만 가져오고 다시들어오면 그때 넣어준다.
     try {
-      // ! 가져오는것 다 쿼리파라미터로
-      const { chats } = await axios({
-        method: "GET",
-        url: `http://localhost:4000/chats/${room_id}`,
-        headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
-      }).then((res) => res.data);
-      setCurrentChat(chats);
+      await Service.chats.fetchRoomChats(room_id, setCurrentChat);
+      // const { chats } = await axios({
+      //   method: "GET",
+      //   url: `http://localhost:4000/chats/${room_id}`,
+      //   headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
+      // }).then((res) => res.data);
+      // setCurrentChat(chats);
       // dispatch(handleNewMessage(readChats.length));
     } catch (err) {
       console.log(err);
@@ -86,12 +87,13 @@ export default function InnerRoom() {
 
     // 방 주인의 데이터를 가져오는 함수
     try {
-      const { roomInfo } = await axios({
-        method: "GET",
-        url: `http://localhost:4000/rooms/info/${room_id}`,
-        headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
-      }).then((res) => res.data);
-      setRoomData(roomInfo.filter((el) => el.user_id !== id)[0]);
+      await Service.rooms.fetchRoomInfo(room_id, id, setRoomData);
+      // const { roomInfo } = await axios({
+      //   method: "GET",
+      //   url: `http://localhost:4000/rooms/info/${room_id}`,
+      //   headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
+      // }).then((res) => res.data);
+      // setRoomData(roomInfo.filter((el) => el.user_id !== id)[0]);
     } catch (err) {
       console.log(err);
     }
