@@ -9,7 +9,7 @@ import LoadingPage from "./components/LoadingPage";
 function App() {
   const { isLogin } = useSelector((state) => state.LoginReducer);
   const { isLoadingOn } = useSelector((state) => state.LoadingReducer);
-
+  // console.log(1);
   const dispatch = useDispatch();
   useEffect(() => {
     localStorage.token

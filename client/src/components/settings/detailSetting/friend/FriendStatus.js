@@ -27,8 +27,14 @@ export default function FriendStatus() {
     }
   }
 
-  client.on("friends", () => {
-    setIsRendering(!isRendering);
+  useEffect(() => {
+    client.open();
+    client.on("friends", () => {
+      setIsRendering(!isRendering);
+    });
+    return () => {
+      client.close();
+    };
   });
 
   // 친구목록 불러봐서 뿌려준다.
@@ -48,8 +54,6 @@ export default function FriendStatus() {
     }
   }, [currentStatus, isRendering]);
 
-  console.log(friendData);
-  console.log(friendStatusData);
   // 왜 친구목록이 터질까?
 
   useEffect(() => {
