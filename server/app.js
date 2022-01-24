@@ -6,7 +6,7 @@ const path = require("path");
 const app = express();
 app.use(
   cors({
-    origin: ["http://localhost:3000", "http://localhost:3001"],
+    origin: "*",
     credentials: true, // 브라우저들이 응답을 프론트앤드에 노출할지 옵션
     methods: ["GET", "POST", "OPTIONS", "PUT", "DELETE"],
   })

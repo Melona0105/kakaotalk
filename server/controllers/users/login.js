@@ -7,8 +7,6 @@ module.exports = async function login(req, res) {
   const { email, password } = req.body;
   // 입력한 이메일에 해당하는 유저정보가 있는지 확인
   // TODO : 아이디 대소문자 구분 해주기
-  console.log("11");
-  console.log(email, password);
   try {
     const data = await new Promise((res, rej) => {
       db.query(

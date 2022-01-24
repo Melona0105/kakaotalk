@@ -6,7 +6,6 @@ const userApis = {
       method: "POST",
       url: "/users/login",
       data: { email, password },
-      withCredentials: true,
     });
 
     const { accessToken } = result.data;
@@ -76,7 +75,6 @@ const userApis = {
     const result = await axiosInstance({
       method: "POST",
       url: "/users/signup",
-      withCredentials: true,
       data: { email, username, password, userBirth, agreements },
     });
 
