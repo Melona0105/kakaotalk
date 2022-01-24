@@ -13,6 +13,7 @@ export default function Room({ data }) {
   const roomStyle = "top=100, left=100, width=375, height=640";
   const { isMsgChange } = useSelector((state) => state.MsgChangeReducer);
   const dispatch = useDispatch();
+
   return (
     <>
       <div
