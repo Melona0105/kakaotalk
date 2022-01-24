@@ -58,6 +58,18 @@ const userApis = {
 
     return result.data;
   },
+
+  editUserphoto: async (photo) => {
+    const result = await axiosInstance({
+      method: "PUT",
+      url: "/users/photo",
+      data: photo,
+      headers: {
+        "content-type": "multipart/form-data boundary=something",
+      },
+    });
+    return result.data;
+  },
 };
 
 export default userApis;

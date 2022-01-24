@@ -56,9 +56,17 @@ const userService = {
     }
   },
 
-  updataUsername: async (username) => {
+  updateUsername: async (username) => {
     try {
       await Apis.users.editUsername(username);
+    } catch (err) {
+      throw err;
+    }
+  },
+
+  updateUserPhoto: async (photo) => {
+    try {
+      await Apis.users.editUserphoto(photo);
     } catch (err) {
       throw err;
     }

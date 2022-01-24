@@ -40,7 +40,7 @@ export default function EditProfile({
     dispatch(handleLoadingOn(true));
     try {
       if (editValue !== "") {
-        await Service.users.updataUsername(editValue);
+        await Service.users.updateUsername(editValue);
       }
     } catch (err) {
       console.log(err);
@@ -65,15 +65,7 @@ export default function EditProfile({
         const file = new File([blob], `User-${id}-${Date.now()}.${fileType}`);
         const formData = new FormData();
         formData.append(`img`, file);
-        await axios({
-          method: "PUT",
-          url: "http://localhost:4000/users/photo",
-          data: formData,
-          headers: {
-            authorization: `Bearer ${localStorage.getItem("token")}`,
-            "content-type": "multipart/form-data boundary=something",
-          },
-        });
+        await Service.users.updateUserPhoto(formData);
       }
     } catch (err) {
       console.log(err);
