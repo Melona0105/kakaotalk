@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { handleLoadingOn } from "../../../actions";
 import axios from "axios";
 import { server } from "../../../utils";
+import Service from "../../../services";
 
 export default function EditProfile({
   setIsEditOn,
@@ -39,12 +40,7 @@ export default function EditProfile({
     dispatch(handleLoadingOn(true));
     try {
       if (editValue !== "") {
-        await axios({
-          method: "PUT",
-          url: "http://localhost:4000/users/username",
-          headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
-          data: { username: editValue },
-        });
+        await Service.users.updataUsername(editValue);
       }
     } catch (err) {
       console.log(err);

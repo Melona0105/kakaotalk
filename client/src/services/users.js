@@ -56,17 +56,13 @@ const userService = {
     }
   },
 
-  // signUp: async ({ email, username, password, userbirth, agreements }) => {
-  //   try {
-  //     const result = await Apis.users
-  //       .signUp(email, username, password, userbirth, agreements)
-  //       .then(async () => {
-  //         await Apis.users.login(email, password);
-  //       });
-  //   } catch (err) {
-  //     throw err;
-  //   }
-  // },
+  updataUsername: async (username) => {
+    try {
+      await Apis.users.editUsername(username);
+    } catch (err) {
+      throw err;
+    }
+  },
 };
 
 export default userService;

@@ -48,6 +48,16 @@ const userApis = {
     });
     return result.data;
   },
+
+  editUsername: async (username) => {
+    const result = await axiosInstance({
+      method: "PUT",
+      url: "/users/username",
+      data: { username },
+    });
+
+    return result.data;
+  },
 };
 
 export default userApis;
