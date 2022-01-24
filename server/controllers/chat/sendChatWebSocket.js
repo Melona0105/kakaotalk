@@ -2,27 +2,32 @@ const { Server } = require("socket.io");
 const db = require("../../database");
 const cors = require("cors");
 
-module.exports = (server) => {
+module.exports = async (server) => {
   // express 서버와 연결
   const io = new Server(server, { cors: { origin: "*", credentials: true } });
 
-  io.on("connection", (socket) => {
-    socket.on("message", (newdata) => {
+  io.on("connection", async (socket) => {
+    socket.on("message", async (newdata) => {
       try {
         // 방 번호와, 채팅 내역
         const { room_id, newMsg } = newdata;
         const { user_id, content } = newMsg;
-        db.query(
-          `INSERT INTO chats (user_id, content, room_id, view, time) 
-           VALUES ("${user_id}", "${content}", "${room_id}", "${1}", "${getCurrentTime()}")`,
-          (err, result) => {
-            if (err) {
-              throw err;
+
+        await new Promise((res, rej) => {
+          db.query(
+            `INSERT INTO chats (user_id, content, room_id, view, time) 
+             VALUES ("${user_id}", "${content}", "${room_id}", "${1}", "${getCurrentTime()}")`,
+            (err, result) => {
+              if (err) {
+                return rej(err);
+              } else {
+                return res(result);
+              }
             }
-            // 성공하면 데이터를 돌려준다.
-            io.emit("message", newMsg);
-          }
-        );
+          );
+        });
+        // 성공하면 데이터를 돌려준다.
+        io.emit("message", newMsg);
       } catch (err) {
         console.log(err);
       }
