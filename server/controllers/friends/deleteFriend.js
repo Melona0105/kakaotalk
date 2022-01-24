@@ -28,7 +28,7 @@ module.exports = async function deleteFriend(req, res) {
 
     await new Promise((res, rej) => {
       db.query(
-        `DELETE FROM Friends as F where F.friend_id="${friend_id}" AND F.user_id="${id}"`,
+        `DELETE FROM friends as F where F.friend_id="${friend_id}" AND F.user_id="${id}"`,
         (err, result) => {
           if (err) {
             return rej(err);

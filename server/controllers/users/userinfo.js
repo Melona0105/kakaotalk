@@ -5,7 +5,7 @@ module.exports = async function userinfo(req, res) {
   // 이메일 정보로 로그인한 유저의 정보를 가져온다.
   try {
     const data = await new Promise((res, rej) => {
-      db.query(`select * from Users where Users.id="${id}"`, (err, result) => {
+      db.query(`select * from users where users.id="${id}"`, (err, result) => {
         if (err) {
           return rej(err);
         }
