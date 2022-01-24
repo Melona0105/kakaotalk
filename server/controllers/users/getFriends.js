@@ -10,8 +10,8 @@ module.exports = async function getFriends(req, res) {
       db.query(
         `select U.comment, U.email, U.id, 
         U.music, U.photo, U.userBirth, 
-        U.username, F.status from Friends as F 
-        LEFT JOIN Users as U ON F.friend_id=U.id 
+        U.username, F.status from friends as F 
+        LEFT JOIN users as U ON F.friend_id=U.id 
         where user_id=${id}`,
         (err, result) => {
           if (err) {

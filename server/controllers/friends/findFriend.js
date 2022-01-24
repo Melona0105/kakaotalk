@@ -9,7 +9,7 @@ module.exports = async function findFriend(req, res) {
   try {
     const result1 = await new Promise((res, rej) => {
       db.query(
-        `select * from USERS where email="${friendEmail}"`,
+        `select * from users where email="${friendEmail}"`,
         (err, result) => {
           if (err) {
             return rej(err);

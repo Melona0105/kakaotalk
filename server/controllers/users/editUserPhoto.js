@@ -14,7 +14,7 @@ module.exports = async function editUserPhoto(req, res) {
     const file = path.split("public/")[1];
     await new Promise((res, rej) => {
       db.query(
-        `UPDATE Users SET photo = "${file}" where users.id = "${id}"`,
+        `UPDATE users SET photo = "${file}" where users.id = "${id}"`,
         (err, result) => {
           if (err) {
             return rej(err);

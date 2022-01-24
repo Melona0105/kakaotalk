@@ -7,9 +7,9 @@ module.exports = async function rollbackFriend(req, res) {
     // 선택한 사람의 유저네임을 갖고, 내 아이로 친구인 사람을 찾는다.
     const result1 = await new Promise((res, rej) => {
       db.query(
-        `SELECT F.friend_id from Users LEFT JOIN Friends as F
+        `SELECT F.friend_id from users LEFT JOIN friends as F
          ON users.id=F.friend_id
-         where Users.username="${username}" and F.user_id="${id}"`,
+         where users.username="${username}" and F.user_id="${id}"`,
         (err, result) => {
           if (err) {
             return rej(err);

@@ -9,7 +9,7 @@ module.exports = async function getRoomInfo(req, res) {
   try {
     const data = await new Promise((res, rej) => {
       db.query(
-        `select U.id, U.email, U.username, U.photo, F.status from Users as U
+        `select U.id, U.email, U.username, U.photo, F.status from users as U
         LEFT JOIN users_in_rooms as UR ON UR.user_id=U.id
         left join friends as F ON F.friend_id=U.id
         where room_id="${room_id}" and U.id!="${user_id}"`,

@@ -6,7 +6,7 @@ module.exports = async function editUserName(req, res) {
   try {
     await new Promise((res, rej) => {
       db.query(
-        `UPDATE Users as U set username="${username}" where U.id="${id}"`,
+        `UPDATE users as U set username="${username}" where U.id="${id}"`,
         (err, result) => {
           if (err) {
             return rej(err);

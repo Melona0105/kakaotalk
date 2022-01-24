@@ -29,7 +29,9 @@ module.exports = async function addFriend(req, res) {
 
     const data = await new Promise((res, rej) => {
       db.query(
-        `select chats.id, chats.user_id, chats.content, chats.room_id, chats.view, chats.time, users.username from chats LEFT JOIN users ON chats.user_id = users.id where room_id=${room_id};`,
+        `select chats.id, chats.user_id, chats.content, chats.room_id, chats.view, chats.time, users.username from chats 
+        LEFT JOIN users ON chats.user_id = users.id 
+        where room_id=${room_id};`,
         (err, result) => {
           if (err) {
             return rej(err);
