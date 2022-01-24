@@ -39,8 +39,9 @@ export default function FriendPage({ userFriends }) {
   const toDayDate = getCurrentTime("birth");
 
   function getBirthFriend(data) {
+    console.log(data);
     const result = data.filter(
-      (el) => el.birth && el.birth.slice(5) === toDayDate
+      (el) => el.userBirth && el.userBirth.slice(5) === toDayDate
     );
     return result;
   }

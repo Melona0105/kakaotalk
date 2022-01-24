@@ -28,24 +28,6 @@
   padding-left: 20px;
 }
 
-.birthday-friend-content:hover {
-  background: #f8f8f8;
-}
-.birthday-friend-content > img {
-  width: 50px;
-  margin-left: -2px;
-}
-
-.birthday-friend-content-detail {
-  font-size: 14px;
-  font-weight: 500;
-  display: flex;
-}
-
-.birthday-friend-content-detail > :first-child {
-  margin-right: 5px;
-}
-
 .birthday-friend-count {
   color: #9e9e9e;
 }

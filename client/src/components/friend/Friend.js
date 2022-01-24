@@ -1,5 +1,4 @@
 import react from "react";
-import axios from "axios";
 import user1 from "../../images/friend/user1.png";
 import Popup from "../etc/Popup";
 import { useState } from "react";
