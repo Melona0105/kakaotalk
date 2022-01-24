@@ -7,7 +7,14 @@ module.exports = async (server) => {
   const io = new Server(
     server,
     { transports: ["websocket"] },
-    { cors: { origin: "*", methods: ["GET", "POST"], credentials: true } }
+    {
+      cors: {
+        origin: "*",
+        methods: ["GET", "POST"],
+        allowedHeaders: ["my-custom-header"],
+        credentials: true,
+      },
+    }
   );
 
   io.on("connection", async (socket) => {
