@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { handleIsLogin, handleLoadingOn } from "../../../actions";
 import axios from "axios";
+import Service from "../../../services";
 
 export default function Step4({ currentUserInfo }) {
   const [userbirth, setUserbirth] = useState(undefined);
@@ -22,30 +23,12 @@ export default function Step4({ currentUserInfo }) {
   const dispatch = useDispatch();
 
   async function handleSignup(userInfo, callBack) {
-    const { email, username, password, userbirth, agreements } = userInfo;
+    dispatch(handleLoadingOn(true));
     try {
-      dispatch(handleLoadingOn(true));
-      await axios({
-        method: "POST",
-        url: "http://localhost:4000/users/signup",
-        withCredentials: true,
-        data: { email, username, password, userbirth, agreements },
-      }).then(async (res) => {
-        const result = await axios({
-          method: "POST",
-          url: "http://localhost:4000/users/login",
-          data: { email, password },
-          withCredentials: true,
-        });
-
-        const { accessToken } = result.data;
-
-        localStorage.setItem("token", accessToken);
-        callBack();
-        dispatch(handleLoadingOn(false));
-      });
-      // 성공적으로 가입이 되었으니 현재 입력한 것들로 로그인시켜주기
+      await Service.users.signup(userInfo, callBack);
     } catch (err) {
+      console.log(err);
+    } finally {
       dispatch(handleLoadingOn(false));
     }
   }
@@ -58,7 +41,6 @@ export default function Step4({ currentUserInfo }) {
     setUserInfo({ ...currentUserInfo, userbirth, username });
   }, [userbirth, username]);
 
-  console.log(userInfo);
   return (
     <div className="step4-container">
       <div className="step4-inner-container">

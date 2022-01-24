@@ -70,6 +70,18 @@ const userApis = {
     });
     return result.data;
   },
+
+  signup: async (userInfo) => {
+    const { email, username, password, userbirth, agreements } = userInfo;
+    const result = await axiosInstance({
+      method: "POST",
+      url: "/users/signup",
+      withCredentials: true,
+      data: { email, username, password, userbirth, agreements },
+    });
+
+    return result.data;
+  },
 };
 
 export default userApis;

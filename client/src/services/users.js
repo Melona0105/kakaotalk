@@ -71,6 +71,17 @@ const userService = {
       throw err;
     }
   },
+
+  signup: async (userInfo, callBack) => {
+    try {
+      await Apis.users.signup(userInfo);
+      await userService.login(userInfo.email, userInfo.password);
+
+      callBack();
+    } catch (err) {
+      throw err;
+    }
+  },
 };
 
 export default userService;
