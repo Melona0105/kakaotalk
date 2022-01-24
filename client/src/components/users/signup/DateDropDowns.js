@@ -8,27 +8,39 @@ export default function DateDropDowns({ getUserbirth }) {
   const [selectedDay, setSelectedDay] = useState(5);
 
   const menus = [
-    { title: "연도", type: "year", method: setSelectedYear },
-    { title: "월", type: "month", method: setSelectedMonth },
     {
+      id: "first-dropdown",
+      title: "연도",
+      type: "year",
+      method: setSelectedYear,
+    },
+    {
+      id: "second-dropdown",
+      title: "월",
+      type: "month",
+      method: setSelectedMonth,
+    },
+    {
+      id: "third-dropdown",
       title: "일",
       type: "day",
       method: setSelectedDay,
       monthdata: selectedMonth,
     },
   ];
-  const currentDate = `${selectedYear}-${String(selectedMonth).padStart(
-    2,
-    "0"
-  )}-${String(selectedDay).padStart(2, "0")}`;
   useEffect(() => {
+    const currentDate = `${selectedYear}-${String(selectedMonth).padStart(
+      2,
+      0
+    )}-${String(selectedDay).padStart(2, "0")}`;
+
     getUserbirth(currentDate);
   }, [selectedYear, selectedMonth, selectedDay]);
   return (
     <div className="dropdown-container">
       {menus.map((el) => (
         <Dropdown
-          key={el.type}
+          key={el.id}
           title={el.title}
           type={el.type}
           method={el.method}

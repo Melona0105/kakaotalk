@@ -7,11 +7,10 @@ import RadioBox from "./RadioBox";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { handleIsLogin, handleLoadingOn } from "../../../actions";
-import axios from "axios";
 import Service from "../../../services";
 
 export default function Step4({ currentUserInfo }) {
-  const [userbirth, setUserbirth] = useState(undefined);
+  const [userBirth, setUserBirth] = useState(undefined);
   const [isNameFill, setIsNameFill] = useState(false);
   const [username, setUsername] = useState("");
   const [userInfo, setUserInfo] = useState({ ...currentUserInfo });
@@ -38,9 +37,10 @@ export default function Step4({ currentUserInfo }) {
   }, [username]);
 
   useEffect(() => {
-    setUserInfo({ ...currentUserInfo, userbirth, username });
-  }, [userbirth, username]);
+    setUserInfo({ ...currentUserInfo, userBirth, username });
+  }, [userBirth, username]);
 
+  console.log(userBirth);
   return (
     <div className="step4-container">
       <div className="step4-inner-container">
@@ -82,7 +82,7 @@ export default function Step4({ currentUserInfo }) {
             <div>생일</div>
             <div className="step4-birth-dropdowns">
               <div>
-                <DateDropDowns getUserbirth={setUserbirth} />
+                <DateDropDowns getUserbirth={setUserBirth} />
               </div>
               <input type="checkbox" id="date" className="outdate" />
               <label className="step4-checkbox" htmlFor="date"></label>

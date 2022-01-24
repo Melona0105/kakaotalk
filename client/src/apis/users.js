@@ -72,12 +72,12 @@ const userApis = {
   },
 
   signup: async (userInfo) => {
-    const { email, username, password, userbirth, agreements } = userInfo;
+    const { email, username, password, userBirth, agreements } = userInfo;
     const result = await axiosInstance({
       method: "POST",
       url: "/users/signup",
       withCredentials: true,
-      data: { email, username, password, userbirth, agreements },
+      data: { email, username, password, userBirth, agreements },
     });
 
     return result.data;

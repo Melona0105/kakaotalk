@@ -4,6 +4,7 @@ const { hash } = require("bcrypt");
 const bcryptSaltRounds = 12;
 
 module.exports = async function signup(req, res) {
+  console.log(12);
   const { email, password, username, userBirth } = req.body;
   // const userInfo = await User.findOne({ where: { username } });
   try {

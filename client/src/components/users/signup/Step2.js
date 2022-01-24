@@ -30,7 +30,10 @@ export default function Step2({ nextStep, setCurrentEmail }) {
       resetInputAndSetError(
         "아이디는 영문 소문자, 숫자, 빼기(-), 밑줄(_), 마침표(.)만 사용할 수 있습니다."
       );
-    } else if (inputEmail.split("").findIndex((el) => el === "@") === -1) {
+    } else if (
+      inputEmail.split("").findIndex((el) => el === "@") === -1 ||
+      inputEmail.split("").findIndex((el) => el === ".") === -1
+    ) {
       resetInputAndSetError("올바른 이메일 형식을 입력해주세요.");
     } else {
       setIsEmailInput(input);
