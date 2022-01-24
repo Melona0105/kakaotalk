@@ -6,7 +6,10 @@ const path = require("path");
 const app = express();
 app.use(
   cors({
-    origin: "*",
+    origin: [
+      "http://localhost:3000",
+      "http://duduki-kakaotalk.s3-website.ap-northeast-2.amazonaws.com",
+    ],
     credentials: true, // 브라우저들이 응답을 프론트앤드에 노출할지 옵션
     methods: ["GET", "POST", "OPTIONS", "PUT", "DELETE"],
   })

@@ -125,6 +125,6 @@ export async function hideFriend(username) {
   await Service.friends.hideFriend(username);
 }
 
-// export const server = "http://localhost:4000";
+// export const server = "http://localhost:80";
 export const server =
   "http://ec2-3-36-51-139.ap-northeast-2.compute.amazonaws.com";
