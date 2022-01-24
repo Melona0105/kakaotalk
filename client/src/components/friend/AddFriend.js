@@ -93,7 +93,7 @@ export default function AddFriend() {
                 <>
                   <img
                     src={
-                      friendInfo.photo ? `${server}${friendInfo.photo}` : user1
+                      friendInfo.photo ? `${server}/${friendInfo.photo}` : user1
                     }
                   />
                   <div className="isfriend-username">{friendInfo.username}</div>
