@@ -4,7 +4,11 @@ const cors = require("cors");
 
 module.exports = async (server) => {
   // express 서버와 연결
-  const io = new Server(server, { cors: { origin: "*", credentials: true } });
+  const io = new Server(
+    server,
+    { transports: ["websocket"] },
+    { cors: { origin: "*", methods: ["GET", "POST"], credentials: true } }
+  );
 
   io.on("connection", async (socket) => {
     socket.on("message", async (newdata) => {
