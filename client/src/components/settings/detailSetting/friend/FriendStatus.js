@@ -7,6 +7,7 @@ import SearchBar from "../../../etc/SearchBar";
 import { filterDataByKeyWord } from "../../../../utils";
 import FriendStatusCard from "./FriendStatusCard";
 import client from "../../../../Socket";
+import Service from "../../../../services";
 
 export default function FriendStatus() {
   const dispatch = useDispatch();
@@ -35,14 +36,7 @@ export default function FriendStatus() {
   useEffect(async () => {
     dispatch(handleLoadingOn(true));
     try {
-      const friendData = await axios({
-        method: "GET",
-        url: "http://localhost:4000/users/friends",
-        headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
-      }).then((res) => res.data);
-      setFriendStatusData(
-        friendData.filter((el) => el.status === currentStatus)
-      );
+      await Service.users.fetchFriends(currentStatus, setFriendStatusData);
     } catch (err) {
       console.log(err);
     } finally {

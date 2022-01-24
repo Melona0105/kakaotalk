@@ -35,9 +35,14 @@ const userService = {
     }
   },
 
-  getFriends: async () => {
+  fetchFriends: async (currentStatus, callback) => {
     try {
-      return await Apis.users.getFriends();
+      const result = await Apis.users.getFriends();
+      if (callback) {
+        callback(result.filter((el) => el.status === currentStatus));
+      } else {
+        return result;
+      }
     } catch (err) {
       throw err;
     }

@@ -82,7 +82,7 @@ export default function MainPage() {
     dispatch(handleLoadingOn(true));
     // 데이터를 받아오기
     try {
-      const result = await Service.users.getFriends();
+      const result = await Service.users.fetchFriends();
       result
         ? dispatch(handleUserFriends(result.filter((el) => el.status === 0)))
         : dispatch(handleUserFriends([]));
