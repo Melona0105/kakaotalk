@@ -15,7 +15,7 @@ export default function InnerRoomNav({ roomImg, roomData }) {
         <div className="inner-nav-left">
           <img
             className="inner-room-nav-user-img"
-            src={photo ? `${server}${photo}` : roomImg}
+            src={photo ? `${server}/${photo}` : roomImg}
           />
           <div className="inner-room-nav-room-info">
             <div>{username}</div>

@@ -33,7 +33,7 @@ export default function Room({ data }) {
           ></Popup>
         )}
         <div className="room-left">
-          <img src={photo ? `${server}${photo}` : user} />
+          <img src={photo ? `${server}/${photo}` : user} />
           <div className="room-body">
             <div>{username}</div>
             <div>{content}</div>

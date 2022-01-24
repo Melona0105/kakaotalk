@@ -21,7 +21,7 @@ export default function Chatting({ chattingData, roomImg, roomData }) {
         ) : (
           <div className="friend-chat-container">
             <div>
-              <img src={photo ? `${server}${photo}` : roomImg} />
+              <img src={photo ? `${server}/${photo}` : roomImg} />
             </div>
             <FriendChat
               key={`${el.content}+${el.time}`}

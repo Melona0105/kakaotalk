@@ -12,7 +12,7 @@ export default function MyProfile() {
   return (
     <div className="my-profile">
       <div className="my-profile-img-container">
-        <img src={photo ? `${server}${photo}` : user1} />
+        <img src={photo ? `${server}/${photo}` : user1} />
       </div>
       <div className="my-profile-detail">
         <div>

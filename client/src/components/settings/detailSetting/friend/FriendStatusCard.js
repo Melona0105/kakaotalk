@@ -12,7 +12,7 @@ export default function FriendStatusCard({ data, currentStatus }) {
   return (
     <div className="friend-status-card-container">
       <div>
-        <img src={photo ? `${server}${photo}` : user1} />
+        <img src={photo ? `${server}/${photo}` : user1} />
         <div>{username}</div>
       </div>
       <div className="friend-status-card-option">

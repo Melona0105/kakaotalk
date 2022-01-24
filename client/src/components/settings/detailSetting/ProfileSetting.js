@@ -42,7 +42,7 @@ export default function Profile() {
           <div>기본 프로필 관리</div>
           <div className="pofile-setting-edit">
             <div>
-              <img src={photo ? `${server}${photo}` : user1} />
+              <img src={photo ? `${server}/${photo}` : user1} />
               <div>{username}</div>
             </div>
             <div
