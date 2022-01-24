@@ -3,7 +3,7 @@ const app = require("./app");
 const { createServer } = require("http");
 const Server = require("./controllers/chat/sendChatWebSocket");
 
-const port = 80;
+const port = 8080;
 
 const httpServer = createServer(app);
 
