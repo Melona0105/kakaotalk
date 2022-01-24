@@ -10,6 +10,16 @@ const roomService = {
       console.log(err);
     }
   },
+
+  fetchRoomId: async (friend_id, callback) => {
+    try {
+      const { room_id } = await Apis.rooms.getRoomId(friend_id);
+
+      callback(room_id);
+    } catch (err) {
+      console.log(err);
+    }
+  },
 };
 
 export default roomService;

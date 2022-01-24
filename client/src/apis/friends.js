@@ -1,13 +1,20 @@
 import axiosInstance from "./axios";
 
 const friendApis = {
-  getFriends: async (email) => {
+  findFriend: async (friendEmail) => {
     const result = await axiosInstance({
-      method: "POST",
-      url: "/friends",
-      data: { email },
+      method: "GET",
+      url: `/friends/${friendEmail}`,
     });
+    return result;
+  },
 
+  addFriend: async (friendInfo) => {
+    const result = await axiosInstance({
+      method: "PUT",
+      url: "/friends",
+      data: { friendInfo },
+    });
     return result.data;
   },
 };

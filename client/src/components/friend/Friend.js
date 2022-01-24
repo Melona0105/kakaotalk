@@ -7,10 +7,11 @@ import "../../css/components/friend/Friend.css";
 import Melon from "../../components/etc/Melon";
 import FriendMouseMenu from "./FriendMouseMenu";
 import { server } from "../../utils";
+import Service from "../../services";
 
 export default function Friend({ id, src, name, comment, music, option }) {
   const [isChattingOn, setIsChattingOn] = useState(false);
-  const [currentRoomId, setCurrentRommId] = useState(undefined);
+  const [currentRoomId, setCurrentRoomId] = useState(undefined);
   const [isRightButtonOn, setIsRightButtonOn] = useState(false);
   const [settingLocation, setSettingLocation] = useState({ top: 0, left: 0 });
   const friend_id = id;
@@ -18,14 +19,7 @@ export default function Friend({ id, src, name, comment, music, option }) {
 
   async function getRoomData() {
     try {
-      const { data } = await axios({
-        method: "GET",
-        url: `http://localhost:4000/rooms/${friend_id}`,
-        headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
-      })
-        .then((res) => res)
-        .catch((err) => console.log(err));
-      setCurrentRommId(data.room_id);
+      await Service.rooms.fetchRoomId(friend_id, setCurrentRoomId);
     } catch (err) {
       console.log(err);
     }

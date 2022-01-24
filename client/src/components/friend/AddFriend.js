@@ -7,6 +7,7 @@ import { handleLoadingOn } from "../../actions";
 import client from "../../Socket";
 import user1 from "../../images/friend/user1.png";
 import { server } from "../../utils";
+import Service from "../../services";
 
 export default function AddFriend() {
   const dispatch = useDispatch();
@@ -28,20 +29,11 @@ export default function AddFriend() {
     setIsFriend(false);
     dispatch(handleLoadingOn(true));
     try {
-      const { status, data } = await axios({
-        method: "GET",
-        url: `http://localhost:4000/friends/${inputEmail}`,
-        headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
-      })
-        .then((res) => res)
-        .catch((err) => {
-          console.log(err);
-        });
-      if (status === 202) {
-        setIsFriend(true);
-      }
-
-      setFriendInfo(data.friendInfo);
+      await Service.friends.getFindedFriend(
+        inputEmail,
+        setIsFriend,
+        setFriendInfo
+      );
       setIsEmailExist(true);
     } catch {
       setIsEmailExist(false);
@@ -57,19 +49,10 @@ export default function AddFriend() {
     dispatch(handleLoadingOn(true));
     try {
       // 친구목록에 추가
-      const { data } = await axios({
-        method: "PUT",
-        url: "http://localhost:4000/friends",
-        headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
-        data: { friendInfo },
-      }).then((res) => res);
-      // 추가하고 완료되었다고 상태 변경
-      setIscomplete(true);
-      // 바뀌었으니, 친구데이터를 다시 새로 받아온다.
-      client.emit("friends", "데이터입니다.");
+      await Service.friends.updateFriendInfo(friendInfo, setIscomplete);
+      client.emit("friends", "data");
     } catch (err) {
       console.log(err);
-      // 친구가 추가되면 창을 닫아주고, 서버로부터 데이터를 다시 받아온다.
     } finally {
       dispatch(handleLoadingOn(false));
     }
