@@ -69,3 +69,11 @@ export const handleUserFriends = (input) => {
     paylaod: input,
   };
 };
+
+export const birthDayOption = "BIRTHDAY_OPTION";
+export const handleBirthdayFriend = (input) => {
+  return {
+    type: birthDayOption,
+    paylaod: input,
+  };
+};

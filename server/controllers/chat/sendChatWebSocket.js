@@ -32,6 +32,10 @@ module.exports = (server) => {
     socket.on("friends", (data) => {
       io.emit("friends", "data");
     });
+
+    socket.on("birth", (data) => {
+      io.emit("birth", "data");
+    });
   });
 };
 

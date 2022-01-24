@@ -91,24 +91,32 @@ export default function MainPage() {
   // 친구목록이 비었을 경우를 만들어주면 됨
   // 채팅방의 정보를 읽어오는 함수
   useEffect(async () => {
-    const { rooms } = await Service.users.getRooms();
-    const result = [];
-    if (rooms) {
-      for (let i = 0; i < rooms.length; i++) {
-        if (rooms[i].length) {
-          result.push(rooms[i]);
+    dispatch(handleLoadingOn(true));
+    try {
+      const { rooms } = await Service.users.getRooms();
+      const result = [];
+      if (rooms) {
+        for (let i = 0; i < rooms.length; i++) {
+          if (rooms[i].length) {
+            result.push(rooms[i]);
+          }
         }
-      }
-      // 새 메세지 개수 세기
-      const newMsg = getNewMessage(result);
-      // 전체 개수 세기
-      const totalNewMsg = getTotalNewMessage(newMsg);
+        // 새 메세지 개수 세기
+        const newMsg = getNewMessage(result);
+        // 전체 개수 세기
+        const totalNewMsg = getTotalNewMessage(newMsg);
 
-      setTotalNewMessage(totalNewMsg);
-      const answer = applyNewMsgToRoomData(result, newMsg);
-      getRoomDataFromServer(answer);
-    } else {
-      getRoomDataFromServer(result);
+        setTotalNewMessage(totalNewMsg);
+        const answer = applyNewMsgToRoomData(result, newMsg);
+        getRoomDataFromServer(answer);
+      } else {
+        getRoomDataFromServer(result);
+      }
+    } catch (err) {
+      // 실패할 경우
+      console.log(err);
+    } finally {
+      dispatch(handleLoadingOn(false));
     }
   }, [isNewData, isMsgChange, currentPage, userFriends]);
 

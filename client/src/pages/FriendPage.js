@@ -4,7 +4,11 @@ import MyProfile from "../components/friend/MyProfile";
 import BirthdayFriend from "../components/friend/BirthdayFriend";
 import Friends from "../components/friend/Friends";
 import { useSelector, useDispatch } from "react-redux";
-import { handleKeyword, handleIsSearchOn } from "../actions";
+import {
+  handleKeyword,
+  handleIsSearchOn,
+  handleBirthdayFriend,
+} from "../actions";
 import Friend from "../components/friend/Friend";
 import {
   getCurrentTime,
@@ -14,12 +18,19 @@ import {
 import sample from "../images/seemore/kakao talk.svg";
 import "../css/pages/FriendPage.css";
 import SearchBar from "../components/etc/SearchBar";
+import client from "../Socket";
 
 export default function FriendPage({ userFriends }) {
-  const [isBirthdayOn, setIsBirthdayOn] = useState(false);
   const { isSearchOn } = useSelector((state) => state.SearchOnReducer);
   const { keyWord } = useSelector((state) => state.SearchKeyWordReducer);
+  const { isBirthDayFriendOn } = useSelector(
+    (state) => state.BirthFriendReducer
+  );
   const dispatch = useDispatch();
+
+  client.on("birth", () => {
+    dispatch(handleBirthdayFriend(!isBirthDayFriendOn));
+  });
   let friendDataFromServer;
   if (!userFriends || userFriends.length === 0) {
     friendDataFromServer = [
@@ -39,7 +50,6 @@ export default function FriendPage({ userFriends }) {
   const toDayDate = getCurrentTime("birth");
 
   function getBirthFriend(data) {
-    console.log(data);
     const result = data.filter(
       (el) => el.userBirth && el.userBirth.slice(5) === toDayDate
     );
@@ -60,14 +70,6 @@ export default function FriendPage({ userFriends }) {
     }
   }
 
-  useEffect(() => {
-    if (birthFriend.length) {
-      setIsBirthdayOn(true);
-    } else {
-      setIsBirthdayOn(false);
-    }
-  }, [friendDataFromServer]);
-
   return (
     <div className="friend-page-container">
       <FriendNav />
@@ -82,7 +84,7 @@ export default function FriendPage({ userFriends }) {
         {keyWord === "" ? (
           <>
             <MyProfile />
-            {isBirthdayOn && <BirthdayFriend birthData={birthFriend} />}
+            {isBirthDayFriendOn && <BirthdayFriend birthData={birthFriend} />}
             <Friends data={friendDataFromServer} />
           </>
         ) : (

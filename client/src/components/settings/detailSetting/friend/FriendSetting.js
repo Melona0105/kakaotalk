@@ -1,9 +1,16 @@
 import react, { useState } from "react";
 import "../../../../css/components/settings/detailSetting/friend/FriendSetting.css";
 import FriendStatus from "./FriendStatus";
+import { useSelector, useDispatch } from "react-redux";
+import { handleBirthdayFriend } from "../../../../actions";
+import client from "../../../../Socket";
 
 export default function FriendSetting() {
   const [isFriendsOn, setIsFriendsOn] = useState(false);
+  const { isBirthDayFriendOn } = useSelector(
+    (state) => state.BirthFriendReducer
+  );
+  const dispatch = useDispatch();
   return (
     <div className="friend-setting-container">
       <div className="friend-setting-item">
@@ -28,6 +35,12 @@ export default function FriendSetting() {
             id="birth-button"
             type="checkbox"
             className="friend-birth-button"
+            checked={isBirthDayFriendOn}
+            onChange={() => {
+              dispatch(handleBirthdayFriend(!isBirthDayFriendOn));
+              client.emit("birth", "data");
+              console.log(1);
+            }}
           />
           <label className="friend-birth-button" htmlFor="birth-button"></label>
           <div>생일인 친구 보기</div>

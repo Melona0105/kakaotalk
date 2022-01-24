@@ -24,3 +24,5 @@ export const isMsgChange = { isMsgChange: false };
 
 // 전역에 친구상태를 갖다 박아놓고 -> 필요한곳에서 땡겨다 쓴다
 export const userFriends = { userFriends: [] };
+
+export const isBirthDayFriendOn = { isBirthDayFriendOn: false };
