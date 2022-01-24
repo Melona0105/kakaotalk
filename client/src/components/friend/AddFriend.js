@@ -29,10 +29,9 @@ export default function AddFriend() {
     dispatch(handleLoadingOn(true));
     try {
       const { status, data } = await axios({
-        method: "POST",
-        url: "http://localhost:4000/friends",
+        method: "GET",
+        url: `http://localhost:4000/friends/${inputEmail}`,
         headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
-        data: { email: inputEmail },
       })
         .then((res) => res)
         .catch((err) => {

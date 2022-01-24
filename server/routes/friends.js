@@ -13,7 +13,7 @@ const auth = require("../middlewares/auth");
 
 const friendRouter = Router();
 
-friendRouter.post("/", auth, findFriend);
+friendRouter.get("/:friendEmail", auth, findFriend);
 friendRouter.put("/", auth, addFriend);
 friendRouter.delete("/", auth, deleteFriend);
 friendRouter.put("/block", auth, blockFriend);
