@@ -4,16 +4,7 @@ const cors = require("cors");
 
 module.exports = async (server) => {
   // express 서버와 연결
-  const io = new Server(server, {
-    cors: {
-      origin: [
-        "http://localhost:3000",
-        "http://duduki-kakaotalk.s3-website.ap-northeast-2.amazonaws.com",
-      ],
-      methods: ["GET", "POST", "OPTIONS", "PUT", "DELETE"],
-      credentials: true,
-    },
-  });
+  const io = new Server(server, { cors: { origin: "*" } });
 
   io.on("connection", async (socket) => {
     socket.on("message", async (newdata) => {
