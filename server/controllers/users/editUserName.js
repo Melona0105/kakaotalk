@@ -1,6 +1,6 @@
 const db = require("../../database");
 
-module.exports = async function editUserName(req, res) {
+module.exports = function editUserName(req, res) {
   const { id } = req.userInfo;
   const { username } = req.body;
   try {

@@ -1,6 +1,6 @@
 const db = require("../../database");
 
-module.exports = async function addFriend(req, res) {
+module.exports = function addFriend(req, res) {
   const { id } = req.userInfo;
 
   const { friendInfo } = req.body;

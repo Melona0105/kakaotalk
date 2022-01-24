@@ -2,7 +2,7 @@
 
 const db = require("../../database");
 
-module.exports = async function addFriend(req, res) {
+module.exports = function addFriend(req, res) {
   // 접속한 유저정보
   const { id } = req.userInfo;
   // 방 아이디

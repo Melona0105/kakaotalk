@@ -1,6 +1,6 @@
 const db = require("../../database");
 
-module.exports = async function rollbackFriend(req, res) {
+module.exports = function rollbackFriend(req, res) {
   const { id } = req.userInfo;
   const { username } = req.body;
   try {

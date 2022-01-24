@@ -1,6 +1,6 @@
 const db = require("../../database");
 
-module.exports = async function deleteFriend(req, res) {
+module.exports = function deleteFriend(req, res) {
   const { id } = req.userInfo;
   const { username } = req.body;
   try {

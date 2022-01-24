@@ -1,6 +1,6 @@
 const db = require("../../database");
 
-module.exports = async function hideFriend(req, res) {
+module.exports = function hideFriend(req, res) {
   const { id } = req.userInfo;
   const { username } = req.body;
   try {

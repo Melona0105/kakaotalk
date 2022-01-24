@@ -1,6 +1,6 @@
 const db = require("../../database/");
 
-module.exports = async function findFriend(req, res) {
+module.exports = function findFriend(req, res) {
   // 로그인한 유저의 정보를 가져온다.
   const { id } = req.userInfo;
   // 친구 이메일

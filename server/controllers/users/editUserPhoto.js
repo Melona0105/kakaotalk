@@ -1,7 +1,7 @@
 // const { User } = require("../../models");
 const db = require("../../database");
 
-module.exports = async function editUserPhoto(req, res) {
+module.exports = function editUserPhoto(req, res) {
   const { id } = req.userInfo;
   const { path } = req.file;
 

@@ -1,6 +1,6 @@
 const db = require("../../database/");
 
-module.exports = async function checkEmail(req, res) {
+module.exports = function checkEmail(req, res) {
   const { email } = req.body;
   try {
     db.query(

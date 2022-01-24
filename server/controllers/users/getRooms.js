@@ -1,6 +1,6 @@
 const db = require("../../database");
 
-module.exports = async function getRooms(req, res) {
+module.exports = function getRooms(req, res) {
   // 유저가 속해있는 방들을 들어간다.
   const user_id = req.userInfo.id;
   try {

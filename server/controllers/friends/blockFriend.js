@@ -1,6 +1,6 @@
 const db = require("../../database");
 
-module.exports = async function blockFriend(req, res) {
+module.exports = function blockFriend(req, res) {
   const { id } = req.userInfo;
   const { username } = req.body;
   try {
