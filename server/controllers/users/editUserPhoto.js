@@ -1,7 +1,7 @@
 // const { User } = require("../../models");
 const db = require("../../database");
 
-module.exports = function editUserPhoto(req, res) {
+module.exports = async function editUserPhoto(req, res) {
   const { id } = req.userInfo;
   const { path } = req.file;
 
@@ -12,15 +12,19 @@ module.exports = function editUserPhoto(req, res) {
     }
 
     const file = path.split("public/")[1];
-    db.query(
-      `UPDATE Users SET photo = "${file}" where users.id = "${id}"`,
-      (err, result) => {
-        if (err) {
-          throw err;
+    await new Promise((res, rej) => {
+      db.query(
+        `UPDATE Users SET photo = "${file}" where users.id = "${id}"`,
+        (err, result) => {
+          if (err) {
+            return rej(err);
+          } else {
+            return res(result);
+          }
         }
-        return res.status(201).send();
-      }
-    );
+      );
+    });
+    return res.status(201).send();
   } catch {
     return res.status(500).send({ message: "Unexpected server error." });
   }

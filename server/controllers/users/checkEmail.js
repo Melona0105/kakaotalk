@@ -1,29 +1,26 @@
 const db = require("../../database/");
 
-module.exports = function checkEmail(req, res) {
+module.exports = async function checkEmail(req, res) {
   const { email } = req.body;
   try {
-    db.query(
-      `select * from users where email="${email}"`,
-
-      async (err, result) => {
+    const data = await new Promise((res, rej) => {
+      db.query(`select * from users where email="${email}"`, (err, result) => {
         if (err) {
-          throw err;
-        }
-
-        const userInfo = result[0];
-
-        // 이메일이 존재하면  401
-        if (userInfo) {
-          return res
-            .status(401)
-            .send({ message: `${email} is already exists.` });
+          return rej(err);
         } else {
-          // 존재하지않으면 가능하니까 201
-          return res.status(201).send({ message: `${email} is available.` });
+          return res(result);
         }
-      }
-    );
+      });
+    });
+    const userInfo = data[0];
+
+    // 이메일이 존재하면  401
+    if (userInfo) {
+      return res.status(401).send({ message: `${email} is already exists.` });
+    } else {
+      // 존재하지않으면 가능하니까 201
+      return res.status(201).send({ message: `${email} is available.` });
+    }
   } catch {
     return res.status(500).send({ message: "server error" });
   }
