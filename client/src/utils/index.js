@@ -1,5 +1,9 @@
 import Service from "../services";
 
+export const server = "http://localhost:8080";
+// export const server =
+//   "http://ec2-3-36-51-139.ap-northeast-2.compute.amazonaws.com:8080";
+
 export function printNewMsgTime(input) {
   // const year = input.slice(0, 4);
   const month = input.slice(5, 7);
@@ -124,7 +128,3 @@ export async function blockFriend(username) {
 export async function hideFriend(username) {
   await Service.friends.hideFriend(username);
 }
-
-export const server = "http://localhost:8080";
-// export const server =
-//   "http://ec2-3-36-51-139.ap-northeast-2.compute.amazonaws.com:8080";
