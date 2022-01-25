@@ -18,7 +18,6 @@ export default function MainPage() {
   const [roomData, setRoomData] = useState([]);
   const [totalNewMessage, setTotalNewMessage] = useState(0);
 
-  // TODO : useEffect 정리
   useEffect(() => {
     client.on("friends", () => {
       // 여기도 socket 연결을 해놓고, 새로 데이터가 올때마다 새로 렌더링한다.
@@ -113,7 +112,7 @@ export default function MainPage() {
     try {
       const { rooms } = await Service.users.getRooms();
       const result = [];
-      if (rooms) {
+      if (rooms && id !== undefined) {
         for (let i = 0; i < rooms.length; i++) {
           if (rooms[i].length) {
             result.push(rooms[i]);
