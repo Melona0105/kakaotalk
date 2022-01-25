@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import Nav from "../components/nav/Nav";
 import FriendPage from "../pages/FriendPage";
 import "../css/pages/MainPage.css";

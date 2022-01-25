@@ -11,7 +11,6 @@ import { sortChatData, getCurrentTime } from "../../utils";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import client from "../../Socket";
-
 import "../../css/components/chatting room/InnerRoom.css";
 import Service from "../../services";
 
