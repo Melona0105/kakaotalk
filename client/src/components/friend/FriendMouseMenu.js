@@ -15,10 +15,9 @@ export default function FriendMouseMenu({
   }, []);
 
   async function handleClickFriendMenu(callback, username) {
-    console.log("왜 여기서는 안 사라질까?");
+    client.emit("friends", "data");
     try {
       await callback(username);
-      client.emit("friends", "data");
     } catch (err) {
       console.log(err);
     }
