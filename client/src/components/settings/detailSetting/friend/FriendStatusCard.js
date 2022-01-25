@@ -23,7 +23,7 @@ export default function FriendStatusCard({ data, currentStatus }) {
       </div>
       <div className="friend-status-card-option">
         <div onClick={() => handleClickFriendMenu(rollbackFriend, username)}>
-          {currentStatus === 1 ? "차단해제" : "차단해제"}
+          {currentStatus === 1 ? "숨김해제" : "차단해제"}
         </div>
         {currentStatus === 1 && (
           <div onClick={() => handleClickFriendMenu(blockFriend, username)}>
