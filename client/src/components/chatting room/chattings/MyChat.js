@@ -6,20 +6,9 @@ export default function MyChat({ content, time, view }) {
     <div className="my-chat-container">
       <div className="my-chat-content-container">
         {content.map((el, idx) => {
-          let len = el.length;
-          if (!(el % 2)) {
-            len = el.length + 1;
-          }
           return (
             <div className="my-chat-content-inner-container">
-              <div
-                className="my-chat-content"
-                style={{
-                  width: `${len * 11}px`,
-                }}
-              >
-                {el}
-              </div>
+              <div className="my-chat-content">{el}</div>
               <div className="my-chat-time">
                 {idx === content.length - 1 && (
                   <>

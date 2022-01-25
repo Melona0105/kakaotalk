@@ -16,6 +16,7 @@
 }
 
 .my-chat-content {
+  max-width: 200px;
   font-size: 14px;
   font-weight: 500;
   display: flex;
