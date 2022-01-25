@@ -1,11 +1,9 @@
 import "../css/pages/ChattingPage.css";
 import RommPageNav from "../components/chatting room/RommPageNav";
 import Room from "../components/chatting room/Room";
-import { useSelector } from "react-redux";
 import client from "../Socket";
 
 export default function ChattingPage({ isNewData, roomData, setIsNewData }) {
-  const { currentPage } = useSelector((state) => state.CurrentPageReducer);
   // * TODO : 메세지 변화를 리덕스에 넣고, 그거 바뀌면 전부다 알림이 새로고침 되도록 하기 --- OK
 
   // 데이터가 들어오면, 새로 렌더링을 하고, -- > 데이터에 종속시키면 될듯

@@ -27,14 +27,8 @@ export default function FriendStatus() {
     }
   }
 
-  useEffect(() => {
-    client.open();
-    client.on("friends", () => {
-      setIsRendering(!isRendering);
-    });
-    return () => {
-      client.close();
-    };
+  client.on("friends", () => {
+    setIsRendering(!isRendering);
   });
 
   // 친구목록 불러봐서 뿌려준다.

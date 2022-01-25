@@ -52,11 +52,14 @@ function getCurrentTime() {
   const month = date[1].slice(0, -1).padStart(2, 0);
   const day = date[2].slice(0, -1).padStart(2, 0);
 
-  const hour =
+  let hour =
     time[0] === "오후"
       ? +time[1].split(":")[0] + 12
       : time[1].split(":")[0].padStart(2, 0);
 
+  if (hour === 24) {
+    hour = 12;
+  }
   const min = time[1].split(":")[1];
   const second = time[1].split(":")[2];
   return `${year}-${month}-${day} ${hour}:${min}:${second}`;

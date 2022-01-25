@@ -20,22 +20,15 @@ export default function MainPage() {
   const [totalNewMessage, setTotalNewMessage] = useState(0);
   const [isRedering, setIsRedering] = useState(false);
 
-  console.log(1);
   // TODO : useEffect 정리
-  useEffect(() => {
-    client.open();
-    client.on("friends", () => {
-      // 여기도 socket 연결을 해놓고, 새로 데이터가 올때마다 새로 렌더링한다.
-      console.log(1, "애는 작동을 하는데?");
-      setIsRedering(!isRedering);
-    });
-    client.on("message", () => {
-      console.log(2, "쿼리 존나날리는거 아님?");
-      setIsNewData(!isNewData);
-    });
-    return () => {
-      client.close();
-    };
+  client.on("friends", () => {
+    // 여기도 socket 연결을 해놓고, 새로 데이터가 올때마다 새로 렌더링한다.
+    console.log(1, "애는 작동을 하는데?");
+    setIsRedering(!isRedering);
+  });
+  client.on("message", () => {
+    console.log(2, "쿼리 존나날리는거 아님?");
+    setIsNewData(!isNewData);
   });
 
   // 들어온 데이터 안의 배열들을 순회하면서 거기서 일치하는 값을 뽑아낸다.
@@ -77,7 +70,7 @@ export default function MainPage() {
     };
 
     getUserData();
-  }, [currentPage, isRedering]);
+  }, [isRedering]);
 
   // * 친구 추가 후, 친구 목록 어떻게 다시 불러오게 할까? ---OK
   // 처음에는 리덕스로 해봤는데, 리덕스는 새창열린거는 못 넘어가기때문에 웹소켓으로 해결함
@@ -102,7 +95,7 @@ export default function MainPage() {
     };
 
     getFriendsData();
-  }, [currentPage, isRedering]);
+  }, [isRedering]);
 
   // * TODO : 친구 목록이 없으면 어떻게 해줘야할까 --- OK
   // 친구목록이 비었을 경우를 만들어주면 됨
@@ -139,7 +132,7 @@ export default function MainPage() {
     };
 
     getRoomsData();
-  }, [isNewData, isMsgChange, currentPage, userFriends]);
+  }, [isNewData, isMsgChange, userFriends]);
 
   function getTotalNewMessage(array) {
     return array.reduce((acc, cur) => {
