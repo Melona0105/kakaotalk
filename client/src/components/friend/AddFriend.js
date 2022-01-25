@@ -22,6 +22,12 @@ export default function AddFriend() {
     inputEmail ? setIsInputFill(true) : setIsInputFill(false);
   }, [inputEmail]);
 
+  useEffect(() => {
+    return () => {
+      client.close();
+    };
+  }, []);
+
   async function findFriendFromServer() {
     setIsErrorOn(false);
     setIscomplete(false);
@@ -56,6 +62,7 @@ export default function AddFriend() {
       dispatch(handleLoadingOn(false));
     }
   }
+  
   return (
     <div className="add-friend-container">
       <div>

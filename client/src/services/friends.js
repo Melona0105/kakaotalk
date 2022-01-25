@@ -1,5 +1,4 @@
 import Apis from "../apis";
-import client from "../Socket";
 
 const friendService = {
   getFindedFriend: async (friendEmail, callback1, callback2) => {
