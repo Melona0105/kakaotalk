@@ -14,7 +14,6 @@ export default function FriendStatus() {
   const [friendStatusData, setFriendStatusData] = useState([]);
   const [currentStatus, setCurrentStatus] = useState(1);
   const [sortedData, setSortedData] = useState([]);
-  const [isRendering, setIsRendering] = useState(false);
   const friendData = currentKeyword === "" ? friendStatusData : sortedData;
 
   function searchOnChange(e) {
@@ -35,6 +34,7 @@ export default function FriendStatus() {
 
   useEffect(() => {
     client.on("friends", () => {
+      console.log(11);
       getFriends();
     });
   }, []);
@@ -68,7 +68,7 @@ export default function FriendStatus() {
       filterDataByKeyWord(el.username, currentKeyword)
     );
     setSortedData(nextState);
-  }, [currentKeyword, isRendering]);
+  }, [currentKeyword]);
 
   function handleMenuStyle(input) {
     return currentStatus === input

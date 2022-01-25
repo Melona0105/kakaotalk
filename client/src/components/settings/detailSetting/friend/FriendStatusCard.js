@@ -11,16 +11,20 @@ import { useEffect } from "react";
 export default function FriendStatusCard({ data, currentStatus }) {
   const { photo, username } = data;
 
-  function handleClickFriendMenu(callback, username) {
-    callback(username);
-    client.emit("friends", "data");
+  async function handleClickFriendMenu(callback, username) {
+    try {
+      await callback(username);
+      client.emit("friends", "data");
+    } catch (err) {
+      console.log(err);
+    }
   }
 
-  useEffect(() => {
-    return () => {
-      client.close();
-    };
-  }, []);
+  // useEffect(() => {
+  //   return () => {
+  //     client.close();
+  //   };
+  // }, []);
 
   return (
     <div className="friend-status-card-container">
