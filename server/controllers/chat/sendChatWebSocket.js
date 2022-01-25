@@ -5,10 +5,15 @@ const cors = require("cors");
 module.exports = async (server) => {
   // express 서버와 연결
   const io = new Server(server, {
-    cors: { origin: ["http://localhost:3000"], methods: ["GET", "POST"] },
+    cors: {
+      origin: ["http://localhost:3000", "http://localhost:3001"],
+      methods: ["GET", "POST"],
+    },
   });
 
   io.on("connection", async (socket) => {
+    console.log("서버와연결");
+    io.emit("connection", "서버에 연결되었습니다.");
     socket.on("message", async (newdata) => {
       try {
         // 방 번호와, 채팅 내역

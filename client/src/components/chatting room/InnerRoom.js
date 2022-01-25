@@ -29,21 +29,22 @@ export default function InnerRoom() {
   const { status } = roomData;
 
   useEffect(() => {
-    return () => {
-      client.close();
-    };
-  }, []);
-
-  useEffect(() => {
     client.on("message", (message) => {
       // 여기도 socket 연결을 해놓고, 새로 데이터가 올때마다 새로 렌더링한다.
       getChattings();
       getRoomInfo();
       setCurrentChat([...currentChat, message]);
     });
+
+    // 채팅 내용들을 가져오는 함수 처음에만 가져오고 다시들어오면 그때 넣어준다.
+    getChattings();
+    getRoomInfo();
+
+    // return () => {
+    //   client.close();
+    // };
   }, []);
 
-  // let sortedData = sortChatData(currentChat);
   // 우선은 준걸 그대로 줘야 빠르게 되니 폼에 담아서 준다.
   // 서버로 데이터를 전송하는 함수
   // ? 서버로 데이터를 전송하고, 그 후, 바뀐 데이터를 받아오는데
@@ -91,12 +92,6 @@ export default function InnerRoom() {
       console.log(err);
     }
   }
-
-  useEffect(() => {
-    // 채팅 내용들을 가져오는 함수 처음에만 가져오고 다시들어오면 그때 넣어준다.
-    getChattings();
-    getRoomInfo();
-  }, []);
 
   // 채팅을 새로보내면 새로 렌더링하게 하는 함수
   useEffect(() => {

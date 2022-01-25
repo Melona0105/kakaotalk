@@ -27,12 +27,6 @@ export default function FriendStatus() {
   }
 
   useEffect(() => {
-    return () => {
-      client.close();
-    };
-  }, []);
-
-  useEffect(() => {
     client.on("friends", () => {
       console.log(11);
       getFriends();
@@ -59,8 +53,6 @@ export default function FriendStatus() {
   useEffect(() => {
     getFriends();
   }, [currentStatus]);
-
-  // 왜 친구목록이 터질까?
 
   useEffect(() => {
     let nextState = [...friendStatusData];

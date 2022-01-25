@@ -22,11 +22,11 @@ export default function Profile() {
     });
   }, []);
 
-  useEffect(() => {
-    return () => {
-      client.close();
-    };
-  }, []);
+  // useEffect(() => {
+  //   return () => {
+  //     client.close();
+  //   };
+  // }, []);
 
   async function getUserInfo() {
     dispatch(handleLoadingOn(true));

@@ -13,29 +13,29 @@ export default function MainPage() {
   const dispatch = useDispatch();
   const { currentPage } = useSelector((state) => state.CurrentPageReducer);
   const { userFriends } = useSelector((state) => state.UserFriendsInfoReducer);
-  const [isNewData, setIsNewData] = useState(false);
   const { id } = useSelector((state) => state.UserInfoReducer);
   const [roomData, setRoomData] = useState([]);
   const [totalNewMessage, setTotalNewMessage] = useState(0);
+  const { isMsgChange } = useSelector((state) => state.MsgChangeReducer);
 
   useEffect(() => {
-    client.on("friends", () => {
-      // 여기도 socket 연결을 해놓고, 새로 데이터가 올때마다 새로 렌더링한다.
-      console.log("friends 수신");
-      getFriendsData();
-      getUserData();
+    client.on("connect", () => {
+      client.on("friends", () => {
+        // 여기도 socket 연결을 해놓고, 새로 데이터가 올때마다 새로 렌더링한다.
+        console.log("friends 수신");
+        getFriendsData();
+        getUserData();
+      });
+
+      client.on("message", () => {
+        console.log("message 수신");
+        getRoomsData();
+      });
     });
 
-    client.on("message", () => {
-      console.log("message 수신");
-      getRoomsData();
-    });
-  }, []);
-
-  useEffect(() => {
-    return () => {
-      client.close();
-    };
+    // return () => {
+    //   client.close();
+    // };
   }, []);
 
   // 들어온 데이터 안의 배열들을 순회하면서 거기서 일치하는 값을 뽑아낸다.
@@ -67,7 +67,7 @@ export default function MainPage() {
     getFriendsData();
     getUserData();
     getRoomsData();
-  }, []);
+  }, [currentPage, isMsgChange]);
 
   async function getUserData() {
     dispatch(handleLoadingOn(true));
@@ -158,13 +158,7 @@ export default function MainPage() {
     <div className="mainpage-container">
       <Nav currentPage={currentPage} totalNewMessage={totalNewMessage} />
       {currentPage === 0 && <FriendPage userFriends={userFriends} />}
-      {currentPage === 1 && (
-        <ChattingRoomPage
-          isNewData={isNewData}
-          roomData={roomData}
-          setIsNewData={setIsNewData}
-        />
-      )}
+      {currentPage === 1 && <ChattingRoomPage roomData={roomData} />}
       {currentPage === 2 && <SeeMorePage />}
     </div>
   );
