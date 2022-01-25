@@ -44,7 +44,7 @@ export default function Friend({ id, src, name, comment, music, option }) {
       <div className="friend-profile">
         <img
           className="friend-profile-photo"
-          src={src ? (option ? src : `${server}${src}`) : user1}
+          src={src ? (option ? src : `${server}/${src}`) : user1}
         />
         <div>
           <div>{name}</div>

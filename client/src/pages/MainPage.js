@@ -26,16 +26,20 @@ export default function MainPage() {
       getUserData();
     });
 
+    return () => {
+      client.off("friends");
+    };
+  }, []);
+
+  useEffect(() => {
     client.on("message", () => {
       console.log("message 수신");
       getRoomsData();
     });
-
     return () => {
-      client.off("friends");
       client.off("message");
     };
-  }, []);
+  });
 
   // 들어온 데이터 안의 배열들을 순회하면서 거기서 일치하는 값을 뽑아낸다.
   function getNewMessage(array) {
@@ -121,7 +125,6 @@ export default function MainPage() {
         const newMsg = getNewMessage(result);
         // 전체 개수 세기
         const totalNewMsg = getTotalNewMessage(newMsg);
-
         setTotalNewMessage(totalNewMsg);
         const answer = applyNewMsgToRoomData(result, newMsg);
         getRoomDataFromServer(answer);
