@@ -22,12 +22,13 @@ export default function AddFriend() {
     inputEmail ? setIsInputFill(true) : setIsInputFill(false);
   }, [inputEmail]);
 
-  useEffect(() => {
-    return () => {
-      client.close();
-    };
-  }, []);
+  // useEffect(() => {
+  //   return () => {
+  //     client.close();
+  //   };
+  // }, []);
 
+  // 엔터를 누르면 서버에서 친구인지 아닌지를 확인한다.
   async function findFriendFromServer() {
     setIsErrorOn(false);
     setIscomplete(false);
@@ -46,8 +47,6 @@ export default function AddFriend() {
     } finally {
       dispatch(handleLoadingOn(false));
     }
-
-    // 엔터를 누르면 서버에서 친구인지 아닌지를 확인한다.
   }
 
   async function AddFriendToServer() {
@@ -62,7 +61,7 @@ export default function AddFriend() {
       dispatch(handleLoadingOn(false));
     }
   }
-  
+
   return (
     <div className="add-friend-container">
       <div>

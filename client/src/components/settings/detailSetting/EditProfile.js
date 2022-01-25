@@ -1,11 +1,11 @@
 import user1 from "../../../images/friend/user1.png";
 import "../../../css/components/settings/detailSetting/EditProfile.css";
 import { useEffect, useState } from "react";
-import client from "../../../Socket";
 import { useDispatch } from "react-redux";
 import { handleLoadingOn } from "../../../actions";
 import { server } from "../../../utils";
 import Service from "../../../services";
+import client from "../../../Socket";
 
 export default function EditProfile({
   setIsEditOn,
@@ -31,6 +31,7 @@ export default function EditProfile({
     // 사진바꾼것과, 이름 바꾼것 전송
     await editUsername();
     await editPhoto();
+    client.emit("friends", "data");
   }
 
   async function editUsername() {
@@ -39,7 +40,6 @@ export default function EditProfile({
     try {
       if (editValue !== "") {
         await Service.users.updateUsername(editValue);
-        client.emit("friends", "data");
       }
     } catch (err) {
       console.log(err);
@@ -57,8 +57,6 @@ export default function EditProfile({
         for (let i = 0; i < blobBin.length; i++) {
           array.push(blobBin.charCodeAt(i));
         }
-        // const fileType = currentPhoto.split("image/")[1].split(";")[0];
-        // 전부 png로 저장
         const blob = new Blob([new Uint8Array(array)], {
           type: `image/png`,
         });
@@ -66,7 +64,6 @@ export default function EditProfile({
         const formData = new FormData();
         formData.append(`img`, file);
         await Service.users.updateUserPhoto(formData);
-        client.emit("friends", "data");
       }
     } catch (err) {
       console.log(err);

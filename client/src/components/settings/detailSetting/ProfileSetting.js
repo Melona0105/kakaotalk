@@ -16,10 +16,6 @@ export default function Profile() {
   const [editValue, setEditValue] = useState("");
   const { isLoadingOn } = useSelector((state) => state.LoadingReducer);
 
-  client.on("connection", () => {
-    console.log("연결됨");
-  });
-
   useEffect(() => {
     client.on("friends", () => {
       getUserInfo();

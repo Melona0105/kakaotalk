@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import "../../css/components/friend/FriendMouseMenu.css";
 import client from "../../Socket";
 import { hideFriend, blockFriend, deleteFriend } from "../../utils";
@@ -8,16 +7,10 @@ export default function FriendMouseMenu({
   location,
   setIsRightButtonOn,
 }) {
-  useEffect(() => {
-    return () => {
-      client.close();
-    };
-  }, []);
-
   async function handleClickFriendMenu(callback, username) {
-    client.emit("friends", "data");
     try {
       await callback(username);
+      client.emit("friends", "data");
     } catch (err) {
       console.log(err);
     }
