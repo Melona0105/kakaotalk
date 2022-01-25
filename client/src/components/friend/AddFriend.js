@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import "../../css/components/friend/AddFriend.css";

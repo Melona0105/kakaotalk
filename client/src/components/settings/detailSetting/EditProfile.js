@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import client from "../../../Socket";
 import { useDispatch } from "react-redux";
 import { handleLoadingOn } from "../../../actions";
-import axios from "axios";
 import { server } from "../../../utils";
 import Service from "../../../services";
 
@@ -32,7 +31,6 @@ export default function EditProfile({
     // 사진바꾼것과, 이름 바꾼것 전송
     await editUsername();
     await editPhoto();
-    client.emit("friends", "data");
   }
 
   async function editUsername() {
@@ -41,6 +39,7 @@ export default function EditProfile({
     try {
       if (editValue !== "") {
         await Service.users.updateUsername(editValue);
+        client.emit("friends", "data");
       }
     } catch (err) {
       console.log(err);
@@ -58,14 +57,16 @@ export default function EditProfile({
         for (let i = 0; i < blobBin.length; i++) {
           array.push(blobBin.charCodeAt(i));
         }
-        const fileType = currentPhoto.split("image/")[1].split(";")[0];
+        // const fileType = currentPhoto.split("image/")[1].split(";")[0];
+        // 전부 png로 저장
         const blob = new Blob([new Uint8Array(array)], {
-          type: `image/${fileType}`,
+          type: `image/png`,
         });
-        const file = new File([blob], `User-${id}-${Date.now()}.${fileType}`);
+        const file = new File([blob], `User-${id}-${Date.now()}.png`);
         const formData = new FormData();
         formData.append(`img`, file);
         await Service.users.updateUserPhoto(formData);
+        client.emit("friends", "data");
       }
     } catch (err) {
       console.log(err);
@@ -90,7 +91,7 @@ export default function EditProfile({
                 currentPhoto
                   ? isPhotoEditOn
                     ? currentPhoto
-                    : `${server}${currentPhoto}`
+                    : `${server}/${currentPhoto}`
                   : user1
               }
             />

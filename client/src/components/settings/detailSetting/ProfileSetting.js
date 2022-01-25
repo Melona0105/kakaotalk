@@ -13,26 +13,40 @@ export default function Profile() {
   const dispatch = useDispatch();
   const [isEditOn, setIsEditOn] = useState(false);
   const [userInfo, setUserInfo] = useState([]);
-  const { photo, username, email } = userInfo;
   const [editValue, setEditValue] = useState("");
-  const [isRendering, setIsRendering] = useState("");
   const { isLoadingOn } = useSelector((state) => state.LoadingReducer);
 
-  client.on("friends", () => {
-    setIsRendering(!isRendering);
+  client.on("connection", () => {
+    console.log("연결됨");
   });
 
-  useEffect(async () => {
+  useEffect(() => {
+    client.on("friends", () => {
+      getUserInfo();
+    });
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      client.close();
+    };
+  }, []);
+
+  async function getUserInfo() {
     dispatch(handleLoadingOn(true));
     try {
       const data = await Service.users.fetchUserInfo();
       setUserInfo(data);
     } catch (err) {
-      throw err;
+      console.log(err);
     } finally {
       dispatch(handleLoadingOn(false));
     }
-  }, [isRendering]);
+  }
+
+  useEffect(() => {
+    getUserInfo();
+  }, []);
 
   return (
     <>
@@ -42,8 +56,10 @@ export default function Profile() {
           <div>기본 프로필 관리</div>
           <div className="pofile-setting-edit">
             <div>
-              <img src={photo ? `${server}/${photo}` : user1} />
-              <div>{username}</div>
+              <img
+                src={userInfo.photo ? `${server}/${userInfo.photo}` : user1}
+              />
+              <div>{userInfo.username}</div>
             </div>
             <div
               className="pofile-setting-edit-button"
@@ -64,7 +80,7 @@ export default function Profile() {
         <div>
           <div className="pofile-setting-email">
             <div>계정</div>
-            <div>{email}</div>
+            <div>{userInfo.email}</div>
           </div>
         </div>
       </div>

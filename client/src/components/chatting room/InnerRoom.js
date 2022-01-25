@@ -8,11 +8,10 @@ import Chatting from "./chattings/Chatting";
 import { useParams } from "react-router-dom";
 import InnerRoomNav from "./InnerRoomNav";
 import { sortChatData, getCurrentTime } from "../../utils";
-import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import client from "../../Socket";
-import { handleIsMsgChange } from "../../actions";
+
 import "../../css/components/chatting room/InnerRoom.css";
 import Service from "../../services";
 
@@ -27,15 +26,22 @@ export default function InnerRoom() {
   const [message, setMessage] = useState("");
   const [isMessageFill, setIsMessageFill] = useState(false);
   // 메세지 변화를 리덕스에 넣고, 그거 바뀌면 전부다 알림이 새로고침 되도록 하기
-  const { isMsgChange } = useSelector((state) => state.MsgChangeReducer);
-  const dispatch = useDispatch();
   const { status } = roomData;
 
-  client.on("message", (message) => {
-    // 여기도 socket 연결을 해놓고, 새로 데이터가 올때마다 새로 렌더링한다.
-    dispatch(handleIsMsgChange(!isMsgChange));
-    setCurrentChat([...currentChat, message]);
-  });
+  useEffect(() => {
+    return () => {
+      client.close();
+    };
+  }, []);
+
+  useEffect(() => {
+    client.on("message", (message) => {
+      // 여기도 socket 연결을 해놓고, 새로 데이터가 올때마다 새로 렌더링한다.
+      getChattings();
+      getRoomInfo();
+      setCurrentChat([...currentChat, message]);
+    });
+  }, []);
 
   // let sortedData = sortChatData(currentChat);
   // 우선은 준걸 그대로 줘야 빠르게 되니 폼에 담아서 준다.
@@ -55,11 +61,10 @@ export default function InnerRoom() {
 
     newMsg.content = message;
     const sendData = { room_id, newMsg };
-    // 웹소켓 개방
-    client.emit("message", sendData);
     // 데이터 전송
+    client.emit("message", sendData);
     setMessage("");
-    dispatch(handleIsMsgChange(!isMsgChange));
+    // dispatch(handleIsMsgChange(!isMsgChange));
   }
 
   useEffect(() => {
@@ -70,23 +75,28 @@ export default function InnerRoom() {
     }
   }, [message]);
 
-  useEffect(async () => {
-    // 채팅 내용들을 가져오는 함수 처음에만 가져오고 다시들어오면 그때 넣어준다.
+  async function getChattings() {
     try {
       await Service.chats.fetchRoomChats(room_id, setCurrentChat);
     } catch (err) {
       console.log(err);
     }
-  }, [isMsgChange]);
+  }
 
-  useEffect(async () => {
+  async function getRoomInfo() {
     // 방 주인의 데이터를 가져오는 함수
     try {
       await Service.rooms.fetchRoomInfo(room_id, id, setRoomData);
     } catch (err) {
       console.log(err);
     }
-  }, [isMsgChange]);
+  }
+
+  useEffect(() => {
+    // 채팅 내용들을 가져오는 함수 처음에만 가져오고 다시들어오면 그때 넣어준다.
+    getChattings();
+    getRoomInfo();
+  }, []);
 
   // 채팅을 새로보내면 새로 렌더링하게 하는 함수
   useEffect(() => {

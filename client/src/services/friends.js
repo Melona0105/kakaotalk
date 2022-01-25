@@ -29,7 +29,6 @@ const friendService = {
   rollbackFriend: async (username) => {
     try {
       await Apis.friends.rollbackFriend(username);
-      client.emit("friends", "change");
     } catch (err) {
       throw err;
     }
@@ -38,7 +37,6 @@ const friendService = {
   blockFriend: async (username) => {
     try {
       await Apis.friends.blockFriend(username);
-      client.emit("friends", "change");
     } catch (err) {
       throw err;
     }
@@ -47,7 +45,6 @@ const friendService = {
   hideFriend: async (username) => {
     try {
       await Apis.friends.hideFriend(username);
-      client.emit("friends", "change");
     } catch (err) {
       throw err;
     }
@@ -56,7 +53,6 @@ const friendService = {
   deleteFriend: async (username) => {
     try {
       await Apis.friends.deleteFriend(username);
-      client.emit("friends", "change");
     } catch (err) {
       throw err;
     }

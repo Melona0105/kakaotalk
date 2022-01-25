@@ -27,12 +27,20 @@ export default function FriendStatus() {
     }
   }
 
-  client.on("friends", () => {
-    setIsRendering(!isRendering);
-  });
+  useEffect(() => {
+    return () => {
+      client.close();
+    };
+  }, []);
+
+  useEffect(() => {
+    client.on("friends", () => {
+      getFriends();
+    });
+  }, []);
 
   // 친구목록 불러봐서 뿌려준다.
-  useEffect(async () => {
+  async function getFriends() {
     dispatch(handleLoadingOn(true));
     try {
       const result = await Service.users.fetchFriends();
@@ -46,7 +54,11 @@ export default function FriendStatus() {
     } finally {
       dispatch(handleLoadingOn(false));
     }
-  }, [currentStatus, isRendering]);
+  }
+
+  useEffect(() => {
+    getFriends();
+  }, [currentStatus]);
 
   // 왜 친구목록이 터질까?
 

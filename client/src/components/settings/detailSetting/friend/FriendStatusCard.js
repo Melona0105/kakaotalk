@@ -5,9 +5,22 @@ import {
   rollbackFriend,
   server,
 } from "../../../../utils";
+import client from "../../../../Socket";
+import { useEffect } from "react";
 
 export default function FriendStatusCard({ data, currentStatus }) {
   const { photo, username } = data;
+
+  function handleClickFriendMenu(callback, username) {
+    callback(username);
+    client.emit("friends", "data");
+  }
+
+  useEffect(() => {
+    return () => {
+      client.close();
+    };
+  }, []);
 
   return (
     <div className="friend-status-card-container">
@@ -18,14 +31,29 @@ export default function FriendStatusCard({ data, currentStatus }) {
       <div className="friend-status-card-option">
         {currentStatus === 1 ? (
           <>
-            <div onClick={() => rollbackFriend(username)}>숨김해제</div>
-            <div onClick={() => blockFriend(username)}>차단</div>
-            <div onClick={() => deleteFriend(username)}>삭제</div>
+            <div
+              onClick={() => handleClickFriendMenu(rollbackFriend, username)}
+            >
+              숨김해제
+            </div>
+
+            <div onClick={() => handleClickFriendMenu(blockFriend, username)}>
+              차단
+            </div>
+            <div onClick={() => handleClickFriendMenu(deleteFriend, username)}>
+              삭제
+            </div>
           </>
         ) : (
           <>
-            <div onClick={() => rollbackFriend(username)}>차단해제</div>
-            <div onClick={() => deleteFriend(username)}>삭제</div>
+            <div
+              onClick={() => handleClickFriendMenu(rollbackFriend, username)}
+            >
+              차단해제
+            </div>
+            <div onClick={() => handleClickFriendMenu(deleteFriend, username)}>
+              삭제
+            </div>
           </>
         )}
       </div>

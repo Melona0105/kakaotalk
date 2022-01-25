@@ -4,7 +4,9 @@ const cors = require("cors");
 
 module.exports = async (server) => {
   // express 서버와 연결
-  const io = new Server(server, { cors: { origin: "*" } });
+  const io = new Server(server, {
+    cors: { origin: ["http://localhost:3000"], methods: ["GET", "POST"] },
+  });
 
   io.on("connection", async (socket) => {
     socket.on("message", async (newdata) => {
