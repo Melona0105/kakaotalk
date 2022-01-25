@@ -31,6 +31,10 @@ export default function FriendStatus() {
       console.log(11);
       getFriends();
     });
+
+    return () => {
+      client.off("friends");
+    };
   }, []);
 
   // 친구목록 불러봐서 뿌려준다.

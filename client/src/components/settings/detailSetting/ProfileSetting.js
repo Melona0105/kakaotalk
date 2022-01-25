@@ -20,6 +20,10 @@ export default function Profile() {
     client.on("friends", () => {
       getUserInfo();
     });
+
+    return () => {
+      client.off("friends");
+    };
   }, []);
 
   // useEffect(() => {

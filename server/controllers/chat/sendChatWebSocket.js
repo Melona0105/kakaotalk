@@ -1,6 +1,5 @@
 const { Server } = require("socket.io");
 const db = require("../../database");
-const cors = require("cors");
 
 module.exports = async (server) => {
   // express 서버와 연결
@@ -9,6 +8,7 @@ module.exports = async (server) => {
       origin: ["http://localhost:3000", "http://localhost:3001"],
       methods: ["GET", "POST"],
     },
+    transports: ["websocket", "polling"],
   });
 
   io.on("connection", async (socket) => {

@@ -22,12 +22,12 @@ export default function AddFriend() {
     inputEmail ? setIsInputFill(true) : setIsInputFill(false);
   }, [inputEmail]);
 
-  useEffect(() => {
+  // useEffect(() => {
     // client.on("connect", () => {});
     // return () => {
     //   client.close();
     // };
-  }, []);
+  // }, []);
 
   // 엔터를 누르면 서버에서 친구인지 아닌지를 확인한다.
   async function findFriendFromServer() {
