@@ -12,13 +12,21 @@ export function printNewMsgTime(input) {
   const hour = input.slice(11, 13);
   const min = input.slice(14, 16);
 
-  const time = `${hour >= 12 ? String(hour - 12).padStart(2, 0) : hour}:${min}`;
-  const string = hour >= 12 ? "오후" : "오전";
+  let newHour = +hour + 9;
+  if (newHour >= 24) {
+    newHour = String(newHour - 24).padStart(2, 0);
+  } else {
+    newHour = String(newHour).padStart(2, 0);
+  }
+
+  const time = `${newHour}:${min}`;
 
   const today = getCurrentTime().split(" ");
 
+  const string = newHour >= 12 ? "오후" : "오전";
+
   // 날짜가 같으면 시간출력
-  if (today[2] === day) {
+  if (String(today[2]) === String(day)) {
     return `${string} ${time}`;
     // 하루차이면 '어제'
   } else if (+today[2] - 1 === +day) {
@@ -30,19 +38,16 @@ export function printNewMsgTime(input) {
 }
 
 export function getCurrentTime(type) {
-  const date = new Date().toLocaleDateString().split(" ");
-  const time = new Date().toLocaleTimeString().split(" ");
+  const date = new Date().toISOString();
+  const year = date.slice(0, 4);
+  const month = date.slice(5, 7);
+  const day = date.slice(8, 10);
 
-  const year = date[0].slice(0, -1);
-  const month = date[1].slice(0, -1).padStart(2, 0);
-  const day = date[2].slice(0, -1).padStart(2, 0);
+  const hour = date.slice(11, 13);
 
-  const hour =
-    time[0] === "오후"
-      ? +time[1].split(":")[0] + 12
-      : time[1].split(":")[0].padStart(2, 0);
+  const min = date.slice(14, 16);
+  const second = date.slice(17, 19);
 
-  const min = time[1].split(":")[1];
   if (type === "birth") {
     return `${month}-${day}`;
   } else {

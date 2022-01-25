@@ -48,22 +48,15 @@ module.exports = async (server) => {
 };
 
 function getCurrentTime() {
-  const date = new Date().toLocaleDateString().split(" ");
-  const time = new Date().toLocaleTimeString().split(" ");
+  const date = new Date().toISOString();
+  const year = date.slice(0, 4);
+  const month = date.slice(5, 7);
+  const day = date.slice(8, 10);
 
-  const year = date[0].slice(0, -1);
-  const month = date[1].slice(0, -1).padStart(2, 0);
-  const day = date[2].slice(0, -1).padStart(2, 0);
+  const hour = date.slice(11, 13);
 
-  let hour =
-    time[0] === "오후"
-      ? +time[1].split(":")[0] + 12
-      : time[1].split(":")[0].padStart(2, 0);
+  const min = date.slice(14, 16);
+  const second = date.slice(17, 19);
 
-  if (hour === 24) {
-    hour = 12;
-  }
-  const min = time[1].split(":")[1];
-  const second = time[1].split(":")[2];
   return `${year}-${month}-${day} ${hour}:${min}:${second}`;
 }

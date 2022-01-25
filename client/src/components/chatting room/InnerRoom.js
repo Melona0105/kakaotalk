@@ -28,7 +28,9 @@ export default function InnerRoom() {
   const { status } = roomData;
 
   useEffect(() => {
+    console.log("실행 첫번째꺼");
     client.on("message", (message) => {
+      console.log("메세지 안쪽");
       // 여기도 socket 연결을 해놓고, 새로 데이터가 올때마다 새로 렌더링한다.
       getChattings();
       getRoomInfo();
