@@ -6,7 +6,7 @@ import "../../css/components/friend/Friend.css";
 import Melon from "../../components/etc/Melon";
 import FriendMouseMenu from "./FriendMouseMenu";
 import { server } from "../../utils";
-import Service from "../../services";
+import { getRoomData } from "../../utils";
 
 export default function Friend({ id, src, name, comment, music, option }) {
   const [isChattingOn, setIsChattingOn] = useState(false);
@@ -17,20 +17,12 @@ export default function Friend({ id, src, name, comment, music, option }) {
   const friend_id = id;
   const roomStyle = "top=100, left=100, width=375, height=640";
 
-  async function getRoomData() {
-    try {
-      await Service.rooms.fetchRoomId(friend_id, setCurrentRoomId);
-    } catch (err) {
-      console.log(err);
-    }
-  }
-
   return (
     <div
       className="friend-container"
       onDoubleClick={async () => {
         if (!option) {
-          await getRoomData();
+          await getRoomData(friend_id, setCurrentRoomId);
           setIsChattingOn(true);
         }
       }}

@@ -18,12 +18,12 @@ export function printNewMsgTime(input) {
   } else {
     newHour = String(newHour).padStart(2, 0);
   }
+  const string = newHour >= 12 ? "오후" : "오전";
 
+  newHour >= 12 && (newHour = newHour - 12);
   const time = `${newHour}:${min}`;
 
   const today = getCurrentTime().split(" ");
-
-  const string = newHour >= 12 ? "오후" : "오전";
 
   // 날짜가 같으면 시간출력
   if (String(today[2]) === String(day)) {
@@ -119,17 +119,41 @@ export function sortDataToAlphabeticalOrder(data) {
 }
 
 export async function rollbackFriend(username) {
-  await Service.friends.rollbackFriend(username);
+  try {
+    await Service.friends.rollbackFriend(username);
+  } catch (err) {
+    console.log(err);
+  }
 }
 
 export async function deleteFriend(username) {
-  await Service.friends.deleteFriend(username);
+  try {
+    await Service.friends.deleteFriend(username);
+  } catch (err) {
+    console.log(err);
+  }
 }
 
 export async function blockFriend(username) {
-  await Service.friends.blockFriend(username);
+  try {
+    await Service.friends.blockFriend(username);
+  } catch (err) {
+    console.log(err);
+  }
 }
 
 export async function hideFriend(username) {
-  await Service.friends.hideFriend(username);
+  try {
+    await Service.friends.hideFriend(username);
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+export async function getRoomData(friend_id, callback) {
+  try {
+    await Service.rooms.fetchRoomId(friend_id, callback);
+  } catch (err) {
+    console.log(err);
+  }
 }

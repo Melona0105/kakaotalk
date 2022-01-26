@@ -6,6 +6,7 @@ import voice_talk from "../../images/chatting/voice talk.png";
 import chatting from "../../images/nav/chat.png";
 import { useEffect, useState } from "react";
 import Popup from "../etc/Popup";
+import { getRoomData } from "../../utils";
 
 export default function ProfileCard() {
   const [isChattingOn, setIsChattingOn] = useState(false);
@@ -18,18 +19,10 @@ export default function ProfileCard() {
   }
   const roomStyle = "top=100, left=100, width=375, height=640";
 
-  async function getRoomData() {
-    try {
-      await Service.rooms.fetchRoomId(friend_id, setCurrentRoomId);
-    } catch (err) {
-      console.log(err);
-    }
-  }
-
   // * TODO : 프렌드 아이디로 데이터 가져오기 --- OK
   useEffect(() => {
     getFriendsInfo();
-    getRoomData();
+    getRoomData(friend_id, setCurrentRoomId);
   }, []);
 
   return (
