@@ -13,8 +13,10 @@ export default function Friend({ id, src, name, comment, music, option }) {
   const [currentRoomId, setCurrentRoomId] = useState(undefined);
   const [isRightButtonOn, setIsRightButtonOn] = useState(false);
   const [settingLocation, setSettingLocation] = useState({ top: 0, left: 0 });
+  const [isProfileOn, setIsProfileOn] = useState(false);
   const friend_id = id;
   const roomStyle = "top=100, left=100, width=375, height=640";
+  const profileStyle = "top=100, left=100, width=290, height=570";
 
   async function getRoomData() {
     try {
@@ -45,6 +47,7 @@ export default function Friend({ id, src, name, comment, music, option }) {
         <img
           className="friend-profile-photo"
           src={src ? (option ? src : `${server}/${src}`) : user1}
+          onClick={() => !option && setIsProfileOn(true)}
         />
         <div>
           <div>{name}</div>
@@ -65,6 +68,14 @@ export default function Friend({ id, src, name, comment, music, option }) {
           url={`/room/${currentRoomId}`}
           username={name}
           callback={setIsChattingOn}
+        ></Popup>
+      )}
+      {isProfileOn && (
+        <Popup
+          style={profileStyle}
+          url={`/profile/${friend_id}`}
+          username={name}
+          callback={setIsProfileOn}
         ></Popup>
       )}
     </div>
