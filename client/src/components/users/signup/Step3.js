@@ -1,6 +1,5 @@
 import ProgressBar from "./ProgressBar";
 import "../../../css/components/users/signup/Step3.css";
-import { checkKorean } from "../../../utils";
 import { useEffect, useState } from "react";
 import RemoveButton from "../../etc/RomoveButton";
 
@@ -15,8 +14,24 @@ export default function Step3({ nextStep, currentEmail, serCurrentPassword }) {
   function checkValidPassword(input) {
     setInputPassword(input);
     setIsPasswordError(false);
-    // 비밀번호가 8자이상
-    if (input.length < 8 || checkKorean(input)) {
+    // // 비밀번호가 8자이상
+    // if (input.length < 8 || checkKorean(input)) {
+    //   setIsPasswordError(true);
+    // } else {
+    //   setPassword(input);
+    // }
+    let num = input.search(/[0-9]/g);
+    let eng = input.search(/[a-z]/g);
+    let spe = input.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/g);
+    console.log("숫자", num);
+    console.log("대소문자", eng);
+    console.log("특수문자", spe);
+
+    if (input.length < 8 || input.length > 32) {
+      setIsPasswordError(true);
+    } else if (input.search(/\s/) !== -1) {
+      setIsPasswordError(true);
+    } else if (num < 0 || eng < 0 || spe < 0) {
       setIsPasswordError(true);
     } else {
       setPassword(input);
