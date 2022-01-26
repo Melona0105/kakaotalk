@@ -16,7 +16,6 @@ export default function Friend({ id, src, name, comment, music, option }) {
   const [isProfileOn, setIsProfileOn] = useState(false);
   const friend_id = id;
   const roomStyle = "top=100, left=100, width=375, height=640";
-  const profileStyle = "top=100, left=100, width=290, height=570";
 
   async function getRoomData() {
     try {
@@ -72,7 +71,7 @@ export default function Friend({ id, src, name, comment, music, option }) {
       )}
       {isProfileOn && (
         <Popup
-          style={profileStyle}
+          style={roomStyle}
           url={`/profile/${friend_id}`}
           username={name}
           callback={setIsProfileOn}

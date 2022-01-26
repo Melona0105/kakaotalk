@@ -19,6 +19,7 @@ module.exports = {
   blockFriend: require("./friends/blockFriend"),
   hideFriend: require("./friends/hideFriend"),
   rollbackFriend: require("./friends/rollbackFriend"),
+  getFriendInfo: require("./friends/getFriendInfo"),
 
   // rooms
   getRoomId: require("./rooms/getRoomId"),

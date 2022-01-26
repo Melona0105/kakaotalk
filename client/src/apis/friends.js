@@ -53,6 +53,15 @@ const friendApis = {
     });
     return result.data;
   },
+
+  getFriendInfo: async (friend_id) => {
+    const result = await axiosInstance({
+      method: "GET",
+      url: `/friends/info/${friend_id}`,
+    });
+
+    return result.data;
+  },
 };
 
 export default friendApis;

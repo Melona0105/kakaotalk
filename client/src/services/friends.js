@@ -56,6 +56,16 @@ const friendService = {
       throw err;
     }
   },
+
+  fetchFriendInfo: async (friend_id) => {
+    try {
+      const reuslt = await Apis.friends.getFriendInfo(friend_id);
+
+      return reuslt.data;
+    } catch (err) {
+      throw err;
+    }
+  },
 };
 
 export default friendService;
