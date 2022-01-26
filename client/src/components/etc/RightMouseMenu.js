@@ -1,13 +1,12 @@
 import "../../css/components/friend/FriendMouseMenu.css";
 import client from "../../Socket";
-import { hideFriend, blockFriend, deleteFriend } from "../../utils";
 
 export default function FriendMouseMenu({
-  username,
   location,
   setIsRightButtonOn,
+  rightButtonMenus,
 }) {
-  async function handleClickFriendMenu(callback, username) {
+  async function onClickMenu(callback, username) {
     try {
       await callback(username);
       client.emit("friends", "data");
@@ -25,15 +24,11 @@ export default function FriendMouseMenu({
           setIsRightButtonOn(false);
         }}
       >
-        <div onClick={() => handleClickFriendMenu(hideFriend, username)}>
-          친구 숨김
-        </div>
-        <div onClick={() => handleClickFriendMenu(blockFriend, username)}>
-          친구 차단
-        </div>
-        <div onClick={() => handleClickFriendMenu(deleteFriend, username)}>
-          친구 삭제
-        </div>
+        {rightButtonMenus.map((el) => (
+          <div key={el.menu} onClick={() => onClickMenu(el.event, el.data)}>
+            {el.menu}
+          </div>
+        ))}
       </div>
       <div
         className="friend-mouse-menu-back"

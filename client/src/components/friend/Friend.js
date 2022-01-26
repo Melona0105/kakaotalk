@@ -4,9 +4,14 @@ import Popup from "../etc/Popup";
 import { useState } from "react";
 import "../../css/components/friend/Friend.css";
 import Melon from "../../components/etc/Melon";
-import FriendMouseMenu from "./FriendMouseMenu";
+import RightMouseMenu from "../etc/RightMouseMenu";
 import { server } from "../../utils";
-import { getRoomData } from "../../utils";
+import {
+  getRoomData,
+  hideFriend,
+  blockFriend,
+  deleteFriend,
+} from "../../utils";
 
 export default function Friend({ id, src, name, comment, music, option }) {
   const [isChattingOn, setIsChattingOn] = useState(false);
@@ -16,6 +21,12 @@ export default function Friend({ id, src, name, comment, music, option }) {
   const [isProfileOn, setIsProfileOn] = useState(false);
   const friend_id = id;
   const roomStyle = "top=100, left=100, width=375, height=640";
+
+  const rightButtonMenus = [
+    { menu: "친구 숨김", event: hideFriend, data: name },
+    { menu: "친구 차단", event: blockFriend, data: name },
+    { menu: "친구 삭제", event: deleteFriend, data: name },
+  ];
 
   return (
     <div
@@ -47,10 +58,10 @@ export default function Friend({ id, src, name, comment, music, option }) {
       </div>
       {music && <Melon music={music} />}
       {isRightButtonOn && (
-        <FriendMouseMenu
-          username={name}
+        <RightMouseMenu
           location={settingLocation}
           setIsRightButtonOn={setIsRightButtonOn}
+          rightButtonMenus={rightButtonMenus}
         />
       )}
       {isChattingOn && (
