@@ -23,9 +23,9 @@ export default function Friend({ id, src, name, comment, music, option }) {
   const roomStyle = "top=100, left=100, width=375, height=640";
 
   const rightButtonMenus = [
-    { menu: "친구 숨김", event: hideFriend, data: name },
-    { menu: "친구 차단", event: blockFriend, data: name },
-    { menu: "친구 삭제", event: deleteFriend, data: name },
+    { menu: "친구 숨김", callback: () => hideFriend(name) },
+    { menu: "친구 차단", callback: () => blockFriend(name) },
+    { menu: "친구 삭제", callback: () => deleteFriend(name) },
   ];
 
   return (

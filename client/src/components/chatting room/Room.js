@@ -6,12 +6,20 @@ import "../../css/components/chatting room/Room.css";
 import { useDispatch, useSelector } from "react-redux";
 import { handleIsMsgChange } from "../../actions";
 import { server } from "../../utils";
+import RightMouseMenu from "../etc/RightMouseMenu";
 
 export default function Room({ data }) {
   const [isChattingOn, setIsChattingOn] = useState(false);
   const { id, photo, username, time, content, view } = data;
   const roomStyle = "top=100, left=100, width=375, height=640";
   const { isMsgChange } = useSelector((state) => state.MsgChangeReducer);
+  const [isRightButtonOn, setIsRightButtonOn] = useState(false);
+  const [settingLocation, setSettingLocation] = useState({ top: 0, left: 0 });
+
+  const rightButtonMenus = [
+    { menu: "채팅방 열기", callback: () => setIsChattingOn(true) },
+    { menu: "채팅방 나가기", callback: () => console.log(2) },
+  ];
   const dispatch = useDispatch();
 
   return (
@@ -23,6 +31,13 @@ export default function Room({ data }) {
           setTimeout(() => {
             dispatch(handleIsMsgChange(!isMsgChange));
           }, 1000);
+        }}
+        onContextMenuCapture={(e) => {
+          e.preventDefault();
+          if (!isRightButtonOn) {
+            setIsRightButtonOn(true);
+            setSettingLocation({ top: e.pageY, left: e.pageX });
+          }
         }}
       >
         {isChattingOn && (
@@ -46,6 +61,13 @@ export default function Room({ data }) {
           <div>{printNewMsgTime(time)}</div>
           {view !== 0 && <div className="room-newMsg-count">{view}</div>}
         </div>
+        {isRightButtonOn && (
+          <RightMouseMenu
+            location={settingLocation}
+            setIsRightButtonOn={setIsRightButtonOn}
+            rightButtonMenus={rightButtonMenus}
+          />
+        )}
       </div>
     </>
   );

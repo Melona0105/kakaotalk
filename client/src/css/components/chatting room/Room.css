@@ -1,7 +1,6 @@
 .room-container {
   display: flex;
   height: 70px;
-  color: #8a8a8a;
   font-size: 13px;
   font-weight: 600;
   justify-content: space-between;
@@ -32,6 +31,7 @@
   justify-content: center;
   font-size: 13px;
   font-weight: 600;
+  color: #8a8a8a;
 }
 
 .room-body > :first-child {
@@ -55,6 +55,7 @@
   font-weight: 400;
   width: 70px;
   flex: 1 0 50px;
+  color: #8a8a8a;
 }
 
 .room-newMsg-count {

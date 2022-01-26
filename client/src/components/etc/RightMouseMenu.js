@@ -6,9 +6,9 @@ export default function FriendMouseMenu({
   setIsRightButtonOn,
   rightButtonMenus,
 }) {
-  async function onClickMenu(callback, username) {
+  async function onClickMenu(callback) {
     try {
-      await callback(username);
+      await callback();
       client.emit("friends", "data");
     } catch (err) {
       console.log(err);
@@ -25,7 +25,7 @@ export default function FriendMouseMenu({
         }}
       >
         {rightButtonMenus.map((el) => (
-          <div key={el.menu} onClick={() => onClickMenu(el.event, el.data)}>
+          <div key={el.menu} onClick={() => onClickMenu(el.callback)}>
             {el.menu}
           </div>
         ))}
