@@ -105,8 +105,6 @@ export default function InnerRoom() {
   // 각각을 컴포넌트화 하는게 좋을듯
   // 데이터를 같은 사람 + 1분단위로 묶어서 정리 -> 이걸 뿌려준다.
 
-  console.log(currentChat);
-
   return (
     <div className="inner-room-container">
       <InnerRoomNav roomImg={user} roomData={roomData} />
@@ -137,7 +135,7 @@ export default function InnerRoom() {
             </div>
           ) : (
             <>
-              <input
+              <textarea
                 value={message}
                 onChange={(e) => {
                   setMessage(e.target.value);
@@ -145,6 +143,12 @@ export default function InnerRoom() {
                 onKeyPress={(e) => {
                   if (e.key === "Enter" && isMessageFill) {
                     sendMsg();
+                  }
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" && e.shiftKey) {
+                    console.log(e.shiftKey);
+                    e.preventDefault();
                   }
                 }}
               />
