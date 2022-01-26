@@ -142,13 +142,8 @@ export default function InnerRoom() {
                 }}
                 onKeyPress={(e) => {
                   if (e.key === "Enter" && isMessageFill) {
-                    sendMsg();
-                  }
-                }}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter" && e.shiftKey) {
-                    console.log(e.shiftKey);
                     e.preventDefault();
+                    sendMsg();
                   }
                 }}
               />
