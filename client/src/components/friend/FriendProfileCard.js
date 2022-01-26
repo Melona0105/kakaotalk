@@ -6,9 +6,12 @@ import voice_talk from "../../images/chatting/voice talk.png";
 import chatting from "../../images/nav/chat.png";
 import { useEffect, useState } from "react";
 import Popup from "../etc/Popup";
+import edit from "../../images/Self Edit.png";
+import { useSelector } from "react-redux";
 import { getRoomData } from "../../utils";
 
-export default function ProfileCard() {
+export default function FriendProfileCard() {
+  const { id } = useSelector((state) => state.UserInfoReducer);
   const [isChattingOn, setIsChattingOn] = useState(false);
   const [currentRoomId, setCurrentRoomId] = useState(undefined);
   const { friend_id } = useParams();
@@ -35,20 +38,33 @@ export default function ProfileCard() {
           </div>
         </div>
         <div className="profile-inner-bottom">
-          <div>
+          {id === +friend_id ? (
             <div>
-              <img
-                className="profile-inner-icon"
-                src={chatting}
-                onClick={() => setIsChattingOn(true)}
-              />
-              <div>1:1 채팅</div>
+              <div>
+                <img
+                  className="profile-inner-icon"
+                  src={edit}
+                  onClick={() => console.log("구현중..")}
+                />
+                <div>프로필 관리</div>
+              </div>
             </div>
+          ) : (
             <div>
-              <img className="profile-inner-icon" src={voice_talk} />
-              <div>통화하기</div>
+              <div>
+                <img
+                  className="profile-inner-icon"
+                  src={chatting}
+                  onClick={() => setIsChattingOn(true)}
+                />
+                <div>1:1 채팅</div>
+              </div>
+              <div>
+                <img className="profile-inner-icon" src={voice_talk} />
+                <div>통화하기</div>
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
       {isChattingOn && (

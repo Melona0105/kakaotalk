@@ -4,6 +4,6 @@ import { server } from "./utils";
 const client = io(server);
 
 client.on("connect", () => {
-  console.log("연결됨");
+  // console.log("연결됨");
 });
 export default client;

@@ -1,18 +1,24 @@
+import { useState } from "react";
 import "../../css/components/friend/MyProfile.css";
 import Melon from "../etc/Melon";
 import user1 from "../../images/friend/user1.png";
 import { useSelector } from "react-redux";
 import { server } from "../../utils";
+import Popup from "../etc/Popup";
 
 export default function MyProfile() {
-  const { photo, username, comment, music } = useSelector(
+  const [isProfileOn, setIsProfileOn] = useState(false);
+  const { id, photo, username, comment, music } = useSelector(
     (state) => state.UserInfoReducer
   );
-
+  const roomStyle = "top=100, left=100, width=375, height=640";
   return (
     <div className="my-profile">
       <div className="my-profile-img-container">
-        <img src={photo ? `${server}/${photo}` : user1} />
+        <img
+          src={photo ? `${server}/${photo}` : user1}
+          onClick={() => setIsProfileOn(true)}
+        />
       </div>
       <div className="my-profile-detail">
         <div>
@@ -21,6 +27,14 @@ export default function MyProfile() {
         </div>
         {music && <Melon music={music} />}
       </div>
+      {isProfileOn && (
+        <Popup
+          style={roomStyle}
+          url={`/profile/${id}`}
+          username={username}
+          callback={setIsProfileOn}
+        ></Popup>
+      )}
     </div>
   );
 }

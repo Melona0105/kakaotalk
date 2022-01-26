@@ -32,13 +32,13 @@ export default function Room({ data }) {
             dispatch(handleIsMsgChange(!isMsgChange));
           }, 1000);
         }}
-        onContextMenuCapture={(e) => {
-          e.preventDefault();
-          if (!isRightButtonOn) {
-            setIsRightButtonOn(true);
-            setSettingLocation({ top: e.pageY, left: e.pageX });
-          }
-        }}
+        // onContextMenuCapture={(e) => {
+        //   e.preventDefault();
+        //   if (!isRightButtonOn) {
+        //     setIsRightButtonOn(true);
+        //     setSettingLocation({ top: e.pageY, left: e.pageX });
+        //   }
+        // }}
       >
         {isChattingOn && (
           <Popup

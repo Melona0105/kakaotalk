@@ -11,7 +11,7 @@ import InnerRoom from "./components/chatting room/InnerRoom";
 import SignUp from "./components/users/signup";
 import SettingMain from "./components/settings/detailSetting/SettingMain";
 import AddFriend from "./components/friend/AddFriend";
-import ProfileCard from "./components/friend/ProfileCard";
+import FriendProfileCard from "./components/friend/FriendProfileCard";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -24,7 +24,7 @@ ReactDOM.render(
             <Route path="/signup" element={<SignUp />} />
             <Route path="/setting" element={<SettingMain />} />
             <Route path="/friend" element={<AddFriend />} />
-            <Route path="/profile/:friend_id" element={<ProfileCard />} />
+            <Route path="/profile/:friend_id" element={<FriendProfileCard />} />
           </Routes>
         </BrowserRouter>
       </PersistGate>
