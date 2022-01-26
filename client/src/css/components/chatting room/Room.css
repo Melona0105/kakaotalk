@@ -38,12 +38,20 @@
   font-size: 15px;
 }
 
+.room-content {
+  word-break: break-all;
+  overflow: hidden;
+  height: 50px;
+  width: 275px;
+}
+
 .room-right {
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: flex-end;
   font-weight: 400;
+  width: 70px;
 }
 
 .room-newMsg-count {

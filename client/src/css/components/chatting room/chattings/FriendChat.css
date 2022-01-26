@@ -20,6 +20,7 @@
   border-radius: 3px;
   margin: 5px 5px 5px 0px;
   padding: 5px 10px;
+  word-break: break-all;
   background: #fff;
 }
 

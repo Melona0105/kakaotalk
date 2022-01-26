@@ -37,7 +37,9 @@ export default function Room({ data }) {
           <img src={photo ? `${server}/${photo}` : user} />
           <div className="room-body">
             <div>{username}</div>
-            <div>{content}</div>
+            <div className="room-content">
+              <div>{content}</div>
+            </div>
           </div>
         </div>
         <div className="room-right">

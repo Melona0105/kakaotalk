@@ -105,6 +105,8 @@ export default function InnerRoom() {
   // 각각을 컴포넌트화 하는게 좋을듯
   // 데이터를 같은 사람 + 1분단위로 묶어서 정리 -> 이걸 뿌려준다.
 
+  console.log(currentChat);
+
   return (
     <div className="inner-room-container">
       <InnerRoomNav roomImg={user} roomData={roomData} />

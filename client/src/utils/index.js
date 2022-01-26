@@ -63,7 +63,7 @@ export function sortChatData(data) {
       // 이름이 같다면, 시간이 같은지 확인한다.
       // 시간이 같다면 그냥 넘어가고,
       // 다르면 데이터에 넣어줘야함
-      if (now?.time !== cur.time) {
+      if (now?.time.slice(0, -3) !== cur.time.slice(0, -3)) {
         acc.push({ ...cur, content: [cur.content] });
       } else {
         now.content.push(cur.content);
