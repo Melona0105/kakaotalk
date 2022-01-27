@@ -2,6 +2,8 @@
 
 단순한 카카오톡 클론코딩이 아니라 로그인 회원가입을 통한 실시간 채팅을 구현하였습니다.
 
+[React, Redux-persist, Express, Socket.io, JWT, Axios, MySQL, AWS-S3/EC2/RDS]를 이용하여 구현하였습니다.
+
 현재 구현 내역
 1. JWT, bcrypt를 이용한 로그인 및 암호화
 - 수신한 토큰을 로컬스토리지에 저장하고, 서버에 요청시 헤더에 담는식으로 구현하였습니다.
