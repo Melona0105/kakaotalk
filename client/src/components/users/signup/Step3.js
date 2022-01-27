@@ -23,9 +23,6 @@ export default function Step3({ nextStep, currentEmail, serCurrentPassword }) {
     let num = input.search(/[0-9]/g);
     let eng = input.search(/[a-z]/g);
     let spe = input.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/g);
-    console.log("숫자", num);
-    console.log("대소문자", eng);
-    console.log("특수문자", spe);
 
     if (input.length < 8 || input.length > 32) {
       setIsPasswordError(true);
