@@ -14,12 +14,6 @@ export default function Step3({ nextStep, currentEmail, serCurrentPassword }) {
   function checkValidPassword(input) {
     setInputPassword(input);
     setIsPasswordError(false);
-    // // 비밀번호가 8자이상
-    // if (input.length < 8 || checkKorean(input)) {
-    //   setIsPasswordError(true);
-    // } else {
-    //   setPassword(input);
-    // }
     let num = input.search(/[0-9]/g);
     let eng = input.search(/[a-z]/g);
     let spe = input.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/g);
