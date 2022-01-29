@@ -22,6 +22,11 @@ export default function Room({ data }) {
   ];
   const dispatch = useDispatch();
 
+  // TODO : 채팅방 나가기 구현
+  // 기본적으로, 채팅방 나가기를 누르면 users_in_rooms에 있는 특정 채팅방의 상태가 1로 바뀌고(기본적으로 0)
+  // 상태가 1인 채팅방은 채팅목록에 출력되지 않도록한다.
+  // 메세지가 새로 전송되면, 방이 무조건 0이 되도록 바꿔준다. (굳이 한번 확인하고 바꾸는것보단 그냥 바꿔버리는게 쿼리 두번 안하고 좋을듯?)
+
   return (
     <>
       <div
@@ -32,13 +37,13 @@ export default function Room({ data }) {
             dispatch(handleIsMsgChange(!isMsgChange));
           }, 1000);
         }}
-        // onContextMenuCapture={(e) => {
-        //   e.preventDefault();
-        //   if (!isRightButtonOn) {
-        //     setIsRightButtonOn(true);
-        //     setSettingLocation({ top: e.pageY, left: e.pageX });
-        //   }
-        // }}
+        onContextMenuCapture={(e) => {
+          e.preventDefault();
+          if (!isRightButtonOn) {
+            setIsRightButtonOn(true);
+            setSettingLocation({ top: e.pageY, left: e.pageX });
+          }
+        }}
       >
         {isChattingOn && (
           <Popup
