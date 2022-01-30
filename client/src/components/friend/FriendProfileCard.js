@@ -51,15 +51,11 @@ export default function FriendProfileCard() {
             </div>
           ) : (
             <div>
-              <div>
-                <img
-                  className="profile-inner-icon"
-                  src={chatting}
-                  onClick={() => setIsChattingOn(true)}
-                />
+              <div onClick={() => setIsChattingOn(true)}>
+                <img className="profile-inner-icon" src={chatting} />
                 <div>1:1 채팅</div>
               </div>
-              <div>
+              <div onClick={() => alert("추후 구현 예정입니다. 조금만 기다려주세요")}>
                 <img className="profile-inner-icon" src={voice_talk} />
                 <div>통화하기</div>
               </div>
