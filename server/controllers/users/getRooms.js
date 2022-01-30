@@ -29,7 +29,7 @@ module.exports = async function getRooms(req, res) {
 
       const result2 = await new Promise((res, rej) => {
         db.query(
-          `select R.id, R.noti, U.username, U.photo, C.content, C.time, C.view, C.user_id from rooms as R
+          `select R.id, R.noti, U.username, U.photo, C.content, C.time, C.view, C.user_id, UR.status from rooms as R
         left JOIN users_in_rooms AS UR ON R.id=UR.room_id 
         left JOIN users as U ON U.id=UR.user_id 
         inner JOIN (select * from chats) AS C ON R.id=C.room_id 

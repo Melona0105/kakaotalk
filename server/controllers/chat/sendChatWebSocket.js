@@ -29,6 +29,21 @@ module.exports = async (server) => {
             }
           );
         });
+        // 데이터를 넣었으면, 채팅방을 다시 활성화해준다.
+        await new Promise((res, rej) => {
+          db.query(
+            `UPDATE users_in_rooms SET status=0 WHERE room_id="${room_id}"`,
+            (err, result) => {
+              if (err) {
+                console.log(err);
+                return rej(err);
+              } else {
+                return res(result);
+              }
+            }
+          );
+        });
+
         // 성공하면 데이터를 돌려준다.
         io.emit("message", newMsg);
       } catch (err) {

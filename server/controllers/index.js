@@ -24,4 +24,5 @@ module.exports = {
   // rooms
   getRoomId: require("./rooms/getRoomId"),
   getRoomInfo: require("./rooms/getRoomInfo"),
+  leaveRoom: require("./rooms/leaveRoom"),
 };
