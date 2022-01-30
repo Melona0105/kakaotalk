@@ -18,6 +18,16 @@ const roomApis = {
 
     return result.data;
   },
+
+  leaveRoom: async (room_id) => {
+    const result = await axiosInstance({
+      method: "PUT",
+      url: `/rooms`,
+      data: { room_id },
+    });
+
+    return result.data;
+  },
 };
 
 export default roomApis;

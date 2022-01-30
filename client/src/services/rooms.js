@@ -20,6 +20,14 @@ const roomService = {
       console.log(err);
     }
   },
+
+  leaveRoom: async (room_id) => {
+    try {
+      await Apis.rooms.leaveRoom(room_id);
+    } catch (err) {
+      console.log(err);
+    }
+  },
 };
 
 export default roomService;
