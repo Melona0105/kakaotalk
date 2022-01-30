@@ -21,7 +21,3 @@ export default function ChattingPage({ roomData }) {
     </div>
   );
 }
-
-/*
-pdwtop0105@naver.com
-*/

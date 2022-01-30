@@ -19,7 +19,7 @@ export default function Room({ data }) {
 
   const rightButtonMenus = [
     { menu: "채팅방 열기", callback: () => setIsChattingOn(true) },
-    // { menu: "채팅방 나가기", callback: () => onClieckLeaveRoom() },
+    { menu: "채팅방 나가기", callback: () => onClieckLeaveRoom() },
   ];
   const dispatch = useDispatch();
   // TODO : 채팅방 나가기 구현
@@ -31,6 +31,7 @@ export default function Room({ data }) {
   // --> 반영은 되는데, 뭔가 오류가 생기고 있음 -> 통신하는 부분에서 오류가 발생하는것 같은데... -> 찾아야함
   async function onClieckLeaveRoom() {
     await Service.rooms.leaveRoom(id);
+    dispatch(handleIsMsgChange(!isMsgChange));
   }
 
   return (
