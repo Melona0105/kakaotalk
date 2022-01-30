@@ -19,7 +19,7 @@ export default function Room({ data }) {
 
   const rightButtonMenus = [
     { menu: "채팅방 열기", callback: () => setIsChattingOn(true) },
-    { menu: "채팅방 나가기", callback: () => onClieckLeaveRoom() },
+    // { menu: "채팅방 나가기", callback: () => onClieckLeaveRoom() },
   ];
   const dispatch = useDispatch();
   // TODO : 채팅방 나가기 구현
@@ -30,8 +30,7 @@ export default function Room({ data }) {
   // 왜 똑같이 작업이 종료되면, 소켓에 보냈는데 바로바로 반영이 안될까?
   // --> 반영은 되는데, 뭔가 오류가 생기고 있음 -> 통신하는 부분에서 오류가 발생하는것 같은데... -> 찾아야함
   async function onClieckLeaveRoom() {
-    // await Service.rooms.leaveRoom(id);
-    // alert("구현중인 기능입니다..");
+    await Service.rooms.leaveRoom(id);
   }
 
   return (
