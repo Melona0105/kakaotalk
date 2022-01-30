@@ -31,7 +31,7 @@ export default function Room({ data }) {
   // --> 반영은 되는데, 뭔가 오류가 생기고 있음 -> 통신하는 부분에서 오류가 발생하는것 같은데... -> 찾아야함
   async function onClieckLeaveRoom() {
     // await Service.rooms.leaveRoom(id);
-    alert("구현중인 기능입니다..");
+    // alert("구현중인 기능입니다..");
   }
 
   return (
