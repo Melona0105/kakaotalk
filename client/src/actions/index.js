@@ -1,3 +1,4 @@
+// * 친구목록
 // 검색어저장
 export const keyWord = "Key_Word";
 export const handleKeyword = (input) => {
@@ -12,6 +13,25 @@ export const searchOn = "Search_On";
 export const handleIsSearchOn = (input) => {
   return {
     type: searchOn,
+    paylaod: input,
+  };
+};
+
+// * 채팅방
+// 검색어저장
+export const roomKeyWord = "Room_Key_Word";
+export const handleRoomKeyword = (input) => {
+  return {
+    type: roomKeyWord,
+    paylaod: input,
+  };
+};
+
+// 검색상태유지
+export const roomSearchOn = "Room_Search_On";
+export const handleIsRoomSearchOn = (input) => {
+  return {
+    type: roomSearchOn,
     paylaod: input,
   };
 };

@@ -1,9 +1,17 @@
 // ? 2 depth 이하는 리덕스 사용 최대한 지양하기
 
+// * 친구목록
 // 검색어저장
 export const currentKeyword = { keyWord: "" };
 // 검색상태유지
 export const isSearchOn = { isSearchOn: false };
+
+// * 채팅방
+// 검색어저장
+export const currentRoomKeyword = { keyWord: "" };
+// 검색상태유지
+export const isRoomSearchOn = { isSearchOn: false };
+
 // 로그인유지
 export const currentIsLogin = { isLogin: false };
 // 로딩

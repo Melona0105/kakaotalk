@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import FriendNav from "../components/friend/FriendNav";
 import MyProfile from "../components/friend/MyProfile";
 import BirthdayFriend from "../components/friend/BirthdayFriend";

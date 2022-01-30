@@ -12,12 +12,8 @@ export default function FriendNav() {
   const dispatch = useDispatch();
 
   function handleSearchOn() {
-    if (!isSearchOn) {
-      dispatch(handleIsSearchOn(!isSearchOn));
-    } else {
       dispatch(handleIsSearchOn(!isSearchOn));
       dispatch(handleKeyword(""));
-    }
   }
 
   const popupStyle = `top=450, left=300, width=300, height=430`;
