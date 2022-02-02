@@ -1,6 +1,6 @@
 # 카카오톡 재구현
 
-단순한 카카오톡 클론코딩이 아니라 로그인 회원가입을 통한 실시간 채팅을 구현하였습니다.
+단순한 카카오톡 클론코딩이 아니라 Socket.io를 이용한 실시간 채팅을 구현하였습니다.
 
 [React, Redux-persist, Express, Socket.io, JWT, Axios, MySQL, AWS(S3/EC2/RDS)]를 이용하여 구현하였습니다.
 
