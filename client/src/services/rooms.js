@@ -4,7 +4,6 @@ const roomService = {
   fetchRoomInfo: async (room_id, id, callback) => {
     try {
       const { roomInfo } = await Apis.rooms.getRoomInfo(room_id);
-
       callback(roomInfo.filter((el) => el.user_id !== id)[0]);
     } catch (err) {
       console.log(err);
@@ -14,7 +13,6 @@ const roomService = {
   fetchRoomId: async (friend_id, callback) => {
     try {
       const { room_id } = await Apis.rooms.getRoomId(friend_id);
-
       callback(room_id);
     } catch (err) {
       console.log(err);

@@ -4,8 +4,6 @@ const userService = {
   login: async (email, password) => {
     try {
       const accessToken = await Apis.users.login(email, password);
-
-      // 받은 토큰을 로컬스토리지에 저장한다.
       localStorage.setItem("token", accessToken);
     } catch (err) {
       localStorage.removeItem("token");
@@ -16,7 +14,6 @@ const userService = {
   checkEmail: async (email) => {
     try {
       const result = await Apis.users.checkEmail(email);
-
       if (result.status === 201) {
         return true;
       } else {
@@ -72,7 +69,6 @@ const userService = {
     try {
       await Apis.users.signup(userInfo);
       await userService.login(userInfo.email, userInfo.password);
-
       callBack();
     } catch (err) {
       throw err;

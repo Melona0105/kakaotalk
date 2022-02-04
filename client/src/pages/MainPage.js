@@ -20,11 +20,9 @@ export default function MainPage() {
 
   useEffect(() => {
     client.on("friends", () => {
-      // 여기도 socket 연결을 해놓고, 새로 데이터가 올때마다 새로 렌더링한다.
       console.log("friends 수신");
       getFriendsData();
       getUserData();
-      // getRoomsData();
     });
 
     return () => {
