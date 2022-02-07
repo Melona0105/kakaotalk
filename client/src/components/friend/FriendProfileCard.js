@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import Popup from "../etc/Popup";
 import edit from "../../images/Self Edit.png";
 import { useSelector } from "react-redux";
-import { getRoomData } from "../../utils";
+import { getRoomData, server } from "../../utils";
 
 export default function FriendProfileCard() {
   const { id } = useSelector((state) => state.UserInfoReducer);
@@ -33,7 +33,9 @@ export default function FriendProfileCard() {
       <div className="profile-card-inner-container">
         <div className="profile-inner-top">
           <div className="profile-inner-top-content">
-            <img src={friendInfo.photo ? friendInfo.photo : user1} />
+            <img
+              src={friendInfo.photo ? `${server}/${friendInfo.photo}` : user1}
+            />
             <div>{friendInfo.username}</div>
           </div>
         </div>
@@ -55,7 +57,11 @@ export default function FriendProfileCard() {
                 <img className="profile-inner-icon" src={chatting} />
                 <div>1:1 채팅</div>
               </div>
-              <div onClick={() => alert("추후 구현 예정입니다. 조금만 기다려주세요")}>
+              <div
+                onClick={() =>
+                  alert("추후 구현 예정입니다. 조금만 기다려주세요")
+                }
+              >
                 <img className="profile-inner-icon" src={voice_talk} />
                 <div>통화하기</div>
               </div>
