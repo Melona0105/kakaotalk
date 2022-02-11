@@ -1,6 +1,6 @@
 // * 친구목록
 // 검색어저장
-export const keyWord = "Key_Word";
+export const keyWord = "KEY_WORD";
 export const handleKeyword = (input) => {
   return {
     type: keyWord,
@@ -9,7 +9,7 @@ export const handleKeyword = (input) => {
 };
 
 // 검색상태유지
-export const searchOn = "Search_On";
+export const searchOn = "SEACH_ON";
 export const handleIsSearchOn = (input) => {
   return {
     type: searchOn,
@@ -19,7 +19,7 @@ export const handleIsSearchOn = (input) => {
 
 // * 채팅방
 // 검색어저장
-export const roomKeyWord = "Room_Key_Word";
+export const roomKeyWord = "ROOM_KEY_WORD";
 export const handleRoomKeyword = (input) => {
   return {
     type: roomKeyWord,
@@ -28,7 +28,7 @@ export const handleRoomKeyword = (input) => {
 };
 
 // 검색상태유지
-export const roomSearchOn = "Room_Search_On";
+export const roomSearchOn = "ROOM_SEARCH_ON";
 export const handleIsRoomSearchOn = (input) => {
   return {
     type: roomSearchOn,
@@ -37,7 +37,7 @@ export const handleIsRoomSearchOn = (input) => {
 };
 
 // 로그인유지
-export const handleLoginCase = "Login_Case";
+export const handleLoginCase = "LOGIN";
 export const handleIsLogin = (input) => {
   return {
     type: handleLoginCase,
@@ -46,7 +46,7 @@ export const handleIsLogin = (input) => {
 };
 
 // 로딩
-export const loadingCase = "Loading_Case";
+export const loadingCase = "LOADING";
 export const handleLoadingOn = (input) => {
   return {
     type: loadingCase,
@@ -55,7 +55,7 @@ export const handleLoadingOn = (input) => {
 };
 
 // 유저정보 유지
-export const userInfoCase = "User_Info_Case";
+export const userInfoCase = "USER_INFO";
 export const handleUserInfo = (input) => {
   return {
     type: userInfoCase,
@@ -64,7 +64,7 @@ export const handleUserInfo = (input) => {
 };
 
 // 현재페이지 저장
-export const currentPageCase = "Current_Page";
+export const currentPageCase = "CURRENT_PAGE";
 export const handleCurrentPage = (input) => {
   return {
     type: currentPageCase,
@@ -73,7 +73,7 @@ export const handleCurrentPage = (input) => {
 };
 
 // 메세지 확인
-export const isMsgChangeCase = "Msg_Change_Case";
+export const isMsgChangeCase = "MSG_CHANGE";
 export const handleIsMsgChange = (input) => {
   return {
     type: isMsgChangeCase,
@@ -82,7 +82,7 @@ export const handleIsMsgChange = (input) => {
 };
 
 // 렌더링을 주기위한 리듀서..
-export const userFriendsInfo = "Friends_Info";
+export const userFriendsInfo = "FRIENDS_INFO";
 export const handleUserFriends = (input) => {
   return {
     type: userFriendsInfo,

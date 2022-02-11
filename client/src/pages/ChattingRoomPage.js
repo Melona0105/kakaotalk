@@ -1,5 +1,5 @@
 import "../css/pages/ChattingPage.css";
-import RommPageNav from "../components/chatting room/RommPageNav";
+import RoomPageNav from "../components/chatting room/RoomPageNav";
 import Room from "../components/chatting room/Room";
 import { useSelector, useDispatch } from "react-redux";
 import { handleRoomKeyword, handleIsRoomSearchOn } from "../actions";
@@ -29,7 +29,7 @@ export default function ChattingPage({ roomData }) {
 
   return (
     <div className="chatting-page-container">
-      <RommPageNav />
+      <RoomPageNav />
       {isSearchOn && (
         <SearchBar
           searchOnChange={searchOnChange}
