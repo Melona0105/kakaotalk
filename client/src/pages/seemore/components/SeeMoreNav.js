@@ -1,4 +1,4 @@
-import "../../css/components/seemore/SeeMoreNav.css";
+import "./SeeMoreNav.css";
 
 export default function SeeMoreNav(params) {
   return (

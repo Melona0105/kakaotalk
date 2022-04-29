@@ -1,4 +1,4 @@
-import "../../css/components/seemore/SeeMoreMenu.css";
+import "./SeeMoreMenu.css";
 
 export default function SeeMoreMenu({ data }) {
   const { name, url, logo } = data;

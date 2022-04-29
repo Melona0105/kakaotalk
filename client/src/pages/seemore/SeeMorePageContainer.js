@@ -1,13 +1,13 @@
-import SeeMoreNav from "../components/seemore/SeeMoreNav";
-import seemore from "../images/seemore/seemore.png";
-import subscription from "../images/seemore/subscription.png";
-import "../css/pages/SeeMorePage.css";
-import SeeMoreMenu from "../components/seemore/SeeMoreMenu";
-import kakaoTalk from "../images/seemore/kakao talk.svg";
-import dev_info from "../images/seemore/dev info.png";
+import SeeMoreNav from "./components/SeeMoreNav";
+import seemore from "../../images/seemore/seemore.png";
+import subscription from "../../images/seemore/subscription.png";
+import "./SeeMorePage.css";
+import SeeMoreMenu from "./components/SeeMoreMenu";
+import kakaoTalk from "../../images/seemore/kakao talk.svg";
+import dev_info from "../../images/seemore/dev info.png";
 import { useSelector } from "react-redux";
 
-export default function SeeMorePage() {
+function SeeMorePageContainer() {
   const { username, email } = useSelector((state) => state.UserInfoReducer);
   const projects = [
     {
@@ -53,3 +53,5 @@ export default function SeeMorePage() {
     </div>
   );
 }
+
+export default SeeMorePageContainer;
