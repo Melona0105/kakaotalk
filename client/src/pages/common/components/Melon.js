@@ -1,7 +1,7 @@
 import "./Melon.css";
 import play from "../../../images/friend/play.png";
 
-export default function Melon({ music }) {
+function Melon({ music }) {
   return (
     <div className="profile-music">
       <div>{music}</div>
@@ -9,3 +9,4 @@ export default function Melon({ music }) {
     </div>
   );
 }
+export default Melon;

@@ -1,7 +1,7 @@
-import "../../../css/components/chatting room/chattings/MyChat.css";
-import { printNewMsgTime } from "../../../utils";
+import "./MyChat.css";
+import { printNewMsgTime } from "../../../../utils";
 
-export default function MyChat({ content, time, view }) {
+function MyChat({ content, time, view }) {
   return (
     <div className="my-chat-container">
       <div className="my-chat-content-container">
@@ -24,3 +24,5 @@ export default function MyChat({ content, time, view }) {
     </div>
   );
 }
+
+export default MyChat;

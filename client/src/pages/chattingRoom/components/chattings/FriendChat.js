@@ -1,7 +1,7 @@
-import { printNewMsgTime } from "../../../utils";
-import "../../../css/components/chatting room/chattings/FriendChat.css";
+import { printNewMsgTime } from "../../../../utils";
+import "./FriendChat.css";
 
-export default function FriendChat({ username, content, time }) {
+function FriendChat({ username, content, time }) {
   return (
     <div className="friend-chat-content-container">
       <div>
@@ -20,3 +20,4 @@ export default function FriendChat({ username, content, time }) {
     </div>
   );
 }
+export default FriendChat;

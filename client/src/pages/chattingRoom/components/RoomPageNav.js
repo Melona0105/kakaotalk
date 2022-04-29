@@ -1,12 +1,12 @@
 import react from "react";
-import search from "../../images/friend/search.png";
-import new_chat from "../../images/chatting/new chat.png";
-import chat_icon from "../../images/chatting/chatting icon.png";
-import "../../css/components/chatting room/RoomsNav.css";
+import search from "../../../images/friend/search.png";
+import new_chat from "../../../images/chatting/new chat.png";
+import chat_icon from "../../../images/chatting/chatting icon.png";
+import "./RoomPageNav.css";
 import { useDispatch, useSelector } from "react-redux";
-import { handleIsRoomSearchOn, handleRoomKeyword } from "../../actions";
+import { handleIsRoomSearchOn, handleRoomKeyword } from "../../../actions";
 
-export default function RoomsNav() {
+function RoomPageNav() {
   const { isSearchOn } = useSelector((state) => state.RoomSearchOnReducer);
   const dispatch = useDispatch();
 
@@ -28,3 +28,5 @@ export default function RoomsNav() {
     </div>
   );
 }
+
+export default RoomPageNav;

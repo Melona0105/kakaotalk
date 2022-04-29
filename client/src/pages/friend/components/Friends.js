@@ -4,7 +4,7 @@ import open from "../../../images/friend/open.png";
 import close from "../../../images/friend/close.png";
 import Friend from "./Friend";
 
-export default function Friends({ data }) {
+function Friends({ data }) {
   const [isDetailOn, setIsDetailOn] = useState(true);
   return (
     <div className="my-friends-container">
@@ -38,3 +38,5 @@ export default function Friends({ data }) {
     </div>
   );
 }
+
+export default Friends;

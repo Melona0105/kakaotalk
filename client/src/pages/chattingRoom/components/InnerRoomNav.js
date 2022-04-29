@@ -1,13 +1,13 @@
-import search from "../../images/friend/search.png";
-import notiImg from "../../images/chatting/noti.png";
-import bucket from "../../images/chatting/bucket.png";
-import hamburger from "../../images/chatting/hamburger.png";
-import control_bar from "../../images/chatting/control bar.png";
-import friend from "../../images/nav/friend.png";
-import "../../css/components/chatting room/InnerRoomNav.css";
-import { server } from "../../utils";
+import search from "../../../images/friend/search.png";
+import notiImg from "../../../images/chatting/noti.png";
+import bucket from "../../../images/chatting/bucket.png";
+import hamburger from "../../../images/chatting/hamburger.png";
+import control_bar from "../../../images/chatting/control bar.png";
+import friend from "../../../images/nav/friend.png";
+import "./InnerRoomNav.css";
+import { server } from "../../../utils";
 
-export default function InnerRoomNav({ roomImg, roomData }) {
+function InnerRoomNav({ roomImg, roomData }) {
   const { photo, username } = roomData;
   return (
     <div className="inner-room-container-nav">
@@ -37,3 +37,5 @@ export default function InnerRoomNav({ roomImg, roomData }) {
     </div>
   );
 }
+
+export default InnerRoomNav;

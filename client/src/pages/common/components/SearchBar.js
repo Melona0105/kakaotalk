@@ -1,9 +1,5 @@
 import search from "../../../images/friend/search.png";
-export default function SearchBar({
-  searchOnChange,
-  searchOnKeyDown,
-  keyWord,
-}) {
+function SearchBar({ searchOnChange, searchOnKeyDown, keyWord }) {
   return (
     <div className="friend-search-bar">
       <img src={search} />
@@ -16,3 +12,5 @@ export default function SearchBar({
     </div>
   );
 }
+
+export default SearchBar;

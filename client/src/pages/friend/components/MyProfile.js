@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import { server } from "../../../utils";
 import Popup from "../../common/components/Popup";
 
-export default function MyProfile() {
+function MyProfile() {
   const [isProfileOn, setIsProfileOn] = useState(false);
   const { id, photo, username, comment, music } = useSelector(
     (state) => state.UserInfoReducer
@@ -38,3 +38,5 @@ export default function MyProfile() {
     </div>
   );
 }
+
+export default MyProfile;

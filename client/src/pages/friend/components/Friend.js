@@ -8,7 +8,7 @@ import { server } from "../../../utils";
 import { getRoomData } from "../../../utils";
 import useFriend from "./Friend.hook";
 
-export default function Friend({ id, src, name, comment, music, option }) {
+function Friend({ id, src, name, comment, music, option }) {
   const { models, operations } = useFriend(id, name);
   const {
     friend_id,
@@ -82,3 +82,4 @@ export default function Friend({ id, src, name, comment, music, option }) {
     </div>
   );
 }
+export default Friend;

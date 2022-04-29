@@ -1,9 +1,9 @@
 import "./MainPage.css";
 import Nav from "../../components/nav/Nav";
-import ChattingRoomPage from "../ChattingRoomPage";
 import FriendPageContainer from "../friend/FriendPageContainer";
 import SeeMorePage from "../SeeMorePage";
 import useMainPageContainer from "./MainpageContainer.hook";
+import ChattingRoomPageContainer from "../chattingRoom/ChattingRoomPageContainer";
 
 function MainPageContainer() {
   const { models } = useMainPageContainer();
@@ -12,7 +12,7 @@ function MainPageContainer() {
     <div className="mainpage-container">
       <Nav currentPage={currentPage} totalNewMessage={totalNewMessage} />
       {currentPage === 0 && <FriendPageContainer userFriends={userFriends} />}
-      {currentPage === 1 && <ChattingRoomPage roomData={roomData} />}
+      {currentPage === 1 && <ChattingRoomPageContainer roomData={roomData} />}
       {currentPage === 2 && <SeeMorePage />}
     </div>
   );

@@ -1,11 +1,7 @@
 import "./RightMouseMenu.css";
 import client from "../../../Socket";
 
-export default function FriendMouseMenu({
-  location,
-  setIsRightButtonOn,
-  rightButtonMenus,
-}) {
+function FriendMouseMenu({ location, setIsRightButtonOn, rightButtonMenus }) {
   async function onClickMenu(callback) {
     try {
       await callback();
@@ -39,3 +35,5 @@ export default function FriendMouseMenu({
     </>
   );
 }
+
+export default FriendMouseMenu;

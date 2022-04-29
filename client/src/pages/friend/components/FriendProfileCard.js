@@ -7,7 +7,7 @@ import edit from "../../../images/Self Edit.png";
 import useFriendProfileCard from "./FriendProfileCard.hook";
 import { server } from "../../../utils";
 
-export default function FriendProfileCard() {
+function FriendProfileCard() {
   const { models, operations } = useFriendProfileCard();
   const { friendInfo, id, friend_id, isChattingOn, roomStyle, currentRoomId } =
     models;
@@ -65,3 +65,5 @@ export default function FriendProfileCard() {
     </div>
   );
 }
+
+export default FriendProfileCard;

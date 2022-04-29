@@ -4,7 +4,7 @@ import close from "../../../images/friend/close.png";
 import "./BirthdayFriend.css";
 import Friend from "./Friend";
 
-export default function BirthdayFriend({ birthData }) {
+function BirthdayFriend({ birthData }) {
   const [isDetailOn, setIsDetailOn] = useState(true);
   return (
     <div className="birthday-friend-container">
@@ -33,3 +33,5 @@ export default function BirthdayFriend({ birthData }) {
     </div>
   );
 }
+
+export default BirthdayFriend;

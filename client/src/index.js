@@ -7,7 +7,7 @@ import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import InnerRoom from "./components/chatting room/InnerRoom";
+import InnerRoom from "./pages/chattingRoom/components/InnerRoom";
 import SignUp from "./components/users/signup";
 import SettingMain from "./components/settings/detailSetting/SettingMain";
 import AddFriend from "./pages/friend/components/AddFriend";

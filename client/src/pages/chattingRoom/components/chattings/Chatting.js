@@ -1,11 +1,11 @@
 import FriendChat from "./FriendChat";
 import MyChat from "./MyChat";
 import { useSelector } from "react-redux";
-import "../../../css/components/chatting room/chattings/Chatting.css";
-import { server } from "../../../utils";
+import "./Chatting.css";
+import { server } from "../../../../utils";
 import ScrollableFeed from "react-scrollable-feed";
 
-export default function Chatting({ chattingData, roomImg, roomData }) {
+function Chatting({ chattingData, roomImg, roomData }) {
   const { photo } = roomData;
   const { id } = useSelector((state) => state.UserInfoReducer);
   // 로그인한 유저와 아이디가 다를 경우, 그 사람의 유저네임을 출력해준다.
@@ -38,3 +38,5 @@ export default function Chatting({ chattingData, roomImg, roomData }) {
     </div>
   );
 }
+
+export default Chatting;

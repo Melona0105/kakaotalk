@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-export default class Popup extends React.PureComponent {
+class Popup extends React.PureComponent {
   constructor(props) {
     super(props);
     this.el = document.createElement("div");
@@ -31,3 +31,4 @@ export default class Popup extends React.PureComponent {
     return ReactDOM.createPortal(this.props.children, this.el);
   }
 }
+export default Popup;
