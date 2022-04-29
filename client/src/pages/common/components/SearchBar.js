@@ -1,4 +1,4 @@
-import search from "../../images/friend/search.png";
+import search from "../../../images/friend/search.png";
 export default function SearchBar({
   searchOnChange,
   searchOnKeyDown,

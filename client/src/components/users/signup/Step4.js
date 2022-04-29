@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "../../../css/components/users/signup/Step4.css";
-import RemoveButton from "../../etc/RomoveButton";
+import RemoveButton from "../../../pages/common/components/RemoveButton";
 import DateDropDowns from "./DateDropDowns";
 import ProgressBar from "./ProgressBar";
 import RadioBox from "./RadioBox";

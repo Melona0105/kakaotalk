@@ -2,7 +2,7 @@ import react, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { handleLoadingOn } from "../../../../actions";
 import "../../../../css/components/settings/detailSetting/friend/FriendStatus.css";
-import SearchBar from "../../../etc/SearchBar";
+import SearchBar from "../../../../pages/common/components/SearchBar";
 import { filterDataByKeyWord } from "../../../../utils";
 import FriendStatusCard from "./FriendStatusCard";
 import client from "../../../../Socket";

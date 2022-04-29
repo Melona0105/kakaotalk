@@ -1,33 +1,32 @@
 import react from "react";
-import user1 from "../../images/friend/user1.png";
-import Popup from "../etc/Popup";
-import { useState } from "react";
-import "../../css/components/friend/Friend.css";
-import Melon from "../../components/etc/Melon";
-import RightMouseMenu from "../etc/RightMouseMenu";
-import { server } from "../../utils";
-import {
-  getRoomData,
-  hideFriend,
-  blockFriend,
-  deleteFriend,
-} from "../../utils";
+import user1 from "../../../images/friend/user1.png";
+import Popup from "../../common/components/Popup";
+import "./Friend.css";
+import Melon from "../../common/components/Melon";
+import RightMouseMenu from "../../common/components/RightMouseMenu";
+import { server } from "../../../utils";
+import { getRoomData } from "../../../utils";
+import useFriend from "./Friend.hook";
 
 export default function Friend({ id, src, name, comment, music, option }) {
-  const [isChattingOn, setIsChattingOn] = useState(false);
-  const [currentRoomId, setCurrentRoomId] = useState(undefined);
-  const [isRightButtonOn, setIsRightButtonOn] = useState(false);
-  const [settingLocation, setSettingLocation] = useState({ top: 0, left: 0 });
-  const [isProfileOn, setIsProfileOn] = useState(false);
-  const friend_id = id;
-  const roomStyle = "top=100, left=100, width=375, height=640";
-
-  const rightButtonMenus = [
-    { menu: "친구 숨김", callback: () => hideFriend(name) },
-    { menu: "친구 차단", callback: () => blockFriend(name) },
-    { menu: "친구 삭제", callback: () => deleteFriend(name) },
-  ];
-
+  const { models, operations } = useFriend(id, name);
+  const {
+    friend_id,
+    isRightButtonOn,
+    settingLocation,
+    rightButtonMenus,
+    isChattingOn,
+    roomStyle,
+    currentRoomId,
+    isProfileOn,
+  } = models;
+  const {
+    setCurrentRoomId,
+    setIsChattingOn,
+    setIsRightButtonOn,
+    setSettingLocation,
+    setIsProfileOn,
+  } = operations;
   return (
     <div
       className="friend-container"

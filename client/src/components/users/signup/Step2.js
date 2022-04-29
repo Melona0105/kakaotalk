@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "../../../css/components/users/signup/Step2.css";
 import { checkKorean, checkInvalidString } from "../../../utils";
-import RemoveButton from "../../etc/RomoveButton";
+import RemoveButton from "../../../pages/common/components/RemoveButton";
 import ProgressBar from "./ProgressBar";
 import Service from "../../../services";
 

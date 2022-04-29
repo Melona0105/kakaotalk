@@ -1,7 +1,7 @@
 import ProgressBar from "./ProgressBar";
 import "../../../css/components/users/signup/Step3.css";
 import { useEffect, useState } from "react";
-import RemoveButton from "../../etc/RomoveButton";
+import RemoveButton from "../../../pages/common/components/RemoveButton";
 
 export default function Step3({ nextStep, currentEmail, serCurrentPassword }) {
   const [isPasswordFill, setIsPasswordFill] = useState(false);

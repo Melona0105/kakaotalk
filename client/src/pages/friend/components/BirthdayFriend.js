@@ -1,7 +1,7 @@
 import { useState } from "react";
-import open from "../../images/friend/open.png";
-import close from "../../images/friend/close.png";
-import "../../css/components/friend/BirthdayFriend.css";
+import open from "../../../images/friend/open.png";
+import close from "../../../images/friend/close.png";
+import "./BirthdayFriend.css";
 import Friend from "./Friend";
 
 export default function BirthdayFriend({ birthData }) {

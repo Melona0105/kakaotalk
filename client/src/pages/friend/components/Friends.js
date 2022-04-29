@@ -1,7 +1,7 @@
 import { useState } from "react";
-import "../../css/components/friend/Friends.css";
-import open from "../../images/friend/open.png";
-import close from "../../images/friend/close.png";
+import "./Friends.css";
+import open from "../../../images/friend/open.png";
+import close from "../../../images/friend/close.png";
 import Friend from "./Friend";
 
 export default function Friends({ data }) {

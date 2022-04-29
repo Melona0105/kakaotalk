@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import "../../css/components/friend/AddFriend.css";
-import reset from "../../images/signup/reset button.png";
-import { handleLoadingOn } from "../../actions";
-import client from "../../Socket";
-import user1 from "../../images/friend/user1.png";
-import { server } from "../../utils";
-import Service from "../../services";
+import "./AddFriend.css";
+import reset from "../../../images/signup/reset button.png";
+import { handleLoadingOn } from "../../../actions";
+import client from "../../../Socket";
+import user1 from "../../../images/friend/user1.png";
+import { server } from "../../../utils";
+import Service from "../../../services";
 
 export default function AddFriend() {
   const dispatch = useDispatch();

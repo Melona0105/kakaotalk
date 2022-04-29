@@ -1,5 +1,5 @@
-import "../../css/components/etc/Melon.css";
-import play from "../../images/friend/play.png";
+import "./Melon.css";
+import play from "../../../images/friend/play.png";
 
 export default function Melon({ music }) {
   return (

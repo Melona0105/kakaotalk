@@ -1,10 +1,10 @@
 import { useState } from "react";
-import "../../css/components/friend/MyProfile.css";
-import Melon from "../etc/Melon";
-import user1 from "../../images/friend/user1.png";
+import "./MyProfile.css";
+import Melon from "../../common/components/Melon";
+import user1 from "../../../images/friend/user1.png";
 import { useSelector } from "react-redux";
-import { server } from "../../utils";
-import Popup from "../etc/Popup";
+import { server } from "../../../utils";
+import Popup from "../../common/components/Popup";
 
 export default function MyProfile() {
   const [isProfileOn, setIsProfileOn] = useState(false);

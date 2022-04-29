@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
-import Login from "./components/users/Login";
-import MainPage from "./pages/MainPage";
+import Login from "./components/users/login/Login";
 import "./app.css";
 import { useSelector, useDispatch } from "react-redux";
 import { handleIsLogin } from "./actions";
 import LoadingPage from "./components/LoadingPage";
+import MainPageContainer from "./pages/main/MainPageContainer";
 
 function App() {
   const { isLogin } = useSelector((state) => state.LoginReducer);
@@ -22,7 +22,7 @@ function App() {
       onContextMenuCapture={(e) => e.preventDefault()}
     >
       {isLoadingOn && <LoadingPage />}
-      {isLogin ? <MainPage /> : <Login />}
+      {isLogin ? <MainPageContainer /> : <Login />}
     </div>
   );
 }

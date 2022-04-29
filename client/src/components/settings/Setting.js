@@ -6,7 +6,7 @@ import {
   handleCurrentPage,
 } from "../../actions";
 import { useState } from "react";
-import Popup from "../etc/Popup";
+import Popup from "../../pages/common/components/Popup";
 
 export default function Setting({ location, setIsSettingOn }) {
   const [isDetailOn, setIsDetailOn] = useState(false);

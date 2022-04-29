@@ -10,8 +10,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import InnerRoom from "./components/chatting room/InnerRoom";
 import SignUp from "./components/users/signup";
 import SettingMain from "./components/settings/detailSetting/SettingMain";
-import AddFriend from "./components/friend/AddFriend";
-import FriendProfileCard from "./components/friend/FriendProfileCard";
+import AddFriend from "./pages/friend/components/AddFriend";
+import FriendProfileCard from "./pages/friend/components/FriendProfileCard";
 
 ReactDOM.render(
   <React.StrictMode>

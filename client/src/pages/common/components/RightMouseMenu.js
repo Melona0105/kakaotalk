@@ -1,5 +1,5 @@
-import "../../css/components/friend/FriendMouseMenu.css";
-import client from "../../Socket";
+import "./RightMouseMenu.css";
+import client from "../../../Socket";
 
 export default function FriendMouseMenu({
   location,

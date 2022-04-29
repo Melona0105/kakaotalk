@@ -3,7 +3,7 @@ import RoomPageNav from "../components/chatting room/RoomPageNav";
 import Room from "../components/chatting room/Room";
 import { useSelector, useDispatch } from "react-redux";
 import { handleRoomKeyword, handleIsRoomSearchOn } from "../actions";
-import SearchBar from "../components/etc/SearchBar";
+import SearchBar from "./common/components/SearchBar";
 import { filterDataByKeyWord } from "../utils";
 
 export default function ChattingPage({ roomData }) {

@@ -1,15 +1,14 @@
 import { useEffect, useState } from "react";
-import Nav from "../components/nav/Nav";
-import FriendPage from "../pages/FriendPage";
-import "../css/pages/MainPage.css";
-import ChattingRoomPage from "./ChattingRoomPage";
-import SeeMorePage from "./SeeMorePage";
 import { useDispatch, useSelector } from "react-redux";
-import { handleLoadingOn, handleUserInfo, handleUserFriends } from "../actions";
-import Service from "../services";
-import client from "../Socket";
+import {
+  handleLoadingOn,
+  handleUserFriends,
+  handleUserInfo,
+} from "../../actions";
+import Service from "../../services";
+import client from "../../Socket";
 
-export default function MainPage() {
+function useMainPageContainer() {
   const dispatch = useDispatch();
   const { currentPage } = useSelector((state) => state.CurrentPageReducer);
   const { userFriends } = useSelector((state) => state.UserFriendsInfoReducer);
@@ -155,12 +154,7 @@ export default function MainPage() {
     return result;
   }
 
-  return (
-    <div className="mainpage-container">
-      <Nav currentPage={currentPage} totalNewMessage={totalNewMessage} />
-      {currentPage === 0 && <FriendPage userFriends={userFriends} />}
-      {currentPage === 1 && <ChattingRoomPage roomData={roomData} />}
-      {currentPage === 2 && <SeeMorePage />}
-    </div>
-  );
+  return { models: { currentPage, totalNewMessage, userFriends, roomData } };
 }
+
+export default useMainPageContainer;

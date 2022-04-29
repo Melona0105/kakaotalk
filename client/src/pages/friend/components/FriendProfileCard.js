@@ -1,32 +1,17 @@
-import { useParams } from "react-router-dom";
-import "../../css/components/friend/ProfileCard.css";
-import Service from "../../services";
-import user1 from "../../images/friend/user1.png";
-import voice_talk from "../../images/chatting/voice talk.png";
-import chatting from "../../images/nav/chat.png";
-import { useEffect, useState } from "react";
-import Popup from "../etc/Popup";
-import edit from "../../images/Self Edit.png";
-import { useSelector } from "react-redux";
-import { getRoomData, server } from "../../utils";
+import "./FriendProfileCard.css";
+import user1 from "../../../images/friend/user1.png";
+import voice_talk from "../../../images/chatting/voice talk.png";
+import chatting from "../../../images/nav/chat.png";
+import Popup from "../../common/components/Popup";
+import edit from "../../../images/Self Edit.png";
+import useFriendProfileCard from "./FriendProfileCard.hook";
+import { server } from "../../../utils";
 
 export default function FriendProfileCard() {
-  const { id } = useSelector((state) => state.UserInfoReducer);
-  const [isChattingOn, setIsChattingOn] = useState(false);
-  const [currentRoomId, setCurrentRoomId] = useState(undefined);
-  const { friend_id } = useParams();
-  const [friendInfo, setFriendInfo] = useState({});
-  async function getFriendsInfo() {
-    const result = await Service.friends.fetchFriendInfo(friend_id);
-    setFriendInfo(result);
-  }
-  const roomStyle = "top=100, left=100, width=375, height=640";
-
-  // * TODO : 프렌드 아이디로 데이터 가져오기 --- OK
-  useEffect(() => {
-    getFriendsInfo();
-    getRoomData(friend_id, setCurrentRoomId);
-  }, []);
+  const { models, operations } = useFriendProfileCard();
+  const { friendInfo, id, friend_id, isChattingOn, roomStyle, currentRoomId } =
+    models;
+  const { setIsChattingOn } = operations;
 
   return (
     <div className="profile-card-container">

@@ -1,12 +1,12 @@
 import { useState } from "react";
 import user from "../../images/friend/user1.png";
 import { printNewMsgTime } from "../../utils";
-import Popup from "../etc/Popup";
+import Popup from "../../pages/common/components/Popup";
 import "../../css/components/chatting room/Room.css";
 import { useDispatch, useSelector } from "react-redux";
 import { handleIsMsgChange } from "../../actions";
 import { server } from "../../utils";
-import RightMouseMenu from "../etc/RightMouseMenu";
+import RightMouseMenu from "../../pages/common/components/RightMouseMenu";
 import Service from "../../services";
 
 export default function Room({ data }) {
