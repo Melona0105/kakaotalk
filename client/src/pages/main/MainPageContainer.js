@@ -1,5 +1,5 @@
 import "./MainPage.css";
-import Nav from "../../components/nav/Nav";
+import Nav from "../../utils/nav/Nav";
 import FriendPageContainer from "../friend/FriendPageContainer";
 import SeeMorePageContainer from "../seemore/SeeMorePageContainer";
 import useMainPageContainer from "./MainpageContainer.hook";

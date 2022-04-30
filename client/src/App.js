@@ -1,21 +1,13 @@
-import React, { useEffect } from "react";
-import Login from "./components/users/login/Login";
-import "./app.css";
-import { useSelector, useDispatch } from "react-redux";
-import { handleIsLogin } from "./actions";
-import LoadingPage from "./components/LoadingPage";
+import React from "react";
+import Login from "./pages/login/Login";
+import "./App.css";
+import LoadingPage from "./utils/loading/LoadingPage";
 import MainPageContainer from "./pages/main/MainPageContainer";
+import useApp from "./App.hook";
 
 function App() {
-  const { isLogin } = useSelector((state) => state.LoginReducer);
-  const { isLoadingOn } = useSelector((state) => state.LoadingReducer);
-  const dispatch = useDispatch();
-  useEffect(() => {
-    localStorage.token
-      ? dispatch(handleIsLogin(true))
-      : dispatch(handleIsLogin(false));
-  }, [localStorage.token]);
-
+  const { models } = useApp();
+  const { isLoadingOn, isLogin } = models;
   return (
     <div
       className="kakao-talk"

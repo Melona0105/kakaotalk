@@ -1,4 +1,5 @@
 import search from "../../../images/friend/search.png";
+
 function SearchBar({ searchOnChange, searchOnKeyDown, keyWord }) {
   return (
     <div className="friend-search-bar">
